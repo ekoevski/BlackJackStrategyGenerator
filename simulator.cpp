@@ -384,8 +384,7 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
 
 
 
-
-
+// 
 cout << "\n\n SOFT STRATEGY \n\n";
 
 printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
