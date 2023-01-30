@@ -388,8 +388,8 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
 cout << "\n\n SOFT STRATEGY \n\n";
 
 printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 12; j < softStrategy.size(); j++){
-        cout << "soft" << j << ": ";
+  for(int j = 13; j < softStrategy.size(); j++){
+        cout << "soft" << j-1 << ": ";
     for(int i = 0; i < softStrategy[j].size(); i++){
 
       softStrategy[j][i] = 2;
