@@ -8,6 +8,7 @@
 #include "shoe.h"
 #include "dealer.h"
 #include "player.h"
+#include "card.h"
 
 using namespace std;
 
@@ -27,6 +28,13 @@ class Table
   Dealer *theDealer;
   vector<Player*> players;
 
+
+
+  int playerCards;
+  int dealerUp;
+
+
+
   Table();
   Table(string Name, int decks, int playerNumber);
 
@@ -45,6 +53,13 @@ class Table
   void removeACE(){theShoe->removeAce();}
   void showRestOfCards(){theShoe->showAllCards();}
   void clearTable();
+
+  void setHardCards(int playerCards, int dealerUp);
+  void setSoftCards(int playerCards, int dealerUp);
+  void setSplitCards(int playerCards, int dealerUp);
+
+
+  void dealerUpCard(int dealerUp);
 
   void printDrop();
   void setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>> soft, vector<vector<int>> split);

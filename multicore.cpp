@@ -29,17 +29,17 @@ int main() {
     for(int x = 3; x <= 12; x+=3){
       for(int y = 4; y <= 16; y+=4){
         for(int z = 1; z <= 4;  z++){
-          Sim->optimizeThreaded(50000,z,y,x,w); 
+          //Sim->optimizeThreaded(5000,z,y,x,w); 
         }
       }
     }
   }
 
 
-
+  Sim->optimizeThreaded(5000,4,16,12,20); 
   //Sim->loadBasicStrategy();
 
   //Sim->optimizeThreaded(50000, 4, 0, 0, 20);
-  Sim->BJ->theShoe->createShoe(4,0,12,20);
+  Sim->BJ->theShoe->createShoe(4,16,12,20);
   Sim->testCurrentStrategy(500000);
 }

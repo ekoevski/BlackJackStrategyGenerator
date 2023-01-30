@@ -384,3 +384,63 @@ void Table::printDrop()
   printf(" HOLD: (%.2f p)",
          theDealer->winLoss / theDealer->casinoDrop * 100);
 }
+
+
+
+void Table::setHardCards(int playerTotal, int dealerUp){
+  // Player
+  if(playerTotal <= 12){
+    Card *newFirstCard = new Card(2 , 1);
+    Card *newSecondCard = new Card(playerTotal - 2 , 1);
+    for(Player * aPlayer : players){
+      aPlayer -> playerHand[0] = newFirstCard;
+      aPlayer -> playerHand[1] = newSecondCard;
+    }  
+  }
+  
+  if(playerTotal > 12){
+    Card *newFirstCard = new Card(10 , 1);
+    Card *newSecondCard = new Card(playerTotal - 10 , 1);
+    for(Player * aPlayer : players){
+      aPlayer -> playerHand[0] = newFirstCard;
+      aPlayer -> playerHand[1] = newSecondCard;
+    }  
+  }
+
+  // Dealer
+  Card *dealerUpCard = new Card(dealerUp + 1, 1);
+  theDealer -> dealerHand[0] = dealerUpCard;
+}
+
+void Table::setSoftCards(int playerTotal, int dealerUp){
+  // Player
+
+    Card *newFirstCard = new Card(1 , 1);
+    Card *newSecondCard = new Card(playerTotal - 11 , 1);
+    for(Player * aPlayer : players){
+      aPlayer -> playerHand[0] = newFirstCard;
+      aPlayer -> playerHand[1] = newSecondCard;
+    }  
+
+  
+  // Dealer
+  Card *dealerUpCard = new Card(dealerUp + 1, 1);
+  theDealer -> dealerHand[0] = dealerUpCard;
+}
+
+
+void Table::setSplitCards(int playerTotal, int dealerUp){
+  // Player
+
+    Card *newFirstCard = new Card(playerTotal + 1 , 1);
+    Card *newSecondCard = new Card(playerTotal + 1 , 1);
+    for(Player * aPlayer : players){
+      aPlayer -> playerHand[0] = newFirstCard;
+      aPlayer -> playerHand[1] = newSecondCard;
+    }  
+  
+
+  // Dealer
+  Card *dealerUpCard = new Card(dealerUp + 1, 1);
+  theDealer -> dealerHand[0] = dealerUpCard;
+}

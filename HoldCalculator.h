@@ -26,6 +26,17 @@ class HoldCalculator
 
   float hold = 0;
 
+int mode = 4;
+int playerCardTotal = 0;
+int dealerUpCard = 0;
+
+    // Used to set first 2 cards manually
+  void setCards(int theMode, int playerTotal, int dealerUp){
+    mode = theMode;
+    playerCardTotal = playerTotal;
+    dealerUpCard = dealerUp;
+  };  //mode: 0 for hard, 1, for soft 2 for split first hand setter
+
 
   HoldCalculator();
   HoldCalculator(int rounds, int aces, int high, int mid,

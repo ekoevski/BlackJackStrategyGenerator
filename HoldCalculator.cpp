@@ -42,6 +42,13 @@ void HoldCalculator::runThread(){
     counter++;
 
     BJ->placeCards();
+
+    if(mode == 0){BJ->setHardCards(playerCardTotal, dealerUpCard);}
+    if(mode == 1){BJ->setSoftCards(playerCardTotal, dealerUpCard);}
+    if(mode == 2){BJ->setSplitCards(playerCardTotal, dealerUpCard);}
+
+
+
     BJ->displayTable();
     BJ->playRound(1);
 

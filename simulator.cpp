@@ -347,19 +347,22 @@ std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 cout << "\n HARD STRATEGY \n\n";
 
 printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 4; j < hardStrategy.size(); j++){
+  for(int j = 5; j < hardStrategy.size(); j++){
     cout << "hard" << j << ": ";
     for(int i = 0; i < hardStrategy[j].size(); i++){
 
       hardStrategy[j][i] = 2;
+      Double -> setCards(0, j, i);  // 0 for hard mode, player total, dealer up
       Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th3(&HoldCalculator::runThread, Double);
 
       hardStrategy[j][i] = 0;
+      Stay -> setCards(0, j, i);
       Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th1(&HoldCalculator::runThread, Stay);
 
       hardStrategy[j][i] = 1;
+      Hit -> setCards(0, j, i);
       Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th2(&HoldCalculator::runThread, Hit);
 
@@ -393,14 +396,17 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
     for(int i = 0; i < softStrategy[j].size(); i++){
 
       softStrategy[j][i] = 2;
+      Double-> setCards(1,j-1,i);
       Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th3(&HoldCalculator::runThread, Double);
 
       softStrategy[j][i] = 0;
+      Stay -> setCards(1,j-1,i);
       Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th1(&HoldCalculator::runThread,Stay);
 
       softStrategy[j][i] = 1;
+      Hit -> setCards(1,j-1,i);
       Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th2(&HoldCalculator::runThread, Hit);
 
@@ -429,18 +435,22 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
 
 
       splitStrategy[j][i] = 2;
+      Double->setCards(2,j,i);
       Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th3(&HoldCalculator::runThread, Double);
 
       splitStrategy[j][i] = 0;
+      Stay->setCards(2,j,i);
       Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th1(&HoldCalculator::runThread, Stay);
 
       splitStrategy[j][i] = 1;
+      Hit->setCards(2,j,i);
       Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th2(&HoldCalculator::runThread, Hit);
 
       splitStrategy[j][i] = 4;
+      Split->setCards(2,j,i);
       Split->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th4(&HoldCalculator::runThread, Split);
 
