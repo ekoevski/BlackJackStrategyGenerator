@@ -35,8 +35,8 @@ int main() {
     }
   }
 
-
- Sim->optimizeThreaded(3000,4,16,12,20); 
+  // Optimise perfect startegy
+ //Sim->optimizeThreaded(3000,4,16,12,20); 
   Sim->loadBasicStrategy(4,16,12,20);
 
   //Sim->optimizeThreaded(50000, 4, 0, 0, 20);
