@@ -347,7 +347,7 @@ std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 cout << "\n HARD STRATEGY \n\n";
 
 printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 5; j < hardStrategy.size(); j++){
+  for(int j = 5; j < hardStrategy.size() - 1; j++){
     cout << "hard" << j << ": ";
     for(int i = 0; i < hardStrategy[j].size(); i++){
 
@@ -391,7 +391,7 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
 cout << "\n\n SOFT STRATEGY \n\n";
 
 printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 13; j < softStrategy.size(); j++){
+  for(int j = 13; j < softStrategy.size() - 1; j++){
         cout << "soft" << j-1 << ": ";
     for(int i = 0; i < softStrategy[j].size(); i++){
 
@@ -429,7 +429,7 @@ cout << "\n\n SPLIT STRATEGY \n\n";
 
 printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
   for(int j = 0; j < splitStrategy.size(); j++){
-        cout << "splt" << j + 1 << ": ";    
+        cout << "splt " << j + 1 << "s: ";    
     for(int i = 0; i < splitStrategy[j].size(); i++){
 
 
@@ -454,10 +454,13 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
       Split->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th4(&HoldCalculator::runThread, Split);
 
-     th4.join();
-      th1.join();
+     th3.join();
+      th1.join();   
+        
+      th4.join();
+
       th2.join();
-      th3.join();
+ 
  
 
       min = 1000.0;
