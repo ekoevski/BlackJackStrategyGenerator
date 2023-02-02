@@ -22,7 +22,7 @@ int main() {
     sleep(1);
   }
 
-  Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 1 deck, 1 player
+  Simulator* Sim = new Simulator("Blackjack", 2, 1);  // 1 deck, 1 player
 
 
   for(int w = 5; w <= 20; w+=5){
@@ -36,10 +36,10 @@ int main() {
   }
 
   // Optimise perfect startegy
- //Sim->optimizeThreaded(3000,4,16,12,20); 
-  Sim->loadBasicStrategy(4,16,12,20);
+ Sim->optimizeThreaded(3000,0,32,24,40); 
+  //Sim->loadBasicStrategy(4,16,12,20);
 
   //Sim->optimizeThreaded(50000, 4, 0, 0, 20);
-  Sim->BJ->theShoe->createShoe(4,16,12,20);
+  Sim->BJ->theShoe->createShoe(0, 32,24,40);
   Sim->testCurrentStrategy(500000);
 }

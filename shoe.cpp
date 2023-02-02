@@ -39,6 +39,10 @@ Shoe::Shoe()   //Default, I am using this to test
       }        
     }
   }
+
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  srand(seed);
+
   random_shuffle(aces.begin(), aces.end());
   random_shuffle(low.begin(), low.end());
   random_shuffle(mid.begin(), mid.end());
@@ -82,6 +86,14 @@ Shoe::Shoe(int deckNum)   // Creates 4 vectors; low, mid high and aces, decks
     }
   }
 
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  srand(seed);
+  
+  random_shuffle(aces.begin(), aces.end());
+  random_shuffle(low.begin(), low.end());
+  random_shuffle(mid.begin(), mid.end());
+  random_shuffle(high.begin(), high.end());
+
 
 
   //printf("\nDeck generation successful\n");
@@ -108,6 +120,13 @@ Shoe::Shoe(int deckNum)   // Creates 4 vectors; low, mid high and aces, decks
 void Shoe::createShoe(int tempAces, int tempHigh, int tempMid, int tempLow){
     
     Shoe::theShoe.clear();
+   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    srand(seed);
+    
+    random_shuffle(aces.begin(), aces.end());
+    random_shuffle(low.begin(), low.end());
+    random_shuffle(mid.begin(), mid.end());
+    random_shuffle(high.begin(), high.end());
 
     Shoe::lowIndex = tempLow;
     Shoe::midIndex = tempMid;

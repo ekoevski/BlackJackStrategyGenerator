@@ -381,6 +381,7 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
       if(min >= Double->hold){min = Double->hold;       hardStrategy[j][i] = 2;}
       //printf("min %f", min);
       cout << hardStrategy[j][i]<< " ";
+      printf(" S%.1f H%.1f D%.1f| ", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;
   }
@@ -421,6 +422,7 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
       if(min >= Hit->hold){min = Hit->hold;             softStrategy[j][i] = 1;}
       if(min >= Double->hold){min = Double->hold;       softStrategy[j][i] = 2;}
       cout << softStrategy[j][i]<< " ";
+      printf(" S%.1f H%.1f D%.1f|", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;   
   }
