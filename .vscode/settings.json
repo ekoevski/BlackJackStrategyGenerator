@@ -1,4 +1,6 @@
 {
+    
+    
     "files.associations": {
         "chrono": "cpp",
         "iosfwd": "cpp",
@@ -10,6 +12,17 @@
             "cwd": "/home/ekoev/BJHitman/BJKiller",
             "binaryPath": "/home/ekoev/BJHitman/BJKiller/BJKiller",
             "binaryArgs": []
+        }
+
+    ],
+    "makefile.configurations": [
+        {
+            "name": "Default",
+            "makeArgs": []
+        },
+        {
+            "name": "Print make version",
+            "makeArgs": ["--version"]
         }
     ]
 }
