@@ -3,5 +3,13 @@
         "chrono": "cpp",
         "iosfwd": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/ekoev/BJHitman/BJKiller",
+            "binaryPath": "/home/ekoev/BJHitman/BJKiller/BJKiller",
+            "binaryArgs": []
+        }
+    ]
 }
