@@ -21,10 +21,7 @@ Simulator::Simulator()
 {};
 
 
-
-
-Simulator::Simulator(string name, int decks, int players)
-{
+Simulator::Simulator(string name, int decks, int players){
  Simulator::BJ = new Table(name, decks, players);
  Simulator::aces = decks * 4;
  Simulator::high = decks * 16;
@@ -52,29 +49,20 @@ float Simulator::run(int rounds){
   while (counter < rounds) {
     counter++;
     BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-
     BJ->placeCards();
     BJ->displayTable();
-
     BJ->playRound(1);
 
 
-
-
     if (counter % 1000 == 0) {
-      //BJ->printDrop();
       total_drop += BJ->theDealer->casinoDrop;
       total_winloss += BJ->theDealer->winLoss;
-      //printf(" total W/L (%f)  rounds = %i , low = %i \n", total_winloss/total_drop, counter, BJ->theShoe->lowIndex); 
-
       BJ->theDealer->casinoDrop = 0;
       BJ->theDealer->winLoss = 0;
     }
 
     BJ->clearTable();
   }
-
-    //printf("\n\nSimulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
     return (total_winloss/total_drop)*100;
 };
 
@@ -218,8 +206,6 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
     cout << "hard" << j << ": ";
     for(int i = 0; i < hardStrategy[j].size(); i++){
 
-
-
       hardStrategy[j][i] = 0;
       BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       stayHold = Simulator::run(rounds);
@@ -312,7 +298,6 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
   }
 std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 std::cout << "\n\nTime difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000 << "[s]" << std::endl;
-//Simulator::exportBasicStrategy(aces, high, mid, low);
 
 }
 
@@ -344,11 +329,17 @@ std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
 
 
+cout << "\n 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split \n\n";
+
 cout << "\n HARD STRATEGY \n\n";
 
-printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
+printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
   for(int j = 5; j < hardStrategy.size() - 1; j++){
-    cout << "hard" << j << ": ";
+    
+    if(j < 10) {cout << "        hard " << j << ": ";}
+    if(j >= 10) {cout << "        hard" << j << ": ";}
+
+    
     for(int i = 0; i < hardStrategy[j].size(); i++){
 
       hardStrategy[j][i] = 2;
@@ -381,7 +372,7 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
       if(min >= Double->hold){min = Double->hold;       hardStrategy[j][i] = 2;}
       //printf("min %f", min);
       cout << hardStrategy[j][i]<< " ";
-      printf(" S%.1f H%.1f D%.1f| ", Stay->hold, Hit->hold, Double->hold);
+      //printf(" S%.1f H%.1f D%.1f| ", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;
   }
@@ -391,9 +382,9 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
 // 
 cout << "\n\n SOFT STRATEGY \n\n";
 
-printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
+printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
   for(int j = 13; j < softStrategy.size() - 1; j++){
-        cout << "soft" << j-1 << ": ";
+cout << "        soft" << j << ": ";
     for(int i = 0; i < softStrategy[j].size(); i++){
 
       softStrategy[j][i] = 2;
@@ -422,16 +413,16 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
       if(min >= Hit->hold){min = Hit->hold;             softStrategy[j][i] = 1;}
       if(min >= Double->hold){min = Double->hold;       softStrategy[j][i] = 2;}
       cout << softStrategy[j][i]<< " ";
-      printf(" S%.1f H%.1f D%.1f|", Stay->hold, Hit->hold, Double->hold);
+      //printf(" S%.1f H%.1f D%.1f|", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;   
   }
 
 cout << "\n\n SPLIT STRATEGY \n\n";
 
-printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
+printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
   for(int j = 0; j < splitStrategy.size(); j++){
-        cout << "splt " << j + 1 << "s: ";    
+cout << "       split" << j << ": ";   
     for(int i = 0; i < splitStrategy[j].size(); i++){
 
 
@@ -456,11 +447,9 @@ printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
       Split->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       std::thread th4(&HoldCalculator::runThread, Split);
 
-     th3.join();
-      th1.join();   
-        
+      th3.join();
+      th1.join();     
       th4.join();
-
       th2.join();
  
  

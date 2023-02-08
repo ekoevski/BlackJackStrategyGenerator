@@ -34,6 +34,11 @@ Table::Table(string newGameName, int numberOfDecks, int numOfPlayers)
   }
 }
 
+
+
+
+// METHODS
+//=======================
 void Table::placeCards()
 {
   // YOU NEED TO DEAL DEALER CARDS

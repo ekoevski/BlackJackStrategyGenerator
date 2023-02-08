@@ -57,7 +57,7 @@ void HoldCalculator::runThread(){
       total_drop += BJ->theDealer->casinoDrop;
       total_winloss += BJ->theDealer->winLoss;
       //printf(" total W/L (%f)  rounds = %i , low = %i \n", total_winloss/total_drop, counter, BJ->theShoe->lowIndex); 
-  //printf("dealer wl %f   dealer drop %f    total wl %f    total drop %f     \n" ,BJ->theDealer->winLoss , BJ->theDealer->casinoDrop, total_winloss, total_drop);
+      //printf("dealer wl %f   dealer drop %f    total wl %f    total drop %f     \n" ,BJ->theDealer->winLoss , BJ->theDealer->casinoDrop, total_winloss, total_drop);
       BJ->theDealer->casinoDrop = 0;
       BJ->theDealer->winLoss = 0;
 

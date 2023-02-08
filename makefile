@@ -4,7 +4,7 @@
 
 
 #TODO;� specify the list of source files programmed for this project, SOURCES = ???
-SOURCES = multicore.cpp card.cpp table.cpp shoe.cpp dealer.cpp player.cpp simulator.cpp simulator.h card.h table.h shoe.h dealer.h player.h HoldCalculator.cpp HoldCalculator.h
+SOURCES = main.cpp card.cpp table.cpp shoe.cpp dealer.cpp player.cpp simulator.cpp simulator.h card.h table.h shoe.h dealer.h player.h HoldCalculator.cpp HoldCalculator.h
 INCS = ???
 
 ####### Specify the target name ######
