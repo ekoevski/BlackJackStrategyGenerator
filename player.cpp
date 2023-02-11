@@ -92,7 +92,7 @@ int Player::getFirstHandTotal(){
     for(Card *aCard  : Player::playerHand){
         handTotal += aCard->getValue();
     }
-    return handTotal;
+    return handTotal; 
 }
 
 int Player::getSecondHandTotal(){
@@ -166,7 +166,7 @@ void Player::firstTwo(int dealerUp){
         if(Player::firstIsSoft()){              // YOU NEED TO COMPLETE THIS NEEEEXT
 
             // Add 10 because soft
-            basicStrategy = Player::basicSoftStrategy[Player::getFirstHandTotal() + 11][Player::dealerShowing - 1];
+            basicStrategy = Player::basicSoftStrategy[Player::getFirstHandTotal() + 10][Player::dealerShowing - 1];
         }
         else{
             basicStrategy = Player::basicHardStrategy[Player::getFirstHandTotal()][Player::dealerShowing - 1];

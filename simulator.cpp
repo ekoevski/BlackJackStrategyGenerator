@@ -183,11 +183,11 @@ void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int t
 }
 
 
-void Simulator::optimize(int rounds){
+void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow){
 
 
-printf("                *** START OPTIMIZATION    (%i) ROUNDS ***  \n\n", rounds);
-printf(" Aces: %d  High: %d  Mid: %d  Low: %d\n", aces, high, mid, low);
+printf("                *** START OPTIMIZATION (SINGLE-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
+printf(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
 std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
   float stayHold = 0;
@@ -195,109 +195,146 @@ std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
   float doubleHold = 0;
   float splitHold = 0;
   float min = 1000.0;
-  thread th1;
-  thread th2;
-  thread th3;
+
+  HoldCalculator* Stay = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
+  HoldCalculator* Hit = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
+  HoldCalculator* Double = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
+  HoldCalculator* Split = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
+
+  Stay->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Hit->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Double->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Split->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+
+
+
+cout << "\n 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split \n\n";
 
 cout << "\n HARD STRATEGY \n\n";
 
-printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 4; j < hardStrategy.size() - 1; j++){
-    cout << "hard" << j << ": ";
+printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
+  for(int j = 5; j < hardStrategy.size() - 1; j++){
+    
+    if(j < 10) {cout << "        hard " << j << ": ";}
+    if(j >= 10) {cout << "        hard" << j << ": ";}
+
+    
     for(int i = 0; i < hardStrategy[j].size(); i++){
 
-      hardStrategy[j][i] = 0;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      stayHold = Simulator::run(rounds);
-      //th1(&Simulator::run, 100);
-      hardStrategy[j][i] = 1;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      hitHold = Simulator::run(rounds);
-
       hardStrategy[j][i] = 2;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      doubleHold = Simulator::run(rounds);
+      Double -> setCards(0, j, i);  // 0 for hard mode, player total, dealer up
+      Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double->runThread();
 
+      hardStrategy[j][i] = 0;
+      Stay -> setCards(0, j, i);
+      Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay -> runThread();
+
+      hardStrategy[j][i] = 1;
+      Hit -> setCards(0, j, i);
+      Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit->runThread();
 
 
       //printf("\nstayHold %f, hitHold %f, doubleHold %f \n", stayHold, hitHold, doubleHold);
 
 
       min = 1000.0;
-      if(min >= stayHold){min = stayHold;           hardStrategy[j][i] = 0;}
-      if(min >= hitHold){min = hitHold;             hardStrategy[j][i] = 1;}
-      if(min >= doubleHold){min = doubleHold;       hardStrategy[j][i] = 2;}
+      //printf("stay->hold %f    hit->hold %f    double->hold %f\n", Stay->hold, Hit->hold, Double->hold);
+      if(min >= Stay->hold){min = Stay->hold;           hardStrategy[j][i] = 0;}
+      if(min >= Hit->hold){min = Hit->hold;             hardStrategy[j][i] = 1;}
+      if(min >= Double->hold){min = Double->hold;       hardStrategy[j][i] = 2;}
       //printf("min %f", min);
       cout << hardStrategy[j][i]<< " ";
+      //printf(" S%.1f H%.1f D%.1f| ", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;
   }
 
 
 
-
-
+// 
 cout << "\n\n SOFT STRATEGY \n\n";
 
-printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 12; j < softStrategy.size()-1; j++){
-        cout << "soft" << j << ": ";
+printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
+  for(int j = 13; j < softStrategy.size() - 1; j++){
+cout << "        soft" << j << ": ";
     for(int i = 0; i < softStrategy[j].size(); i++){
-      softStrategy[j][i] = 0;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      stayHold = Simulator::run(rounds);
-
-      softStrategy[j][i] = 1;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      hitHold = Simulator::run(rounds);
 
       softStrategy[j][i] = 2;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      doubleHold = Simulator::run(rounds);
+      Double-> setCards(1,j-1,i);
+      Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double->runThread();
+
+      softStrategy[j][i] = 0;
+      Stay -> setCards(1,j-1,i);
+      Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay->runThread();
+
+      softStrategy[j][i] = 1;
+      Hit -> setCards(1,j-1,i);
+      Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit->runThread();
+
+
 
       min = 1000.0;
-      if(min >= stayHold){min = stayHold;           softStrategy[j][i] = 0;}
-      if(min >= hitHold){min = hitHold;             softStrategy[j][i] = 1;}
-      if(min >= doubleHold){min = doubleHold;       softStrategy[j][i] = 2;}
+      if(min >= Stay->hold){min = Stay->hold;           softStrategy[j][i] = 0;}
+      if(min >= Hit->hold){min = Hit->hold;             softStrategy[j][i] = 1;}
+      if(min >= Double->hold){min = Double->hold;       softStrategy[j][i] = 2;}
       cout << softStrategy[j][i]<< " ";
+      //printf(" S%.1f H%.1f D%.1f|", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;   
   }
 
 cout << "\n\n SPLIT STRATEGY \n\n";
 
-printf("Dealer: A 2 3 4 5 6 7 8 9 10\n\n");
+printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
   for(int j = 0; j < splitStrategy.size(); j++){
-        cout << "splt" << j << ": ";    
+cout << "       split" << j << ": ";   
     for(int i = 0; i < splitStrategy[j].size(); i++){
-      splitStrategy[j][i] = 0;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      stayHold = Simulator::run(rounds);
 
-      splitStrategy[j][i] = 1;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      hitHold = Simulator::run(rounds);
+
 
       splitStrategy[j][i] = 2;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      doubleHold = Simulator::run(rounds);
+      Double->setCards(2,j,i);
+      Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double->runThread();
+
+      splitStrategy[j][i] = 0;
+      Stay->setCards(2,j,i);
+      Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay->runThread();
+
+      splitStrategy[j][i] = 1;
+      Hit->setCards(2,j,i);
+      Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit->runThread();
 
       splitStrategy[j][i] = 4;
-      BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      splitHold = Simulator::run(rounds);
+      Split->setCards(2,j,i);
+      Split->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Split->runThread();
 
+
+ 
+ 
 
       min = 1000.0;
-      if(min >= stayHold){min = stayHold;           splitStrategy[j][i] = 0;}
-      if(min >= hitHold){min = hitHold;             splitStrategy[j][i] = 1;}
-      if(min >= doubleHold){min = doubleHold;       splitStrategy[j][i] = 2;}
-      if(min >= splitHold){min = splitHold;         splitStrategy[j][i] = 4;}
+      if(min >= Stay->hold){min = Stay->hold;           splitStrategy[j][i] = 0;}
+      if(min >= Hit->hold){min = Hit->hold;             splitStrategy[j][i] = 1;}
+      if(min >= Double->hold){min = Double->hold;       splitStrategy[j][i] = 2;}
+      if(min >= Split->hold){min = Split->hold;         splitStrategy[j][i] = 4;}
+
       cout << splitStrategy[j][i]<< " ";
     }
     cout << endl;
   }
 std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 std::cout << "\n\nTime difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000 << "[s]" << std::endl;
+Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
 
 }
 

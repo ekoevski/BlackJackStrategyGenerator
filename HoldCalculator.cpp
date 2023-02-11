@@ -42,14 +42,14 @@ void HoldCalculator::runThread(){
     counter++;
 
     BJ->placeCards();
-
+    BJ->players[0]->firstDouble = false;
     if(mode == 0){BJ->setHardCards(playerCardTotal, dealerUpCard);}
     if(mode == 1){BJ->setSoftCards(playerCardTotal, dealerUpCard);}
     if(mode == 2){BJ->setSplitCards(playerCardTotal, dealerUpCard);}
 
 
 
-    BJ->displayTable();
+    //BJ->displayTable();
     BJ->playRound(1);
 
     if (counter % 100 == 0) {

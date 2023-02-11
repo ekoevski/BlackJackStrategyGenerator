@@ -47,7 +47,7 @@ class Simulator
   float run(int rounds);
   void exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow);
   void loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow);
-  void optimize(int rounds);
+  void optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow);
   void optimizeThreaded(int rounds, int aces, int high, int mid, int low);
 
 
