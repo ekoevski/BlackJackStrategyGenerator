@@ -293,7 +293,7 @@ cout << "\n\n SPLIT STRATEGY \n\n";
 
 printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
   for(int j = 0; j < splitStrategy.size(); j++){
-cout << "       split" << j << ": ";   
+cout << "       split" << j + 1 << ": ";   
     for(int i = 0; i < splitStrategy[j].size(); i++){
 
 
