@@ -78,12 +78,14 @@ void Table::clearTable()
 
 
 
+//   =====================================================
+//  ========================================================
+// ================     THIS IS THE START OF THE ROUND========
+//  ========================================================
+//   ======================================================
 
+// Description: (VERY LONG METHOD) + SUBROUTINES
 
-// PLAY A ROUND     (NOT IN USE)
-// NOT SURE ABOUT THIS, IT MAY HAVE BEEN ONE OF THE EARLIER TRIES
-// DELETE IF NOT IN USE
-// ===============================================================
 void Table::playRound(float bet)
 {
   for (Player *aPlayer : players)
@@ -152,25 +154,70 @@ void Table::playRound(float bet)
   //      ROUND COMPLETE  DETERMINE WINNERS
   //============================================
   //============================================
+
+  bool first_hand_busted;
+  bool second_hand_busted;
+  bool third_hand_busted;
+  bool dealer_busted;
+
+  bool player_blackjack;
+  bool dealer_blackjack;
+
+
+  int main_bet;
+  int second_split_bet;
+  int third_split_bet;
+
+  int dealer_final;
+  int first_hand_final;
+  int second_hand_final;
+  int third_hand_final;
+
+
+
+
+
+
   for (Player *aPlayer : players)
   {
+    // Load for debug
+    first_hand_busted = aPlayer->firstHandBusted();
+    second_hand_busted = aPlayer->secondHandBusted();
+    third_hand_busted =aPlayer->thirdHandBusted();
+    dealer_busted = theDealer->Busted();
+
+    main_bet = aPlayer->getMainBet();
+    second_split_bet = aPlayer->getSecondSplitBet();
+    third_split_bet = aPlayer->getThirdSplitBet();
+    
+    dealer_final = theDealer->dealerFinal();
+    first_hand_final = aPlayer->firstHandFinal();
+    second_hand_final = aPlayer->secondHandFinal();
+    third_hand_final = aPlayer->thirdHandFinal();
+
+    player_blackjack = aPlayer->hasBlackJack();
+    dealer_blackjack = theDealer->hasBlackJack();
+
+
+
+
 
     // Collect busted hands
     //====================
-    if (aPlayer->firstHandBusted())
+    if (first_hand_busted)
     {
-      theDealer->addWinloss(aPlayer->getMainBet());
-      theDealer->addCasinoDrop(aPlayer->getMainBet());
+      theDealer->addWinloss(main_bet);
+      theDealer->addCasinoDrop(main_bet);
     }
-    if (aPlayer->secondHandBusted())
+    if (second_hand_busted)
     {
-      theDealer->addWinloss(aPlayer->getSecondSplitBet());
-      theDealer->addCasinoDrop(aPlayer->getSecondSplitBet());
+      theDealer->addWinloss(second_split_bet);
+      theDealer->addCasinoDrop(second_split_bet);
     }
-    if (aPlayer->thirdHandBusted())
+    if (third_hand_busted)
     {
-      theDealer->addWinloss(aPlayer->getThirdSplitBet());
-      theDealer->addCasinoDrop(aPlayer->getThirdSplitBet());
+      theDealer->addWinloss(third_split_bet);
+      theDealer->addCasinoDrop(third_split_bet);
     }
 
 
@@ -179,26 +226,26 @@ void Table::playRound(float bet)
 
     // DEALER BUST
     // =================
-    if (theDealer->Busted() && !aPlayer->hasBlackJack() &&
-        !aPlayer->firstHandBusted())
+    if (dealer_busted && !player_blackjack &&
+        !first_hand_busted)
     {
-      theDealer->addWinloss((-1) * aPlayer->getMainBet());
-      theDealer->addCasinoDrop(aPlayer->getMainBet());
+      theDealer->addWinloss((-1) * main_bet);
+      theDealer->addCasinoDrop(main_bet);
     }
-    if (theDealer->Busted() && !aPlayer->hasBlackJack() &&
-        !aPlayer->secondHandBusted())
+    if (dealer_busted && !player_blackjack &&
+        !second_hand_busted)
     {
-      theDealer->addWinloss((-1) * aPlayer->getSecondSplitBet());
-      theDealer->addCasinoDrop(aPlayer->getSecondSplitBet());
+      theDealer->addWinloss((-1) * second_split_bet);
+      theDealer->addCasinoDrop(second_split_bet);
     }
-    if (theDealer->Busted() && !aPlayer->hasBlackJack() &&
-        !aPlayer->thirdHandBusted())
+    if (dealer_busted && !player_blackjack &&
+        !third_hand_busted)
     {
-      theDealer->addWinloss((-1) * aPlayer->getThirdSplitBet());
-      theDealer->addCasinoDrop(aPlayer->getThirdSplitBet());
+      theDealer->addWinloss((-1) * third_split_bet);
+      theDealer->addCasinoDrop(third_split_bet);
     }
 
-    if (theDealer->Busted())
+    if (dealer_busted)
     {
       continue;
     }
@@ -210,19 +257,19 @@ void Table::playRound(float bet)
 
         // FIRST HAND
     // Dealer hand is HIGHER
-    if (!aPlayer->hasBlackJack() && !aPlayer->firstHandBusted() &&
-        theDealer->dealerFinal() > aPlayer->firstHandFinal())
+    if (!player_blackjack && !first_hand_busted &&
+        dealer_final > first_hand_final)
     {
-      theDealer->addWinloss(aPlayer->getMainBet());
-      theDealer->addCasinoDrop(aPlayer->getMainBet());
+      theDealer->addWinloss(main_bet);
+      theDealer->addCasinoDrop(main_bet);
 
     }
     // Player hand is LOWER
-    if (!aPlayer->hasBlackJack() && !aPlayer->firstHandBusted() &&
-        theDealer->dealerFinal() < aPlayer->firstHandFinal())
+    if (!player_blackjack && !first_hand_busted &&
+        dealer_final < first_hand_final)
     {
-      theDealer->addWinloss((-1) * aPlayer->getMainBet());
-      theDealer->addCasinoDrop(aPlayer->getMainBet());
+      theDealer->addWinloss((-1) * main_bet);
+      theDealer->addCasinoDrop(main_bet);
 
     }
 
@@ -230,38 +277,38 @@ void Table::playRound(float bet)
 
         // SECOND SPLIT HAND
     // Dealer hand is HIGHER
-    if (!aPlayer->hasBlackJack() && !aPlayer->secondHandBusted() &&
-        theDealer->dealerFinal() > aPlayer->secondHandFinal())
+    if (!player_blackjack && !second_hand_busted &&
+        dealer_final > second_hand_final)
     {
-      theDealer->addWinloss(aPlayer->getSecondSplitBet());
-      theDealer->addCasinoDrop(aPlayer->getSecondSplitBet());
+      theDealer->addWinloss(second_split_bet);
+      theDealer->addCasinoDrop(second_split_bet);
 
     }
     // Player hand is LOWER
-    if (!aPlayer->hasBlackJack() && !aPlayer->secondHandBusted() &&
-        theDealer->dealerFinal() < aPlayer->secondHandFinal())
+    if (!player_blackjack && !second_hand_busted &&
+        dealer_final < second_hand_final)
     {
-      theDealer->addWinloss((-1) * aPlayer->getSecondSplitBet());
-      theDealer->addCasinoDrop(aPlayer->getSecondSplitBet());
+      theDealer->addWinloss((-1) * second_split_bet);
+      theDealer->addCasinoDrop(second_split_bet);
 
     }
 
 
       // THIRD SPLIT HAND
     // Dealer hand is HIGHER
-    if (!aPlayer->hasBlackJack() && !aPlayer->thirdHandBusted() &&
-        theDealer->dealerFinal() > aPlayer->thirdHandFinal())
+    if (!player_blackjack && !third_hand_busted &&
+        dealer_final > third_hand_final)
     {
-      theDealer->addWinloss(aPlayer->getThirdSplitBet());
-      theDealer->addCasinoDrop(aPlayer->getThirdSplitBet());
+      theDealer->addWinloss(third_split_bet);
+      theDealer->addCasinoDrop(third_split_bet);
 
     }
     // Player hand is LOWER
-    if (!aPlayer->hasBlackJack() && !aPlayer->firstHandBusted() &&
-        theDealer->dealerFinal() < aPlayer->thirdHandFinal())
+    if (!player_blackjack && !first_hand_busted &&
+        dealer_final < third_hand_final)
     {
-      theDealer->addWinloss((-1) * aPlayer->getThirdSplitBet());
-      theDealer->addCasinoDrop(aPlayer->getThirdSplitBet());
+      theDealer->addWinloss((-1) * third_split_bet);
+      theDealer->addCasinoDrop(third_split_bet);
 
     }
 
@@ -273,27 +320,27 @@ void Table::playRound(float bet)
     //===================
     // Add drop from push
 
-    if (!aPlayer->hasBlackJack() && !aPlayer->firstHandBusted() &&
-        theDealer->dealerFinal() == aPlayer->firstHandFinal())
+    if (!player_blackjack && !first_hand_busted &&
+        dealer_final == first_hand_final)
     {
       theDealer->addWinloss(0.0);
-      theDealer->addCasinoDrop(aPlayer->getMainBet());
+      theDealer->addCasinoDrop(main_bet);
     }
 
 
-    if (!aPlayer->hasBlackJack() && !aPlayer->secondHandBusted() &&
-        theDealer->dealerFinal() == aPlayer->secondHandFinal())
+    if (player_blackjack && !second_hand_busted &&
+        dealer_final == second_hand_final)
     {
       theDealer->addWinloss(0.0);
-      theDealer->addCasinoDrop(aPlayer->getSecondSplitBet());
+      theDealer->addCasinoDrop(second_split_bet);
     }
 
 
-    if (!aPlayer->hasBlackJack() && !aPlayer->thirdHandBusted() &&
-        theDealer->dealerFinal() == aPlayer->thirdHandFinal())
+    if (!player_blackjack && !third_hand_busted &&
+        dealer_final == third_hand_final)
     {
       theDealer->addWinloss(0.0);
-      theDealer->addCasinoDrop(aPlayer->getThirdSplitBet());
+      theDealer->addCasinoDrop(third_split_bet);
     }
   }
 

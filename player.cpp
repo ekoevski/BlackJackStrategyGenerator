@@ -146,9 +146,8 @@ void Player::firstTwo(int dealerUp){
     secondBusted = false;
     thirdBusted = false;
 
-    //Check if blackjack
+    //Check if blackjack (WORKS)
     if(Player::getFirstHandTotal() == 11 && (playerHand[0]->getValue() == 1 || playerHand[1]->getValue() == 1)){
-
         Player::firstBJ = true;
         return;
     }
@@ -166,34 +165,50 @@ void Player::firstTwo(int dealerUp){
     int firstCard = playerHand[0]->getValue();
     int secondCard = playerHand[1]->getValue();
 
-    int firstSplitCard;
-    int secondSplitCard;
+    int first_hand_total = Player::firstHandFinal();
 
 
-    // Doubles =====================
+
+    // GET BASIC STRATEGY
         if(Player::firstIsSoft()){     
-            basicStrategy = Player::basicSoftStrategy[Player::getFirstHandTotal() + 10][Player::dealerShowing - 1];
+            basicStrategy = Player::basicSoftStrategy[first_hand_total][dealerUp - 1];
         }
         else{
-            basicStrategy = Player::basicHardStrategy[Player::getFirstHandTotal()][Player::dealerShowing - 1];
+            basicStrategy = Player::basicHardStrategy[first_hand_total][dealerUp - 1];
         }
 
+
+
+    // IF 2 DOUBLE
         if(basicStrategy == 2){
             playerHand.push_back(theShoe2->drawCard());
             Player::doubleMainBet = Player::mainBet; 
             firstDouble = true;
 
-            if(!Player::firstIsSoft() && Player::getFirstHandTotal() > 21){
+            if(!Player::firstIsSoft() && Player::firstHandFinal() > 21){
                 firstBusted = true;  
             }
         return;  
         }
 
 
-        // 1st split
-    // Check if Split
+    // IF 1 THEN PLAY THE HAND
+        if(basicStrategy == 1){
+            playFirstHand();
+        return;  
+        }
+
+
+
+    // IF 0 DO NOTHING
+        if(basicStrategy == 0){
+        return;  
+        }
+
+
+    // CHECK IF SPLIT (1ST SPLIT)
     if(firstCard == secondCard){
-        basicStrategy = Player::basicSplitStrategy[firstCard-1][Player::dealerShowing - 1];
+        basicStrategy = Player::basicSplitStrategy[firstCard - 1][dealerUp - 1];
 
         if(basicStrategy == 2){firstDouble = true;} 
         if(basicStrategy == 4){
@@ -207,26 +222,22 @@ void Player::firstTwo(int dealerUp){
             firstCard = playerHand[0]->getValue();
             firstCard = playerHand[1]->getValue();
 
-            firstSplitCard = secondSplitHand[0]->getValue();
-            secondSplitCard = secondSplitHand[1]->getValue();
-
-
-
-
+            int firstSplitCard = secondSplitHand[0]->getValue();
+            int secondSplitCard = secondSplitHand[1]->getValue();
+            int second_hand_total = Player::secondHandFinal();
 
         if(Player::secondIsSoft()){   
-
-            basicStrategy = Player::basicSoftStrategy[Player::getSecondHandTotal() + 11][Player::dealerShowing - 1];
+            basicStrategy = Player::basicSoftStrategy[second_hand_total][dealerUp - 1];
         }
         else{
-            basicStrategy = Player::basicHardStrategy[Player::getSecondHandTotal()][Player::dealerShowing - 1];
+            basicStrategy = Player::basicHardStrategy[second_hand_total][dealerUp - 1];
         }
 
         if(basicStrategy == 2){
             secondSplitHand.push_back(theShoe2->drawCard());
             Player::doubleSecondSplitBet = Player::secondSplitBet;
             secondDouble = true;
-            if(!Player::secondIsSoft() && Player::getSecondHandTotal() > 21){
+            if(!Player::secondIsSoft() && Player::secondHandFinal() > 21){
                 secondBusted = true;  
             }
 
@@ -325,10 +336,10 @@ void Player::playFirstHand(){
             
         if(Player::firstIsSoft()){  
 
-            basicStrategy = Player::basicSoftStrategy[Player::getFirstHandTotal() + 11][Player::dealerShowing - 1];
+            basicStrategy = Player::basicSoftStrategy[Player::firstHandFinal()][Player::dealerShowing - 1];
         }
         else{
-            basicStrategy = Player::basicHardStrategy[Player::getFirstHandTotal()][Player::dealerShowing - 1];
+            basicStrategy = Player::basicHardStrategy[Player::firstHandFinal()][Player::dealerShowing - 1];
         }
 
         switch(basicStrategy){
@@ -349,7 +360,7 @@ void Player::playFirstHand(){
             break;
         }
     
-    if(!Player::firstIsSoft() && Player::getFirstHandTotal() > 21){
+    if(!Player::firstIsSoft() && Player::firstHandFinal() > 21){
         firstBusted = true;
     }
 
@@ -386,10 +397,10 @@ void Player::playSecondHand(){
             }
             
         if(Player::secondIsSoft()){ 
-            basicStrategy = Player::basicSoftStrategy[Player::getSecondHandTotal() + 11][Player::dealerShowing - 1];
+            basicStrategy = Player::basicSoftStrategy[Player::secondHandFinal()][Player::dealerShowing - 1];
         }
         else{
-            basicStrategy = Player::basicHardStrategy[Player::getSecondHandTotal()][Player::dealerShowing - 1];
+            basicStrategy = Player::basicHardStrategy[Player::secondHandFinal()][Player::dealerShowing - 1];
         }
         switch(basicStrategy){
             case 0:
@@ -408,7 +419,7 @@ void Player::playSecondHand(){
             break;
         }
 
-    if(!Player::secondIsSoft() && Player::getSecondHandTotal() > 21){
+    if(!Player::secondIsSoft() && Player::secondHandFinal() > 21){
         secondBusted = true;
     }
 
@@ -449,10 +460,10 @@ void Player::playThirdHand(){
 
         // Determine basic Strategy move
         if(Player::thirdIsSoft()){   
-            basicStrategy = Player::basicSoftStrategy[Player::getThirdHandTotal() + 11][Player::dealerShowing - 1];
-        }
+            basicStrategy = Player::basicSoftStrategy[Player::thirdHandFinal()][Player::dealerShowing - 1];
+        } 
         else{
-            basicStrategy = Player::basicHardStrategy[Player::getThirdHandTotal()][Player::dealerShowing - 1];
+            basicStrategy = Player::basicHardStrategy[Player::thirdHandFinal()][Player::dealerShowing - 1];
         }
 
         switch(basicStrategy){
@@ -474,7 +485,7 @@ void Player::playThirdHand(){
     
 
     // Check if busted (not soft and over 21)
-    if(!Player::thirdIsSoft() && Player::getThirdHandTotal() > 21){
+    if(!Player::thirdIsSoft() && Player::thirdHandFinal() > 21){
         thirdBusted = true; 
     }
 

@@ -32,9 +32,9 @@ HoldCalculator::HoldCalculator(int tempRounds, int tempAces, int tempHigh, int t
 // ======================================================
 // Description: Set the basic strategy using new vectors.
 
-void HoldCalculator::setBasicStrategy(vector<vector<int>> hardStrategy,
-   vector<vector<int>> softStrategy, vector<vector<int>> splitStrategy){
-    BJ->setPlayerBasicStrategy(hardStrategy, softStrategy, splitStrategy);    
+void HoldCalculator::setBasicStrategy(vector<vector<int>> hardStrategy1,
+   vector<vector<int>> softStrategy1, vector<vector<int>> splitStrategy1){
+    BJ->setPlayerBasicStrategy(hardStrategy1, softStrategy1, splitStrategy1);    
    }
 
 

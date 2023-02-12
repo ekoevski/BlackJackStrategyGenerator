@@ -539,17 +539,17 @@ cout << "        soft" << j << ": ";
     for(int i = 0; i < softStrategy[j].size(); i++){
 
       softStrategy[j][i] = 2;
-      Double-> setCards(1,j-1,i);
+      Double-> setCards(1,j,i);
       Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double->runThread();
 
       softStrategy[j][i] = 0;
-      Stay -> setCards(1,j-1,i);
+      Stay -> setCards(1,j,i);
       Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay->runThread();
 
       softStrategy[j][i] = 1;
-      Hit -> setCards(1,j-1,i);
+      Hit -> setCards(1,j,i);
       Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit->runThread();
 
