@@ -17,9 +17,7 @@ using namespace std;
 // Constructors
 //=======================
 
-Simulator::Simulator()
-{};
-
+Simulator::Simulator(){};
 
 Simulator::Simulator(string name, int decks, int players){
  Simulator::BJ = new Table(name, decks, players);
@@ -33,9 +31,6 @@ Simulator::Simulator(string name, int decks, int players){
 
  printf("\nInitiating deck, total decks: %i total cards: %i\n\n", decks, aces + high + mid + low);
 };
-
-
-
 
 
 // run returns hold %
@@ -67,7 +62,15 @@ float Simulator::run(int rounds){
     return (total_winloss/total_drop)*100;
 };
 
-// run returns hold %
+
+
+
+// ======================================================
+// ===============TEST CURRENT STRATEGY==================
+// ======================================================
+// precondition: has a basic strategy card vectors (soft, hard, split)
+// postcondition: gives hold % for current basic strategy card
+
 void Simulator::testCurrentStrategy(int rounds){
   BJ->theDealer->casinoDrop = 0;
   BJ->theDealer->winLoss = 0;
@@ -136,15 +139,12 @@ void Simulator::testCurrentStrategy(int rounds){
     BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
     BJ->reset();
     BJ->placeCards();
-    //BJ->displayTable();
-
     BJ->playRound(1);
 
 
 
 
     if (counter % 50000 == 0) {
-      //BJ->printDrop();
       total_drop += BJ->theDealer->casinoDrop;
       total_winloss += BJ->theDealer->winLoss;
       printf("drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",BJ->theDealer->casinoDrop, BJ->theDealer->winLoss, total_winloss/total_drop, counter, BJ->theShoe->lowIndex); 
@@ -153,6 +153,9 @@ void Simulator::testCurrentStrategy(int rounds){
       BJ->theDealer->winLoss = 0;
     }
 
+
+
+  // The following is for debugging only, used to read vector items from player hands
   k = 0;  
   for (Card* aCard: BJ->players[0]->playerHand){
     switch(k){
@@ -190,7 +193,6 @@ void Simulator::testCurrentStrategy(int rounds){
     }
     k++;
   }
-
 
   k = 0;  
   for (Card* aCard: BJ->players[0]->secondSplitHand){
@@ -268,8 +270,6 @@ void Simulator::testCurrentStrategy(int rounds){
     k++;
   }
 
-
-
   k = 0;
   for (Card* aCard: BJ->theDealer->dealerHand){
     switch(k){
@@ -309,15 +309,14 @@ void Simulator::testCurrentStrategy(int rounds){
   }
 
 
-
-
-
-
-
   debug_win_loss = BJ->theDealer->winLoss;
   debug_casino_drop = BJ->theDealer->casinoDrop;
   delta_WL = debug_win_loss - old_WL;    // debug, change in WL
-  k = 0; // breakpoint here to check results
+
+//======================================================
+  k = 0; // <<<====================== !!!!!! USE THIS AS A BREAKPOINT FOR DEBUGGING !!!!!!
+//======================================================
+
 
   debug_player_card_1 = 6900000;
   debug_player_card_2 = 6900000;
@@ -357,10 +356,23 @@ void Simulator::testCurrentStrategy(int rounds){
 
   BJ->clearTable();
   }
-
-    printf("\n\nSimulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
-
+  printf("\n\nSimulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
 };
+
+
+
+
+
+
+
+
+
+// ======================================================
+// ===============EXPORT BASIC STRATEGY==================
+// ======================================================
+// precondition: Takes in deck composition: # of aces, mids, highs, lows
+// postcondition: Exports to .txt file a saved version of the basic strategy card using 
+// number of cards.
 
 void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow){
     fstream file;
@@ -395,16 +407,12 @@ void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int
     file.close();
 }
 
-
-
 void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow){
     fstream file;
     string filename = "strategy cards/A" + to_string(tempAces) + "T" + to_string(tempHigh) + "M" + to_string(tempMid) + "L" + to_string(tempLow) + ".txt";
 
     file.open(filename,ios::in);
     if (file.is_open()){ 
-        
-        //getline(file, tp);
 
           cout << endl << "HARD STRATEGY" << endl;
           for(int j = 0; j < hardStrategy.size(); j++){
@@ -440,7 +448,6 @@ void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int t
     }
 
 }
-
 
 void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow){
 
@@ -496,17 +503,11 @@ printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
       Hit->runThread();
 
 
-      //printf("\nstayHold %f, hitHold %f, doubleHold %f \n", stayHold, hitHold, doubleHold);
-
-
       min = 1000.0;
-      //printf("stay->hold %f    hit->hold %f    double->hold %f\n", Stay->hold, Hit->hold, Double->hold);
       if(min >= Stay->hold){min = Stay->hold;           hardStrategy[j][i] = 0;}
       if(min >= Hit->hold){min = Hit->hold;             hardStrategy[j][i] = 1;}
       if(min >= Double->hold){min = Double->hold;       hardStrategy[j][i] = 2;}
-      //printf("min %f", min);
       cout << hardStrategy[j][i]<< " ";
-      //printf(" S%.1f H%.1f D%.1f| ", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;
   }
@@ -543,7 +544,7 @@ cout << "        soft" << j << ": ";
       if(min >= Hit->hold){min = Hit->hold;             softStrategy[j][i] = 1;}
       if(min >= Double->hold){min = Double->hold;       softStrategy[j][i] = 2;}
       cout << softStrategy[j][i]<< " ";
-      //printf(" S%.1f H%.1f D%.1f|", Stay->hold, Hit->hold, Double->hold);
+
     }
     cout << endl;   
   }
@@ -596,9 +597,6 @@ std::cout << "\n\nTime difference = " << std::chrono::duration_cast<std::chrono:
 Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
 
 }
-
-
-
 
 void Simulator::optimizeThreaded(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow){
 
@@ -658,17 +656,11 @@ printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
       th1.join();
       th2.join();
 
-      //printf("\nstayHold %f, hitHold %f, doubleHold %f \n", stayHold, hitHold, doubleHold);
-
-
       min = 1000.0;
-      //printf("stay->hold %f    hit->hold %f    double->hold %f\n", Stay->hold, Hit->hold, Double->hold);
       if(min >= Stay->hold){min = Stay->hold;           hardStrategy[j][i] = 0;}
       if(min >= Hit->hold){min = Hit->hold;             hardStrategy[j][i] = 1;}
       if(min >= Double->hold){min = Double->hold;       hardStrategy[j][i] = 2;}
-      //printf("min %f", min);
       cout << hardStrategy[j][i]<< " ";
-      //printf(" S%.1f H%.1f D%.1f| ", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;
   }
@@ -709,7 +701,6 @@ cout << "        soft" << j << ": ";
       if(min >= Hit->hold){min = Hit->hold;             softStrategy[j][i] = 1;}
       if(min >= Double->hold){min = Double->hold;       softStrategy[j][i] = 2;}
       cout << softStrategy[j][i]<< " ";
-      //printf(" S%.1f H%.1f D%.1f|", Stay->hold, Hit->hold, Double->hold);
     }
     cout << endl;   
   }

@@ -10,24 +10,14 @@ using namespace std;
 // CLASS TABLE //
 // Implementation
 
-/// MAIN CONSTRUCTOR
-//====================
 Table::Table(string newGameName, int numberOfDecks, int numOfPlayers)
 {
-  // printf("\nGenerating %d deck shoe.. \n", numberOfDecks);
 
   Table::gameName = newGameName;
   Table::shoeCount = numberOfDecks;
   Table::numberOfPlayers = numOfPlayers;
-
-  // >>>>>>>>>>>>>>>>>>>>DEFAULT CONSTRUCTOR IS FOR TESTING <<<<<<<<<<<<<<<<
-  Table::theShoe = new Shoe(shoeCount); // <= Use this shoe for normal operation
-  // Table::theShoe = new Shoe();
-
-  // theShoe->showAllCards();
+  Table::theShoe = new Shoe(shoeCount);
   Table::theDealer = new Dealer(theShoe);
-
-  // Create a list of players in seats 1 - 6
   for (int i = 1; i <= Table::numberOfPlayers; i++)
   {
     Table::players.push_back(new Player(theShoe, i));
@@ -35,10 +25,10 @@ Table::Table(string newGameName, int numberOfDecks, int numOfPlayers)
 }
 
 
-
-
-// METHODS
-//=======================
+// ======================================================
+// ============     PLACE_CARDS    ==============
+// ======================================================
+// Description: Creates cards for player and dealer
 void Table::placeCards()
 {
   // YOU NEED TO DEAL DEALER CARDS
@@ -54,30 +44,30 @@ void Table::placeCards()
   }
 };
 
+
+
+
+// DISPLAY TABLE
+//========================
 void Table::displayTable()
 {
-  // printf("\nTABLE CARDS:\n============\n");
-  // printf("\nDealer hand:\n");
   theDealer->showHand();
-  // printf("\n");
-
   for (Player *aPlayer : players)
   {
-    // printf("Player %d cards: ", aPlayer->getSeat());
     aPlayer->showHand();
-    // printf("\n");
-  }
-
-  for (Player *aPlayer : players)
-  {
-    // printf("\nPlayer %d has: (%d)", aPlayer->getSeat(),
-    //        aPlayer->getFirstHandTotal());
   }
 };
 
+
+
+
+
+// ======================================================
+// ============     CLEAR TABLE    ==============
+// ======================================================
+// Description: Destructor, all hand vectors are cleared
 void Table::clearTable()
 {
-  // printf("\n\nTable::clearTable()...  CLEAR TABLE CARDS \n\n ");
   for (Player *aPlayer : Table::players)
   {
     aPlayer->pickUpCards();
@@ -85,14 +75,23 @@ void Table::clearTable()
   Table::theDealer->pickUpCards();
 }
 
-// ===========================================================================
-// YOU NEED TO FINISH THIS NEXT!!! ===========================================
-// ===========================================================================
+
+
+
+
+//   =====================================================
+//  ========================================================
+// ================         PLAY_ROUND         ==============
+//  ========================================================
+//   ======================================================
+
+// Description: (VERY LONG METHOD) Includes, Player AI,
+// determines doubles, splits and reads basic strategy cards
+// to make decision. 
+
 
 void Table::playRound(float bet)
 {
-
-  //  SET ALL BETS
   for (Player *aPlayer : players)
   {
     aPlayer->setBets(bet);
@@ -113,9 +112,6 @@ void Table::playRound(float bet)
     }
     return; // Clean up and end round
   }
-
-
-
 
 
 
@@ -312,6 +308,19 @@ void Table::playRound(float bet)
 
 };
 
+
+
+
+
+
+// ======================================================
+// ============          TESTING           ==============
+// ======================================================
+// Description: Give the first card value, second card value (for layer)
+// give the dealer up card value, and the function will pause the round
+// This funciton is useful if real-time gameplay is implemented.
+// (Not for monte-carlo simulation)
+
 void Table::Testing(int first, int second, int dealerUp)
 {
   if (theDealer->showUpCard() == dealerUp)
@@ -339,6 +348,11 @@ void Table::Testing(int first, int second, int dealerUp)
   }
 };
 
+
+
+
+// SET PLAYER BASIC STRATEGY
+// ================================
 void Table::setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>> soft, vector<vector<int>> split)
 {
   for (Player *aPlayer : players)
@@ -349,6 +363,10 @@ void Table::setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>>
   }
 }
 
+
+
+// PRINT W/L AND DROP REPORT
+// ================================
 void Table::printDrop()
 {
   printf("\nDROP: %.2f", theDealer->casinoDrop);
@@ -358,6 +376,11 @@ void Table::printDrop()
 }
 
 
+// ======================================================
+// ============      SET HARD CARDS        ==============
+// ======================================================
+// Description: set manually first two cards and dealer up card
+// Provide player hand total and dealer up card
 
 void Table::setHardCards(int playerTotal, int dealerUp){
   // Player
@@ -380,6 +403,14 @@ void Table::setHardCards(int playerTotal, int dealerUp){
   theDealer -> dealerHand[0] ->cardValue = dealerUp + 1;
 }
 
+
+
+// ======================================================
+// ============      SET SOFT CARDS        ==============
+
+// Description: set manually first two cards and dealer up card
+// Provide player hand total and dealer up card
+
 void Table::setSoftCards(int playerTotal, int dealerUp){
   // Player
     for(Player * aPlayer : players){
@@ -393,6 +424,14 @@ void Table::setSoftCards(int playerTotal, int dealerUp){
   theDealer -> dealerHand[0]->cardValue = dealerUp + 1;
 }
 
+
+
+
+// ======================================================
+// ============      SET SPLIT CARDS        ==============
+
+// Description: set manually first two cards and dealer up card
+// Provide player hand total and dealer up card
 
 void Table::setSplitCards(int playerTotal, int dealerUp){
   // Player
@@ -408,6 +447,12 @@ void Table::setSplitCards(int playerTotal, int dealerUp){
 
 
 
+
+// ======================================================
+// ============    RESET PLAYER AND DEALER ==============
+// ======================================================
+// Description: Returns all default values for player
+//              and dealer, all hands are cleared.
 
 void Table::reset(){
     for(Player * aPlayer : players){
