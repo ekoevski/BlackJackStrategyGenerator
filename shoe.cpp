@@ -14,14 +14,13 @@
 
 using namespace std;
 
-/////////////////////////////////////////////////////////////////
-/////////     CONSTRUCTORS     //////////////////////////////////
-/////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////
+            /////////     CONSTRUCTORS     //////////
+            /////////////////////////////////////////
 
 
-Shoe::Shoe()   //Default, I am using this to test
+Shoe::Shoe() 
 {
-  // Create shoe (vector of cards)
 
   for(int j = 0; j < 1; j++)
   {
@@ -48,27 +47,19 @@ Shoe::Shoe()   //Default, I am using this to test
   random_shuffle(mid.begin(), mid.end());
   random_shuffle(high.begin(), high.end());
 
-
-
-    //printf("\nDeck generation successful\n");
-  //printf("Generating indices;");
   Shoe::lowIndex = low.size();
   Shoe::midIndex = mid.size();
   Shoe::highIndex = high.size();
   Shoe::acesIndex = aces.size();
 
-  //printf(" \n Indices LOW: %d MID: %d HIGH: %d ACES: %d\n", lowIndex, midIndex, highIndex, acesIndex);
 };
 
 
 
-
-Shoe::Shoe(int deckNum)   // Creates 4 vectors; low, mid high and aces, decks
+Shoe::Shoe(int deckNum)  
 {
   deckNumber = deckNum;
-  // Create shoe (vector of cards)
 
-  //printf("\nGenerating LOW, MID, HIGH, ACES \n\n");
   for(int j = 0; j < deckNumber; j++)
   {
     for(int k = 1; k <= 4; k++)
@@ -95,27 +86,41 @@ Shoe::Shoe(int deckNum)   // Creates 4 vectors; low, mid high and aces, decks
   random_shuffle(high.begin(), high.end());
 
 
-
-  //printf("\nDeck generation successful\n");
-  //printf("Generating indices;");
   Shoe::lowIndex = low.size();
   Shoe::midIndex = mid.size();
   Shoe::highIndex = high.size();
   Shoe::acesIndex = aces.size();
 
-  Shoe::combineShoe(); // generate shoe from each category
+  Shoe::combineShoe(); 
 
-
-  //printf(" \n Indices LOW: %d MID: %d HIGH: %d ACES: %d\n", lowIndex, midIndex, highIndex, acesIndex);
 };
 
 
 
 
 
-/////////////////////////////////////////////////////////////////
-/////////     METHODS          //////////////////////////////////
-/////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+                ///////////////////////////////////////
+                /////////     METHODS          ////////
+                ///////////////////////////////////////
+
+
+
+
+// ======================================================
+// ============     CREATES CUSTOM SHOE    ==============
+// ======================================================
+// Description: Creates custom shoe dependent on the number of
+// aces, high, mid and low cards which are to be entered as parameters
+// output: Shoe::theShoe
 
 void Shoe::createShoe(int tempAces, int tempHigh, int tempMid, int tempLow){
     
@@ -137,93 +142,104 @@ void Shoe::createShoe(int tempAces, int tempHigh, int tempMid, int tempLow){
 
 
   for(int i = 0; i < Shoe::lowIndex; i++){
-    //low.shuffle();   YOU NEED TO SHUFFLE THE LOW, MID AND HIGH otherwise you'll be pulling sequentially and throw off the randomisation
     theShoe.push_back(low[i]);
   }
 
   for(int i = 0; i < Shoe::midIndex; i++){
-    //mid.shuffle();
     theShoe.push_back(mid[i]);
   }
 
   for(int i = 0; i < Shoe::highIndex; i++){
-    //high.shuffle();
     theShoe.push_back(high[i]);
   }
 
   for(int i = 0; i < Shoe::acesIndex; i++){
-    //aces.shuffle();
     theShoe.push_back(aces[i]);
   }
 
   Shoe::shuffle();    // Shuffle the shoe after combine
-
 }
 
 
 
-// Used for buttons to remove and recreate deck
+
+
+// REMOVE A LOW CARD
+//===================
 void Shoe::removeLow(){
   Shoe::lowIndex--;
-  //printf(" .. Shoe::removeLow().. LOW: %d", lowIndex);
   combineShoe();
 }
 
+// REMOVE A MID CARD
+//=====================
 void Shoe::removeMid(){
   Shoe::midIndex--;
-  //printf(" .. Shoe::removeMid().. MID: %d", midIndex);
   combineShoe();
 }
 
+
+// REMOVE A HIGH CARD
+//=====================
 void Shoe::removeHigh(){
   Shoe::highIndex--;
-  //printf(" .. Shoe::removeHigh().. High: %d", highIndex);
   combineShoe();
 }
 
+// REMOVE AN ACE
+// ====================
 void Shoe::removeAce(){
   Shoe::acesIndex--;
-  //printf(" .. Shoe::removeAce().. Ace: %d", acesIndex);
   combineShoe();
 }
 
 
-// Creates auxiliarrly shoe shoe using current indices
+
+
+
+// ======================================================
+// ==   (SUBROUTINE)   COMBINE SHOE        ==============
+// ======================================================
+// Description: Creates custom shoe dependent on the number of
+// aces, high, mid and low cards
+// Subroutine of createShoe(yada yada)
+
+
 void Shoe::combineShoe()
 {
   Shoe::theShoe.clear();
+
   for(int i = 0; i < Shoe::lowIndex; i++){
-    //low.shuffle();   YOU NEED TO SHUFFLE THE LOW, MID AND HIGH otherwise you'll be pulling sequentially and throw off the randomisation
     theShoe.push_back(low[i]);
   }
 
   for(int i = 0; i < Shoe::midIndex; i++){
-    //mid.shuffle();
     theShoe.push_back(mid[i]);
   }
 
   for(int i = 0; i < Shoe::highIndex; i++){
-    //high.shuffle();
     theShoe.push_back(high[i]);
   }
 
   for(int i = 0; i < Shoe::acesIndex; i++){
-    //aces.shuffle();
     theShoe.push_back(aces[i]);
   }
 
   Shoe::shuffle();    // Shuffle the shoe after combine
 
-
-
-  //printf(" \n .. Total Cards: %lu " , theShoe.size());
-  //printf(" \n Indices LOW: %d MID: %d HIGH: %d ACES: %d\n", lowIndex, midIndex, highIndex, acesIndex);
 
 };
 
 
 
-//Prints all cards through USB
+
+
+
+
+// PRINT ALL CARDS LEFT IN THE CURRENT DECK
+// ========================================
+// Description: Prints in a square matrix in output for debugging
+
 void Shoe::showAllCards()
 {
     std::vector<Card*>::iterator it = theShoe.begin();
@@ -234,50 +250,57 @@ void Shoe::showAllCards()
     for (it = theShoe.begin(); it != end (theShoe); ++it) 
     {
         if(spacer % 7 == 0){
-          //printf("\n");
+          printf("\n");
           }
         cardType = (*it)->getName();
-        //printf("%s ", cardType.c_str());
+        printf("%s ", cardType.c_str());
         spacer++;
     }
 };
 
 
-// Randomizes the cards in the shoe
+
+
+
+
+
+// RESHUFFLE THE DECK
+// ==================
 void Shoe::shuffle()
 {
-  
-  //printf(" ..RSHFL ..");
-
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   srand(seed);
   random_shuffle(theShoe.begin(), theShoe.end());
-
-
 };
 
 
-// Draws a card fromt the deck
+
+
+
+// DRAW A RANDOM CARD FROM THE DECK
+// ================================
+// Return: A random card object
+
 Card* Shoe::drawCard()
 {
   Shoe::buffer++;
-  //printf("\n Shoe::drawCard() .. ");
-  //int n = theShoe.size();
 
   if(Shoe::buffer > 4){
     Shoe::buffer = 0;
-  Shoe::shuffle();                      // remove this if you remove bottom if you want cards removed from deck
-      
+    Shoe::shuffle();                      // remove this if you remove bottom if you want cards removed from deck
   }
   Card* temp = theShoe[Shoe::buffer];
   //theShoe.pop_back();               // add this YOU WANT TO REMOVE CARDS FROM DECK
-  //printf("%d " , temp->getValue());
   return temp;
 };
 
 
 
-// Draws a card fromt the deck
+
+
+// DRAW RANDOM CARD QUICKLY (uses random num generator)
+// ====================================================
+// No performance difference, don't use this
 Card* Shoe::drawCardQuick()
 {
   srand((unsigned) time(NULL));

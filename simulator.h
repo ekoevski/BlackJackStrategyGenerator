@@ -11,8 +11,9 @@
 using namespace std;
 
 
-// CLASS CARD//   DONE
-// Declarations
+// CLASS SIMULATOR  (HEADER)
+// ==========================
+
 class Simulator
 {
   public:
