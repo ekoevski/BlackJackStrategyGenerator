@@ -79,17 +79,11 @@ void Table::clearTable()
 
 
 
-//   =====================================================
-//  ========================================================
-// ================         PLAY_ROUND         ==============
-//  ========================================================
-//   ======================================================
 
-// Description: (VERY LONG METHOD) Includes, Player AI,
-// determines doubles, splits and reads basic strategy cards
-// to make decision. 
-
-
+// PLAY A ROUND     (NOT IN USE)
+// NOT SURE ABOUT THIS, IT MAY HAVE BEEN ONE OF THE EARLIER TRIES
+// DELETE IF NOT IN USE
+// ===============================================================
 void Table::playRound(float bet)
 {
   for (Player *aPlayer : players)
@@ -97,11 +91,8 @@ void Table::playRound(float bet)
     aPlayer->setBets(bet);
   }
 
-  // DEALER BLACKJACK
-  //===================================
   if (theDealer->hasBlackJack())
   {
-    // IF NO PLAYER BJ COLLECT
     for (Player *aPlayer : players)
     {
       if (!aPlayer->hasBlackJack())
@@ -110,7 +101,7 @@ void Table::playRound(float bet)
         theDealer->addCasinoDrop(aPlayer->getPlayerTotalBets());
       }
     }
-    return; // Clean up and end round
+    return;
   }
 
 

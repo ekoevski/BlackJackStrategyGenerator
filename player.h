@@ -149,62 +149,31 @@ class Player
   float getMainBet();
   float getSecondSplitBet();
   float getThirdSplitBet();
-
   bool firstHandBusted() {return firstBusted;}
   bool secondHandBusted() {return secondBusted;}
   bool thirdHandBusted() {return thirdBusted;}
-
   float getPlayerTotalBets();
-
-
   int getSeat(){return playerSeat;}
-
   void getCard();
-
   int getFirstHandTotal();
   int getSecondHandTotal();
   int getThirdHandTotal(); 
-
-
-bool hasBlackJack();
-
-
-  // SETTERS
+  bool hasBlackJack();
   void setBets(float tempBet);
-
-
-
-  // Player hand and decision
-
   void showHand();
-   
   bool firstIsSoft();
   bool secondIsSoft();
   bool thirdIsSoft();
-
-  // AI MODULE
   void firstTwo(int dealerUpCard); // Decide if double or split on 1st two cards
-
-  void playHand();
-  void playHard();
-  void playSoft();
-
   void playFirstHand();
   void playSecondHand();
   void playThirdHand();
-
-
   int getFirstCardTotal();
   int getSecondCardTotal();
   int getThirdCardTotal();
-
   int firstHandFinal();
   int secondHandFinal();
   int thirdHandFinal();
-
-  void selectBasicStrategy(int selection);
-
-
   void pickUpCards();  // Clear table / Garbage collection
 
 };
