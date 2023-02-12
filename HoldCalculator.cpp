@@ -40,9 +40,8 @@ void HoldCalculator::runThread(){
 
   while (counter < rounds) {
     counter++;
-
+    BJ->reset();
     BJ->placeCards();
-    BJ->players[0]->firstDouble = false;
     if(mode == 0){BJ->setHardCards(playerCardTotal, dealerUpCard);}
     if(mode == 1){BJ->setSoftCards(playerCardTotal, dealerUpCard);}
     if(mode == 2){BJ->setSplitCards(playerCardTotal, dealerUpCard);}

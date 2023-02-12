@@ -59,6 +59,8 @@ class Table
   void setSplitCards(int playerCards, int dealerUp);
 
 
+  void reset();
+
   void dealerUpCard(int dealerUp);
 
   void printDrop();

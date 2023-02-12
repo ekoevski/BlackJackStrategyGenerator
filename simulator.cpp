@@ -49,6 +49,7 @@ float Simulator::run(int rounds){
   while (counter < rounds) {
     counter++;
     BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+    BJ->reset();
     BJ->placeCards();
     BJ->displayTable();
     BJ->playRound(1);
@@ -70,16 +71,72 @@ float Simulator::run(int rounds){
 void Simulator::testCurrentStrategy(int rounds){
   BJ->theDealer->casinoDrop = 0;
   BJ->theDealer->winLoss = 0;
-  total_drop = 0;
-  total_winloss = 0;
-   
+  total_drop = 0.0;
+  total_winloss = 0.0;
+  
+  float debug_casino_drop = 0.0;
+  float debug_win_loss = 0.0; 
+
+  int debug_player_card_1 = 690000;
+  int debug_player_card_2 = 690000;
+  int debug_player_card_3 = 690000;
+  int debug_player_card_4 = 690000;
+  int debug_player_card_5 = 690000;
+  int debug_player_card_6 = 690000;
+  int debug_player_card_7 = 690000;
+  int debug_player_card_8 = 690000;
+
+
+  int debug_dealer_card_1 = 690000;
+  int debug_dealer_card_2 = 690000;
+  int debug_dealer_card_3 = 690000;
+  int debug_dealer_card_4 = 690000;
+  int debug_dealer_card_5 = 690000;
+  int debug_dealer_card_6 = 690000;
+  int debug_dealer_card_7 = 690000;
+  int debug_dealer_card_8 = 690000;
+
+
+//1st split
+  int debug_2player_card_1 = 690000;
+  int debug_2player_card_2 = 690000;
+  int debug_2player_card_3 = 690000;
+  int debug_2player_card_4 = 690000;
+  int debug_2player_card_5 = 690000;
+  int debug_2player_card_6 = 690000;
+  int debug_2player_card_7 = 690000;
+  int debug_2player_card_8 = 690000;
+
+
+//2nd split
+  int debug_3player_card_1 = 690000;
+  int debug_3player_card_2 = 690000;
+  int debug_3player_card_3 = 690000;
+  int debug_3player_card_4 = 690000;
+  int debug_3player_card_5 = 690000;
+  int debug_3player_card_6 = 690000;
+  int debug_3player_card_7 = 690000;
+  int debug_3player_card_8 = 690000;
+
+
+
+  // Vars for debug --
+  int k = 0;
+  float old_WL = 0.0;               
+  float delta_WL= 0.0;
+  BJ->theDealer->winLoss = 0.0;
+  // ----           --
+
+
   Simulator::counter = 0;
   while (counter < rounds) {
+    old_WL = BJ->theDealer->winLoss;
+    
     counter++;
     BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-
+    BJ->reset();
     BJ->placeCards();
-    BJ->displayTable();
+    //BJ->displayTable();
 
     BJ->playRound(1);
 
@@ -96,7 +153,209 @@ void Simulator::testCurrentStrategy(int rounds){
       BJ->theDealer->winLoss = 0;
     }
 
-    BJ->clearTable();
+  k = 0;  
+  for (Card* aCard: BJ->players[0]->playerHand){
+    switch(k){
+    case 0:
+    debug_player_card_1 = aCard->getValue();
+    break;
+
+    case 1:
+    debug_player_card_2 = aCard->getValue();
+    break;
+
+    case 2:
+    debug_player_card_3 = aCard->getValue();
+    break;
+
+    case 3:
+    debug_player_card_4 = aCard->getValue();
+    break;
+
+    case 4:
+    debug_player_card_5 = aCard->getValue();
+    break;
+
+    case 5:
+    debug_player_card_6 = aCard->getValue();
+    break;
+
+    case 6:
+    debug_player_card_7 = aCard->getValue();
+    break;
+
+    case 7:
+    debug_player_card_8 = aCard->getValue();
+    break;
+    }
+    k++;
+  }
+
+
+  k = 0;  
+  for (Card* aCard: BJ->players[0]->secondSplitHand){
+    switch(k){
+    case 0:
+    debug_2player_card_1 = aCard->getValue();
+    break;
+
+    case 1:
+    debug_2player_card_2 = aCard->getValue();
+    break;
+
+    case 2:
+    debug_2player_card_3 = aCard->getValue();
+    break;
+
+    case 3:
+    debug_2player_card_4 = aCard->getValue();
+    break;
+
+    case 4:
+    debug_2player_card_5 = aCard->getValue();
+    break;
+
+    case 5:
+    debug_2player_card_6 = aCard->getValue();
+    break;
+
+    case 6:
+    debug_2player_card_7 = aCard->getValue();
+    break;
+
+    case 7:
+    debug_2player_card_8 = aCard->getValue();
+    break;
+    }
+    k++;
+  }
+
+  k = 0;  
+  for (Card* aCard: BJ->players[0]->thirdSplitHand){
+    switch(k){
+    case 0:
+    debug_3player_card_1 = aCard->getValue();
+    break;
+
+    case 1:
+    debug_3player_card_2 = aCard->getValue();
+    break;
+
+    case 2:
+    debug_3player_card_3 = aCard->getValue();
+    break;
+
+    case 3:
+    debug_3player_card_4 = aCard->getValue();
+    break;
+
+    case 4:
+    debug_3player_card_5 = aCard->getValue();
+    break;
+
+    case 5:
+    debug_3player_card_6 = aCard->getValue();
+    break;
+
+    case 6:
+    debug_3player_card_7 = aCard->getValue();
+    break;
+
+    case 7:
+    debug_3player_card_8 = aCard->getValue();
+    break;
+    }
+    k++;
+  }
+
+
+
+  k = 0;
+  for (Card* aCard: BJ->theDealer->dealerHand){
+    switch(k){
+    case 0:
+    debug_dealer_card_1 = aCard->getValue();
+    break;
+
+    case 1:
+    debug_dealer_card_2 = aCard->getValue();
+    break;
+
+    case 2:
+    debug_dealer_card_3 = aCard->getValue();
+    break;
+
+    case 3:
+    debug_dealer_card_4 = aCard->getValue();
+    break;
+
+    case 4:
+    debug_dealer_card_5 = aCard->getValue();
+    break;
+
+    case 5:
+    debug_dealer_card_6 = aCard->getValue();
+    break;
+
+    case 6:
+    debug_dealer_card_7 = aCard->getValue();
+    break;
+
+    case 7:
+    debug_dealer_card_8 = aCard->getValue();
+    break;
+    }
+    k++;
+  }
+
+
+
+
+
+
+
+  debug_win_loss = BJ->theDealer->winLoss;
+  debug_casino_drop = BJ->theDealer->casinoDrop;
+  delta_WL = debug_win_loss - old_WL;    // debug, change in WL
+  k = 0; // breakpoint here to check results
+
+  debug_player_card_1 = 6900000;
+  debug_player_card_2 = 6900000;
+  debug_player_card_3 = 6900000;
+  debug_player_card_4 = 6900000;
+  debug_player_card_5 = 6900000;
+  debug_player_card_6 = 6900000;
+  debug_player_card_7 = 6900000;
+  debug_player_card_8 = 6900000;
+
+  debug_2player_card_1 = 6900000;
+  debug_2player_card_2 = 6900000;
+  debug_2player_card_3 = 6900000;
+  debug_2player_card_4 = 6900000;
+  debug_2player_card_5 = 6900000;
+  debug_2player_card_6 = 6900000;
+  debug_2player_card_7 = 6900000;
+  debug_2player_card_8 = 6900000;
+
+  debug_3player_card_1 = 6900000;
+  debug_3player_card_2 = 6900000;
+  debug_3player_card_3 = 6900000;
+  debug_3player_card_4 = 6900000;
+  debug_3player_card_5 = 6900000;
+  debug_3player_card_6 = 6900000;
+  debug_3player_card_7 = 6900000;
+  debug_3player_card_8 = 6900000;
+
+  debug_dealer_card_1 = 6900000;
+  debug_dealer_card_2 = 6900000;
+  debug_dealer_card_3 = 6900000;
+  debug_dealer_card_4 = 6900000;
+  debug_dealer_card_5 = 6900000;
+  debug_dealer_card_6 = 6900000;
+  debug_dealer_card_7 = 6900000;
+  debug_dealer_card_8 = 6900000;
+
+  BJ->clearTable();
   }
 
     printf("\n\nSimulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
@@ -258,7 +517,7 @@ printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
 cout << "\n\n SOFT STRATEGY \n\n";
 
 printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 13; j < softStrategy.size() - 1; j++){
+  for(int j = 13; j < softStrategy.size() - 2; j++){
 cout << "        soft" << j << ": ";
     for(int i = 0; i < softStrategy[j].size(); i++){
 

@@ -26,7 +26,7 @@ int highCards = 16;       // Number of tens (10, Jacks, Queens, Kings)
 int midCards = 12;        // Number 7s - 9s
 int lowCards = 20;        // Number of small cards, 2s - 6s
 
-int roundsToSim = 3000;    // Number of hands to play (higher = more accurate but slower)
+int roundsToSim = 1;    // Number of hands to play (higher = more accurate but slower)
 int roundsToTest = 500000;  // Rounds to test the basic strategy cards;
 
 
@@ -47,6 +47,7 @@ Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards);
 
 // Test results, play 500,000 rounds to see hold %
 Sim->BJ->theShoe->createShoe(aces, highCards, midCards, lowCards);
+
 Sim->testCurrentStrategy(roundsToTest);
 
   printf("\n Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.");
