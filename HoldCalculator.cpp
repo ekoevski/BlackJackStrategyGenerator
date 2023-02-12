@@ -51,7 +51,7 @@ void HoldCalculator::runThread(){
     //BJ->displayTable();
     BJ->playRound(1);
 
-    if (counter % 100 == 0) {
+    if (counter % 1 == 0) {
       //BJ->printDrop();
       total_drop += BJ->theDealer->casinoDrop;
       total_winloss += BJ->theDealer->winLoss;
