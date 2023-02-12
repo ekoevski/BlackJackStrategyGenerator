@@ -363,10 +363,6 @@ void Simulator::testCurrentStrategy(int rounds){
 
 
 
-
-
-
-
 // ======================================================
 // ===============EXPORT BASIC STRATEGY==================
 // ======================================================
@@ -406,6 +402,15 @@ void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int
 
     file.close();
 }
+
+
+
+// ======================================================
+// =============== LOAD BASIC STRATEGY ==================
+// ======================================================
+// precondition: Must have an available saved .txt file in /strategy cards
+// postcondition: Reads text file and imports as vector in current
+// basic strategy
 
 void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow){
     fstream file;
@@ -448,6 +453,17 @@ void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int t
     }
 
 }
+
+
+
+// ======================================================
+// =============== OPTIMIZE BASIC STRATEGY ==============
+// ======================================================
+// precondition: Changes values of current basic strategy vector and 
+//               tests to determine if hit, stay, double, or split
+//               is the most lucrative player move.
+// postcondition: Saves basic strategy card in /strategy cards as text file
+//               which can be loaded using loadBasicStrategy(yada yada)
 
 void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow){
 
@@ -597,6 +613,15 @@ std::cout << "\n\nTime difference = " << std::chrono::duration_cast<std::chrono:
 Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
 
 }
+
+
+
+
+// ======================================================
+// =============== OPTIMIZE (MULTI-THREADED) ============
+// ======================================================
+// Description: Multithreaded approach of the optimize(yada yada)
+//              Note: Runs significantly slower than single threaded
 
 void Simulator::optimizeThreaded(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow){
 
