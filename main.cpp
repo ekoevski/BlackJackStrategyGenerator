@@ -33,22 +33,23 @@ int roundsToTest = 500000;  // Rounds to test the basic strategy cards;
 
 // MAIN
 //=================== 
-int main() {
-
-  for (int i = 3; i > 0; i--) {
+int main() 
+{
+  for (int i = 3; i > 0; i--)
+  {
     printf("    \n\n%d ", i);
     sleep(1);
   }
 
   Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 6 decks, 1 player
- 
-// Optimise perfect startegy
-Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards);
+  
+  // Optimise perfect startegy
+  Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards);
 
-// Test results, play 500,000 rounds to see hold %
-Sim->BJ->theShoe->createShoe(aces, highCards, midCards, lowCards);
+  // Test results, play 500,000 rounds to see hold %
+  Sim->BJ->theShoe->createShoe(aces, highCards, midCards, lowCards);
 
-Sim->testCurrentStrategy(roundsToTest);
+  Sim->testCurrentStrategy(roundsToTest);
 
   printf("\n Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.");
   printf("\n Drop - The total amount of cash that has been placed as a wager.");
