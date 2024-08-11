@@ -347,10 +347,6 @@ void Table::playRound(float bet)
 };
 
 
-
-
-
-
 // ======================================================
 // ============          TESTING           ==============
 // ======================================================
@@ -441,50 +437,39 @@ void Table::setHardCards(int playerTotal, int dealerUp){
   theDealer -> dealerHand[0] ->cardValue = dealerUp + 1;
 }
 
-
-
 // ======================================================
 // ============      SET SOFT CARDS        ==============
 
 // Description: set manually first two cards and dealer up card
 // Provide player hand total and dealer up card
-
-void Table::setSoftCards(int playerTotal, int dealerUp){
+void Table::setSoftCards(int playerTotal, int dealerUp)
+{
   // Player
-    for(Player * aPlayer : players){
-      aPlayer -> playerHand[0]->cardValue = 1;
-      aPlayer -> playerHand[1]->cardValue = playerTotal - 11;
-    }  
-
-  
+  for(Player * aPlayer : players)
+  {
+    aPlayer -> playerHand[0]->cardValue = 1;
+    aPlayer -> playerHand[1]->cardValue = playerTotal - 11;
+  }
   // Dealer
   Card *dealerUpCard = new Card(dealerUp + 1, 1);
   theDealer -> dealerHand[0]->cardValue = dealerUp + 1;
 }
-
-
-
 
 // ======================================================
 // ============      SET SPLIT CARDS        ==============
 
 // Description: set manually first two cards and dealer up card
 // Provide player hand total and dealer up card
-
 void Table::setSplitCards(int playerTotal, int dealerUp){
   // Player
-    for(Player * aPlayer : players){
-      aPlayer -> playerHand[0]->cardValue = playerTotal + 1;
-      aPlayer -> playerHand[1]->cardValue = playerTotal + 1;
-    }  
-  
-
+  for(Player * aPlayer : players)
+  {
+    aPlayer -> playerHand[0]->cardValue = playerTotal + 1;
+    aPlayer -> playerHand[1]->cardValue = playerTotal + 1;
+  }
   // Dealer
   theDealer -> dealerHand[0]->cardValue = dealerUp + 1;
 }
-
-
-
 
 // ======================================================
 // ============    RESET PLAYER AND DEALER ==============
@@ -492,35 +477,38 @@ void Table::setSplitCards(int playerTotal, int dealerUp){
 // Description: Returns all default values for player
 //              and dealer, all hands are cleared.
 
-void Table::reset(){
-    for(Player * aPlayer : players){
-      aPlayer -> strategySelector = 0;
-      aPlayer -> playerDrop = 0;
-      aPlayer -> winLoss = 0;
-      aPlayer -> testFirstHand = 110;
-      aPlayer -> testSecondHand = 110;
-      aPlayer -> bet = 0;
-      aPlayer -> firstDouble = false;
-      aPlayer -> secondDouble = false;
-      aPlayer -> thirdDouble = false;
-      aPlayer -> mainBet = 0;
-      aPlayer -> doubleMainBet = 0;
-      aPlayer -> secondSplitBet = 0;
-      aPlayer -> doubleSecondSplitBet = 0;
-      aPlayer -> thirdSplitBet = 0;
-      aPlayer -> doubleThirdSplitBet = 0;
-      aPlayer -> firstBusted = false;
-      aPlayer -> secondBusted = false;
-      aPlayer -> thirdBusted = false;
-      aPlayer -> firstBJ = false;
-      aPlayer -> dealerShowing = 0;
-      aPlayer -> playerHand.clear();
-      aPlayer -> secondSplitHand.clear();
-      aPlayer -> thirdSplitHand.clear();
-    }
-    theDealer -> bet = 0;
-    theDealer -> dealerBust = false;
-    theDealer -> BlackJack = false;
-    theDealer -> dealerHas = 0;
-    theDealer -> dealerHand.clear();
+void Table::reset()
+{
+  for(Player * aPlayer : players)
+  {
+    aPlayer -> strategySelector = 0;
+    aPlayer -> playerDrop = 0;
+    aPlayer -> winLoss = 0;
+    aPlayer -> testFirstHand = 110;
+    aPlayer -> testSecondHand = 110;
+    aPlayer -> bet = 0;
+    aPlayer -> firstDouble = false;
+    aPlayer -> secondDouble = false;
+    aPlayer -> thirdDouble = false;
+    aPlayer -> mainBet = 0;
+    aPlayer -> doubleMainBet = 0;
+    aPlayer -> secondSplitBet = 0;
+    aPlayer -> doubleSecondSplitBet = 0;
+    aPlayer -> thirdSplitBet = 0;
+    aPlayer -> doubleThirdSplitBet = 0;
+    aPlayer -> firstBusted = false;
+    aPlayer -> secondBusted = false;
+    aPlayer -> thirdBusted = false;
+    aPlayer -> firstBJ = false;
+    aPlayer -> dealerShowing = 0;
+    aPlayer -> playerHand.clear();
+    aPlayer -> secondSplitHand.clear();
+    aPlayer -> thirdSplitHand.clear();
+  }
+  
+  theDealer -> bet = 0;
+  theDealer -> dealerBust = false;
+  theDealer -> BlackJack = false;
+  theDealer -> dealerHas = 0;
+  theDealer -> dealerHand.clear();
 }

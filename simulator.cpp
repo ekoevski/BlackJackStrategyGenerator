@@ -548,9 +548,8 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
     cout << endl;
   }
 
-
-  cout << "\n\n SOFT STRATEGY \n\n";
-  cout << "Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n";
+  printf("\n\n SOFT STRATEGY \n\n");
+  printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
 
   for(int j = 13; j < softStrategy.size() - 2; j++)
   {
@@ -589,39 +588,40 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
         min = Double->hold;       
         softStrategy[j][i] = 2;
       }
-      cout << softStrategy[j][i]<< " ";
+      printf("%d ", softStrategy[j][i] );
     }
-      cout << endl;   
+
+    printf("\n");   
   }
 
   cout << "\n\n SPLIT STRATEGY \n\n";
   cout << "Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n";
 
-
   for(int j = 0; j < splitStrategy.size(); j++)
   {
-    cout << "       split" << j + 1 << ": ";   
+    cout << "       split" << j + 1 << ": ";
+
     for(int i = 0; i < splitStrategy[j].size(); i++)
     {
       splitStrategy[j][i] = 2;
-      Double->setCards(2,j,i);
-      Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double->runThread();
+      Double                      -> setCards(2,j,i);
+      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double                      -> runThread();
 
       splitStrategy[j][i] = 0;
-      Stay->setCards(2,j,i);
-      Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay->runThread();
+      Stay                        -> setCards(2,j,i);
+      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay                        -> runThread();
 
       splitStrategy[j][i] = 1;
-      Hit->setCards(2,j,i);
-      Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit->runThread();
+      Hit                         -> setCards(2,j,i);
+      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit                         -> runThread();
 
       splitStrategy[j][i] = 4;
-      Split->setCards(2,j,i);
-      Split->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Split->runThread();
+      Split                       -> setCards(2,j,i);
+      Split                       -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Split                       -> runThread();
 
       min = 1000.0;
       if(min >= Stay->hold){min = Stay->hold;           splitStrategy[j][i] = 0;}
