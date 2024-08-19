@@ -6,7 +6,8 @@
 #include <vector>
 #include <string>
 #include <stdlib.h>
-#include <stdio.h>
+#include <unistd.h>
+
 #include <thread>
 #include <chrono>
 #include "HoldCalculator.h"
@@ -17,40 +18,46 @@ using namespace std;
 // Constructors
 //=======================
 
-Simulator::Simulator(){};
+Simulator::Simulator()
+{
+  // Do Nothing
+};
 
-Simulator::Simulator(string name, int decks, int players){
- Simulator::BJ = new Table(name, decks, players);
- Simulator::aces = decks * 4;
- Simulator::high = decks * 16;
- Simulator::mid = decks * 12;
- Simulator::low = decks * 20;
- Simulator::gameName = name;
- Simulator::shoeDecks = decks;
- Simulator::numberPlayers = players;
+Simulator::Simulator(string name, int decks, int players)
+{
+  Simulator::BJ = new Table(name, decks, players);
+  Simulator::aces = decks * 4;
+  Simulator::high = decks * 16;
+  Simulator::mid = decks * 12;
+  Simulator::low = decks * 20;
+  Simulator::gameName = name;
+  Simulator::shoeDecks = decks;
+  Simulator::numberPlayers = players;
 
- printf("\nInitiating deck, total decks: %i total cards: %i\n\n", decks, aces + high + mid + low);
+  printf("\nInitiating deck, total decks: %i total cards: %i\n\n", decks, aces + high + mid + low);
 };
 
 
 // run returns hold %
-float Simulator::run(int rounds){
+float Simulator::run(int rounds)
+{
   BJ->theDealer->casinoDrop = 0;
   BJ->theDealer->winLoss = 0;
   total_drop = 0;
   total_winloss = 0;
   
   Simulator::counter = 0;
-  while (counter < rounds) {
+  while (counter < rounds) 
+  {
     counter++;
     BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
     BJ->reset();
     BJ->placeCards();
-    BJ->displayTable();
+    BJ->displayTable(); 
     BJ->playRound(1);
 
-
-    if (counter % 1000 == 0) {
+    if (counter % 1000 == 0) 
+    {
       total_drop += BJ->theDealer->casinoDrop;
       total_winloss += BJ->theDealer->winLoss;
       BJ->theDealer->casinoDrop = 0;
@@ -59,7 +66,8 @@ float Simulator::run(int rounds){
 
     BJ->clearTable();
   }
-    return (total_winloss/total_drop)*100;
+
+  return (total_winloss/total_drop)*100;
 };
 
 
@@ -70,8 +78,8 @@ float Simulator::run(int rounds){
 // ======================================================
 // precondition: has a basic strategy card vectors (soft, hard, split)
 // postcondition: gives hold % for current basic strategy card
-
-void Simulator::testCurrentStrategy(int rounds){
+void Simulator::testCurrentStrategy(int rounds)
+{
   BJ->theDealer->casinoDrop = 0;
   BJ->theDealer->winLoss = 0;
   total_drop = 0.0;
@@ -121,8 +129,6 @@ void Simulator::testCurrentStrategy(int rounds){
   int debug_3player_card_7 = 690000;
   int debug_3player_card_8 = 690000;
 
-
-
   // Vars for debug --
   int k = 0;
   float old_WL = 0.0;               
@@ -130,9 +136,9 @@ void Simulator::testCurrentStrategy(int rounds){
   BJ->theDealer->winLoss = 0.0;
   // ----           --
 
-
   Simulator::counter = 0;
-  while (counter < rounds) {
+  while (counter < rounds)
+  {
     old_WL = BJ->theDealer->winLoss;
     
     counter++;
@@ -141,10 +147,8 @@ void Simulator::testCurrentStrategy(int rounds){
     BJ->placeCards();
     BJ->playRound(1);
 
-
-
-
-    if (counter % 50000 == 0) {
+    if (counter % 50000 == 0)
+    {
       total_drop += BJ->theDealer->casinoDrop;
       total_winloss += BJ->theDealer->winLoss;
       printf("drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",BJ->theDealer->casinoDrop, BJ->theDealer->winLoss, total_winloss/total_drop, counter, BJ->theShoe->lowIndex); 
@@ -157,8 +161,10 @@ void Simulator::testCurrentStrategy(int rounds){
 
   // The following is for debugging only, used to read vector items from player hands
   k = 0;  
-  for (Card* aCard: BJ->players[0]->playerHand){
-    switch(k){
+  for (Card* aCard: BJ->players[0]->playerHand)
+  {
+    switch(k)
+    {
     case 0:
     debug_player_card_1 = aCard->getValue();
     break;
@@ -233,7 +239,8 @@ void Simulator::testCurrentStrategy(int rounds){
   }
 
   k = 0;  
-  for (Card* aCard: BJ->players[0]->thirdSplitHand){
+  for (Card* aCard: BJ->players[0]->thirdSplitHand)
+  {
     switch(k){
     case 0:
     debug_3player_card_1 = aCard->getValue();
@@ -497,7 +504,7 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
 
   // Print player card hard values
-  for(int j = 5; j < hardStrategy.size() - 1; j++)
+  for(int j = 5; j < hardStrategy.size(); j++)
   {
     if(j < 10) 
     {
@@ -508,23 +515,27 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       cout << "        hard" << j << ": ";
     }
 
+    // TODO: Casino is losing 100% in all three cases
     // Test scenarios (stay, hit, double)
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
       hardStrategy[j][i] = 2;
-      Double                      -> setCards(0, j, i);  // 0 for hard mode, player total, dealer up
+      Double                      -> setCards(0, 5, 10);  // 0 for hard mode, player total, dealer up
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
 
       hardStrategy[j][i] = 0;
-      Stay                        -> setCards(0, j, i);
+      Stay                        -> setCards(0, 5, 10);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
 
       hardStrategy[j][i] = 1;
-      Hit                         -> setCards(0, j, i);
+      Hit                         -> setCards(0, 5, 10);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
+
+      printf("stay->hold %f, hit->hold %f, double->hold %f\n", Stay->hold, Hit->hold, Double->hold );
+      //sleep(1);
 
       min = 1000.0;
 
@@ -543,7 +554,7 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
         min = Double->hold;       
         hardStrategy[j][i] = 2;
       }
-      cout << hardStrategy[j][i]<< " ";
+      cout << hardStrategy[j][i] << " ";
     }
     cout << endl;
   }
@@ -551,25 +562,26 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   printf("\n\n SOFT STRATEGY \n\n");
   printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
 
-  for(int j = 13; j < softStrategy.size() - 2; j++)
+
+  for(int j = 12; j < softStrategy.size() - 2; j++)
   {
     cout << "        soft" << j << ": ";
 
     for(int i = 0; i < softStrategy[j].size(); i++)
     {
       softStrategy[j][i] = 2;
-      Double                      -> setCards(1,j,i);
-      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double                      -> setCards(1,20,6);
+      Double                      -> setBasicStrategy(Simulator::softStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
 
       softStrategy[j][i] = 0;
-      Stay                        -> setCards(1,j,i);
-      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay                        -> setCards(1,20,6);
+      Stay                        -> setBasicStrategy(Simulator::softStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
 
       softStrategy[j][i] = 1;
-      Hit                         -> setCards(1,j,i);
-      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit                         -> setCards(1,20,6);
+      Hit                         -> setBasicStrategy(Simulator::softStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
 
       min = 1000.0;
@@ -604,22 +616,22 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
     for(int i = 0; i < splitStrategy[j].size(); i++)
     {
       splitStrategy[j][i] = 2;
-      Double                      -> setCards(2,j,i);
+      Double                      -> setCards(2,20,6);
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
 
       splitStrategy[j][i] = 0;
-      Stay                        -> setCards(2,j,i);
+      Stay                        -> setCards(2,20,6);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
 
       splitStrategy[j][i] = 1;
-      Hit                         -> setCards(2,j,i);
+      Hit                         -> setCards(2,20,6);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
 
       splitStrategy[j][i] = 4;
-      Split                       -> setCards(2,j,i);
+      Split                       -> setCards(2,20,6);
       Split                       -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Split                       -> runThread();
 

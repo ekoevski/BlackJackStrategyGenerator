@@ -434,7 +434,7 @@ void Table::setHardCards(int playerTotal, int dealerUp){
   }
 
   // Dealer
-  theDealer -> dealerHand[0] ->cardValue = dealerUp + 1;
+  theDealer -> dealerHand[0] ->cardValue = dealerUp;
 }
 
 // ======================================================
@@ -451,8 +451,7 @@ void Table::setSoftCards(int playerTotal, int dealerUp)
     aPlayer -> playerHand[1]->cardValue = playerTotal - 11;
   }
   // Dealer
-  Card *dealerUpCard = new Card(dealerUp + 1, 1);
-  theDealer -> dealerHand[0]->cardValue = dealerUp + 1;
+  theDealer -> dealerHand[0]->cardValue = dealerUp;
 }
 
 // ======================================================
@@ -464,11 +463,11 @@ void Table::setSplitCards(int playerTotal, int dealerUp){
   // Player
   for(Player * aPlayer : players)
   {
-    aPlayer -> playerHand[0]->cardValue = playerTotal + 1;
-    aPlayer -> playerHand[1]->cardValue = playerTotal + 1;
+    aPlayer -> playerHand[0]->cardValue = playerTotal / 2;
+    aPlayer -> playerHand[1]->cardValue = playerTotal / 2;
   }
   // Dealer
-  theDealer -> dealerHand[0]->cardValue = dealerUp + 1;
+  theDealer -> dealerHand[0]->cardValue = dealerUp;
 }
 
 // ======================================================
