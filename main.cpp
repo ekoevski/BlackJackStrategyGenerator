@@ -8,7 +8,8 @@
 
 using namespace std;
 
-
+// user: ekoevski
+// token: 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
 
 // This program allows user to create a deck for a BlackJack game,
 // and computes a basic strategy card based on the cards that are
