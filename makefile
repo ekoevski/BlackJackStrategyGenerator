@@ -3,8 +3,10 @@
 #make ./<TARGET>
 
 
+
 #TODO;� specify the list of source files programmed for this project, SOURCES = ???
 SOURCES = main.cpp card.cpp table.cpp shoe.cpp dealer.cpp player.cpp simulator.cpp HoldCalculator.cpp
+SOURCES += logging.cpp
 INCS = ???
 
 ####### Specify the target name ######

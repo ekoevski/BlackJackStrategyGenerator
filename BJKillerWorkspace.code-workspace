@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"chrono": "cpp",
+			"iosfwd": "cpp",
+			"iostream": "cpp",
+			"thread": "cpp",
+			"cstdarg": "cpp"
+		}
+	}
+}

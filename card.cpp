@@ -20,7 +20,7 @@ Card::Card(int value, int suit)
     switch(value){
         case 1:
         cardName ="A";
-        cardValue = 1;
+        cardValue = 1; 
         break;
 
         case 2:

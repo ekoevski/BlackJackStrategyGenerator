@@ -7,6 +7,7 @@
 #include <string>
 #include "shoe.h"
 #include "card.h"
+#include "logging.h"
 
 
 using namespace std;

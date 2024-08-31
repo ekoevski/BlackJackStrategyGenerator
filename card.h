@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include "logging.h"
 
 using namespace std;
 

@@ -15,6 +15,8 @@
 using namespace std;
 
 
+
+
 // Constructors
 //=======================
 
@@ -520,17 +522,17 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
       hardStrategy[j][i] = 2;
-      Double                      -> setCards(0, 5, 10);  // 0 for hard mode, player total, dealer up
+      Double                      -> setCards(0, 20, 10);  // 0 for hard mode, player total, dealer up
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
 
       hardStrategy[j][i] = 0;
-      Stay                        -> setCards(0, 5, 10);
+      Stay                        -> setCards(0, 20, 10);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
 
       hardStrategy[j][i] = 1;
-      Hit                         -> setCards(0, 5, 10);
+      Hit                         -> setCards(0, 20, 10);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
 

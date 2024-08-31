@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
+#include "logging.h"
 
 using namespace std;
 
@@ -101,6 +102,7 @@ void Table::playRound(float bet)
       {
         theDealer->addWinloss(aPlayer->getPlayerTotalBets());
         theDealer->addCasinoDrop(aPlayer->getPlayerTotalBets());
+        LOG_0("player does not have blackjack",__FILE__, __LINE__, NULL);
       }
     }
     return;

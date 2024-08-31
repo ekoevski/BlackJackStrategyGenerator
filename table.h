@@ -9,6 +9,8 @@
 #include "dealer.h"
 #include "player.h"
 #include "card.h"
+#include "logging.h"
+
 
 using namespace std;
 

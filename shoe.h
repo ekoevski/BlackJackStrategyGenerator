@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include "card.h"
+#include "logging.h"
 
 
 // This is for analog pin read

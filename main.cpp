@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <vector>
 #include "simulator.h"
+#include "logging.h"
 
 #define FLAG_VALUE 123
 
@@ -36,6 +37,7 @@ int roundsToTest = 500000;  // Rounds to test the basic strategy cards;
 //=================== 
 int main() 
 {
+
   Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 6 decks, 1 player
   
   // Optimise perfect startegy

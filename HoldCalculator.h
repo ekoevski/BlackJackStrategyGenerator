@@ -7,7 +7,7 @@
 #include <string>
 #include "table.h"
 #include <vector>
-
+#include "logging.h"
 
 using namespace std;
 
