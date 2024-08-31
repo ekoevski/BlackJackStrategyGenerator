@@ -102,7 +102,7 @@ void Table::playRound(float bet)
       {
         theDealer->addWinloss(aPlayer->getPlayerTotalBets());
         theDealer->addCasinoDrop(aPlayer->getPlayerTotalBets());
-        LOG_0("player does not have blackjack",__FILE__, __LINE__, NULL);
+        LOG_ERROR("player does not have blackjack",__FILE__, __LINE__, NULL);
       }
     }
     return;
