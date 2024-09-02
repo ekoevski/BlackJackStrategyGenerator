@@ -271,6 +271,9 @@ void Shoe::shuffle()
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   srand(seed);
   random_shuffle(theShoe.begin(), theShoe.end());
+  #ifdef DEBUG
+    showAllCards();
+  #endif
 };
 
 
@@ -291,6 +294,8 @@ Card* Shoe::drawCard()
   }
   Card* temp = theShoe[Shoe::buffer];
   //theShoe.pop_back();               // add this YOU WANT TO REMOVE CARDS FROM DECK
+  LOG_1("drawCard() ... return temp->getValue = %d",__FILE__, __LINE__, temp->getValue());
+
   return temp;
 };
 

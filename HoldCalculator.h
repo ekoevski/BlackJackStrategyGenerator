@@ -22,7 +22,7 @@ class HoldCalculator
   int mid = 12;
   int low = 20;
   int rounds = 3000;
-  Table *BJ;
+  Table *Table_BJ;
   float hold = 0;
   int mode = 4;
   int playerCardTotal = 0;

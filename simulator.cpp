@@ -27,7 +27,7 @@ Simulator::Simulator()
 
 Simulator::Simulator(string name, int decks, int players)
 {
-  Simulator::BJ = new Table(name, decks, players);
+  Simulator::Table_BJ = new Table(name, decks, players);
   Simulator::aces = decks * 4;
   Simulator::high = decks * 16;
   Simulator::mid = decks * 12;
@@ -43,8 +43,8 @@ Simulator::Simulator(string name, int decks, int players)
 // run returns hold %
 float Simulator::run(int rounds)
 {
-  BJ->theDealer->casinoDrop = 0;
-  BJ->theDealer->winLoss = 0;
+  Table_BJ->theDealer->casinoDrop = 0;
+  Table_BJ->theDealer->winLoss = 0;
   total_drop = 0;
   total_winloss = 0;
   
@@ -52,21 +52,21 @@ float Simulator::run(int rounds)
   while (counter < rounds) 
   {
     counter++;
-    BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-    BJ->reset();
-    BJ->placeCards();
-    BJ->displayTable(); 
-    BJ->playRound(1);
+    Table_BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+    Table_BJ->reset();
+    Table_BJ->placeCards();
+    Table_BJ->displayTable(); 
+    Table_BJ->playRound(1);
 
     if (counter % 1000 == 0) 
     {
-      total_drop += BJ->theDealer->casinoDrop;
-      total_winloss += BJ->theDealer->winLoss;
-      BJ->theDealer->casinoDrop = 0;
-      BJ->theDealer->winLoss = 0;
+      total_drop += Table_BJ->theDealer->casinoDrop;
+      total_winloss += Table_BJ->theDealer->winLoss;
+      Table_BJ->theDealer->casinoDrop = 0;
+      Table_BJ->theDealer->winLoss = 0;
     }
 
-    BJ->clearTable();
+    Table_BJ->clearTable();
   }
 
   return (total_winloss/total_drop)*100;
@@ -82,8 +82,8 @@ float Simulator::run(int rounds)
 // postcondition: gives hold % for current basic strategy card
 void Simulator::testCurrentStrategy(int rounds)
 {
-  BJ->theDealer->casinoDrop = 0;
-  BJ->theDealer->winLoss = 0;
+  Table_BJ->theDealer->casinoDrop = 0;
+  Table_BJ->theDealer->winLoss = 0;
   total_drop = 0.0;
   total_winloss = 0.0;
   
@@ -135,35 +135,35 @@ void Simulator::testCurrentStrategy(int rounds)
   int k = 0;
   float old_WL = 0.0;               
   float delta_WL= 0.0;
-  BJ->theDealer->winLoss = 0.0;
+  Table_BJ->theDealer->winLoss = 0.0;
   // ----           --
 
   Simulator::counter = 0;
   while (counter < rounds)
   {
-    old_WL = BJ->theDealer->winLoss;
+    old_WL = Table_BJ->theDealer->winLoss;
     
     counter++;
-    BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-    BJ->reset();
-    BJ->placeCards();
-    BJ->playRound(1);
+    Table_BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+    Table_BJ->reset();
+    Table_BJ->placeCards();
+    Table_BJ->playRound(1);
 
     if (counter % 50000 == 0)
     {
-      total_drop += BJ->theDealer->casinoDrop;
-      total_winloss += BJ->theDealer->winLoss;
-      printf("drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",BJ->theDealer->casinoDrop, BJ->theDealer->winLoss, total_winloss/total_drop, counter, BJ->theShoe->lowIndex); 
+      total_drop += Table_BJ->theDealer->casinoDrop;
+      total_winloss += Table_BJ->theDealer->winLoss;
+      printf("drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss, total_winloss/total_drop, counter, Table_BJ->theShoe->lowIndex); 
 
-      BJ->theDealer->casinoDrop = 0;
-      BJ->theDealer->winLoss = 0;
+      Table_BJ->theDealer->casinoDrop = 0;
+      Table_BJ->theDealer->winLoss = 0;
     }
 
 
 
   // The following is for debugging only, used to read vector items from player hands
   k = 0;  
-  for (Card* aCard: BJ->players[0]->playerHand)
+  for (Card* aCard: Table_BJ->players[0]->playerHand)
   {
     switch(k)
     {
@@ -203,7 +203,7 @@ void Simulator::testCurrentStrategy(int rounds)
   }
 
   k = 0;  
-  for (Card* aCard: BJ->players[0]->secondSplitHand){
+  for (Card* aCard: Table_BJ->players[0]->secondSplitHand){
     switch(k){
     case 0:
     debug_2player_card_1 = aCard->getValue();
@@ -241,7 +241,7 @@ void Simulator::testCurrentStrategy(int rounds)
   }
 
   k = 0;  
-  for (Card* aCard: BJ->players[0]->thirdSplitHand)
+  for (Card* aCard: Table_BJ->players[0]->thirdSplitHand)
   {
     switch(k){
     case 0:
@@ -280,7 +280,7 @@ void Simulator::testCurrentStrategy(int rounds)
   }
 
   k = 0;
-  for (Card* aCard: BJ->theDealer->dealerHand){
+  for (Card* aCard: Table_BJ->theDealer->dealerHand){
     switch(k){
     case 0:
     debug_dealer_card_1 = aCard->getValue();
@@ -318,8 +318,8 @@ void Simulator::testCurrentStrategy(int rounds)
   }
 
 
-  debug_win_loss = BJ->theDealer->winLoss;
-  debug_casino_drop = BJ->theDealer->casinoDrop;
+  debug_win_loss = Table_BJ->theDealer->winLoss;
+  debug_casino_drop = Table_BJ->theDealer->casinoDrop;
   delta_WL = debug_win_loss - old_WL;    // debug, change in WL
 
 //======================================================
@@ -363,7 +363,7 @@ void Simulator::testCurrentStrategy(int rounds)
   debug_dealer_card_7 = 6900000;
   debug_dealer_card_8 = 6900000;
 
-  BJ->clearTable();
+  Table_BJ->clearTable();
   }
   printf("\n\nSimulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
 };
@@ -486,17 +486,17 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
 
   std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-  // Instantiate calculator objects
+  // Instantiate calculator oTable_BJbjects
   HoldCalculator* Stay = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
   HoldCalculator* Hit = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
   HoldCalculator* Double = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
   HoldCalculator* Split = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
 
   // Create calculator shoe
-  Stay->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Hit->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Double->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Split->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Stay->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Hit->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Double->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Split->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
 
   
   printf("                *** START OPTIMIZATION (SINGLE-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
@@ -522,17 +522,17 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
       hardStrategy[j][i] = 2;
-      Double                      -> setCards(0, 20, 10);  // 0 for hard mode, player total, dealer up
+      Double                      -> setCards(0, 16, 6);  // 0 for hard mode, player total, dealer up
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
 
       hardStrategy[j][i] = 0;
-      Stay                        -> setCards(0, 20, 10);
+      Stay                        -> setCards(0, 16, 6);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
 
       hardStrategy[j][i] = 1;
-      Hit                         -> setCards(0, 20, 10);
+      Hit                         -> setCards(0, 16, 6);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
 
@@ -680,10 +680,10 @@ std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
   HoldCalculator* Double = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
   HoldCalculator* Split = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
 
-  Stay->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Hit->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Double->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Split->BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Stay->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Hit->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Double->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Split->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
 
 
 

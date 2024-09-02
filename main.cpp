@@ -44,7 +44,7 @@ int main()
   Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards);
 
   // Test results, play 500,000 rounds to see hold %
-  Sim->BJ->theShoe->createShoe(aces, highCards, midCards, lowCards);
+  Sim->Table_BJ->theShoe->createShoe(aces, highCards, midCards, lowCards);
 
   Sim->testCurrentStrategy(roundsToTest);
 

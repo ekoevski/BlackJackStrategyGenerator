@@ -20,7 +20,7 @@ class Simulator
 {
   public:
 
-  Table* BJ;
+  Table* Table_BJ;
   float total_drop = 0;
   float total_winloss = 0;
   int counter = 0;

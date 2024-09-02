@@ -33,14 +33,17 @@ Table::Table(string newGameName, int numberOfDecks, int numOfPlayers)
 void Table::placeCards()
 {
   // YOU NEED TO DEAL DEALER CARDS
+  LOG_1("theShoe->shuffle()",__FILE__, __LINE__, NULL);  
   Table::theShoe->shuffle();
   for (int j = 0; j < 2; j++)
   {
 
     for (int i = 0; i < (Table::numberOfPlayers); i++)
     {
+      LOG_1("player(%d)->getCard()",__FILE__, __LINE__, i);  
       Table::players[i]->getCard();
     }
+    LOG_1("theDealer->getCard()",__FILE__, __LINE__, NULL);      
     Table::theDealer->getCard();
   }
 };
