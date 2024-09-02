@@ -268,10 +268,11 @@ void Shoe::showAllCards()
 // ==================
 void Shoe::shuffle()
 {
+  LOG_1("Reshuffle", __FILE__, __LINE__, NULL);
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   srand(seed);
   random_shuffle(theShoe.begin(), theShoe.end());
-  #ifdef DEBUG
+  #if DEBUG
     showAllCards();
   #endif
 };

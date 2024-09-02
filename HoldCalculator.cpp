@@ -107,7 +107,9 @@ void HoldCalculator::runThread()
       Table_BJ->theDealer->casinoDrop = 0;
       Table_BJ->theDealer->winLoss = 0;
       LOG_0("total_drop: %f total_winloss %f", __FILE__, __LINE__, total_drop, total_winloss);
-      usleep(100000);  // YOU ARE HERE, you're not racking good winloss
+      #if DEBUG
+        usleep(100000);  // YOU ARE HERE, you're not racking good winloss
+      #endif
     }
 
     Table_BJ->clearTable();

@@ -7,15 +7,22 @@
 #include <cstdarg>
 // Log control
 
+
+
 using namespace std;
 
 //To endable logging
-#define LOG_0(message,file, line, ...) log_0(message,file, line, __VA_ARGS__);
-//#define LOG_0(message,file, line, ...) 0;    // To disable logging 
-#define LOG_1(message,file, line, ...) log_1(message,file, line, __VA_ARGS__);
-//#define LOG_ERROR(message,file, line, ...) 0;    // To disable logging 
-#define LOG_ERROR(message,file, line, ...) log_error(message,file, line, __VA_ARGS__);
-//#define LOG_ERROR(message,file, line, ...) 0;    // To disable logging 
+#define DEBUG false   // comment out to turn off debug mode
+
+#if DEBUG
+    #define LOG_0(message,file, line, ...) log_0(message,file, line, __VA_ARGS__);
+    #define LOG_1(message,file, line, ...) log_1(message,file, line, __VA_ARGS__);
+    #define LOG_ERROR(message,file, line, ...) log_error(message,file, line, __VA_ARGS__);
+#else
+    #define LOG_0(message,file, line, ...) 0;
+    #define LOG_1(message,file, line, ...) 0;
+    #define LOG_ERROR(message,file, line, ...) 0;
+#endif
 
 
 

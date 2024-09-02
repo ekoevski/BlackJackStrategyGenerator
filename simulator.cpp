@@ -536,9 +536,8 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
 
-      printf("stay->hold %f, hit->hold %f, double->hold %f\n", Stay->hold, Hit->hold, Double->hold );
-      //sleep(1);
-
+      LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", Stay->hold, Hit->hold, Double->hold );
+   
       min = 1000.0;
 
       if(min >= Stay->hold)
