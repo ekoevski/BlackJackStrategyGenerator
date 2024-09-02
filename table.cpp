@@ -46,6 +46,7 @@ void Table::placeCards()
     LOG_1("theDealer->getCard()",__FILE__, __LINE__, NULL);      
     Table::theDealer->getCard();
   }
+  Table::displayTable();
 };
 
 
@@ -55,11 +56,15 @@ void Table::placeCards()
 //========================
 void Table::displayTable()
 {
-  theDealer->showHand();
-  for (Player *aPlayer : players)
-  {
-    aPlayer->showHand();
-  }
+  #if DEBUG
+    theDealer->showHand();
+    for (Player *aPlayer : players)
+    {
+      aPlayer->showHand();
+    }
+  #else
+    return;
+  #endif
 };
 
 
@@ -123,6 +128,7 @@ void Table::playRound(float bet)
     {
       theDealer->addWinloss((-1.5) * aPlayer->getPlayerTotalBets());
       theDealer->addCasinoDrop(aPlayer->getPlayerTotalBets());
+      LOG_ERROR("player has blackjack",__FILE__, __LINE__, NULL);      
     }
   }
 
@@ -131,11 +137,9 @@ void Table::playRound(float bet)
   //==========================================
   for (Player *aPlayer : players)
   {
+    LOG_1("Player plays first two cards",__FILE__, __LINE__, NULL); 
     aPlayer->firstTwo(theDealer->showUpCard());
   }
-
-
-
 
 
 
@@ -423,23 +427,45 @@ void Table::printDrop()
 
 void Table::setHardCards(int playerTotal, int dealerUp){
   // Player
-  if(playerTotal <= 12){
-    for(Player * aPlayer : players){
-      aPlayer -> playerHand[0]->cardValue = 2;
-      aPlayer -> playerHand[1]->cardValue = playerTotal - 2;
+  if(playerTotal <= 12)
+  {
+    for(Player * aPlayer : players)
+    {
+      LOG_ERROR("(HARD) BEFORE: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
+
+      aPlayer -> set_first_card -> resetCard(2, 3);
+      aPlayer -> set_second_card -> resetCard(playerTotal - 2, 3); 
+
+      aPlayer -> playerHand[0] = aPlayer -> set_first_card;  
+      aPlayer -> playerHand[1] = aPlayer -> set_second_card;   
+
+      LOG_ERROR("(HARD) AFTER: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
     }  
   }
   
-  if(playerTotal > 12){
+  if(playerTotal > 12)
+  {
+    for(Player * aPlayer : players)
+    {
+      LOG_ERROR("(HARD) BEFORE: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
 
-    for(Player * aPlayer : players){
-      aPlayer -> playerHand[0]->cardValue = 10;
-      aPlayer -> playerHand[1]->cardValue = playerTotal - 10;
+      aPlayer -> set_first_card -> resetCard(10,3);
+      aPlayer -> set_second_card -> resetCard(playerTotal -10, 3); 
+
+      aPlayer -> playerHand[0] = aPlayer -> set_first_card;    
+      aPlayer -> playerHand[1] = aPlayer -> set_second_card;   
+
+      LOG_ERROR("(HARD) AFTER: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
     }  
   }
-
   // Dealer
-  theDealer -> dealerHand[0] ->cardValue = dealerUp;
+  LOG_ERROR("(HARD) BEFORE: d_up_card: %s", __FILE__, __LINE__, theDealer->dealerHand[0]->getName().c_str());
+
+  theDealer -> set_up_card -> resetCard( dealerUp, 3 );
+  theDealer -> dealerHand[0] = theDealer->set_up_card;    // ->cardValue = dealerUp;
+
+  LOG_ERROR("(HARD) AFTER: d_up_card: %s", __FILE__, __LINE__, theDealer->dealerHand[0]->getName().c_str());
+   
 }
 
 // ======================================================
@@ -449,14 +475,26 @@ void Table::setHardCards(int playerTotal, int dealerUp){
 // Provide player hand total and dealer up card
 void Table::setSoftCards(int playerTotal, int dealerUp)
 {
-  // Player
+
   for(Player * aPlayer : players)
   {
-    aPlayer -> playerHand[0]->cardValue = 1;
-    aPlayer -> playerHand[1]->cardValue = playerTotal - 11;
+    LOG_ERROR("(SOFT) BEFORE: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
+
+    aPlayer -> set_first_card -> resetCard(1,3);
+    aPlayer -> set_second_card -> resetCard(playerTotal -11, 3); 
+
+    aPlayer -> playerHand[0] = aPlayer -> set_first_card;    
+    aPlayer -> playerHand[1] = aPlayer -> set_second_card;   
+
+    LOG_ERROR("(SOFT) AFTER: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
   }
   // Dealer
-  theDealer -> dealerHand[0]->cardValue = dealerUp;
+  LOG_ERROR("(SOFT) BEFORE: d_up_card: %s", __FILE__, __LINE__, theDealer->dealerHand[0]->getName().c_str());
+
+  theDealer -> set_up_card -> resetCard( dealerUp, 3 );
+  theDealer -> dealerHand[0] = theDealer->set_up_card;    // ->cardValue = dealerUp;
+
+  LOG_ERROR("(SOFT) AFTER: d_up_card: %s", __FILE__, __LINE__, theDealer->dealerHand[0]->getName().c_str());
 }
 
 // ======================================================
@@ -464,16 +502,30 @@ void Table::setSoftCards(int playerTotal, int dealerUp)
 
 // Description: set manually first two cards and dealer up card
 // Provide player hand total and dealer up card
-void Table::setSplitCards(int playerTotal, int dealerUp){
-  // Player
+void Table::setSplitCards(int playerTotal, int dealerUp)
+{
   for(Player * aPlayer : players)
   {
-    aPlayer -> playerHand[0]->cardValue = playerTotal / 2;
-    aPlayer -> playerHand[1]->cardValue = playerTotal / 2;
+    LOG_ERROR("(SPLIT) BEFORE: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
+
+    aPlayer -> set_first_card -> resetCard(playerTotal / 2 ,3);
+    aPlayer -> set_second_card -> resetCard(playerTotal / 2 , 3); 
+
+    aPlayer -> playerHand[0] = aPlayer -> set_first_card;    
+    aPlayer -> playerHand[1] = aPlayer -> set_second_card;   
+
+    LOG_ERROR("(SPLIT) AFTER: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
   }
   // Dealer
-  theDealer -> dealerHand[0]->cardValue = dealerUp;
+  LOG_ERROR("(SPLIT) BEFORE: d_up_card: %s", __FILE__, __LINE__, theDealer->dealerHand[0]->getName().c_str());
+  
+  theDealer -> set_up_card -> resetCard( dealerUp, 3 );
+  theDealer -> dealerHand[0] = theDealer->set_up_card;    // ->cardValue = dealerUp;
+
+  LOG_ERROR("(SPLIT) AFTER: d_up_card: %s", __FILE__, __LINE__, theDealer->dealerHand[0]->getName().c_str());
 }
+
+
 
 // ======================================================
 // ============    RESET PLAYER AND DEALER ==============

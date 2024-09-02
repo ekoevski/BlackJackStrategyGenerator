@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-
+//#include "card.h"
 
 using namespace std;
 
@@ -13,6 +13,7 @@ using namespace std;
 Dealer::Dealer(Shoe *shoe)
 {
     Dealer::theShoe2 = shoe;
+    Dealer::set_up_card = new Card(3,3);
 };
 
 Dealer::Dealer()
@@ -28,10 +29,16 @@ void Dealer::getCard(){
 
 
 void Dealer::showHand(){
-    string cardName2;
-    for(Card *aCard  : Dealer::dealerHand){
-        cardName2 = aCard->getName();
-    }
+    #if DEBUG
+        string cardName2;
+        LOG_FLAT("dealer_card: ", __FILE__, __LINE__,NULL);        
+        for(Card *aCard  : Dealer::dealerHand){
+            printf("%s ", aCard->getName().c_str());
+        }
+        printf("\n");
+    #else
+        return;
+    #endif
 }
 
 

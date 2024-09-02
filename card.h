@@ -25,6 +25,9 @@ class Card
   int getValue(){return cardValue;}
   int getSuit(){return cardSuit;}
   string getName(){return cardName;}
+
+  // Methods
+  void resetCard(int value, int suit);
 };
 
 

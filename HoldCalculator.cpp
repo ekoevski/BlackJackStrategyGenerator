@@ -69,7 +69,12 @@ void HoldCalculator::runThread()
   {
     LOG_0(" ", __FILE__, __LINE__, NULL);
     LOG_0(" ", __FILE__, __LINE__, NULL);  
-    LOG_0(" ", __FILE__, __LINE__, NULL);  
+    LOG_0(" ", __FILE__, __LINE__, NULL);
+    LOG_0(" ============== RUN THREAD ================ ", __FILE__, __LINE__, NULL);  
+    LOG_0(" ", __FILE__, __LINE__, NULL); 
+        
+
+
     LOG_0("while( counter = %d < rounds = %d ) ", __FILE__, __LINE__, counter, rounds);
 
     counter++;
@@ -98,6 +103,8 @@ void HoldCalculator::runThread()
     LOG_0("playRound(1)",__FILE__, __LINE__, NULL);  
     Table_BJ->playRound(1);
 
+    LOG_0(" =============== END ROUND ================", __FILE__, __LINE__, NULL);
+    Table_BJ->displayTable();
     if (counter % 1 == 0)
     {
       LOG_0("Table_BJ->theDealer->casinoDrop: %f Table_BJ->theDealer->winLoss %f", __FILE__, __LINE__, Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss);      
@@ -107,8 +114,9 @@ void HoldCalculator::runThread()
       Table_BJ->theDealer->casinoDrop = 0;
       Table_BJ->theDealer->winLoss = 0;
       LOG_0("total_drop: %f total_winloss %f", __FILE__, __LINE__, total_drop, total_winloss);
+
       #if DEBUG
-        usleep(100000);  // YOU ARE HERE, you're not racking good winloss
+        usleep(500000);
       #endif
     }
 

@@ -83,6 +83,30 @@ void log_0(const char * message, const char *file, int line,...)
 
 } 
 
+void log_flat(const char * message, const char *file, int line,...)
+{
+    char buf[200];
+    char buf2[100];
+    va_list args;
+
+    snprintf(buf2, 50, "%s:%d: ", file, line);
+
+    // Print first part colored (file and line)
+    green();
+    printf("%25s", buf2);
+    cyan();
+
+    // Print whatever message user wants after
+    strcpy(buf, message);       // Copy user message
+    va_start(args, line);    // Collect variatric arguments (notice you just need last argument listed)
+    vprintf(buf, args);         // Print variatric arguments with buffer message
+    va_end(args);
+
+    reset();
+    //Endline
+} 
+
+
 // Logging function
 void log_error(const char * message, const char *file, int line,...)
 {

@@ -18,6 +18,8 @@ using namespace std;
 class Player
 {
   public:
+  Card *set_first_card;
+  Card *set_second_card;
 
   int strategySelector = 0;
 

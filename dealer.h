@@ -18,6 +18,8 @@ using namespace std;
 class Dealer
 {
   public:
+  Card *set_up_card;
+
   float bet;
   Shoe *theShoe2;
   string cardName;

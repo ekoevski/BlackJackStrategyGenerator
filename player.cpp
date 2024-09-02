@@ -17,6 +17,8 @@ Player::Player(Shoe *shoe, int seat)
 {
     Player::theShoe2 = shoe;
     Player::playerSeat = seat;
+    Player::set_first_card = new Card(4,4);
+    Player::set_second_card = new Card(5,4);    
 };
 
 Player::Player()
@@ -78,10 +80,16 @@ void Player::getCard(){
 // PRINT FIRST PLAYER HAND IN OUTPUT
 // ================================
 void Player::showHand(){
-    string cardName2;
-    for(Card *aCard  : Player::playerHand){
-        cardName2 = aCard->getName();
-    }
+    #if DEBUG
+        LOG_FLAT("player_cards:", __FILE__, __LINE__, NULL);         
+        for(Card *aCard  : Player::playerHand)
+        {
+            printf("%s ", aCard->getName().c_str());
+        }
+        printf("\n");
+    #else
+        return;
+    #endif
 }
 
 
@@ -146,8 +154,12 @@ void Player::firstTwo(int dealerUp){
     secondBusted = false;
     thirdBusted = false;
 
+    LOG_1("Player::firstTwo(dealerup = %d)", __FILE__, __LINE__, dealerUp);    
+
     //Check if blackjack (WORKS)
-    if(Player::getFirstHandTotal() == 11 && (playerHand[0]->getValue() == 1 || playerHand[1]->getValue() == 1)){
+    if(Player::getFirstHandTotal() == 11 && (playerHand[0]->getValue() == 1 || playerHand[1]->getValue() == 1))
+    {
+        LOG_ERROR("player had blackjack, return", __FILE__, __LINE__, NULL);
         Player::firstBJ = true;
         return;
     }
@@ -167,6 +179,7 @@ void Player::firstTwo(int dealerUp){
 
     int first_hand_total = Player::firstHandFinal();
 
+    LOG_1("Player::firstHandTotal = %d)", __FILE__, __LINE__, first_hand_total);    
 
 
     // GET BASIC STRATEGY
@@ -202,6 +215,7 @@ void Player::firstTwo(int dealerUp){
 
     // IF 0 DO NOTHING
         if(basicStrategy == 0){
+        LOG_1("Player:basicStrategy = %d, (do nothing)", __FILE__, __LINE__, basicStrategy);         
         return;  
         }
 

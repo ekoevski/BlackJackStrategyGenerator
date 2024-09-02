@@ -7,6 +7,7 @@
 #include <string>
 #include <stdlib.h>
 #include <unistd.h>
+#include "logging.h"
 
 #include <thread>
 #include <chrono>
@@ -521,22 +522,25 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
     // Test scenarios (stay, hit, double)
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
+      LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[j][i] = 2;
       Double                      -> setCards(0, 16, 6);  // 0 for hard mode, player total, dealer up
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
 
+      LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[j][i] = 0;
       Stay                        -> setCards(0, 16, 6);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
 
+      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[j][i] = 1;
       Hit                         -> setCards(0, 16, 6);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
 
-      LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", Stay->hold, Hit->hold, Double->hold );
+      LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
    
       min = 1000.0;
 

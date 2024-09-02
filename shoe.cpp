@@ -96,18 +96,6 @@ Shoe::Shoe(int deckNum)
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                 ///////////////////////////////////////
                 /////////     METHODS          ////////
                 ///////////////////////////////////////
@@ -242,20 +230,30 @@ void Shoe::combineShoe()
 
 void Shoe::showAllCards()
 {
-    std::vector<Card*>::iterator it = theShoe.begin();
-    
-    int spacer = 0;
-    string cardType;
+    #if DEBUG
+      std::vector<Card*>::iterator it = theShoe.begin();
+      
+      int spacer = 0;
+      string cardType;
 
-    for (it = theShoe.begin(); it != end (theShoe); ++it) 
-    {
-        if(spacer % 7 == 0){
-          printf("\n");
-          }
-        cardType = (*it)->getName();
-        printf("%s ", cardType.c_str());
-        spacer++;
-    }
+      for (it = theShoe.begin(); it != end (theShoe); ++it) 
+      {
+          if(spacer % 7 == 0){
+            if(spacer != 0)
+            {
+             printf("\n");              
+            }
+            LOG_FLAT("", __FILE__, __LINE__, NULL);
+            }
+          cardType = (*it)->getName();
+          printf("%s ", cardType.c_str());
+          spacer++;
+      }
+      printf("\n");
+
+    #else
+      return;
+    #endif
 };
 
 
@@ -272,9 +270,7 @@ void Shoe::shuffle()
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   srand(seed);
   random_shuffle(theShoe.begin(), theShoe.end());
-  #if DEBUG
-    showAllCards();
-  #endif
+  showAllCards();
 };
 
 
@@ -295,7 +291,7 @@ Card* Shoe::drawCard()
   }
   Card* temp = theShoe[Shoe::buffer];
   //theShoe.pop_back();               // add this YOU WANT TO REMOVE CARDS FROM DECK
-  LOG_1("drawCard() ... return temp->getValue = %d",__FILE__, __LINE__, temp->getValue());
+  LOG_1("drawCard() = card: %s value: %d",__FILE__, __LINE__, temp->getName().c_str(), temp->getValue());
 
   return temp;
 };
