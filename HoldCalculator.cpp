@@ -117,7 +117,7 @@ void HoldCalculator::runThread()
       LOG_0("total_drop: %f total_winloss %f", __FILE__, __LINE__, total_drop, total_winloss);
 
       #if DEBUG
-        usleep(500000);
+        usleep(3000);
       #endif
     }
 

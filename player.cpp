@@ -186,9 +186,11 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
         if(Player::firstIsSoft())
         {     
             basicStrategy = Player::basicSoftStrategy[first_hand_total][dealerUp - 1];
+            LOG_1("PlayerfirstIsSoft = %d, set basicStrategy", __FILE__, __LINE__, basicStrategy);             
         }
         else
         {
+            LOG_1("PlayerfirstIsHARD = %d, set basicStrategy, first_hand_total: %d, dealerup-1 : %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUp-1));  
             basicStrategy = Player::basicHardStrategy[first_hand_total][dealerUp - 1];
         }
         if(force_intent_mode)
@@ -199,30 +201,36 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
 
 
     // IF 2 DOUBLE
-        if(basicStrategy == 2){
+        if(basicStrategy == 2)
+        {
+            LOG_1("basicStrategy == 2, drawCard() and stop hitting", __FILE__, __LINE__, NULL);   
             playerHand.push_back(theShoe2->drawCard());
             Player::doubleMainBet = Player::mainBet; 
             firstDouble = true;
 
-            if(!Player::firstIsSoft() && Player::firstHandFinal() > 21){
+            if(!Player::firstIsSoft() && Player::firstHandFinal() > 21)
+            {
                 firstBusted = true;  
             }
-        return;  
+            return;  
         }
 
 
     // IF 1 THEN PLAY THE HAND
-        if(basicStrategy == 1){
+        if(basicStrategy == 1)
+        {
+            LOG_1("basicStrategy == 1, playFirstHAnd()", __FILE__, __LINE__, NULL);               
             playFirstHand();
-        return;  
+            return;  
         }
 
 
 
     // IF 0 DO NOTHING
-        if(basicStrategy == 0){
-        LOG_1("Player:basicStrategy = %d, (do nothing)", __FILE__, __LINE__, basicStrategy);         
-        return;  
+        if(basicStrategy == 0)
+        {
+            LOG_1("Player:basicStrategy = %d, (do nothing)", __FILE__, __LINE__, basicStrategy);         
+            return;  
         }
 
 

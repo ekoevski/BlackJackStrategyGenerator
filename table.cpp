@@ -140,7 +140,7 @@ void Table::playRound(float bet)
     LOG_1("Player plays first two cards",__FILE__, __LINE__, NULL); 
     // true is for forced intent, turn to false if you want to use basic strategy cards
     // table mode = 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split
-    aPlayer->firstTwo(theDealer->showUpCard(), table_mode, true); 
+    aPlayer->firstTwo(theDealer->showUpCard(), table_mode, false); 
   }
 
 
