@@ -60,6 +60,7 @@ void HoldCalculator::runThread()
 {
   Table_BJ->theDealer->casinoDrop   = 0;
   Table_BJ->theDealer->winLoss      = 0;
+  Table_BJ->table_mode = mode;
   float total_drop            = 0;
   float total_winloss         = 0;
   int counter                 = 0;

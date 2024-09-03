@@ -144,7 +144,7 @@ int Player::getThirdHandTotal(){
 // determines doubles, splits and reads basic strategy cards
 // to make decision. 
 
-void Player::firstTwo(int dealerUp){
+void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
 
     firstDouble = false;
     secondDouble = false;
@@ -183,11 +183,17 @@ void Player::firstTwo(int dealerUp){
 
 
     // GET BASIC STRATEGY
-        if(Player::firstIsSoft()){     
+        if(Player::firstIsSoft())
+        {     
             basicStrategy = Player::basicSoftStrategy[first_hand_total][dealerUp - 1];
         }
-        else{
+        else
+        {
             basicStrategy = Player::basicHardStrategy[first_hand_total][dealerUp - 1];
+        }
+        if(force_intent_mode)
+        {
+            basicStrategy = intent_mode;
         }
 
 

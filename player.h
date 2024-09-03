@@ -167,7 +167,7 @@ class Player
   bool firstIsSoft();
   bool secondIsSoft();
   bool thirdIsSoft();
-  void firstTwo(int dealerUpCard); // Decide if double or split on 1st two cards
+  void firstTwo(int dealerUpCard, int intent_mode, bool force_intent_mode); // Decide if double or split on 1st two cards
   void playFirstHand();
   void playSecondHand();
   void playThirdHand();

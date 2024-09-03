@@ -25,6 +25,7 @@ class Table
   int shoeCount;
   float Bet;
   int numberOfPlayers;
+  int table_mode;
 
   Shoe *theShoe;
   Dealer *theDealer;
