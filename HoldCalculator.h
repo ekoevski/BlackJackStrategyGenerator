@@ -44,7 +44,7 @@ class HoldCalculator
   {
     mode = theMode;
     playerCardTotal = playerTotal;
-    dealerUpCard = dealerUp;
+    dealerUpCard = dealerUp + 1;
   };  //mode: 0 for hard, 1, for soft 2 for split first hand setter
 };
 
