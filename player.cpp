@@ -179,19 +179,19 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
 
     int first_hand_total = Player::firstHandFinal();
 
-    LOG_1("Player::firstHandTotal = %d)", __FILE__, __LINE__, first_hand_total);    
+    LOG_0("Player::firstHandTotal = %d)", __FILE__, __LINE__, first_hand_total);    
 
 
     // GET BASIC STRATEGY
         if(Player::firstIsSoft())
         {     
-            basicStrategy = Player::basicSoftStrategy[first_hand_total][dealerUp - 1];
-            LOG_1("PlayerfirstIsSoft = %d, set basicStrategy", __FILE__, __LINE__, basicStrategy);             
+            basicStrategy = Player::basicSoftStrategy[first_hand_total][dealerUp];
+            LOG_1("PlayerfirstIsSOFT, set basicStrategy = %d, playerHand: %d, dealerUp: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUp));              
         }
         else
         {
-            LOG_1("PlayerfirstIsHARD = %d, set basicStrategy, first_hand_total: %d, dealerup-1 : %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUp-1));  
-            basicStrategy = Player::basicHardStrategy[first_hand_total][dealerUp - 1];
+            basicStrategy = Player::basicHardStrategy[first_hand_total][dealerUp];
+            LOG_1("PlayerfirstIsHARD, set basicStrategy = %d, playerHand: %d, dealerUp: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUp));  
         }
         if(force_intent_mode)
         {
@@ -201,9 +201,9 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
 
 
     // IF 2 DOUBLE
-        if(basicStrategy == 2)
+        if(basicStrategy == DOUBLE)
         {
-            LOG_1("basicStrategy == 2, drawCard() and stop hitting", __FILE__, __LINE__, NULL);   
+            LOG_1("basicStrategy == DOUBLE, drawCard() and stop hitting", __FILE__, __LINE__, NULL);   
             playerHand.push_back(theShoe2->drawCard());
             Player::doubleMainBet = Player::mainBet; 
             firstDouble = true;
@@ -217,9 +217,9 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
 
 
     // IF 1 THEN PLAY THE HAND
-        if(basicStrategy == 1)
+        if(basicStrategy == HIT)
         {
-            LOG_1("basicStrategy == 1, playFirstHAnd()", __FILE__, __LINE__, NULL);               
+            LOG_1("basicStrategy == HIT, playFirstHAnd()", __FILE__, __LINE__, NULL);               
             playFirstHand();
             return;  
         }
@@ -227,16 +227,16 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
 
 
     // IF 0 DO NOTHING
-        if(basicStrategy == 0)
+        if(basicStrategy == STAY)
         {
-            LOG_1("Player:basicStrategy = %d, (do nothing)", __FILE__, __LINE__, basicStrategy);         
+            LOG_1("Player:basicStrategy =  STAY, (basicStrategy: %d), (do nothing)", __FILE__, __LINE__, basicStrategy);         
             return;  
         }
 
 
     // CHECK IF SPLIT (1ST SPLIT)
     if(firstCard == secondCard){
-        basicStrategy = Player::basicSplitStrategy[firstCard - 1][dealerUp - 1];
+        basicStrategy = Player::basicSplitStrategy[firstCard - 1][dealerUp];
 
         if(basicStrategy == 2){firstDouble = true;} 
         if(basicStrategy == 4){
@@ -255,10 +255,10 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
             int second_hand_total = Player::secondHandFinal();
 
         if(Player::secondIsSoft()){   
-            basicStrategy = Player::basicSoftStrategy[second_hand_total][dealerUp - 1];
+            basicStrategy = Player::basicSoftStrategy[second_hand_total][dealerUp];
         }
         else{
-            basicStrategy = Player::basicHardStrategy[second_hand_total][dealerUp - 1];
+            basicStrategy = Player::basicHardStrategy[second_hand_total][dealerUp];
         }
 
         if(basicStrategy == 2){

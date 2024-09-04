@@ -12,7 +12,18 @@
 using namespace std;
 
 //To endable logging
-#define DEBUG 0   // comment out to turn off debug mode
+#define DEBUG 1   // comment out to turn off debug mode
+
+#define STAY                0
+#define HIT                 1
+#define DOUBLE              2
+#define SPLIT               4
+
+
+#define HARD_HAND_MODE      0
+#define SOFT_HAND_MODE      1
+#define SPLIT_HAND_MODE     3
+
 
 #if DEBUG
     #define LOG_0(message,file, line, ...) log_0(message,file, line, __VA_ARGS__);

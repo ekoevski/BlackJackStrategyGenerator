@@ -104,13 +104,18 @@ void Table::playRound(float bet)
 
   if (theDealer->hasBlackJack())
   {
+    LOG_ERROR("Dealer has BlackJack",__FILE__, __LINE__, NULL);
     for (Player *aPlayer : players)
     {
       if (!aPlayer->hasBlackJack())
       {
         theDealer->addWinloss(aPlayer->getPlayerTotalBets());
         theDealer->addCasinoDrop(aPlayer->getPlayerTotalBets());
-        LOG_ERROR("player does not have blackjack",__FILE__, __LINE__, NULL);
+        LOG_ERROR(" LOSS player does not have blackjack",__FILE__, __LINE__, NULL);
+      }
+      else
+      {
+        LOG_ERROR("PUSH player too has BlackJack",__FILE__, __LINE__, NULL);        
       }
     }
     return;
@@ -128,7 +133,7 @@ void Table::playRound(float bet)
     {
       theDealer->addWinloss((-1.5) * aPlayer->getPlayerTotalBets());
       theDealer->addCasinoDrop(aPlayer->getPlayerTotalBets());
-      LOG_ERROR("player has blackjack",__FILE__, __LINE__, NULL);      
+      LOG_ERROR("WIN player has blackjack",__FILE__, __LINE__, NULL);      
     }
   }
 
@@ -140,7 +145,10 @@ void Table::playRound(float bet)
     LOG_1("Player plays first two cards",__FILE__, __LINE__, NULL); 
     // true is for forced intent, turn to false if you want to use basic strategy cards
     // table mode = 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split
-    aPlayer->firstTwo(theDealer->showUpCard(), table_mode, false); 
+    if(!aPlayer->hasBlackJack())
+    {
+      aPlayer->firstTwo(theDealer->showUpCard(), table_mode, false); 
+    }
   }
 
 
@@ -506,12 +514,15 @@ void Table::setSoftCards(int playerTotal, int dealerUp)
 // Provide player hand total and dealer up card
 void Table::setSplitCards(int playerTotal, int dealerUp)
 {
+  playerTotal = playerTotal + 1;  // This is a weird one, you're indexint 0 - 9 so conversion is funky
+
+
   for(Player * aPlayer : players)
   {
     LOG_ERROR("(SPLIT) BEFORE: p_card_1: %s, p_card_2: %s", __FILE__, __LINE__, aPlayer->playerHand[0]->getName().c_str(), aPlayer->playerHand[1]->getName().c_str());
 
-    aPlayer -> set_first_card -> resetCard(playerTotal / 2 ,3);
-    aPlayer -> set_second_card -> resetCard(playerTotal / 2 , 3); 
+    aPlayer -> set_first_card -> resetCard(playerTotal ,3);
+    aPlayer -> set_second_card -> resetCard(playerTotal , 3); 
 
     aPlayer -> playerHand[0] = aPlayer -> set_first_card;    
     aPlayer -> playerHand[1] = aPlayer -> set_second_card;   

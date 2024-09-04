@@ -86,35 +86,76 @@ void HoldCalculator::runThread()
     LOG_0("PlaceCrards()",__FILE__, __LINE__, NULL);  
     Table_BJ->placeCards();
 
-    if(mode == 0)
+    if(mode == HARD_HAND_MODE)
     {
       LOG_0("setHardCards(playerCardTotal = %d, dealerUpCard = %d)",__FILE__, __LINE__, playerCardTotal, dealerUpCard);      
       Table_BJ->setHardCards(playerCardTotal, dealerUpCard);
     }
-    if(mode == 1)
+    if(mode == SOFT_HAND_MODE)
     {
       LOG_0("setSoftCards(playerCardTotal = %d, dealerUpCard = %d)",__FILE__, __LINE__, playerCardTotal, dealerUpCard);      
       Table_BJ->setSoftCards(playerCardTotal, dealerUpCard);
     }
-    if(mode == 2)
+    if(mode == SPLIT_HAND_MODE)
     {
       LOG_0("setSplitCards(playerCardTotal = %d, dealerUpCard = %d)",__FILE__, __LINE__, playerCardTotal, dealerUpCard);      
       Table_BJ->setSplitCards(playerCardTotal, dealerUpCard);
     }
+
     LOG_0("playRound(1)",__FILE__, __LINE__, NULL);  
-    Table_BJ->playRound(1);
+    if(!Table_BJ->theDealer->hasBlackJack())
+    {
+      for (Player *aPlayer : Table_BJ->players)
+      {
+        if (aPlayer->hasBlackJack())
+        {
+          LOG_ERROR("SKIP ROUND player has BJ, goto ) ", __FILE__, __LINE__, NULL);   
+          goto END_ROUND;        
+        }
+      }
+      Table_BJ->playRound(1);      
+    }
+    else
+    {
+      LOG_ERROR("Dealer has BJ,break ) ", __FILE__, __LINE__, NULL);      
+      END_ROUND:
+      counter--;
+
+      Table_BJ->displayTable();      
+      continue;
+    }
+ 
 
     LOG_0(" =============== END ROUND ================", __FILE__, __LINE__, NULL);
     Table_BJ->displayTable();
     if (counter % 1 == 0)
     {
-      LOG_0("Table_BJ->theDealer->casinoDrop: %f Table_BJ->theDealer->winLoss %f", __FILE__, __LINE__, Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss);      
+      LOG_0("Table_BJ->theDealer->casinoDrop: %f \n               \
+      Table_BJ->theDealer->winLoss %f", __FILE__, __LINE__, Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss);      
       total_drop += Table_BJ->theDealer->casinoDrop;
       total_winloss += Table_BJ->theDealer->winLoss;
 
       Table_BJ->theDealer->casinoDrop = 0;
       Table_BJ->theDealer->winLoss = 0;
-      LOG_0("total_drop: %f total_winloss %f", __FILE__, __LINE__, total_drop, total_winloss);
+
+
+      switch (Table_BJ->table_mode)
+      {
+        case HARD_HAND_MODE:
+        LOG_0("total_drop: %f total_winloss %f \n       mode: HARD_HAND_MODE, dealer_up: %d , player_hand: %d ",
+              __FILE__, __LINE__, total_drop, total_winloss, dealerUpCard, playerCardTotal);
+        break;
+
+        case SOFT_HAND_MODE:
+        LOG_0("total_drop: %f total_winloss %f \n       mode: SOFT_HAND_MODE, dealer_up: %d , player_hand: %d ",
+              __FILE__, __LINE__, total_drop, total_winloss, dealerUpCard, playerCardTotal);
+        break;
+
+        case SPLIT_HAND_MODE:
+        LOG_0("total_drop: %f total_winloss %f \n       mode: SPLIT_HAND_MODE, dealer_up: %d , player_hand: %d ",
+              __FILE__, __LINE__, total_drop, total_winloss, dealerUpCard, playerCardTotal);
+        break;                
+      }
 
       #if DEBUG
         usleep(3000);
