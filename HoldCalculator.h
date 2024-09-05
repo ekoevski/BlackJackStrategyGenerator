@@ -27,6 +27,7 @@ class HoldCalculator
   int mode = 4;
   int playerCardTotal = 0;
   int dealerUpCard = 0;
+  string player_action = "none";
 
   //Constructors
   HoldCalculator();

@@ -144,19 +144,19 @@ int Player::getThirdHandTotal(){
 // determines doubles, splits and reads basic strategy cards
 // to make decision. 
 
-void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
-
+void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode)
+{
+    dealerUpIndex--;
     firstDouble = false;
     secondDouble = false;
     thirdDouble = false;
-
     firstBusted = false;
     secondBusted = false;
     thirdBusted = false;
 
-    LOG_1("Player::firstTwo(dealerup = %d)", __FILE__, __LINE__, dealerUp);    
+    LOG_1("Player::firstTwo(dealerupIndex = %d)", __FILE__, __LINE__, dealerUpIndex);    
 
-    //Check if blackjack (WORKS)
+    //Check if blackjack
     if(Player::getFirstHandTotal() == 11 && (playerHand[0]->getValue() == 1 || playerHand[1]->getValue() == 1))
     {
         LOG_ERROR("player had blackjack, return", __FILE__, __LINE__, NULL);
@@ -164,15 +164,9 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
         return;
     }
 
-
-    // For debugging and testing subroutine
     Player:: testFirstHand = playerHand[0]->getValue();
     Player:: testSecondHand = playerHand[1]->getValue();
-    Player:: dealerShowing = dealerUp; 
-
-
-
-   
+    Player:: dealerShowing = dealerUpIndex; 
     int basicStrategy = 100;
     int firstCard = playerHand[0]->getValue();
     int secondCard = playerHand[1]->getValue();
@@ -181,66 +175,63 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
 
     LOG_0("Player::firstHandTotal = %d)", __FILE__, __LINE__, first_hand_total);    
 
-
     // GET BASIC STRATEGY
-        if(Player::firstIsSoft())
-        {     
-            basicStrategy = Player::basicSoftStrategy[first_hand_total][dealerUp];
-            LOG_1("PlayerfirstIsSOFT, set basicStrategy = %d, playerHand: %d, dealerUp: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUp));              
-        }
-        else
-        {
-            basicStrategy = Player::basicHardStrategy[first_hand_total][dealerUp];
-            LOG_1("PlayerfirstIsHARD, set basicStrategy = %d, playerHand: %d, dealerUp: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUp));  
-        }
-        if(force_intent_mode)
-        {
-            basicStrategy = intent_mode;
-        }
-
-
+    if(Player::firstIsSoft())
+    {     
+        basicStrategy = Player::basicSoftStrategy[first_hand_total][dealerUpIndex];
+        LOG_1("PlayerfirstIsSOFT, set basicStrategy = %d, playerHand: %d, dealerUpIndex: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUpIndex));              
+    }
+    else
+    {
+        basicStrategy = Player::basicHardStrategy[first_hand_total][dealerUpIndex];
+        LOG_1("PlayerfirstIsHARD, set basicStrategy = %d, playerHand: %d, dealerUpIndex: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUpIndex));  
+    }
+    if(force_intent_mode)
+    {
+        basicStrategy = intent_mode;
+    }
 
     // IF 2 DOUBLE
-        if(basicStrategy == DOUBLE)
+    if(basicStrategy == DOUBLE)
+    {
+        LOG_1("basicStrategy == DOUBLE, drawCard() and stop hitting", __FILE__, __LINE__, NULL);   
+        playerHand.push_back(theShoe2->drawCard());
+        Player::doubleMainBet = Player::mainBet; 
+        firstDouble = true;
+
+        if(!Player::firstIsSoft() && Player::firstHandFinal() > 21)
         {
-            LOG_1("basicStrategy == DOUBLE, drawCard() and stop hitting", __FILE__, __LINE__, NULL);   
-            playerHand.push_back(theShoe2->drawCard());
-            Player::doubleMainBet = Player::mainBet; 
-            firstDouble = true;
-
-            if(!Player::firstIsSoft() && Player::firstHandFinal() > 21)
-            {
-                firstBusted = true;  
-            }
-            return;  
+            firstBusted = true;  
         }
-
+        return;  
+    }
 
     // IF 1 THEN PLAY THE HAND
-        if(basicStrategy == HIT)
-        {
-            LOG_1("basicStrategy == HIT, playFirstHAnd()", __FILE__, __LINE__, NULL);               
-            playFirstHand();
-            return;  
-        }
-
-
+    if(basicStrategy == HIT)
+    {
+        LOG_1("basicStrategy == HIT, playFirstHAnd()", __FILE__, __LINE__, NULL);               
+        playFirstHand();
+        return;  
+    }
 
     // IF 0 DO NOTHING
-        if(basicStrategy == STAY)
-        {
-            LOG_1("Player:basicStrategy =  STAY, (basicStrategy: %d), (do nothing)", __FILE__, __LINE__, basicStrategy);         
-            return;  
-        }
-
+    if(basicStrategy == STAY)
+    {
+        LOG_1("Player:basicStrategy =  STAY, (basicStrategy: %d), (do nothing)", __FILE__, __LINE__, basicStrategy);         
+        return;  
+    }
 
     // CHECK IF SPLIT (1ST SPLIT)
-    if(firstCard == secondCard){
-        basicStrategy = Player::basicSplitStrategy[firstCard - 1][dealerUp];
+    if(firstCard == secondCard)
+    {
+        basicStrategy = Player::basicSplitStrategy[firstCard - 1][dealerUpIndex];
 
-        if(basicStrategy == 2){firstDouble = true;} 
-        if(basicStrategy == 4){
-
+        if(basicStrategy == DOUBLE)
+        {
+            firstDouble = true;
+        } 
+        if(basicStrategy == SPLIT)
+        {
             Player::secondSplitBet = Player::mainBet;
             secondSplitHand.push_back(playerHand[1]);   
             playerHand[1] = theShoe2->drawCard();  
@@ -248,60 +239,67 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
             secondSplitHand.push_back(theShoe2->drawCard()); 
 
             firstCard = playerHand[0]->getValue();
-            firstCard = playerHand[1]->getValue();
+            secondCard = playerHand[1]->getValue();
 
             int firstSplitCard = secondSplitHand[0]->getValue();
             int secondSplitCard = secondSplitHand[1]->getValue();
             int second_hand_total = Player::secondHandFinal();
 
-        if(Player::secondIsSoft()){   
-            basicStrategy = Player::basicSoftStrategy[second_hand_total][dealerUp];
-        }
-        else{
-            basicStrategy = Player::basicHardStrategy[second_hand_total][dealerUp];
-        }
-
-        if(basicStrategy == 2){
-            secondSplitHand.push_back(theShoe2->drawCard());
-            Player::doubleSecondSplitBet = Player::secondSplitBet;
-            secondDouble = true;
-            if(!Player::secondIsSoft() && Player::secondHandFinal() > 21){
-                secondBusted = true;  
+            if(Player::secondIsSoft())
+            {   
+                basicStrategy = Player::basicSoftStrategy[second_hand_total][dealerUpIndex];
+            }
+            else
+            {
+                basicStrategy = Player::basicHardStrategy[second_hand_total][dealerUpIndex];
             }
 
-            playFirstHand();
-            return; 
-        }
+            if(basicStrategy == DOUBLE)
+            {
+                secondSplitHand.push_back(theShoe2->drawCard());
+                Player::doubleSecondSplitBet = Player::secondSplitBet;
+                secondDouble = true;
+                if(!Player::secondIsSoft() && Player::secondHandFinal() > 21)
+                {
+                    secondBusted = true;  
+                }
+                playFirstHand();
+                return; 
+            }
 
+            if(firstCard == secondCard)
+            {
+                basicStrategy = Player::basicSplitStrategy[firstCard-1][dealerUpIndex];
 
-
-            if(firstCard == secondCard){
-
-                basicStrategy = Player::basicSplitStrategy[firstCard-1][Player::dealerShowing - 1];
-
-                if(basicStrategy == 2){secondDouble = true;} 
-                if(basicStrategy == 4){
-
+                if(basicStrategy == DOUBLE)
+                {
+                    secondDouble = true;
+                } 
+                if(basicStrategy == SPLIT)
+                {
                     Player::thirdSplitBet = Player::mainBet; 
 
-                    thirdSplitHand.push_back(playerHand[1]);         
-                    playerHand[1] = theShoe2->drawCard();          
+                    thirdSplitHand.push_back(playerHand[1]);
+                    playerHand[1] = theShoe2->drawCard();
 
-                    thirdSplitHand.push_back(theShoe2->drawCard());      
+                    thirdSplitHand.push_back(theShoe2->drawCard());
                     playFirstHand();
                     playSecondHand();
-                    playThirdHand();                                
+                    playThirdHand();
                     return;
                 }
             }
 
-            if(firstSplitCard == secondSplitCard){
+            if(firstSplitCard == secondSplitCard)
+            {
+                basicStrategy = Player::basicSplitStrategy[secondSplitCard-1][dealerUpIndex];
 
-                basicStrategy = Player::basicSplitStrategy[secondSplitCard-1][Player::dealerShowing - 1];
-
-                if(basicStrategy == 2){thirdDouble = true;} 
-                if(basicStrategy == 4){
-
+                if(basicStrategy == DOUBLE)
+                {
+                    thirdDouble = true;
+                } 
+                if(basicStrategy == SPLIT)
+                {
                     Player::thirdSplitBet = Player::mainBet;  
 
                     thirdSplitHand.push_back(secondSplitHand[1]);        
@@ -314,8 +312,6 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
                     return;
                 }
             }
-
-
             playFirstHand();
             playSecondHand();
             return;
@@ -344,57 +340,57 @@ void Player::firstTwo(int dealerUp, int intent_mode, bool force_intent_mode){
 // ======================================================
 // Description: PLAYS FIRST / MAIN HAND
 
-
-void Player::playFirstHand(){
-
-    if(firstDouble){
-
+void Player::playFirstHand()
+{
+    if(firstDouble)
+    {
         playerHand.push_back(theShoe2->drawCard());
         Player::doubleMainBet = Player::mainBet;  
         return;
     }
 
-
     int basicStrategy = 100;
-    Player::firstBusted = false; 
-    while(!Player::firstBusted){
-   
-            for (Card *aCard : playerHand){
-            }
-            
-        if(Player::firstIsSoft()){  
+    Player::firstBusted = false;
 
-            basicStrategy = Player::basicSoftStrategy[Player::firstHandFinal()][Player::dealerShowing - 1];
-        }
-        else{
-            basicStrategy = Player::basicHardStrategy[Player::firstHandFinal()][Player::dealerShowing - 1];
+    while(!Player::firstBusted)
+    {
+        for (Card *aCard : playerHand)
+        {
+            // Not sure what this was for
         }
 
-        switch(basicStrategy){
-            case 0:
+        if(Player::firstIsSoft())
+        {  
+            basicStrategy = Player::basicSoftStrategy[Player::firstHandFinal()][Player::dealerShowing];
+        }
+        else
+        {
+            basicStrategy = Player::basicHardStrategy[Player::firstHandFinal()][Player::dealerShowing];
+        }
 
+        switch(basicStrategy)
+        {
+        case STAY:
             return;
             break;
 
-            case 1:
+        case HIT:
             playerHand.push_back(theShoe2->drawCard());
             break;
 
-            case 2:
+        case DOUBLE:
             playerHand.push_back(theShoe2->drawCard());
             break;
 
-            default:
+        default:
             break;
         }
     
-    if(!Player::firstIsSoft() && Player::firstHandFinal() > 21){
-        firstBusted = true;
+        if(!Player::firstIsSoft() && (Player::firstHandFinal() > 21))
+        {
+            firstBusted = true;
+        }
     }
-
-    }
-
-    
 }
 
 
@@ -407,52 +403,57 @@ void Player::playFirstHand(){
 // Description: PLAYS SECOND (SPLIT) HAND
 
 
-void Player::playSecondHand(){
-
-    if(secondDouble){
+void Player::playSecondHand()
+{
+    if(secondDouble)
+    {
         secondSplitHand.push_back(theShoe2->drawCard());
         Player::doubleSecondSplitBet = Player::secondSplitBet;   
         return;        
     }
 
-
-
     int basicStrategy = 100;
     Player::secondBusted = false;
-    while(!Player::secondBusted){
-  
-            for (Card *aCard : secondSplitHand){
-            }
-            
-        if(Player::secondIsSoft()){ 
-            basicStrategy = Player::basicSoftStrategy[Player::secondHandFinal()][Player::dealerShowing - 1];
+
+    while(!Player::secondBusted)
+    {
+        for (Card *aCard : secondSplitHand)
+        {
+            // Not sure why this is here
         }
-        else{
-            basicStrategy = Player::basicHardStrategy[Player::secondHandFinal()][Player::dealerShowing - 1];
+
+        if(Player::secondIsSoft())
+        { 
+            basicStrategy = Player::basicSoftStrategy[Player::secondHandFinal()][Player::dealerShowing];
         }
-        switch(basicStrategy){
-            case 0:
+        else
+        {
+            basicStrategy = Player::basicHardStrategy[Player::secondHandFinal()][Player::dealerShowing];
+        }
+
+        switch(basicStrategy)
+        {
+        case STAY:
             return;
             break;
 
-            case 1:
+        case HIT:
             secondSplitHand.push_back(theShoe2->drawCard());
             break;
 
-            case 2:
+        case DOUBLE:
             secondSplitHand.push_back(theShoe2->drawCard());
             break;
 
-            default:
+        default:
             break;
         }
 
-    if(!Player::secondIsSoft() && Player::secondHandFinal() > 21){
-        secondBusted = true;
+        if(!Player::secondIsSoft() && (Player::secondHandFinal() > 21))
+        {
+            secondBusted = true;
+        }
     }
-
-    }
-
 }
 
 
@@ -468,58 +469,57 @@ void Player::playSecondHand(){
 // ======================================================
 // Description: PLAYS THIRD (SPLIT) HAND
 
-void Player::playThirdHand(){
-
-    if(thirdDouble){
+void Player::playThirdHand()
+{
+    if(thirdDouble)
+    {
         thirdSplitHand.push_back(theShoe2->drawCard());
         Player::doubleThirdSplitBet = Player::thirdSplitBet;
         return;        
     }
 
-
     int basicStrategy = 100;
     Player::thirdBusted = false;
-    while(!Player::thirdBusted){
-
-            for (Card *aCard : thirdSplitHand){
-            }
-            
-
-
-        // Determine basic Strategy move
-        if(Player::thirdIsSoft()){   
-            basicStrategy = Player::basicSoftStrategy[Player::thirdHandFinal()][Player::dealerShowing - 1];
-        } 
-        else{
-            basicStrategy = Player::basicHardStrategy[Player::thirdHandFinal()][Player::dealerShowing - 1];
+    while(!Player::thirdBusted)
+    {
+        for (Card *aCard : thirdSplitHand)
+        {
+            // Absolutely worthless but I can't remember what this is for
         }
 
-        switch(basicStrategy){
-            case 0:
+        // Determine basic Strategy move
+        if(Player::thirdIsSoft())
+        {   
+            basicStrategy = Player::basicSoftStrategy[Player::thirdHandFinal()][Player::dealerShowing];
+        } 
+        else
+        {
+            basicStrategy = Player::basicHardStrategy[Player::thirdHandFinal()][Player::dealerShowing];
+        }
+
+        switch(basicStrategy)
+        {
+        case STAY:
             return;
             break;
 
-            case 1:
+        case HIT:
             thirdSplitHand.push_back(theShoe2->drawCard());
             break;
 
-            case 2:
+        case DOUBLE:
             thirdSplitHand.push_back(theShoe2->drawCard());
             break;
 
-            default:
+        default:
             break;
         }
-    
-
-    // Check if busted (not soft and over 21)
-    if(!Player::thirdIsSoft() && Player::thirdHandFinal() > 21){
-        thirdBusted = true; 
+        // Check if busted (not soft and over 21)
+        if(!Player::thirdIsSoft() && Player::thirdHandFinal() > 21)
+        {
+            thirdBusted = true; 
+        }
     }
-
-    }
-
-      
 }
 
 

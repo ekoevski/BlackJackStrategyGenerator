@@ -483,14 +483,13 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   int player_hand_total       = 0;
   int dealer_up_card          = 0;
 
-
   std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
   // Instantiate calculator oTable_BJbjects
-  HoldCalculator* Stay = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
-  HoldCalculator* Hit = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
-  HoldCalculator* Double = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
-  HoldCalculator* Split = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
+  HoldCalculator* Stay     = new HoldCalculator(rounds, aces, high, mid, low, "Stay", shoeDecks, numberPlayers);
+  HoldCalculator* Hit      = new HoldCalculator(rounds, aces, high, mid, low, "Hit", shoeDecks, numberPlayers);
+  HoldCalculator* Double   = new HoldCalculator(rounds, aces, high, mid, low, "Double", shoeDecks, numberPlayers);
+  HoldCalculator* Split    = new HoldCalculator(rounds, aces, high, mid, low, "Split", shoeDecks, numberPlayers);
 
   // Create calculator shoe
   Stay->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
@@ -551,19 +550,19 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       if(min >= Stay->hold)
       {
         min = Stay->hold;           
-        hardStrategy[player_hand_total][dealer_up_card ] = STAY;
+        hardStrategy[player_hand_total][dealer_up_card] = STAY;
       }
       if(min >= Hit->hold)
       {
         min = Hit->hold;             
-        hardStrategy[player_hand_total][dealer_up_card ] = HIT;
+        hardStrategy[player_hand_total][dealer_up_card] = HIT;
       }
       if(min >= Double->hold)
       {
         min = Double->hold;       
         hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       }
-      cout << hardStrategy[player_hand_total][dealer_up_card ] << " ";
+      cout << hardStrategy[player_hand_total][dealer_up_card] << " ";
     }
     cout << endl;
   }
@@ -583,22 +582,22 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
     for(int i = 0; i < softStrategy[j].size(); i++)
     {
       player_hand_total = j;
-      dealer_up_card    = i + 1;   // 
+      dealer_up_card    = i;   // 
 
       LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card - 1] = DOUBLE;
+      softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       Double                      -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
 
       LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card - 1] = STAY;
+      softStrategy[player_hand_total][dealer_up_card] = STAY;
       Stay                        -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
 
       LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card - 1] = HIT;
+      softStrategy[player_hand_total][dealer_up_card] = HIT;
       Hit                         -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
@@ -610,19 +609,19 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       if(min >= Stay->hold)
       {
         min = Stay->hold;           
-        softStrategy[player_hand_total][dealer_up_card - 1] = STAY;
+        softStrategy[player_hand_total][dealer_up_card] = STAY;
       }
       if(min >= Hit->hold)
       {
         min = Hit->hold;             
-        softStrategy[player_hand_total][dealer_up_card - 1] = HIT;
+        softStrategy[player_hand_total][dealer_up_card] = HIT;
       }
       if(min >= Double->hold)
       {
         min = Double->hold;       
-        softStrategy[player_hand_total][dealer_up_card - 1] = DOUBLE;
+        softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       }
-      cout << softStrategy[player_hand_total][dealer_up_card - 1] << " ";
+      cout << softStrategy[player_hand_total][dealer_up_card] << " ";
     }
     cout << endl; 
   }
@@ -676,24 +675,24 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       if(min >= Stay->hold)
       {
         min = Stay->hold;           
-        splitStrategy[player_hand_total][dealer_up_card - 1] = STAY;
+        splitStrategy[player_hand_total][dealer_up_card] = STAY;
       }
       if(min >= Hit->hold)
       {
         min = Hit->hold;             
-        splitStrategy[player_hand_total][dealer_up_card - 1] = HIT;
+        splitStrategy[player_hand_total][dealer_up_card] = HIT;
       }
       if(min >= Double->hold)
       {
         min = Double->hold;       
-        splitStrategy[player_hand_total][dealer_up_card - 1] = DOUBLE;
+        splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       }
       if(min >= Split->hold)
       {
         min = Split->hold;       
-        splitStrategy[player_hand_total][dealer_up_card - 1] = SPLIT;
+        splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
       }      
-      cout << splitStrategy[player_hand_total][dealer_up_card - 1] << " ";
+      cout << splitStrategy[player_hand_total][dealer_up_card] << " ";
     }
     cout << endl;
   }

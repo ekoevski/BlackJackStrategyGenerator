@@ -5,8 +5,6 @@
 #include "simulator.h"
 #include "logging.h"
 
-#define FLAG_VALUE 123
-
 using namespace std;
 
 // user: ekoevski
@@ -17,28 +15,23 @@ using namespace std;
 // in the deck.
 // The hold % is then tested to check effectiveness of card
 
-
 // IMPORTANT: hold % is relative to the casino (-5.00% means the casino lost and the player won)
-
 
 // TO USE:      <<<<<<<<<<<<<<<<<<<
 // There is no prompt, the parameters are hardcoded, change them as needed.
-int aces = 4;             // Number of aces in the deck
-int highCards = 16;       // Number of tens (10, Jacks, Queens, Kings)
-int midCards = 12;        // Number 7s - 9s
-int lowCards = 20;        // Number of small cards, 2s - 6s
+int aces           = 4;        // Number of aces in the deck
+int highCards      = 16;       // Number of tens (10, Jacks, Queens, Kings)
+int midCards       = 12;       // Number 7s - 9s
+int lowCards       = 20;       // Number of small cards, 2s - 6s
 
-int roundsToSim = 3;    // Number of hands to play (higher = more accurate but slower)
-int roundsToTest = 500000;  // Rounds to test the basic strategy cards;
-
-
+int roundsToSim    = 3000;     // Number of hands to play (higher = more accurate but slower)
+int roundsToTest   = 500000;   // Rounds to test the basic strategy cards;
 
 // MAIN
 //=================== 
 int main() 
 {
-
-  Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 6 decks, 1 player
+  Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 6 decks, 1 player (2+ player hasn't been tested)
   
   // Optimise perfect startegy
   Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards);
