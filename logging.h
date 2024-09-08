@@ -8,7 +8,16 @@
 
 using namespace std;
 
-#define DEBUG                                   0   // comment out to turn off debug mode
+
+// Use these as build switches
+#define DEBUG                                   0   // set to 0 to turn off debug logs (much faster)
+#define HARD_STRATEGY                           1
+#define SOFT_STRATEGY                           1
+#define SPLIT_STRATEGY                          1
+
+// SELECT ONLY ONE OF THESE
+#define BASIC_STRATEGY_ZERO                     1
+#define BASIC_STRATEGY_STANDARD                 0
 
 #define STAY                                    0
 #define HIT                                     1
@@ -18,6 +27,9 @@ using namespace std;
 #define HARD_HAND_MODE                          0
 #define SOFT_HAND_MODE                          1
 #define SPLIT_HAND_MODE                         3
+
+
+
 
 // Always log
 #define VLOG_0(message,...)                     vlog_0(message,__VA_ARGS__) 

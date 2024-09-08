@@ -420,46 +420,45 @@ void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int
 // postcondition: Reads text file and imports as vector in current
 // basic strategy
 
-void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow){
+void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow)
+{
     fstream file;
     string filename = "strategy cards/A" + to_string(tempAces) + "T" + to_string(tempHigh) + "M" + to_string(tempMid) + "L" + to_string(tempLow) + ".txt";
 
     file.open(filename,ios::in);
-    if (file.is_open()){ 
-
-          cout << endl << "HARD STRATEGY" << endl;
+    if (file.is_open())
+    {
+          VLOG_0("\nHARD STRATEGY\n", NULL);
           for(int j = 0; j < hardStrategy.size(); j++){
             for(int i = 0; i < hardStrategy[j].size(); i++)
             {
                 hardStrategy[j][i] = file.get()-48;
-                cout << hardStrategy[j][i] << " ";
+                VLOG_0("%d ", hardStrategy[j][i]);                 
             }      
-                cout << endl;
+                VLOG_0("\n", NULL); 
           }
-          cout << endl << "SOFT STRATEGY" << endl;
+          VLOG_0("\nSOFT STRATEGY\n", NULL);          
           for(int j = 0; j < softStrategy.size(); j++){
             for(int i = 0; i < softStrategy[j].size(); i++)
             {
                 softStrategy[j][i] = file.get()-48;
-                cout << softStrategy[j][i] << " ";
+                VLOG_0("%d ", softStrategy[j][i]);                 
             }      
-            cout << endl;
+            VLOG_0("\n", NULL); 
           }
 
-
-          cout << endl << "SPLIT STRATEGY" << endl;
+          VLOG_0("\nSPLIT STRATEGY\n", NULL);
           for(int j = 0; j < splitStrategy.size(); j++){
             for(int i = 0; i < splitStrategy[j].size(); i++)
             {
                 splitStrategy[j][i] = file.get()-48;
-                cout << splitStrategy[j][i] << " ";
+                VLOG_0("%d ", splitStrategy[j][i]);                
             } 
-            cout << endl;     
+            VLOG_0("\n", NULL);
           }
         
         file.close(); 
     }
-
 }
 
 
@@ -501,23 +500,23 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   VLOG_0("                *** START OPTIMIZATION (SINGLE-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
   VLOG_0(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
   VLOG_0("\n 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split \n\n", NULL);
+
+#if (HARD_STRATEGY == 1)
   VLOG_0("\n HARD STRATEGY \n\n", NULL);
   VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
-
 #if (DEBUG==1)
   sleep(2);
 #endif
-
   // Print player card hard values
   for(int j = 5; j < hardStrategy.size() - 1; j++)
   {
     if(j < 10) 
     {
-      cout << "        hard " << j << ": ";
+      VLOG_0("        hard %d: ", j);
     }
     if(j >= 10) 
     {
-      cout << "        hard" << j << ": ";
+      VLOG_0("       hard %d: ", j);    
     }
 
     for(int i = 0; i < hardStrategy[j].size(); i++)
@@ -562,11 +561,13 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
         min = Double->hold;       
         hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       }
-      cout << hardStrategy[player_hand_total][dealer_up_card] << " ";
+      VLOG_0("%d ", hardStrategy[player_hand_total][dealer_up_card]);       
     }
-    cout << endl;
+    VLOG_0("\n", NULL);
   }
+#endif
 
+#if (SOFT_STRATEGY == 1)
   VLOG_0("\n\n SOFT STRATEGY \n\n", NULL);
   VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
 
@@ -577,8 +578,7 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
 
   for(int j = 12; j < softStrategy.size() - 1; j++)
   {
-    cout << "        soft" << j << ": ";
-
+    VLOG_0("        soft %d: ", j);
     for(int i = 0; i < softStrategy[j].size(); i++)
     {
       player_hand_total = j;
@@ -621,15 +621,15 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
         min = Double->hold;       
         softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       }
-      cout << softStrategy[player_hand_total][dealer_up_card] << " ";
+      VLOG_0("%d ", softStrategy[player_hand_total][dealer_up_card]);      
     }
-    cout << endl; 
+    VLOG_0("\n", NULL);    
   }
+#endif
 
-
-
-  cout << "\n\n SPLIT STRATEGY \n\n";
-  cout << "Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n";
+#if (SPLIT_STRATEGY == 1)
+  VLOG_0("\n\n SPLIT STRATEGY \n\n", NULL);
+  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
 
 #if (DEBUG==1)
   sleep(2);
@@ -637,8 +637,7 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
 
   for(int j = 0; j < splitStrategy.size(); j++)
   {
-    cout << "       split" << j + 1 << ": ";
-
+    VLOG_0("       split %d: ", j);
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
       player_hand_total = j;
@@ -691,13 +690,15 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       {
         min = Split->hold;       
         splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
-      }      
-      cout << splitStrategy[player_hand_total][dealer_up_card] << " ";
+      }
+      VLOG_0("%d ", splitStrategy[player_hand_total][dealer_up_card]);           
     }
-    cout << endl;
+    VLOG_0("\n", NULL);      
   }
+  #endif
+
   std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-  std::cout << "\n\nTime difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000 << "[s]" << std::endl;
+  VLOG_0("\n\nTime difference = %d[s] \n", std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000);  
   Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
 
 }

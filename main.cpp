@@ -24,13 +24,14 @@ int highCards      = 16;       // Number of tens (10, Jacks, Queens, Kings)
 int midCards       = 12;       // Number 7s - 9s
 int lowCards       = 20;       // Number of small cards, 2s - 6s
 
-int roundsToSim    = 3000;     // Number of hands to play (higher = more accurate but slower)
+int roundsToSim    = 30000;     // Number of hands to play (higher = more accurate but slower)
 int roundsToTest   = 500000;   // Rounds to test the basic strategy cards;
 
 // MAIN
 //=================== 
 int main() 
 {
+  printf("START, use watch -n0.1 cat output.txt in /OUTPUT_LOG/");
   delete_log_files();
   Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 6 decks, 1 player (2+ player hasn't been tested)
   

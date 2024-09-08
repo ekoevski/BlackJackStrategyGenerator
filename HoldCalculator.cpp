@@ -143,7 +143,7 @@ void HoldCalculator::runThread()
       }
 
       #if DEBUG
-      usleep(1000);
+      //usleep(10000);
       #endif
     }
 

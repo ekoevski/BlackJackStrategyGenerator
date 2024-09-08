@@ -159,7 +159,4 @@ void vlog_0(const char * message,...)
     writeFile(s_out);
 
     reset();
-    //Endline
-    printf("\n");
-
 } 
