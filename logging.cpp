@@ -146,24 +146,15 @@ void writeFile(const char *s_out)
 }
 
 // Logging function
-void vlog_0(const char * message, const char *file, int line,...)
+void vlog_0(const char * message,...)
 {
-    char buf[200];
-    char buf2[100];
     char s_out[1000];
     va_list args;
 
-    snprintf(buf2, 50, "%s:%d: ", file, line);
-
-    // Print first part colored (file and line)
-    cyan();
-    printf("%25s", buf2);
     red();
-
     // Print whatever message user wants after
-    strcpy(buf, message);       // Copy user message
-    va_start(args, line);    // Collect variatric arguments (notice you just need last argument listed)
-    vsprintf(s_out, buf, args);         // Print variatric arguments with buffer message
+    va_start(args, message);    // Collect variatric arguments (notice you just need last argument listed)
+    vsprintf(s_out, message, args);         // Print variatric arguments with buffer message
     va_end(args);
     writeFile(s_out);
 

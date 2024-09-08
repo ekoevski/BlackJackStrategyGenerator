@@ -422,9 +422,9 @@ void Table::setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>>
 // ================================
 void Table::printDrop()
 {
-  printf("\nDROP: %.2f", theDealer->casinoDrop);
-  printf(" W/L: %.2f", theDealer->winLoss);
-  printf(" HOLD: (%.2f p)",
+  VLOG_0("\nDROP: %.2f", theDealer->casinoDrop);
+  VLOG_0(" W/L: %.2f", theDealer->winLoss);
+  VLOG_0(" HOLD: (%.2f p)",
          theDealer->winLoss / theDealer->casinoDrop * 100);
 }
 

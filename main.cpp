@@ -42,7 +42,7 @@ int main()
 
   Sim->testCurrentStrategy(roundsToTest);
 
-  printf("\n Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.");
-  printf("\n Drop - The total amount of cash that has been placed as a wager.");
-  printf("\n IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)\n\n.");
+  VLOG_0("\n Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.", NULL);
+  VLOG_0("\n Drop - The total amount of cash that has been placed as a wager.", NULL);
+  VLOG_0("\n IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)\n\n.", NULL);
 }

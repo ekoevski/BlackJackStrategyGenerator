@@ -35,7 +35,7 @@ Simulator::Simulator(string name, int decks, int players)
   Simulator::shoeDecks = decks;
   Simulator::numberPlayers = players;
 
-  printf("\nInitiating deck, total decks: %i total cards: %i\n\n", decks, aces + high + mid + low);
+  VLOG_0("\nInitiating deck, total decks: %i total cards: %i\n\n", decks, aces + high + mid + low);
 };
 
 
@@ -152,7 +152,7 @@ void Simulator::testCurrentStrategy(int rounds)
     {
       total_drop += Table_BJ->theDealer->casinoDrop;
       total_winloss += Table_BJ->theDealer->winLoss;
-      printf("drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss, total_winloss/total_drop, counter, Table_BJ->theShoe->lowIndex); 
+      VLOG_0("drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss, total_winloss/total_drop, counter, Table_BJ->theShoe->lowIndex); 
 
       Table_BJ->theDealer->casinoDrop = 0;
       Table_BJ->theDealer->winLoss = 0;
@@ -364,7 +364,7 @@ void Simulator::testCurrentStrategy(int rounds)
 
   Table_BJ->clearTable();
   }
-  printf("\n\nSimulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
+  VLOG_0("\n\nSimulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
 };
 
 
@@ -498,11 +498,11 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   Split->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
 
   
-  printf("                *** START OPTIMIZATION (SINGLE-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
-  printf(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
-  printf("\n 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split \n\n");
-  printf("\n HARD STRATEGY \n\n");
-  printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
+  VLOG_0("                *** START OPTIMIZATION (SINGLE-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
+  VLOG_0(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
+  VLOG_0("\n 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split \n\n", NULL);
+  VLOG_0("\n HARD STRATEGY \n\n", NULL);
+  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
 
 #if (DEBUG==1)
   sleep(2);
@@ -567,8 +567,8 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
     cout << endl;
   }
 
-  printf("\n\n SOFT STRATEGY \n\n");
-  printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
+  VLOG_0("\n\n SOFT STRATEGY \n\n", NULL);
+  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
 
 #if (DEBUG==1)
   sleep(2);
@@ -701,176 +701,5 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
 
 }
-
-
-
-
-// ======================================================
-// =============== OPTIMIZE (MULTI-THREADED) ============
-// ======================================================
-// Description: Multithreaded approach of the optimize(yada yada)
-//              Note: Runs significantly slower than single threaded
-
-void Simulator::optimizeThreaded(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow){
-
-
-printf("                *** START OPTIMIZATION (MULTITHREADED)    (%i) ROUNDS ***  \n\n", rounds);
-printf(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
-std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-
-  float stayHold = 0;
-  float hitHold = 0;
-  float doubleHold = 0;
-  float splitHold = 0;
-  float min = 1000.0;
-
-  HoldCalculator* Stay = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
-  HoldCalculator* Hit = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
-  HoldCalculator* Double = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
-  HoldCalculator* Split = new HoldCalculator(rounds, aces, high, mid, low, "BlackJack", shoeDecks, numberPlayers);
-
-  Stay->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Hit->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Double->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Split->Table_BJ->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-
-
-
-cout << "\n 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split \n\n";
-
-cout << "\n HARD STRATEGY \n\n";
-
-printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 5; j < hardStrategy.size() - 1; j++){
-    
-    if(j < 10) {cout << "        hard " << j << ": ";}
-    if(j >= 10) {cout << "        hard" << j << ": ";}
-
-    
-    for(int i = 0; i < hardStrategy[j].size(); i++){
-
-      hardStrategy[j][i] = 2;
-      Double -> setCards(0, j, i);  // 0 for hard mode, player total, dealer up
-      Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th3(&HoldCalculator::runThread, Double);
-
-      hardStrategy[j][i] = 0;
-      Stay -> setCards(0, j, i);
-      Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th1(&HoldCalculator::runThread, Stay);
-
-      hardStrategy[j][i] = 1;
-      Hit -> setCards(0, j, i);
-      Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th2(&HoldCalculator::runThread, Hit);
-
-
-      th3.join();
-      th1.join();
-      th2.join();
-
-      min = 1000.0;
-      if(min >= Stay->hold){min = Stay->hold;           hardStrategy[j][i] = 0;}
-      if(min >= Hit->hold){min = Hit->hold;             hardStrategy[j][i] = 1;}
-      if(min >= Double->hold){min = Double->hold;       hardStrategy[j][i] = 2;}
-      cout << hardStrategy[j][i]<< " ";
-    }
-    cout << endl;
-  }
-
-
-
-// 
-cout << "\n\n SOFT STRATEGY \n\n";
-
-printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 13; j < softStrategy.size() - 1; j++){
-cout << "        soft" << j << ": ";
-    for(int i = 0; i < softStrategy[j].size(); i++){
-
-      softStrategy[j][i] = 2;
-      Double-> setCards(1,j-1,i);
-      Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th3(&HoldCalculator::runThread, Double);
-
-      softStrategy[j][i] = 0;
-      Stay -> setCards(1,j-1,i);
-      Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th1(&HoldCalculator::runThread,Stay);
-
-      softStrategy[j][i] = 1;
-      Hit -> setCards(1,j-1,i);
-      Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th2(&HoldCalculator::runThread, Hit);
-
-
-      th3.join();
-      th1.join();
-      th2.join();
-
-
-      min = 1000.0;
-      if(min >= Stay->hold){min = Stay->hold;           softStrategy[j][i] = 0;}
-      if(min >= Hit->hold){min = Hit->hold;             softStrategy[j][i] = 1;}
-      if(min >= Double->hold){min = Double->hold;       softStrategy[j][i] = 2;}
-      cout << softStrategy[j][i]<< " ";
-    }
-    cout << endl;   
-  }
-
-cout << "\n\n SPLIT STRATEGY \n\n";
-
-printf("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n");
-  for(int j = 0; j < splitStrategy.size(); j++){
-cout << "       split" << j << ": ";   
-    for(int i = 0; i < splitStrategy[j].size(); i++){
-
-
-
-      splitStrategy[j][i] = 2;
-      Double->setCards(2,j,i);
-      Double->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th3(&HoldCalculator::runThread, Double);
-
-      splitStrategy[j][i] = 0;
-      Stay->setCards(2,j,i);
-      Stay->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th1(&HoldCalculator::runThread, Stay);
-
-      splitStrategy[j][i] = 1;
-      Hit->setCards(2,j,i);
-      Hit->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th2(&HoldCalculator::runThread, Hit);
-
-      splitStrategy[j][i] = 4;
-      Split->setCards(2,j,i);
-      Split->setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      std::thread th4(&HoldCalculator::runThread, Split);
-
-      th3.join();
-      th1.join();     
-      th4.join();
-      th2.join();
- 
- 
-
-      min = 1000.0;
-      if(min >= Stay->hold){min = Stay->hold;           splitStrategy[j][i] = 0;}
-      if(min >= Hit->hold){min = Hit->hold;             splitStrategy[j][i] = 1;}
-      if(min >= Double->hold){min = Double->hold;       splitStrategy[j][i] = 2;}
-      if(min >= Split->hold){min = Split->hold;         splitStrategy[j][i] = 4;}
-
-      cout << splitStrategy[j][i]<< " ";
-    }
-    cout << endl;
-  }
-std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-std::cout << "\n\nTime difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000 << "[s]" << std::endl;
-Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
-
-}
-
-
-
 
 
