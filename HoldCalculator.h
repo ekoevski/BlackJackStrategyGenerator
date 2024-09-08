@@ -34,6 +34,7 @@ class HoldCalculator
   HoldCalculator(int rounds, int aces, int high, int mid, int low, string gameName, int tempDecks, int tempPlayerCount);
 
   //Methods
+  void thread_callable();
   void runThread();
   void settings(int rounds ,int aces, int high, int mid, int low);
   void setBasicStrategy(vector<vector<int>> tempHardStrategy,

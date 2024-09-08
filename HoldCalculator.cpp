@@ -44,11 +44,9 @@ void HoldCalculator::setBasicStrategy(vector<vector<int>> hardStrategy1,
   Table_BJ->setPlayerBasicStrategy(hardStrategy1, softStrategy1, splitStrategy1);    
 }
 
-// ======================================================
-// ===============      RUN THREAD     ==================
-// ======================================================
-// Description: Use this method as thread run() function
-void HoldCalculator::runThread()
+
+// Call this for thread
+void HoldCalculator::thread_callable()
 {
   Table_BJ->theDealer->casinoDrop   = 0;
   Table_BJ->theDealer->winLoss      = 0;
@@ -150,6 +148,17 @@ void HoldCalculator::runThread()
     Table_BJ->clearTable();
   }
   HoldCalculator::hold = (total_winloss/total_drop)*100;
+}
+
+
+
+// ======================================================
+// ===============      RUN THREAD     ==================
+// ======================================================
+// Description: Use this method as thread run() function
+void HoldCalculator::runThread()
+{
+  HoldCalculator::thread_callable();
 }
 
 // ======================================================

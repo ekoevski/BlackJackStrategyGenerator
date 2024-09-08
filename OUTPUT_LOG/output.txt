@@ -12,45 +12,73 @@ Initiating deck, total decks: 1 total cards: 52
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        hard 5: 0 1 2 0 2 1 1 1 1 1 
-        hard 6: 1 2 1 1 2 1 2 2 1 2 
-        hard 7: 1 1 1 1 1 1 1 1 1 2 
-        hard 8: 1 2 1 1 1 2 2 2 1 2 
-        hard 9: 2 2 1 2 2 2 1 2 2 2 
-       hard 10: 2 1 2 1 2 2 1 1 2 1 
-       hard 11: 2 2 1 1 1 1 2 1 1 1 
-       hard 12: 2 2 2 0 0 0 1 2 2 2 
-       hard 13: 1 0 0 0 0 0 2 2 1 2 
-       hard 14: 1 0 0 0 0 0 1 1 2 2 
-       hard 15: 2 0 0 0 0 0 2 2 2 1 
-       hard 16: 2 0 0 0 0 0 2 2 2 0 
-       hard 17: 0 0 0 0 0 0 0 0 0 0 
-       hard 18: 0 0 0 0 0 0 0 0 0 0 
-       hard 19: 0 0 0 0 0 0 0 0 0 0 
-       hard 20: 0 0 0 0 0 0 0 0 0 0 
+        hard 5: 2 X X X O 2 X 2 X O 
+        hard 6: X X X X 2 2 X X 2 X 
+        hard 7: X X X 2 X 2 2 X 2 2 
+        hard 8: X 2 X X 2 X 2 X X X 
+        hard 9: X 2 2 X 2 X 2 X X 2 
+       hard 10: 2 2 X 2 2 X 2 X 2 X 
+       hard 11: X X X X 2 2 X 2 2 2 
+       hard 12: 2 2 2 X O O 2 2 X 2 
+       hard 13: 2 O O O O O 2 X X X 
+       hard 14: 2 O O O O O 2 2 2 2 
+       hard 15: X O O O O O 2 2 2 2 
+       hard 16: 2 O O O O O X 2 X O 
+       hard 17: O O O O O O O O O O 
+       hard 18: O O O O O O O O O O 
+       hard 19: O O O O O O O O O O 
+       hard 20: O O O O O O O O O O 
 
 
  SOFT STRATEGY 
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        soft 12: 1 1 1 2 2 2 1 1 1 1 
-        soft 13: 1 2 2 1 1 2 1 1 1 1 
-        soft 14: 1 2 1 1 1 1 1 1 1 1 
-        soft 15: 1 2 1 2 2 2 1 1 1 1 
-        soft 16: 1 1 2 1 2 2 1 1 1 1 
-        soft 17: 1 1 2 2 1 1 1 1 1 1 
-        soft 18: 1 0 0 0 0 0 0 0 1 1 
-        soft 19: 0 0 0 0 0 0 0 0 0 0 
-        soft 20: 0 0 0 0 0 0 0 0 0 0 
+        soft 12: X X X 2 X X X X X X 
+        soft 13: X 2 2 2 2 X X X X X 
+        soft 14: X 2 X X 2 X X X X X 
+        soft 15: X X X X 2 2 X X X X 
+        soft 16: X X X 2 2 2 X X X X 
+        soft 17: X X X 2 X 2 X X X X 
+        soft 18: X O O O O O O O X X 
+        soft 19: O O O O O O O O O O 
+        soft 20: O O O O O O O O O O 
 
 
  SPLIT STRATEGY 
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-       split 0: 4 2 2 4 4 0 0 0 4 1 
-       split 1: 4 4 4 1 2 0 2 4 2 4 
-       split 2: 0 1 1 4 1 1 4 1 2 0 
-       split 3: 4 2 1 0 0 1 1 1 2 0 
-       split 4: 4 0 2 
+       split 0: X S X S S S S 2 S X 
+       split 1: O S 2 S 2 S X S X 2 
+       split 2: S 2 X S O S X X X 2 
+       split 3: X X S S O 2 S S 2 S 
+       split 4: X S O O S X X O O O 
+       split 5: S S S O S 2 X S S X 
+       split 6: 2 O X 2 X O S O O X 
+       split 7: S O S 2 X X X 2 O S 
+       split 8: S S S 2 X S X O O X 
+       split 9: X 2 X X O S O 2 X S 
+
+
+Time difference = 277[s] 
+drop: 63157.000000 w/l: 5354.500000 total W/L (0.084781)  rounds = 50000 , low = 20 
+drop: 63238.000000 w/l: 4689.500000 total W/L (0.079465)  rounds = 100000 , low = 20 
+drop: 63203.000000 w/l: 5009.000000 total W/L (0.079394)  rounds = 150000 , low = 20 
+drop: 62925.000000 w/l: 5203.500000 total W/L (0.080216)  rounds = 200000 , low = 20 
+drop: 63301.000000 w/l: 5065.500000 total W/L (0.080178)  rounds = 250000 , low = 20 
+drop: 63156.000000 w/l: 5200.000000 total W/L (0.080537)  rounds = 300000 , low = 20 
+drop: 63162.000000 w/l: 4564.500000 total W/L (0.079356)  rounds = 350000 , low = 20 
+drop: 63047.000000 w/l: 4861.000000 total W/L (0.079074)  rounds = 400000 , low = 20 
+drop: 63329.000000 w/l: 5342.000000 total W/L (0.079662)  rounds = 450000 , low = 20 
+drop: 63110.000000 w/l: 4503.500000 total W/L (0.078833)  rounds = 500000 , low = 20 
+
+
+Simulator::run completed: hold 7.883280 percent, rounds: 500000
+
+
+ Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.
+ Drop - The total amount of cash that has been placed as a wager.
+ IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)
+
+.

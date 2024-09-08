@@ -481,6 +481,7 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   float min                   = 1000.0;
   int player_hand_total       = 0;
   int dealer_up_card          = 0;
+  char action                 ='Q';
 
   std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
@@ -550,18 +551,21 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       {
         min = Stay->hold;           
         hardStrategy[player_hand_total][dealer_up_card] = STAY;
+        action = 'O';       
       }
       if(min >= Hit->hold)
       {
         min = Hit->hold;             
         hardStrategy[player_hand_total][dealer_up_card] = HIT;
+        action = 'X'; 
       }
       if(min >= Double->hold)
       {
         min = Double->hold;       
         hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+        action = '2'; 
       }
-      VLOG_0("%d ", hardStrategy[player_hand_total][dealer_up_card]);       
+      VLOG_0("%c ", action);
     }
     VLOG_0("\n", NULL);
   }
@@ -610,18 +614,21 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       {
         min = Stay->hold;           
         softStrategy[player_hand_total][dealer_up_card] = STAY;
+        action = 'O'; 
       }
       if(min >= Hit->hold)
       {
         min = Hit->hold;             
         softStrategy[player_hand_total][dealer_up_card] = HIT;
+        action = 'X'; 
       }
       if(min >= Double->hold)
       {
         min = Double->hold;       
         softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+        action = '2'; 
       }
-      VLOG_0("%d ", softStrategy[player_hand_total][dealer_up_card]);      
+      VLOG_0("%c ", action);      
     }
     VLOG_0("\n", NULL);    
   }
@@ -675,23 +682,27 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       {
         min = Stay->hold;           
         splitStrategy[player_hand_total][dealer_up_card] = STAY;
+        action = 'O'; 
       }
       if(min >= Hit->hold)
       {
         min = Hit->hold;             
         splitStrategy[player_hand_total][dealer_up_card] = HIT;
+        action = 'X'; 
       }
       if(min >= Double->hold)
       {
         min = Double->hold;       
         splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+        action = '2'; 
       }
       if(min >= Split->hold)
       {
         min = Split->hold;       
         splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
+        action = 'S'; 
       }
-      VLOG_0("%d ", splitStrategy[player_hand_total][dealer_up_card]);           
+      VLOG_0("%c ", action);           
     }
     VLOG_0("\n", NULL);      
   }
