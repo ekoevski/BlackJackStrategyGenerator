@@ -31,6 +31,7 @@ int roundsToTest   = 500000;   // Rounds to test the basic strategy cards;
 //=================== 
 int main() 
 {
+  delete_log_files();
   Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 6 decks, 1 player (2+ player hasn't been tested)
   
   // Optimise perfect startegy

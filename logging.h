@@ -23,16 +23,29 @@ using namespace std;
 #define LOG_0(message,file, line, ...)          log_0(message,file, line, __VA_ARGS__)
 #define LOG_1(message,file, line, ...)          log_1(message,file, line, __VA_ARGS__)
 #define LOG_FLAT(message,file, line, ...)       log_flat(message,file, line, __VA_ARGS__)
-#define LOG_ERROR(message,file, line, ...)      log_error(message,file, line, __VA_ARGS__)   
+#define LOG_ERROR(message,file, line, ...)      log_error(message,file, line, __VA_ARGS__)  
+#define VLOG_0(message,file, line, ...)         vlog_0(message,file, line, __VA_ARGS__)  
 #else
 #define LOG_0(message,file, line, ...)          0
 #define LOG_1(message,file, line, ...)          0
 #define LOG_ERROR(message,file, line, ...)      0
 #define LOG_FLAT(message,file, line, ...)       0
+#define VLOG_0(message,file, line, ...)         0
 #endif
+
+void delete_log_files();
 
 void log_0(const char * message, const char * file, int line,...);
 void log_1(const char * message, const char * file, int line,...);
 void log_flat(const char * message, const char * file, int line,...);
 void log_error(const char * message, const char * file, int line,...);
+
+void vlog_0(const char * message, const char * file, int line,...);  // Output to file
+
+
+// Separate running log to file
+
+
+
+
 #endif //LOGGING_H

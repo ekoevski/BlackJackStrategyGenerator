@@ -10,7 +10,8 @@
 			"iosfwd": "cpp",
 			"iostream": "cpp",
 			"thread": "cpp",
-			"cstdarg": "cpp"
+			"cstdarg": "cpp",
+			"system_error": "cpp"
 		}
 	}
 }

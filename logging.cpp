@@ -1,9 +1,9 @@
 #include "logging.h"
 #include <string.h>
 #include <stdio.h>
-
-
-
+#include <stdlib.h>
+#include <string.h>
+#include <filesystem>
 
 // Color change for printf
 void red () {
@@ -32,8 +32,13 @@ void purple() {
 void cyan() {
   printf("\033[0;36m");
 }
-// Logging function
 
+void delete_log_files()
+{
+  remove("OUTPUT_LOG/output.txt");
+}
+
+// Logging functions
 void log_1(const char * message, const char *file, int line,...)
 {
     char buf[200];
@@ -126,6 +131,42 @@ void log_error(const char * message, const char *file, int line,...)
     va_start(args, line);    // Collect variatric arguments (notice you just need last argument listed)
     vprintf(buf, args);         // Print variatric arguments with buffer message
     va_end(args);
+    reset();
+    //Endline
+    printf("\n");
+
+} 
+
+void writeFile(const char *s_out)
+{
+  FILE*fp;
+  fp = fopen("OUTPUT_LOG/output.txt", "a+");
+  fwrite(s_out, sizeof(char), strlen(s_out), fp);
+  fclose(fp);
+}
+
+// Logging function
+void vlog_0(const char * message, const char *file, int line,...)
+{
+    char buf[200];
+    char buf2[100];
+    char s_out[1000];
+    va_list args;
+
+    snprintf(buf2, 50, "%s:%d: ", file, line);
+
+    // Print first part colored (file and line)
+    cyan();
+    printf("%25s", buf2);
+    red();
+
+    // Print whatever message user wants after
+    strcpy(buf, message);       // Copy user message
+    va_start(args, line);    // Collect variatric arguments (notice you just need last argument listed)
+    vsprintf(s_out, buf, args);         // Print variatric arguments with buffer message
+    va_end(args);
+    writeFile(s_out);
+
     reset();
     //Endline
     printf("\n");
