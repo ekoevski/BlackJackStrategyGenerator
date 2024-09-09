@@ -12,18 +12,18 @@ Initiating deck, total decks: 1 total cards: 52
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        hard 5: 2 X X O O 2 O O X O 
-        hard 6: X X O X 2 O X 2 2 2 
-        hard 7: 2 2 X X X 2 2 X 2 2 
-        hard 8: X 2 X X 2 X X X X 2 
-        hard 9: X 2 2 2 X X X X 2 2 
-       hard 10: 2 X 2 X 2 X 2 X 2 X 
-       hard 11: 2 X 2 2 X 2 2 2 2 2 
-       hard 12: X 2 2 O O O 2 X X X 
-       hard 13: 2 2 O O O O X X X X 
-       hard 14: X O O O O O X X X X 
-       hard 15: X O O O O O X 2 2 2 
-       hard 16: X O O O O O X X X 2 
+        hard 5: X O X 2 2 O O X 2 O 
+        hard 6: 2 2 X X X X X 2 X X 
+        hard 7: 2 2 X 2 X 2 2 2 2 X 
+        hard 8: X 2 2 X 2 2 2 X 2 X 
+        hard 9: X 2 2 2 2 X X X 2 X 
+       hard 10: X X 2 2 2 X X X X X 
+       hard 11: X 2 X X 2 X 2 X X 2 
+       hard 12: 2 2 2 O O O 2 X X X 
+       hard 13: 2 X O O O O X X X 2 
+       hard 14: 2 O O O O O 2 X X 2 
+       hard 15: X O O O O O X 2 2 X 
+       hard 16: 2 O O O O O X X 2 X 
        hard 17: O O O O O O O O O O 
        hard 18: O O O O O O O O O O 
        hard 19: O O O O O O O O O O 
@@ -34,13 +34,13 @@ Dealer up card: A 2 3 4 5 6 7 8 9 10
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        soft 12: X X 2 2 X X X X X X 
-        soft 13: X 2 2 2 X 2 X X X X 
-        soft 14: X 2 X X 2 X X X X X 
-        soft 15: X X 2 X 2 2 X X X X 
-        soft 16: X X X X 2 2 X X X X 
-        soft 17: X 2 X X 2 2 X X X X 
-        soft 18: X X O O O O O O X X 
+        soft 12: X 2 X 2 2 2 X X X X 
+        soft 13: X X X X 2 X X X X X 
+        soft 14: X 2 2 2 2 X X X X X 
+        soft 15: X 2 2 X X 2 X X X X 
+        soft 16: X 2 X 2 X 2 X X X X 
+        soft 17: X X 2 2 2 2 X X 2 X 
+        soft 18: X O O O O O O O X X 
         soft 19: O O O O O O O O O O 
         soft 20: O O O O O O O O O O 
 
@@ -49,32 +49,32 @@ Dealer up card: A 2 3 4 5 6 7 8 9 10
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-       split 0: S X O X S 2 S 2 2 2 
-       split 1: S X O 2 2 S 2 2 S S 
-       split 2: O X X O S O 2 S X X 
-       split 3: X 2 X 2 S 2 S S O X 
-       split 4: 2 X 2 O 2 2 X X O S 
-       split 5: O S O X X S X X S S 
-       split 6: S X S 2 X X O 2 2 X 
-       split 7: O O O 2 S S 2 S X X 
-       split 8: 2 X O X O 2 2 X X O 
-       split 9: O S X S O X O S S O 
+       split 0: X S 2 X S S 2 X X X 
+       split 1: 2 S S X S O X 2 S X 
+       split 2: O X S O 2 X X O S O 
+       split 3: 2 2 X X S S 2 S X O 
+       split 4: S O S 2 X 2 S S 2 S 
+       split 5: O 2 2 X O 2 2 O O S 
+       split 6: O S X X 2 2 S O S 2 
+       split 7: 2 X S 2 2 X S S 2 X 
+       split 8: S O O O O X S S O S 
+       split 9: S S S 2 O S X X S 2 
 
 
-Time difference = 27[s] 
-drop: 60270.000000 w/l: 3878.000000 total W/L (0.064344)  rounds = 50000 , low = 20 
-drop: 60383.000000 w/l: 4445.500000 total W/L (0.068987)  rounds = 100000 , low = 20 
-drop: 60424.000000 w/l: 4028.500000 total W/L (0.068214)  rounds = 150000 , low = 20 
-drop: 60385.000000 w/l: 4156.500000 total W/L (0.068369)  rounds = 200000 , low = 20 
-drop: 60257.000000 w/l: 3618.500000 total W/L (0.066708)  rounds = 250000 , low = 20 
-drop: 60375.000000 w/l: 4055.000000 total W/L (0.066784)  rounds = 300000 , low = 20 
-drop: 60271.000000 w/l: 4079.000000 total W/L (0.066911)  rounds = 350000 , low = 20 
-drop: 60160.000000 w/l: 3666.500000 total W/L (0.066168)  rounds = 400000 , low = 20 
-drop: 60175.000000 w/l: 3894.000000 total W/L (0.066006)  rounds = 450000 , low = 20 
-drop: 60202.000000 w/l: 4035.000000 total W/L (0.066108)  rounds = 500000 , low = 20 
+Time difference = 28[s] 
+drop: 59991.000000 w/l: 3758.500000 total W/L (0.062651)  rounds = 50000 , low = 20 
+drop: 59983.000000 w/l: 3813.000000 total W/L (0.063110)  rounds = 100000 , low = 20 
+drop: 59964.000000 w/l: 3775.000000 total W/L (0.063058)  rounds = 150000 , low = 20 
+drop: 59795.000000 w/l: 3864.500000 total W/L (0.063450)  rounds = 200000 , low = 20 
+drop: 59859.000000 w/l: 3320.000000 total W/L (0.061854)  rounds = 250000 , low = 20 
+drop: 60077.000000 w/l: 3885.500000 total W/L (0.062325)  rounds = 300000 , low = 20 
+drop: 60085.000000 w/l: 4151.500000 total W/L (0.063294)  rounds = 350000 , low = 20 
+drop: 59963.000000 w/l: 3828.000000 total W/L (0.063362)  rounds = 400000 , low = 20 
+drop: 59931.000000 w/l: 3738.500000 total W/L (0.063253)  rounds = 450000 , low = 20 
+drop: 59834.000000 w/l: 3896.500000 total W/L (0.063440)  rounds = 500000 , low = 20 
 
 
-Simulator::run completed: hold 6.610776 percent, rounds: 500000
+Simulator::run completed: hold 6.343977 percent, rounds: 500000
 
 
  Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.

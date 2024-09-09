@@ -410,9 +410,9 @@ void Table::setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>>
 {
   for (Player *aPlayer : players)
   {
-    aPlayer->basicHardStrategy = hard;
-    aPlayer->basicSoftStrategy = soft;
-    aPlayer->basicSplitStrategy = split;
+    aPlayer->playerHardStrategy = hard;
+    aPlayer->playerSoftStrategy = soft;
+    aPlayer->playerSplitStrategy = split;
   }
 }
 

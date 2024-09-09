@@ -36,7 +36,7 @@ int main()
   Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 6 decks, 1 player (2+ player hasn't been tested)
   
   // Optimise perfect startegy
-  Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards);
+  Sim->optimize_multithreaded_X7(roundsToSim, aces, highCards, midCards, lowCards);
 
   // Test results, play 500,000 rounds to see hold %
   Sim->Table_BJ->theShoe->createShoe(aces, highCards, midCards, lowCards);

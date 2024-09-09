@@ -178,12 +178,12 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     // GET BASIC STRATEGY
     if(Player::firstIsSoft())
     {     
-        basicStrategy = Player::basicSoftStrategy[first_hand_total][dealerUpIndex];
+        basicStrategy = Player::playerSoftStrategy[first_hand_total][dealerUpIndex];
         LOG_1("PlayerfirstIsSOFT, set basicStrategy = %d, playerHand: %d, dealerUpIndex: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUpIndex));              
     }
     else
     {
-        basicStrategy = Player::basicHardStrategy[first_hand_total][dealerUpIndex];
+        basicStrategy = Player::playerHardStrategy[first_hand_total][dealerUpIndex];
         LOG_1("PlayerfirstIsHARD, set basicStrategy = %d, playerHand: %d, dealerUpIndex: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUpIndex));  
     }
     if(force_intent_mode)
@@ -224,7 +224,7 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     // CHECK IF SPLIT (1ST SPLIT)
     if(firstCard == secondCard)
     {
-        basicStrategy = Player::basicSplitStrategy[firstCard - 1][dealerUpIndex];
+        basicStrategy = Player::playerSplitStrategy[firstCard - 1][dealerUpIndex];
 
         if(basicStrategy == DOUBLE)
         {
@@ -247,11 +247,11 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
 
             if(Player::secondIsSoft())
             {   
-                basicStrategy = Player::basicSoftStrategy[second_hand_total][dealerUpIndex];
+                basicStrategy = Player::playerSoftStrategy[second_hand_total][dealerUpIndex];
             }
             else
             {
-                basicStrategy = Player::basicHardStrategy[second_hand_total][dealerUpIndex];
+                basicStrategy = Player::playerHardStrategy[second_hand_total][dealerUpIndex];
             }
 
             if(basicStrategy == DOUBLE)
@@ -269,7 +269,7 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
 
             if(firstCard == secondCard)
             {
-                basicStrategy = Player::basicSplitStrategy[firstCard-1][dealerUpIndex];
+                basicStrategy = Player::playerSplitStrategy[firstCard-1][dealerUpIndex];
 
                 if(basicStrategy == DOUBLE)
                 {
@@ -292,7 +292,7 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
 
             if(firstSplitCard == secondSplitCard)
             {
-                basicStrategy = Player::basicSplitStrategy[secondSplitCard-1][dealerUpIndex];
+                basicStrategy = Player::playerSplitStrategy[secondSplitCard-1][dealerUpIndex];
 
                 if(basicStrategy == DOUBLE)
                 {
@@ -361,11 +361,11 @@ void Player::playFirstHand()
 
         if(Player::firstIsSoft())
         {  
-            basicStrategy = Player::basicSoftStrategy[Player::firstHandFinal()][Player::dealerShowing];
+            basicStrategy = Player::playerSoftStrategy[Player::firstHandFinal()][Player::dealerShowing];
         }
         else
         {
-            basicStrategy = Player::basicHardStrategy[Player::firstHandFinal()][Player::dealerShowing];
+            basicStrategy = Player::playerHardStrategy[Player::firstHandFinal()][Player::dealerShowing];
         }
 
         switch(basicStrategy)
@@ -424,11 +424,11 @@ void Player::playSecondHand()
 
         if(Player::secondIsSoft())
         { 
-            basicStrategy = Player::basicSoftStrategy[Player::secondHandFinal()][Player::dealerShowing];
+            basicStrategy = Player::playerSoftStrategy[Player::secondHandFinal()][Player::dealerShowing];
         }
         else
         {
-            basicStrategy = Player::basicHardStrategy[Player::secondHandFinal()][Player::dealerShowing];
+            basicStrategy = Player::playerHardStrategy[Player::secondHandFinal()][Player::dealerShowing];
         }
 
         switch(basicStrategy)
@@ -490,11 +490,11 @@ void Player::playThirdHand()
         // Determine basic Strategy move
         if(Player::thirdIsSoft())
         {   
-            basicStrategy = Player::basicSoftStrategy[Player::thirdHandFinal()][Player::dealerShowing];
+            basicStrategy = Player::playerSoftStrategy[Player::thirdHandFinal()][Player::dealerShowing];
         } 
         else
         {
-            basicStrategy = Player::basicHardStrategy[Player::thirdHandFinal()][Player::dealerShowing];
+            basicStrategy = Player::playerHardStrategy[Player::thirdHandFinal()][Player::dealerShowing];
         }
 
         switch(basicStrategy)

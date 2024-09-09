@@ -163,6 +163,257 @@ void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int t
 }
 
 // ======================================================
+// =============== OPTIMIZE Multithreaded x7 ==============
+// ======================================================
+// precondition: Changes values of current basic strategy vector and 
+//               tests to determine if hit, stay, double, or split
+//               is the most lucrative player move.
+// postcondition: Saves basic strategy card in /strategy cards as text file
+//               which can be loaded using loadBasicStrategy(yada yada)
+
+void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow)
+{
+  float stayHold              = 0;
+  float hitHold               = 0;
+  float doubleHold            = 0;
+  float splitHold             = 0;
+  float min                   = 1000.0;
+  int player_hand_total       = 0;
+  int dealer_up_card          = 0;
+  char action                 ='Q';
+
+  std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
+  // Instantiate calculator oTable_BJbjects
+  HoldCalculator* Stay     = new HoldCalculator(rounds, aces, high, mid, low, "Stay", shoeDecks, numberPlayers);
+  HoldCalculator* Hit      = new HoldCalculator(rounds, aces, high, mid, low, "Hit", shoeDecks, numberPlayers);
+  HoldCalculator* Double   = new HoldCalculator(rounds, aces, high, mid, low, "Double", shoeDecks, numberPlayers);
+  HoldCalculator* Split    = new HoldCalculator(rounds, aces, high, mid, low, "Split", shoeDecks, numberPlayers);
+
+  // Create calculator shoe
+  Stay->Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Hit->Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Double->Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Split->Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+
+  
+  VLOG_0("                *** START OPTIMIZATION (SINGLE-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
+  VLOG_0(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
+  VLOG_0("\n 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split \n\n", NULL);
+
+#if (HARD_STRATEGY == 1)
+  VLOG_0("\n HARD STRATEGY \n\n", NULL);
+  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
+#if (DEBUG==1)
+  sleep(2);
+#endif
+  // Print player card hard values
+  for(int j = 5; j < hardStrategy.size() - 1; j++)
+  {
+    if(j < 10) 
+    {
+      VLOG_0("        hard %d: ", j);
+    }
+    if(j >= 10) 
+    {
+      VLOG_0("       hard %d: ", j);    
+    }
+
+    for(int i = 0; i < hardStrategy[j].size(); i++)
+    {
+      player_hand_total = j;
+      dealer_up_card    = i;   // 
+
+      LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
+      hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+      Double                      -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
+      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double                      -> runThread();
+
+      LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
+      hardStrategy[player_hand_total][dealer_up_card] = STAY;
+      Stay                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
+      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay                        -> runThread();
+
+      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
+      hardStrategy[player_hand_total][dealer_up_card] = HIT;
+      Hit                         -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
+      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit                         -> runThread();
+
+      LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
+   
+      min = 1000.0;
+
+      if(min >= Stay->hold)
+      {
+        min = Stay->hold;           
+        hardStrategy[player_hand_total][dealer_up_card] = STAY;
+        action = 'O';       
+      }
+      if(min >= Hit->hold)
+      {
+        min = Hit->hold;             
+        hardStrategy[player_hand_total][dealer_up_card] = HIT;
+        action = 'X'; 
+      }
+      if(min >= Double->hold)
+      {
+        min = Double->hold;       
+        hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+        action = '2'; 
+      }
+      VLOG_0("%c ", action);
+    }
+    VLOG_0("\n", NULL);
+  }
+#endif
+
+#if (SOFT_STRATEGY == 1)
+  VLOG_0("\n\n SOFT STRATEGY \n\n", NULL);
+  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
+
+#if (DEBUG==1)
+  sleep(2);
+#endif
+
+
+  for(int j = 12; j < softStrategy.size() - 1; j++)
+  {
+    VLOG_0("        soft %d: ", j);
+    for(int i = 0; i < softStrategy[j].size(); i++)
+    {
+      player_hand_total = j;
+      dealer_up_card    = i;   // 
+
+      LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
+      softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+      Double                      -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
+      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double                      -> runThread();
+
+      LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
+      softStrategy[player_hand_total][dealer_up_card] = STAY;
+      Stay                        -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);
+      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay                        -> runThread();
+
+      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
+      softStrategy[player_hand_total][dealer_up_card] = HIT;
+      Hit                         -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);
+      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit                         -> runThread();
+
+      LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
+   
+      min = 1000.0;
+
+      if(min >= Stay->hold)
+      {
+        min = Stay->hold;           
+        softStrategy[player_hand_total][dealer_up_card] = STAY;
+        action = 'O'; 
+      }
+      if(min >= Hit->hold)
+      {
+        min = Hit->hold;             
+        softStrategy[player_hand_total][dealer_up_card] = HIT;
+        action = 'X'; 
+      }
+      if(min >= Double->hold)
+      {
+        min = Double->hold;       
+        softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+        action = '2'; 
+      }
+      VLOG_0("%c ", action);      
+    }
+    VLOG_0("\n", NULL);    
+  }
+#endif
+
+#if (SPLIT_STRATEGY == 1)
+  VLOG_0("\n\n SPLIT STRATEGY \n\n", NULL);
+  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
+
+#if (DEBUG==1)
+  sleep(2);
+#endif
+
+  for(int j = 0; j < splitStrategy.size(); j++)
+  {
+    VLOG_0("       split %d: ", j);
+    for(int i = 0; i < hardStrategy[j].size(); i++)
+    {
+      player_hand_total = j;
+      dealer_up_card    = i;   // 
+
+      LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
+      splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+      Double                      -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
+      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double                      -> runThread();
+
+      LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
+      splitStrategy[player_hand_total][dealer_up_card] = STAY;
+      Stay                        -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
+      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay                        -> runThread();
+
+      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
+      splitStrategy[player_hand_total][dealer_up_card] = HIT;
+      Hit                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
+      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit                         -> runThread();
+
+      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
+      splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
+      Split                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
+      Split                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Split                         -> runThread();
+
+      LOG_0("stay->hold %f, hit->hold %f, double->hold %f, split->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
+   
+      min = 1000.0;
+
+      if(min >= Stay->hold)
+      {
+        min = Stay->hold;           
+        splitStrategy[player_hand_total][dealer_up_card] = STAY;
+        action = 'O'; 
+      }
+      if(min >= Hit->hold)
+      {
+        min = Hit->hold;             
+        splitStrategy[player_hand_total][dealer_up_card] = HIT;
+        action = 'X'; 
+      }
+      if(min >= Double->hold)
+      {
+        min = Double->hold;       
+        splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+        action = '2'; 
+      }
+      if(min >= Split->hold)
+      {
+        min = Split->hold;       
+        splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
+        action = 'S'; 
+      }
+      VLOG_0("%c ", action);           
+    }
+    VLOG_0("\n", NULL);      
+  }
+  #endif
+
+  std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+  VLOG_0("\n\nTime difference = %d[s] \n", std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000);  
+  Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
+}
+
+
+// ======================================================
 // =============== OPTIMIZE BASIC STRATEGY ==============
 // ======================================================
 // precondition: Changes values of current basic strategy vector and 
@@ -410,7 +661,6 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
   VLOG_0("\n\nTime difference = %d[s] \n", std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000);  
   Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
-
 }
 
 

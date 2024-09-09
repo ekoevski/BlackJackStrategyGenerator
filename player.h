@@ -29,12 +29,10 @@ class Player
   int testFirstHand = 110;
   int testSecondHand = 110;
 
-
   float bet;
   Shoe *theShoe2;
   string cardName;
   int playerSeat;
-
 
   //To indicate double on first 2
   bool firstDouble = false;
@@ -62,92 +60,17 @@ class Player
   int dealerShowing = 0;
   vector<Card*> playerHand;
 
-  // IF splitting
   vector<Card*> secondSplitHand;
   vector<Card*> thirdSplitHand;
   
-  // Basic Strategy Card
-  // 0 = STAY
-  // 1 = HIT
-  // 2 = DOUBLE
-  // 4 = SPLIT
-
   public:
-  vector<vector<int>> basicHardStrategy {
-//   A  2  3  4  5  6  7  8  9 10       // Dealer's up card
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 0   // Just a filler
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 1   /////////////
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 2   //////////////
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 3   ///////////////
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 4
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 5
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 6
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 7
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},      // HARD 8
-    {1, 1, 2, 2, 2, 2, 1, 1, 1, 1},      // HARD 9
-    {1, 2, 2, 2, 2, 2, 2, 2, 2, 1},      // HARD 10
-    {2, 2, 2, 2, 2, 2, 2, 2, 2, 2},      // HARD 11
-    {1, 1, 1, 0, 0, 0, 1, 1, 1, 1},      // HARD 12
-    {1, 0, 0, 0, 0, 0, 1, 1, 1, 1},      // HARD 13
-    {1, 0, 0, 0, 0, 0, 1, 1, 1, 1},      // HARD 14
-    {1, 0, 0, 0, 0, 0, 1, 1, 1, 1},      // HARD 15
-    {1, 0, 0, 0, 0, 0, 1, 1, 1, 1},      // HARD 16         
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},      // HARD 17
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},      // HARD 18
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},      // HARD 19
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},      // HARD 20
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}       // HARD 21
-  };   
-  
-
-  // !! SHE BRESH QDOVE sas SOFT HANDS, YOU NEED TO COMPLETE THE 13 - 0 indexing
-  vector<vector<int>> basicSoftStrategy {
-//   A  2  3  4  5  6  7  8  9 10       // Dealer's up card
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  0  
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  1   
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  2   
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  3   
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  4               
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  5    
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  6    
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  7   
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  8  
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     //  9 
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     // 10  
-    {5, 5, 5, 5, 5, 5, 5, 5, 5, 5},     // 11 
-//   A  2  3  4  5  6  7  8  9 10       // Dealer's up card
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},     // SOFT 12
-    {1, 1, 1, 1, 2, 2, 1, 1, 1, 1},     // SOFT 13
-    {1, 1, 1, 1, 2, 2, 1, 1, 1, 1},     // SOFT 14
-    {1, 1, 1, 2, 2, 2, 1, 1, 1, 1},     // SOFT 15
-    {1, 1, 1, 2, 2, 2, 1, 1, 1, 1},     // SOFT 16
-    {1, 1, 2, 2, 2, 2, 1, 1, 1, 1},     // SOFT 17
-    {1, 2, 2, 2, 2, 2, 0, 0, 1, 1},     // SOFT 18
-    {0, 0, 0, 0, 0, 2, 0, 0, 0, 0},     // SOFT 19
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},     // SOFT 20
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}      // SOFT 21
-
-  };   
-
-
-  vector<vector<int>> basicSplitStrategy {
-//   A  2  3  4  5  6  7  8  9 10       // Dealer's up card
-    {4, 4, 4, 4, 4, 4, 4, 4, 4, 4},     // A,A
-    {1, 4, 4, 4, 4, 4, 4, 1, 1, 1},     // 2,2
-    {1, 4, 4, 4, 4, 4, 4, 1, 1, 1},     // 3,3
-    {1, 1, 1, 1, 4, 4, 1, 1, 1, 1},     // 4,4
-    {1, 2, 2, 2, 2, 2, 2, 2, 2, 1},     // 5,5   // You addded this, iffy
-    {1, 4, 4, 4, 4, 4, 1, 1, 1, 1},     // 6,6
-    {1, 4, 4, 4, 4, 4, 4, 1, 1, 1},     // 7,7
-    {4, 4, 4, 4, 4, 4, 4, 4, 4, 4},     // 8,8
-    {0, 4, 4, 4, 4, 4, 0, 4, 4, 0},     // 9,9
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}      // 10,10
-  }; 
+  vector<vector<int>> playerHardStrategy;
+  vector<vector<int>> playerSoftStrategy;
+  vector<vector<int>> playerSplitStrategy;
 
   public:
   Player();
   Player(Shoe *Shoe, int seat);
-
   // GETTERS
   float getMainBet();
   float getSecondSplitBet();
@@ -178,7 +101,6 @@ class Player
   int secondHandFinal();
   int thirdHandFinal();
   void pickUpCards();  // Clear table / Garbage collection
-
 };
 
 

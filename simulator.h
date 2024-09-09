@@ -45,14 +45,10 @@ class Simulator
   Simulator(string name, int decks, int players);
 
 
-
-
-  float run(int rounds);
   void exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow);
   void loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow);
   void optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow);
-  void optimizeThreaded(int rounds, int aces, int high, int mid, int low);
-
+  void optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow);
 
 #if (BASIC_STRATEGY_STANDARD == 1)
     vector<vector<int>> hardStrategy {
