@@ -7,7 +7,7 @@
 using namespace std;
 
 // Class HoldCalculator implementation
-// Can be ran as a thread oTable_bject
+// Can be ran as a thread oCalculator_tableect
 
 HoldCalculator::HoldCalculator()
 {
@@ -28,7 +28,7 @@ HoldCalculator::HoldCalculator(int tempRounds,
   HoldCalculator::mid = tempMid;
   HoldCalculator::low = tempLow;
   HoldCalculator::rounds = tempRounds;
-  HoldCalculator::Table_BJ = new Table(tempName, tempDecks, dempPlayers);
+  HoldCalculator::Calculator_table = new Table(tempName, tempDecks, dempPlayers);
   HoldCalculator::player_action = tempName;
 };
 
@@ -41,16 +41,16 @@ void HoldCalculator::setBasicStrategy(vector<vector<int>> hardStrategy1,
                                       vector<vector<int>> softStrategy1,
                                       vector<vector<int>> splitStrategy1)
 {
-  Table_BJ->setPlayerBasicStrategy(hardStrategy1, softStrategy1, splitStrategy1);    
+  Calculator_table->setPlayerBasicStrategy(hardStrategy1, softStrategy1, splitStrategy1);    
 }
 
 
 // Call this for thread
 void HoldCalculator::thread_callable()
 {
-  Table_BJ->theDealer->casinoDrop   = 0;
-  Table_BJ->theDealer->winLoss      = 0;
-  Table_BJ->table_mode              = mode;
+  Calculator_table->theDealer->casinoDrop   = 0;
+  Calculator_table->theDealer->winLoss      = 0;
+  Calculator_table->table_mode              = mode;
   float total_drop                  = 0;
   float total_winloss               = 0;
   int counter                       = 0;
@@ -66,28 +66,28 @@ void HoldCalculator::thread_callable()
     LOG_0("while( counter = %d < rounds = %d ) ", __FILE__, __LINE__, counter, rounds);
 
     counter++;
-    Table_BJ->reset();
-    Table_BJ->placeCards();
+    Calculator_table->reset();
+    Calculator_table->placeCards();
 
     if(mode == HARD_HAND_MODE)
     {
       LOG_0("setHardCards(playerCardTotal = %d, dealerUpCard = %d)",__FILE__, __LINE__, playerCardTotal, dealerUpCard);      
-      Table_BJ->setHardCards(playerCardTotal, dealerUpCard);
+      Calculator_table->setHardCards(playerCardTotal, dealerUpCard);
     }
     if(mode == SOFT_HAND_MODE)
     {
       LOG_0("setSoftCards(playerCardTotal = %d, dealerUpCard = %d)",__FILE__, __LINE__, playerCardTotal, dealerUpCard);      
-      Table_BJ->setSoftCards(playerCardTotal, dealerUpCard);
+      Calculator_table->setSoftCards(playerCardTotal, dealerUpCard);
     }
     if(mode == SPLIT_HAND_MODE)
     {
       LOG_0("setSplitCards(playerCardTotal = %d, dealerUpCard = %d)",__FILE__, __LINE__, playerCardTotal, dealerUpCard);      
-      Table_BJ->setSplitCards(playerCardTotal, dealerUpCard);
+      Calculator_table->setSplitCards(playerCardTotal, dealerUpCard);
     }
 
-    if(!Table_BJ->theDealer->hasBlackJack())
+    if(!Calculator_table->theDealer->hasBlackJack())
     {
-      for (Player *aPlayer : Table_BJ->players)
+      for (Player *aPlayer : Calculator_table->players)
       {
         if (aPlayer->hasBlackJack())
         {
@@ -95,7 +95,7 @@ void HoldCalculator::thread_callable()
           goto END_ROUND;        
         }
       }
-      Table_BJ->playRound(1);      
+      Calculator_table->playRound(1);      
     }
     else
     {
@@ -103,26 +103,26 @@ void HoldCalculator::thread_callable()
       END_ROUND:
       counter--;
 
-      Table_BJ->displayTable();      
+      Calculator_table->displayTable();      
       continue;
     }
  
     LOG_0(" =============== END ROUND ================", __FILE__, __LINE__, NULL);
-    Table_BJ->displayTable();
+    Calculator_table->displayTable();
     if (counter % 1 == 0)
     {
-      LOG_0("Table_BJ->theDealer->casinoDrop: %f \n \
-            Table_BJ->theDealer->winLoss %f", 
+      LOG_0("Calculator_table->theDealer->casinoDrop: %f \n \
+            Calculator_table->theDealer->winLoss %f", 
             __FILE__, __LINE__, 
-            Table_BJ->theDealer->casinoDrop, 
-            Table_BJ->theDealer->winLoss);
+            Calculator_table->theDealer->casinoDrop, 
+            Calculator_table->theDealer->winLoss);
       
-      total_drop += Table_BJ->theDealer->casinoDrop;
-      total_winloss += Table_BJ->theDealer->winLoss;
-      Table_BJ->theDealer->casinoDrop = 0;
-      Table_BJ->theDealer->winLoss = 0;
+      total_drop += Calculator_table->theDealer->casinoDrop;
+      total_winloss += Calculator_table->theDealer->winLoss;
+      Calculator_table->theDealer->casinoDrop = 0;
+      Calculator_table->theDealer->winLoss = 0;
 
-      switch (Table_BJ->table_mode)
+      switch (Calculator_table->table_mode)
       {
         case HARD_HAND_MODE:
         LOG_0("\n\n\ntotal_drop:   %.2f \ntotal_winloss %.2f \nintent:       %s \nmode:         HARD_HAND_MODE \ndealer_up:    %d\nplayer_hand:  %d\nHOUSE EDGE:   %.2f%%",
@@ -145,7 +145,7 @@ void HoldCalculator::thread_callable()
       #endif
     }
 
-    Table_BJ->clearTable();
+    Calculator_table->clearTable();
   }
   HoldCalculator::hold = (total_winloss/total_drop)*100;
 }
