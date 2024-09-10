@@ -14,22 +14,26 @@ HoldCalculator::HoldCalculator()
   // Default Constructor
 };
 
-HoldCalculator::HoldCalculator(int tempRounds, 
-                               int tempAces, 
-                               int tempHigh, 
-                               int tempMid, 
-                               int tempLow, 
-                               string tempName, 
-                               int tempDecks, 
-                               int dempPlayers)
+HoldCalculator::HoldCalculator( int tempRounds, 
+                                int tempAces, 
+                                int tempHigh, 
+                                int tempMid, 
+                                int tempLow, 
+                                string gameName, 
+                                int tempDecks, 
+                                int tempPlayerCount, 
+                                vector<vector<int>> &p_tempHardStrategy,
+                                vector<vector<int>> &p_tempSoftStrategy,
+                                vector<vector<int>> &p_tempSplitStrategy)
 {
   HoldCalculator::aces = tempAces;
   HoldCalculator::high = tempHigh;
   HoldCalculator::mid = tempMid;
   HoldCalculator::low = tempLow;
   HoldCalculator::rounds = tempRounds;
-  HoldCalculator::Calculator_table = new Table(tempName, tempDecks, dempPlayers);
-  HoldCalculator::player_action = tempName;
+  HoldCalculator::Calculator_table = new Table(gameName, tempDecks, tempPlayerCount);
+  Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  HoldCalculator::player_action = gameName;
 };
 
 // ======================================================

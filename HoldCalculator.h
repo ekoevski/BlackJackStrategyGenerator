@@ -31,7 +31,17 @@ class HoldCalculator
 
   //Constructors
   HoldCalculator();
-  HoldCalculator(int rounds, int aces, int high, int mid, int low, string gameName, int tempDecks, int tempPlayerCount);
+  HoldCalculator( int rounds, 
+                  int aces, 
+                  int high, 
+                  int mid, 
+                  int low, 
+                  string gameName, 
+                  int tempDecks, 
+                  int tempPlayerCount, 
+                  vector<vector<int>> &tempHardStrategy,
+                  vector<vector<int>> &tempSoftStrategy,
+                  vector<vector<int>> &tempSplitStrateg);
 
   //Methods
   void thread_callable();
