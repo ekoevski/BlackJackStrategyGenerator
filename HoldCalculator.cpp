@@ -33,6 +33,7 @@ HoldCalculator::HoldCalculator( int tempRounds,
   HoldCalculator::rounds = tempRounds;
   HoldCalculator::Calculator_table = new Table(gameName, tempDecks, tempPlayerCount);
   Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
+  Calculator_table->setPlayerBasicStrategy(p_tempHardStrategy, p_tempSoftStrategy, p_tempSplitStrategy);
   HoldCalculator::player_action = gameName;
 };
 

@@ -38,6 +38,48 @@ Simulator::Simulator(string name, int decks, int players)
   VLOG_0("\nInitiating deck, total decks: %i total cards: %i\n\n", decks, aces + high + mid + low);
 };
 
+
+
+// ======================================================
+// ===============Print Basic STRATEGY==================
+// ======================================================
+// precondition: has a basic strategy card vectors (soft, hard, split)
+// postcondition: gives hold % for current basic strategy card
+void Simulator::printBasicStrategy()
+{
+  #if (DEBUG == 1)
+  printf("\nHARD STRATEGY\n");
+  for(int j = 0; j < hardStrategy.size(); j++)
+  {
+    for(int i = 0; i < hardStrategy[j].size(); i++)
+    {
+     printf("%d ", hardStrategy[j][i]);                 
+    }      
+    printf("\n"); 
+  }
+  printf("\nSOFT STRATEGY\n");          
+  for(int j = 0; j < softStrategy.size(); j++)
+  {
+    for(int i = 0; i < softStrategy[j].size(); i++)
+    {
+      printf("%d ", softStrategy[j][i]);                 
+    }      
+    printf("\n"); 
+  }
+
+  printf("\nSPLIT STRATEGY\n");
+  for(int j = 0; j < splitStrategy.size(); j++)
+  {
+    for(int i = 0; i < splitStrategy[j].size(); i++)
+    {
+      printf("%d ", splitStrategy[j][i]);                
+    } 
+    printf("\n");
+  }
+  #endif
+}
+
+
 // ======================================================
 // ===============TEST CURRENT STRATEGY==================
 // ======================================================
@@ -222,7 +264,16 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       Double                      -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
+      #if (DEBUG == 1)
+      LOG_1("\n\nBEFORE\n\n",__FILE__, __LINE__, NULL);
+      printBasicStrategy();
+      #endif
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      #if (DEBUG == 1)
+      LOG_1("\n\nAFTER\n\n",__FILE__, __LINE__, NULL);
+      printBasicStrategy();
+      sleep(1);
+      #endif      
       Double                      -> runThread();
 
       LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
