@@ -228,9 +228,9 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
   // Instantiate calculator oTable_BJbjects
   HoldCalculator* Stay     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit      = new HoldCalculator(rounds, aces, high, mid, low, "Hit", shoeDecks, numberPlayers,  Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-  HoldCalculator* Double   = new HoldCalculator(rounds, aces, high, mid, low, "Double", shoeDecks, numberPlayers,  Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-  HoldCalculator* Split    = new HoldCalculator(rounds, aces, high, mid, low, "Split", shoeDecks, numberPlayers,  Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+  HoldCalculator* Hit     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
+  HoldCalculator* Double     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
+  HoldCalculator* Split     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
 
 
   
@@ -483,15 +483,10 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
 
   // Instantiate calculator oTable_BJbjects
   HoldCalculator* Stay     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit      = new HoldCalculator(rounds, aces, high, mid, low, "Hit", shoeDecks, numberPlayers,  Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-  HoldCalculator* Double   = new HoldCalculator(rounds, aces, high, mid, low, "Double", shoeDecks, numberPlayers,  Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-  HoldCalculator* Split    = new HoldCalculator(rounds, aces, high, mid, low, "Split", shoeDecks, numberPlayers,  Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+  HoldCalculator* Hit     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
+  HoldCalculator* Double     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
+  HoldCalculator* Split     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
 
-  // Create calculator shoe
-  Stay->Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Hit->Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Double->Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Split->Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
 
   
   VLOG_0("                *** START OPTIMIZATION (SINGLE-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
