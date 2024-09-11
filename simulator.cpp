@@ -261,29 +261,35 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       player_hand_total = j;
       dealer_up_card    = i;   // 
 
-      LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-      Double                      -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
       #if (DEBUG == 1)
-      VLOG_1("\n\nBEFORE\n\n",__FILE__, __LINE__, NULL);
-      printBasicStrategy();
-      #endif
-      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      #if (DEBUG == 1)
-      VLOG_1("\n\nAFTER\n\n",__FILE__, __LINE__, NULL);
+      VLOG_1("\n\n              (DOUBLE) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
       printBasicStrategy();
       sleep(1);
-      #endif      
+      #endif     
+
+      Double                      -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
+      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
 
-      LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[player_hand_total][dealer_up_card] = STAY;
+      #if (DEBUG == 1)
+      VLOG_1("\n\n              (STAY) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
+      printBasicStrategy();
+      sleep(1);
+      #endif  
+
       Stay                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
 
-      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[player_hand_total][dealer_up_card] = HIT;
+      #if (DEBUG == 1)
+      VLOG_1("\n\n              (HIT) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
+      printBasicStrategy();
+      sleep(1);
+      #endif  
+      
       Hit                         -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();

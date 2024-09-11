@@ -28,6 +28,9 @@ class HoldCalculator
   int playerCardTotal = 0;
   int dealerUpCard = 0;
   string player_action = "none";
+  vector<vector<int>> p_calculator_HardStrategy;
+  vector<vector<int>> p_calculator_SoftStrategy;
+  vector<vector<int>> p_calculator_SplitStrategy;
 
   //Constructors
   HoldCalculator();

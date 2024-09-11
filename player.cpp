@@ -176,7 +176,7 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     LOG_0("Player::firstHandTotal = %d)", __FILE__, __LINE__, first_hand_total);    
 
     // GET BASIC STRATEGY
-    Player::printBasicStrategy();
+    //Player::printBasicStrategy();
 
     if(Player::firstIsSoft())
     {     

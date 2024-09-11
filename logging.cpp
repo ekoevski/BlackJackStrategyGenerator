@@ -35,6 +35,8 @@ void cyan() {
 
 void delete_log_files()
 {
+  remove("OUTPUT_LOG/output0.txt");  
+  remove("OUTPUT_LOG/output1.txt");
   remove("OUTPUT_LOG/output.txt");
 }
 

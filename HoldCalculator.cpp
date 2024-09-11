@@ -33,8 +33,10 @@ HoldCalculator::HoldCalculator( int tempRounds,
   HoldCalculator::rounds = tempRounds;
   HoldCalculator::Calculator_table = new Table(gameName, tempDecks, tempPlayerCount);
   Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
-  Calculator_table->setPlayerBasicStrategy(p_tempHardStrategy, p_tempSoftStrategy, p_tempSplitStrategy);
   HoldCalculator::player_action = gameName;
+  p_calculator_HardStrategy = p_tempHardStrategy;
+  p_calculator_SoftStrategy = p_tempSoftStrategy;
+  p_calculator_SplitStrategy = p_tempSplitStrategy;
 };
 
 // ======================================================
@@ -53,6 +55,11 @@ void HoldCalculator::setBasicStrategy(vector<vector<int>> hardStrategy1,
 // Call this for thread
 void HoldCalculator::thread_callable()
 {
+  for (Player* aPlayer : Calculator_table->players)
+  {
+    aPlayer->printBasicStrategy();
+
+  }
   Calculator_table->theDealer->casinoDrop   = 0;
   Calculator_table->theDealer->winLoss      = 0;
   Calculator_table->table_mode              = mode;
