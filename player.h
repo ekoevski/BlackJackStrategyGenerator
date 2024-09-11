@@ -72,6 +72,7 @@ class Player
   Player();
   Player(Shoe *Shoe, int seat);
   // GETTERS
+  void printBasicStrategy();
   float getMainBet();
   float getSecondSplitBet();
   float getThirdSplitBet();

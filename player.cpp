@@ -176,6 +176,8 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     LOG_0("Player::firstHandTotal = %d)", __FILE__, __LINE__, first_hand_total);    
 
     // GET BASIC STRATEGY
+    Player::printBasicStrategy();
+
     if(Player::firstIsSoft())
     {     
         basicStrategy = Player::playerSoftStrategy[first_hand_total][dealerUpIndex];
@@ -701,7 +703,45 @@ int Player::thirdHandFinal(){
 
 
 
+// ======================================================
+// ===============Print Basic STRATEGY==================
+// ======================================================
+// precondition: has a basic strategy card vectors (soft, hard, split)
+// postcondition: gives hold % for current basic strategy card
+void Player::printBasicStrategy()
+{
+  #if (DEBUG == 1)
+  VLOG_1("PLAYER BASIC STRATEGY CARD", NULL);
+  VLOG_1("\nHARD STRATEGY\n", NULL);
+  for(int j = 0; j < playerHardStrategy.size(); j++)
+  {
+    for(int i = 0; i < playerHardStrategy[j].size(); i++)
+    {
+     VLOG_1("%d ", playerHardStrategy[j][i]);                 
+    }      
+    VLOG_1("\n", NULL); 
+  }
+  VLOG_1("\nSOFT STRATEGY\n", NULL);          
+  for(int j = 0; j < playerSoftStrategy.size(); j++)
+  {
+    for(int i = 0; i < playerSoftStrategy[j].size(); i++)
+    {
+      VLOG_1("%d ", playerSoftStrategy[j][i]);                 
+    }      
+    VLOG_1("\n", NULL); 
+  }
 
+  VLOG_1("\nSPLIT STRATEGY\n", NULL);
+  for(int j = 0; j < playerSplitStrategy.size(); j++)
+  {
+    for(int i = 0; i < playerSplitStrategy[j].size(); i++)
+    {
+      VLOG_1("%d ", playerSplitStrategy[j][i], NULL);                
+    } 
+    VLOG_1("\n", NULL);
+  }
+  #endif
+}
 
 
 

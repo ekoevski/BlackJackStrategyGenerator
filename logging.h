@@ -33,6 +33,7 @@ using namespace std;
 
 // Always log
 #define VLOG_0(message,...)                     vlog_0(message,__VA_ARGS__) 
+#define VLOG_1(message,...)                     vlog_1(message,__VA_ARGS__) 
 
 #if DEBUG
 #define LOG_0(message,file, line, ...)          log_0(message,file, line, __VA_ARGS__)
@@ -55,6 +56,7 @@ void log_flat(const char * message, const char * file, int line,...);
 void log_error(const char * message, const char * file, int line,...);
 
 void vlog_0(const char * message,...);  // Output to file
+void vlog_1(const char * message,...);  // Output to file
 
 
 // Separate running log to file

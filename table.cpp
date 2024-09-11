@@ -402,8 +402,6 @@ void Table::Testing(int first, int second, int dealerUp)
 };
 
 
-
-
 // SET PLAYER BASIC STRATEGY
 // ================================
 void Table::setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>> soft, vector<vector<int>> split)

@@ -48,33 +48,33 @@ Simulator::Simulator(string name, int decks, int players)
 void Simulator::printBasicStrategy()
 {
   #if (DEBUG == 1)
-  printf("\nHARD STRATEGY\n");
+  VLOG_1("\nHARD STRATEGY\n", NULL);
   for(int j = 0; j < hardStrategy.size(); j++)
   {
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
-     printf("%d ", hardStrategy[j][i]);                 
+     VLOG_1("%d ", hardStrategy[j][i]);                 
     }      
-    printf("\n"); 
+    VLOG_1("\n", NULL); 
   }
-  printf("\nSOFT STRATEGY\n");          
+  VLOG_1("\nSOFT STRATEGY\n", NULL);          
   for(int j = 0; j < softStrategy.size(); j++)
   {
     for(int i = 0; i < softStrategy[j].size(); i++)
     {
-      printf("%d ", softStrategy[j][i]);                 
+      VLOG_1("%d ", softStrategy[j][i]);                 
     }      
-    printf("\n"); 
+    VLOG_1("\n", NULL); 
   }
 
-  printf("\nSPLIT STRATEGY\n");
+  VLOG_1("\nSPLIT STRATEGY\n", NULL);
   for(int j = 0; j < splitStrategy.size(); j++)
   {
     for(int i = 0; i < splitStrategy[j].size(); i++)
     {
-      printf("%d ", splitStrategy[j][i]);                
+      VLOG_1("%d ", splitStrategy[j][i], NULL);                
     } 
-    printf("\n");
+    VLOG_1("\n", NULL);
   }
   #endif
 }
@@ -265,12 +265,12 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       Double                      -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
       #if (DEBUG == 1)
-      LOG_1("\n\nBEFORE\n\n",__FILE__, __LINE__, NULL);
+      VLOG_1("\n\nBEFORE\n\n",__FILE__, __LINE__, NULL);
       printBasicStrategy();
       #endif
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       #if (DEBUG == 1)
-      LOG_1("\n\nAFTER\n\n",__FILE__, __LINE__, NULL);
+      VLOG_1("\n\nAFTER\n\n",__FILE__, __LINE__, NULL);
       printBasicStrategy();
       sleep(1);
       #endif      
