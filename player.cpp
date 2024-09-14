@@ -86,7 +86,17 @@ void Player::showHand(){
         {
             printf("%s ", aCard->getName().c_str());
         }
-        printf("\n");
+        printf("\n          Second Split Hand\n");
+        for(Card *aCard  : Player::secondSplitHand)
+        {
+            printf("%s ", aCard->getName().c_str());
+        }
+        printf("\n          Third Split Hand\n");
+        for(Card *aCard  : Player::thirdSplitHand)
+        {
+            printf("%s ", aCard->getName().c_str());
+        }
+        printf("\n");                
     #else
         return;
     #endif
@@ -157,7 +167,8 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     LOG_1("Player::firstTwo(dealerupIndex = %d)", __FILE__, __LINE__, dealerUpIndex);    
 
     //Check if blackjack
-    if(Player::getFirstHandTotal() == 11 && (playerHand[0]->getValue() == 1 || playerHand[1]->getValue() == 1))
+    if(Player::getFirstHandTotal() == 11 && 
+      (playerHand[0]->getValue() == 1 || playerHand[1]->getValue() == 1))
     {
         LOG_ERROR("player had blackjack, return", __FILE__, __LINE__, NULL);
         Player::firstBJ = true;
@@ -171,12 +182,14 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     int firstCard = playerHand[0]->getValue();
     int secondCard = playerHand[1]->getValue();
 
+    LOG_ERROR("firstCard %d  secondCard %d", __FILE__, __LINE__, firstCard, secondCard);
     int first_hand_total = Player::firstHandFinal();
 
     LOG_0("Player::firstHandTotal = %d)", __FILE__, __LINE__, first_hand_total);    
 
     // GET BASIC STRATEGY
     //Player::printBasicStrategy();
+
 
     if(Player::firstIsSoft())
     {     
@@ -190,8 +203,10 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     }
     if(force_intent_mode)
     {
+        LOG_ERROR("FORCE INTENT: %d", __FILE__, __LINE__, intent_mode);
         basicStrategy = intent_mode;
-    }
+    }        
+
 
     // IF 2 DOUBLE
     if(basicStrategy == DOUBLE)
@@ -224,8 +239,9 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     }
 
     // CHECK IF SPLIT (1ST SPLIT)
-    if(firstCard == secondCard)
+    if(basicStrategy == SPLIT)
     {
+        LOG_ERROR("1st Split ... ", __FILE__, __LINE__ , NULL);
         basicStrategy = Player::playerSplitStrategy[firstCard - 1][dealerUpIndex];
 
         if(basicStrategy == DOUBLE)

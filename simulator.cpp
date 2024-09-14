@@ -402,12 +402,12 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
 #if (DEBUG==1)
   VLOG_2("\n\n               ---- START DEBUG LOG ----", NULL);
-  VLOG_2("\n\n                            House edge:     Double,        Hit,           Stay           Split\n", NULL);
+  VLOG_2("\n\n                            House edge:     Double,        Stay,           Hit           Split\n", NULL);
   sleep(1);
 #endif
   for(int j = 0; j < splitStrategy.size(); j++)
   {
-    VLOG_0("       split %d: ", j + 1);
+    VLOG_0("       split %d,%d: ", j + 1, j + 1);
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
       player_hand_total = j;
@@ -424,6 +424,8 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
       Double                      -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Double->Calculator_table->force_mode = true;
+      Double->Calculator_table->force_mode_value = DOUBLE;
       Double                      -> runThread();
 
       splitStrategy[player_hand_total][dealer_up_card] = STAY;
@@ -437,6 +439,8 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
       Stay                        -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Stay->Calculator_table->force_mode = true;
+      Stay->Calculator_table->force_mode_value = STAY;
       Stay                        -> runThread();
 
       splitStrategy[player_hand_total][dealer_up_card] = HIT;
@@ -450,6 +454,8 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
       Hit                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit->Calculator_table->force_mode = true;
+      Hit->Calculator_table->force_mode_value = HIT;
       Hit                         -> runThread();
 
       splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
@@ -463,12 +469,16 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
       Split                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
       Split                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Split->Calculator_table->force_mode = true;
+      Split->Calculator_table->force_mode_value = SPLIT;
       Split                         -> runThread();
 
-      LOG_0("stay->hold %f, hit->hold %f, double->hold %f, split->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
       #if(DEBUG == 1)
       VLOG_2("%.2f      ", Split->total_win_loss);
       #endif
+
+      LOG_0("stay->hold %f, hit->hold %f, double->hold %f, split->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
+
       min = 100000000.0;
 
       if(min >= Stay->total_win_loss)

@@ -270,7 +270,9 @@ void Shoe::shuffle()
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   srand(seed);
   random_shuffle(theShoe.begin(), theShoe.end());
+  #if(REVEAL_SHOE_CARDS == 1)
   showAllCards();
+  #endif
 };
 
 

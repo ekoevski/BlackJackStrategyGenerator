@@ -147,7 +147,7 @@ void Table::playRound(float bet)
     // table mode = 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split
     if(!aPlayer->hasBlackJack())
     {
-      aPlayer->firstTwo(theDealer->showUpCard(), table_mode, false); 
+      aPlayer->firstTwo(theDealer->showUpCard(), force_mode_value, force_mode); 
     }
   }
 

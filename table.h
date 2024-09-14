@@ -26,6 +26,8 @@ class Table
   float Bet;
   int numberOfPlayers;
   int table_mode;
+  int force_mode_value = 5;
+  bool force_mode = false;
 
   Shoe *theShoe;
   Dealer *theDealer;
