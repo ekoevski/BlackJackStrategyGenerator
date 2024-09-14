@@ -133,7 +133,7 @@ void HoldCalculator::thread_callable()
       total_winloss += Calculator_table->theDealer->winLoss;
       Calculator_table->theDealer->casinoDrop = 0;
       Calculator_table->theDealer->winLoss = 0;
-
+      total_win_loss = total_winloss;
       switch (Calculator_table->table_mode)
       {
         case HARD_HAND_MODE:

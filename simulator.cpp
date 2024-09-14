@@ -219,7 +219,7 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
   float hitHold               = 0;
   float doubleHold            = 0;
   float splitHold             = 0;
-  float min                   = 1000.0;
+  float min                   = 10000000.0;
   int player_hand_total       = 0;
   int dealer_up_card          = 0;
   char action                 ='Q';
@@ -242,7 +242,9 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
   VLOG_0("\n HARD STRATEGY \n\n", NULL);
   VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
 #if (DEBUG==1)
-  sleep(2);
+  VLOG_2("\n\n               ---- START DEBUG LOG ----", NULL);
+    VLOG_2("\n\n                            House edge:       Double,          Hit,          Stay\n", NULL);
+  sleep(1);
 #endif
   // Print player card hard values
   for(int j = 5; j < hardStrategy.size() - 1; j++)
@@ -258,13 +260,13 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
-      player_hand_total = j;
-      dealer_up_card    = i;   // 
+      player_hand_total = j;  // Hard code this to debug player hand total otherwise j
+      dealer_up_card    = i;   //  Hard code these to debug up card   otherwise i
 
       hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       #if (DEBUG == 1)
       VLOG_1("\n\n              (DOUBLE) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("Hands > player hand: %d    dealer up: %d     ==   ", player_hand_total, dealer_up_card);
+      VLOG_2("Hands > player hand: %d    dealer up: %d     ==   ", player_hand_total, dealer_up_card + 1);
       printBasicStrategy();
       sleep(1);
       #endif     
@@ -276,10 +278,10 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       hardStrategy[player_hand_total][dealer_up_card] = STAY;
       #if (DEBUG == 1)
       VLOG_1("\n\n              (STAY) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%f ", Double->hold);
+      VLOG_2("%.2f         ", Double->total_win_loss);
       printBasicStrategy();
       sleep(1);
-      #endif  
+      #endif
 
       Stay                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
@@ -287,7 +289,7 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
       hardStrategy[player_hand_total][dealer_up_card] = HIT;
       #if (DEBUG == 1)
-      VLOG_2("%f ", Stay->hold);      
+      VLOG_2("%.2f          ", Stay->total_win_loss);      
       VLOG_1("\n\n              (HIT) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
       printBasicStrategy();
       sleep(1);
@@ -299,25 +301,25 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
       LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
       #if(DEBUG == 1)
-      VLOG_2("%f ", Hit->hold);
+      VLOG_2("%.2f           ", Hit->total_win_loss);
       #endif
-      min = 1000.0;
+      min = 10000000.0;
 
-      if(min >= Stay->hold)
+      if(min >= Stay->total_win_loss)
       {
-        min = Stay->hold;           
+        min = Stay->total_win_loss;           
         hardStrategy[player_hand_total][dealer_up_card] = STAY;
         action = 'O';       
       }
-      if(min >= Hit->hold)
+      if(min >= Hit->total_win_loss)
       {
-        min = Hit->hold;             
+        min = Hit->total_win_loss;             
         hardStrategy[player_hand_total][dealer_up_card] = HIT;
         action = 'X'; 
       }
-      if(min >= Double->hold)
+      if(min >= Double->total_win_loss)
       {
-        min = Double->hold;       
+        min = Double->total_win_loss;       
         hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
         action = '2'; 
       }
@@ -369,21 +371,21 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
    
       min = 1000.0;
 
-      if(min >= Stay->hold)
+      if(min >= Stay->total_win_loss)
       {
-        min = Stay->hold;           
+        min = Stay->total_win_loss;           
         softStrategy[player_hand_total][dealer_up_card] = STAY;
         action = 'O'; 
       }
-      if(min >= Hit->hold)
+      if(min >= Hit->total_win_loss)
       {
-        min = Hit->hold;             
+        min = Hit->total_win_loss;             
         softStrategy[player_hand_total][dealer_up_card] = HIT;
         action = 'X'; 
       }
-      if(min >= Double->hold)
+      if(min >= Double->total_win_loss)
       {
-        min = Double->hold;       
+        min = Double->total_win_loss;       
         softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
         action = '2'; 
       }
@@ -437,27 +439,27 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
    
       min = 1000.0;
 
-      if(min >= Stay->hold)
+      if(min >= Stay->total_win_loss)
       {
-        min = Stay->hold;           
+        min = Stay->total_win_loss;           
         splitStrategy[player_hand_total][dealer_up_card] = STAY;
         action = 'O'; 
       }
-      if(min >= Hit->hold)
+      if(min >= Hit->total_win_loss)
       {
-        min = Hit->hold;             
+        min = Hit->total_win_loss;             
         splitStrategy[player_hand_total][dealer_up_card] = HIT;
         action = 'X'; 
       }
-      if(min >= Double->hold)
+      if(min >= Double->total_win_loss)
       {
-        min = Double->hold;       
+        min = Double->total_win_loss;       
         splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
         action = '2'; 
       }
-      if(min >= Split->hold)
+      if(min >= Split->total_win_loss)
       {
-        min = Split->hold;       
+        min = Split->total_win_loss;       
         splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
         action = 'S'; 
       }
@@ -552,21 +554,21 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
    
       min = 1000.0;
 
-      if(min >= Stay->hold)
+      if(min >= Stay->total_win_loss)
       {
-        min = Stay->hold;           
+        min = Stay->total_win_loss;           
         hardStrategy[player_hand_total][dealer_up_card] = STAY;
         action = 'O';       
       }
-      if(min >= Hit->hold)
+      if(min >= Hit->total_win_loss)
       {
-        min = Hit->hold;             
+        min = Hit->total_win_loss;             
         hardStrategy[player_hand_total][dealer_up_card] = HIT;
         action = 'X'; 
       }
-      if(min >= Double->hold)
+      if(min >= Double->total_win_loss)
       {
-        min = Double->hold;       
+        min = Double->total_win_loss;       
         hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
         action = '2'; 
       }

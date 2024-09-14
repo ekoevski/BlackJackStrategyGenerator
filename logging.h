@@ -10,14 +10,14 @@ using namespace std;
 
 
 // Use these as build switches
-#define DEBUG                                   1   // set to 0 to turn off debug logs (much faster)
+#define DEBUG                                   0   // set to 0 to turn off debug logs (much faster)
 #define HARD_STRATEGY                           1
 #define SOFT_STRATEGY                           1
 #define SPLIT_STRATEGY                          1
 
 // SELECT ONLY ONE OF THESE
-#define BASIC_STRATEGY_ZERO                     1
-#define BASIC_STRATEGY_STANDARD                 0
+#define BASIC_STRATEGY_ZERO                     0
+#define BASIC_STRATEGY_STANDARD                 1
 
 #define STAY                                    0
 #define HIT                                     1
@@ -33,10 +33,10 @@ using namespace std;
 
 // Always log
 #define VLOG_0(message,...)                     vlog_0(message,__VA_ARGS__) 
-#define VLOG_1(message,...)                     vlog_1(message,__VA_ARGS__) 
 #define VLOG_2(message,...)                     vlog_2(message,__VA_ARGS__) 
 
 #if DEBUG
+#define VLOG_1(message,...)                     vlog_1(message,__VA_ARGS__)       // Prints basic strategy vector in OUTPUT folder
 #define LOG_0(message,file, line, ...)          log_0(message,file, line, __VA_ARGS__)
 #define LOG_1(message,file, line, ...)          log_1(message,file, line, __VA_ARGS__)
 #define LOG_FLAT(message,file, line, ...)       log_flat(message,file, line, __VA_ARGS__)
