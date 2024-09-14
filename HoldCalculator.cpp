@@ -96,7 +96,7 @@ void HoldCalculator::thread_callable()
       LOG_0("setSplitCards(playerCardTotal = %d, dealerUpCard = %d)",__FILE__, __LINE__, playerCardTotal, dealerUpCard);      
       Calculator_table->setSplitCards(playerCardTotal, dealerUpCard);
     }
-
+    #if (ENABLE_BLACKJACK == 0)
     if(!Calculator_table->theDealer->hasBlackJack())
     {
       for (Player *aPlayer : Calculator_table->players)
@@ -118,7 +118,11 @@ void HoldCalculator::thread_callable()
       Calculator_table->displayTable();      
       continue;
     }
- 
+    #else
+
+    Calculator_table->playRound(1);      
+
+    #endif
     LOG_0(" =============== END ROUND ================", __FILE__, __LINE__, NULL);
     Calculator_table->displayTable();
     if (counter % 1 == 0)

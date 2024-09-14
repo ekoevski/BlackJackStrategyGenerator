@@ -11,9 +11,10 @@ using namespace std;
 
 // Use these as build switches
 #define DEBUG                                   0   // set to 0 to turn off debug logs (much faster)
+
 #define HARD_STRATEGY                           1
 #define SOFT_STRATEGY                           1
-#define SPLIT_STRATEGY                          1
+#define SPLIT_STRATEGY                          0
 
 // SELECT ONLY ONE OF THESE
 #define BASIC_STRATEGY_ZERO                     0

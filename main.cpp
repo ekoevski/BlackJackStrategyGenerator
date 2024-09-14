@@ -19,12 +19,12 @@ using namespace std;
 
 // TO USE:      <<<<<<<<<<<<<<<<<<<
 // There is no prompt, the parameters are hardcoded, change them as needed.
-int aces           = 4;        // Number of aces in the deck
-int highCards      = 16;       // Number of tens (10, Jacks, Queens, Kings)
-int midCards       = 12;       // Number 7s - 9s
-int lowCards       = 20;       // Number of small cards, 2s - 6s
+int aces           = 24 - 0;   // 24     // Number of aces in the deck
+int highCards      = 64 - 0;   // 64    // Number of tens (10, Jacks, Queens, Kings)
+int midCards       = 48 - 0;   // 48    // Number 7s - 9s
+int lowCards       = 80 - 0;   // 80    // Number of small cards, 2s - 6s
 
-int roundsToSim    = 3000;     // Number of hands to play (higher = more accurate but slower)
+int roundsToSim    = 5000;     // Number of hands to play (higher = more accurate but slower)
 int roundsToTest   = 500000;   // Rounds to test the basic strategy cards;
 
 // MAIN
@@ -33,11 +33,13 @@ int main()
 {
   printf("START, use watch -n0.1 cat output.txt in /OUTPUT_LOG/");
   delete_log_files();
-  Simulator* Sim = new Simulator("Blackjack", 1, 1);  // 6 decks, 1 player (2+ player hasn't been tested)
-  
+  Simulator* Sim = new Simulator("Blackjack", 6, 1);  // 6 decks, 1 player (2+ player hasn't been tested)
+  int ENABLE_BLACKJACK = 0;
   // Optimise perfect startegy
   Sim->optimize_multithreaded_X7(roundsToSim, aces, highCards, midCards, lowCards);
 
+
+  ENABLE_BLACKJACK = 1;
   // Test results, play 500,000 rounds to see hold %
   Sim->Table_BJ->theShoe->createShoe(aces, highCards, midCards, lowCards);
 
