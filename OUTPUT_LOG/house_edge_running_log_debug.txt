@@ -1,0 +1,17 @@
+Hands > player hand: 5    dealer up: 0     ==   1831885595 0 1  selected: 2 
+Hands > player hand: 5    dealer up: 1     ==   1831885595 1 1  selected: 2 
+Hands > player hand: 5    dealer up: 2     ==   1831885595 2 1  selected: 2 
+Hands > player hand: 5    dealer up: 3     ==   1831885595 3 1  selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1831885595 4 1  selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1831885595 5 1  selected: 2 
+Hands > player hand: 5    dealer up: 6     ==   1831885595 6 1  selected: X 
+Hands > player hand: 5    dealer up: 7     ==   1831885595 7 1  selected: X 
+Hands > player hand: 5    dealer up: 8     ==   1831885595 8 Hands > player hand: 5    dealer up: 0     ==   58.600002 61.199997 58.399998  selected: X 
+Hands > player hand: 5    dealer up: 1     ==   27.866667 31.000000 28.333334  selected: 2 
+Hands > player hand: 5    dealer up: 2     ==   20.866667 21.333334 27.333334  selected: 2 
+Hands > player hand: 5    dealer up: 3     ==   20.933332 21.733334 18.533333  selected: X 
+Hands > player hand: 5    dealer up: 4     ==   14.066667 15.066667 17.200001  selected: 2 
+Hands > player hand: 5    dealer up: 5     ==   11.733333 13.266666 13.133333  selected: 2 
+Hands > player hand: 5    dealer up: 6     ==   49.799999 44.800003 50.000000  selected: O 
+Hands > player hand: 5    dealer up: 7     ==   49.799999 48.133335 50.599998  selected: O 
+Hands > player hand: 5    dealer up: 8     ==   52.733334 51.599998 

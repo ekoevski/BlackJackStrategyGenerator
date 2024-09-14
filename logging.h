@@ -10,7 +10,7 @@ using namespace std;
 
 
 // Use these as build switches
-#define DEBUG                                   0   // set to 0 to turn off debug logs (much faster)
+#define DEBUG                                   1   // set to 0 to turn off debug logs (much faster)
 #define HARD_STRATEGY                           1
 #define SOFT_STRATEGY                           1
 #define SPLIT_STRATEGY                          1
@@ -34,6 +34,7 @@ using namespace std;
 // Always log
 #define VLOG_0(message,...)                     vlog_0(message,__VA_ARGS__) 
 #define VLOG_1(message,...)                     vlog_1(message,__VA_ARGS__) 
+#define VLOG_2(message,...)                     vlog_2(message,__VA_ARGS__) 
 
 #if DEBUG
 #define LOG_0(message,file, line, ...)          log_0(message,file, line, __VA_ARGS__)
@@ -57,7 +58,7 @@ void log_error(const char * message, const char * file, int line,...);
 
 void vlog_0(const char * message,...);  // Output to file
 void vlog_1(const char * message,...);  // Output to file
-
+void vlog_2(const char * message,...);  // Output to file
 
 // Separate running log to file
 

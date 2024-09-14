@@ -142,7 +142,7 @@ void log_error(const char * message, const char *file, int line,...)
 void writeFile(const char *s_out)
 {
   FILE*fp;
-  fp = fopen("OUTPUT_LOG/output0.txt", "a+");
+  fp = fopen("OUTPUT_LOG/optimal_basic_strategy.txt", "a+");
   fwrite(s_out, sizeof(char), strlen(s_out), fp);
   fclose(fp);
 }
@@ -166,7 +166,7 @@ void vlog_0(const char * message,...)
 void writeFile_1(const char *s_out)
 {
   FILE*fp;
-  fp = fopen("OUTPUT_LOG/output1.txt", "a+");
+  fp = fopen("OUTPUT_LOG/basic_strategy_vector_debug.txt", "a+");
   fwrite(s_out, sizeof(char), strlen(s_out), fp);
   fclose(fp);
 }
@@ -183,6 +183,31 @@ void vlog_1(const char * message,...)
     vsprintf(s_out, message, args);         // Print variatric arguments with buffer message
     va_end(args);
     writeFile_1(s_out);
+
+    reset();
+} 
+
+
+void writeFile_2(const char *s_out)
+{
+  FILE*fp;
+  fp = fopen("OUTPUT_LOG/house_edge_running_log_debug.txt", "a+");
+  fwrite(s_out, sizeof(char), strlen(s_out), fp);
+  fclose(fp);
+}
+
+// Logging function
+void vlog_2(const char * message,...)
+{
+    char s_out[1000];
+    va_list args;
+
+    red();
+    // Print whatever message user wants after
+    va_start(args, message);    // Collect variatric arguments (notice you just need last argument listed)
+    vsprintf(s_out, message, args);         // Print variatric arguments with buffer message
+    va_end(args);
+    writeFile_2(s_out);
 
     reset();
 } 

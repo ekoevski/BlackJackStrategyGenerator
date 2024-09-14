@@ -1,0 +1,29 @@
+
+Initiating deck, total decks: 1 total cards: 52
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (3000) ROUNDS ***  
+
+ Aces: 4  High: 16  Mid: 12  Low: 20
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: 2 2 2 X X 2 X X 
+Initiating deck, total decks: 1 total cards: 52
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (3000) ROUNDS ***  
+
+ Aces: 4  High: 16  Mid: 12  Low: 20
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: X 2 2 X 2 2 O O 

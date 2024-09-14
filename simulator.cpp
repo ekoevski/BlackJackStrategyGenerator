@@ -264,6 +264,7 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
       #if (DEBUG == 1)
       VLOG_1("\n\n              (DOUBLE) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
+      VLOG_2("Hands > player hand: %d    dealer up: %d     ==   ", player_hand_total, dealer_up_card);
       printBasicStrategy();
       sleep(1);
       #endif     
@@ -275,6 +276,7 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       hardStrategy[player_hand_total][dealer_up_card] = STAY;
       #if (DEBUG == 1)
       VLOG_1("\n\n              (STAY) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
+      VLOG_2("%f ", Double->hold);
       printBasicStrategy();
       sleep(1);
       #endif  
@@ -285,6 +287,7 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
       hardStrategy[player_hand_total][dealer_up_card] = HIT;
       #if (DEBUG == 1)
+      VLOG_2("%f ", Stay->hold);      
       VLOG_1("\n\n              (HIT) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
       printBasicStrategy();
       sleep(1);
@@ -295,7 +298,9 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       Hit                         -> runThread();
 
       LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
-   
+      #if(DEBUG == 1)
+      VLOG_2("%f ", Hit->hold);
+      #endif
       min = 1000.0;
 
       if(min >= Stay->hold)
@@ -316,6 +321,9 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
         hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
         action = '2'; 
       }
+      #if(DEBUG == 1)
+      VLOG_2(" selected: %c \n", action);
+      #endif
       VLOG_0("%c ", action);
     }
     VLOG_0("\n", NULL);
