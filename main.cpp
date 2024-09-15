@@ -24,7 +24,7 @@ int highCards      = 64 - 0;   // 64    // Number of tens (10, Jacks, Queens, Ki
 int midCards       = 48 - 0;   // 48    // Number 7s - 9s
 int lowCards       = 80 - 0;   // 80    // Number of small cards, 2s - 6s
 
-int roundsToSim    = 2000;     // Number of hands to play (higher = more accurate but slower)
+int roundsToSim    = 3000;     // Number of hands to play (higher = more accurate but slower)
 int roundsToTest   = 500000;   // Rounds to test the basic strategy cards;
 
 
@@ -41,7 +41,6 @@ int main()
 
   // Optimise perfect startegy
   Sim->optimize_multithreaded_X7(roundsToSim, aces, highCards, midCards, lowCards);
-
 
   ENABLE_BLACKJACK = 1;
   // Test results, play 500,000 rounds to see hold %

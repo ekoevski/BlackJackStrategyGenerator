@@ -360,8 +360,10 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
 
 void Player::playFirstHand()
 {
+    LOG_ERROR("Youre in function", __FILE__, __LINE__, NULL);
     if(firstDouble)
     {
+    LOG_ERROR("first double", __FILE__, __LINE__, NULL);        
         playerHand.push_back(theShoe2->drawCard());
         Player::doubleMainBet = Player::mainBet;  
         return;
@@ -386,21 +388,28 @@ void Player::playFirstHand()
             basicStrategy = Player::playerHardStrategy[Player::firstHandFinal()][Player::dealerShowing];
         }
 
+        /// YOU NEED TO FIGURE OUT SOMETHING HERE FOR THE SPLITS
+
+        LOG_ERROR("First Hand basicStrategy: %d", __FILE__, __LINE__, basicStrategy);
         switch(basicStrategy)
         {
         case STAY:
+            LOG_ERROR("STAY", __FILE__, __LINE__, NULL);
             return;
             break;
 
         case HIT:
+            LOG_ERROR("HIT", __FILE__, __LINE__, NULL);
             playerHand.push_back(theShoe2->drawCard());
             break;
 
         case DOUBLE:
+            LOG_ERROR("DOUBLE", __FILE__, __LINE__, NULL);        
             playerHand.push_back(theShoe2->drawCard());
             break;
 
         default:
+            LOG_ERROR("Default..", __FILE__, __LINE__, NULL);          
             break;
         }
     
@@ -432,7 +441,7 @@ void Player::playSecondHand()
 
     int basicStrategy = 100;
     Player::secondBusted = false;
-
+    
     while(!Player::secondBusted)
     {
         for (Card *aCard : secondSplitHand)
@@ -449,21 +458,26 @@ void Player::playSecondHand()
             basicStrategy = Player::playerHardStrategy[Player::secondHandFinal()][Player::dealerShowing];
         }
 
+        LOG_ERROR("Second hand basicStrategy: %d", __FILE__, __LINE__, basicStrategy);
         switch(basicStrategy)
         {
         case STAY:
+            LOG_ERROR("STAY", __FILE__, __LINE__, NULL);        
             return;
             break;
 
         case HIT:
+            LOG_ERROR("HIT", __FILE__, __LINE__, NULL);
             secondSplitHand.push_back(theShoe2->drawCard());
             break;
 
         case DOUBLE:
+            LOG_ERROR("DOUBLE", __FILE__, __LINE__, NULL);
             secondSplitHand.push_back(theShoe2->drawCard());
             break;
 
         default:
+                 LOG_ERROR("Default..", __FILE__, __LINE__, NULL);
             break;
         }
 
@@ -514,22 +528,26 @@ void Player::playThirdHand()
         {
             basicStrategy = Player::playerHardStrategy[Player::thirdHandFinal()][Player::dealerShowing];
         }
-
+        LOG_ERROR("Third hand basicStrategy: %d", __FILE__, __LINE__, basicStrategy);
         switch(basicStrategy)
         {
         case STAY:
+            LOG_ERROR("STAY", __FILE__, __LINE__, NULL);
             return;
             break;
 
         case HIT:
+            LOG_ERROR("HIT", __FILE__, __LINE__, NULL);
             thirdSplitHand.push_back(theShoe2->drawCard());
             break;
 
         case DOUBLE:
+            LOG_ERROR("DOUBLE", __FILE__, __LINE__, NULL);
             thirdSplitHand.push_back(theShoe2->drawCard());
             break;
 
         default:
+            LOG_ERROR("Default", __FILE__, __LINE__, NULL);
             break;
         }
         // Check if busted (not soft and over 21)

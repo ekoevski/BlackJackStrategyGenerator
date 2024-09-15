@@ -321,7 +321,7 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       {
         min = Double->total_win_loss;       
         hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = '2'; 
+        action = 'D'; 
       }
       #if(DEBUG == 1)
       VLOG_2(" selected: %c \n", action);
@@ -387,7 +387,7 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       {
         min = Double->total_win_loss;       
         softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = '2'; 
+        action = 'D'; 
       }
       VLOG_0("%c ", action);      
     }
@@ -397,8 +397,8 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
 
 #if (SPLIT_STRATEGY == 1)
   VLOG_0("\n\n SPLIT STRATEGY \n\n", NULL);
+  VLOG_0("(Note: P indicates play as a normal hand)\n", NULL);
   VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
-
 
 #if (DEBUG==1)
   VLOG_2("\n\n               ---- START DEBUG LOG ----", NULL);
@@ -410,8 +410,8 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
     VLOG_0("       split %d,%d: ", j + 1, j + 1);
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
-      player_hand_total = j;
-      dealer_up_card    = i;   // 
+      player_hand_total = j;   //j  
+      dealer_up_card    = i;   //i 
 
       splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
 
@@ -491,13 +491,13 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
       {
         min = Hit->total_win_loss;             
         splitStrategy[player_hand_total][dealer_up_card] = HIT;
-        action = 'X'; 
+        action = 'P'; 
       }
       if(min >= Double->total_win_loss)
       {
         min = Double->total_win_loss;       
         splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = '2'; 
+        action = 'D'; 
       }
       if(min >= Split->total_win_loss)
       {
@@ -518,6 +518,17 @@ void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh
   VLOG_0("\n\nTime difference = %d[s] \n", std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000);  
   Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ======================================================

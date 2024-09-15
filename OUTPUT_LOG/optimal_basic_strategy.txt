@@ -3577,3 +3577,795 @@ Simulator::run completed: hold 0.289258 percent, rounds: 500000
  IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)
 
 .
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (2000) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: X X X X 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (2000) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (2000) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O O O O O O X X X O 
+       split 2,2: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (2000) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: X X X X X X X X X X 
+        hard 6: X X X X X X X X X X 
+        hard 7: X X X X X X X X X X 
+        hard 8: X X X X X X X X X X 
+        hard 9: X X 2 X 2 2 X X X X 
+       hard 10: 2 2 2 2 2 2 2 2 2 X 
+       hard 11: 2 2 2 2 2 2 2 2 2 2 
+       hard 12: X X X X O X X X X X 
+       hard 13: X O O O O O X X X X 
+       hard 14: X O O O O O X X X X 
+       hard 15: X O O O O O X X X O 
+       hard 16: X O O O O O X X X X 
+       hard 17: X O O O O O O X O O 
+       hard 18: O O O O O O O O O O 
+       hard 19: O O O O O O O O O O 
+       hard 20: O O O O O O O O O O 
+
+
+ SOFT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        soft 12: X X X X X 2 X X X X 
+        soft 13: X X X X X 2 X X X X 
+        soft 14: X X X 2 2 2 X X X X 
+        soft 15: X X X X 2 2 X X X X 
+        soft 16: X X X X X X X X X X 
+        soft 17: X X 2 2 2 2 X X X X 
+        soft 18: X 2 2 2 2 2 O O X X 
+        soft 19: O O O O 2 O O O O O 
+        soft 20: O O O O O O O O O O 
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O O O O X O X X O X 
+       split 2,2: X X X X X X O X X O 
+       split 3,3: X O X X X X X O O O 
+       split 4,4: X X O X X X O O O X 
+       split 5,5: X O O X X O X O X X 
+       split 6,6: O X X X X X X X X O 
+       split 7,7: X O X X X X O O O X 
+       split 8,8: X O O X X X X O O O 
+       split 9,9: X O O X X O X O X O 
+       split 10,10: O X O O X X X O X O 
+
+
+Time difference = 54[s] 
+drop: 54364.000000 w/l: 420.000000 total W/L (0.007726)  rounds = 50000 , low = 80 
+drop: 54289.000000 w/l: -70.000000 total W/L (0.003221)  rounds = 100000 , low = 80 
+drop: 54342.000000 w/l: 670.500000 total W/L (0.006261)  rounds = 150000 , low = 80 
+drop: 54301.000000 w/l: -267.500000 total W/L (0.003465)  rounds = 200000 , low = 80 
+drop: 54453.000000 w/l: -302.000000 total W/L (0.001660)  rounds = 250000 , low = 80 
+drop: 54295.000000 w/l: 512.000000 total W/L (0.002954)  rounds = 300000 , low = 80 
+drop: 54468.000000 w/l: 128.500000 total W/L (0.002869)  rounds = 350000 , low = 80 
+drop: 54354.000000 w/l: -61.500000 total W/L (0.002369)  rounds = 400000 , low = 80 
+drop: 54427.000000 w/l: 363.500000 total W/L (0.002848)  rounds = 450000 , low = 80 
+drop: 54568.000000 w/l: 332.500000 total W/L (0.003174)  rounds = 500000 , low = 80 
+
+
+Simulator::run completed: hold 0.317361 percent, rounds: 500000
+
+
+ Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.
+ Drop - The total amount of cash that has been placed as a wager.
+ IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)
+
+.
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (2000) ROUNDS ***  
+
+ Aces: 20  High: 59  Mid: 38  Low: 40
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: X X X X X X X X X X 
+        hard 6: X X X X 2 X X X X X 
+        hard 7: X X X X 2 2 X X X X 
+        hard 8: X X 2 2 2 2 X X X X 
+        hard 9: X 2 2 2 2 2 2 2 X X 
+       hard 10: 2 2 2 2 2 2 2 2 2 2 
+       hard 11: 2 2 2 2 2 2 2 2 2 2 
+       hard 12: X O O O O O X X X X 
+       hard 13: X O O O O O X X X X 
+       hard 14: O O O O O O X X X X 
+       hard 15: O O O O O O O O O O 
+       hard 16: O O O O O O O O O O 
+       hard 17: O O O O O O O O O O 
+       hard 18: O O O O O O O O O O 
+       hard 19: O O O O O O O O O O 
+       hard 20: O O O O O O O O O O 
+
+
+ SOFT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        soft 12: X X 2 2 2 2 X X X X 
+        soft 13: X X 2 2 2 2 X X X X 
+        soft 14: X X 2 2 2 2 X X X X 
+        soft 15: X X 2 2 2 2 X X X X 
+        soft 16: X 2 2 2 2 2 X X X X 
+        soft 17: X 2 2 2 2 2 X X X X 
+        soft 18: X 2 2 2 2 2 O O X O 
+        soft 19: O 2 2 2 2 2 O O O O 
+        soft 20: O 2 2 2 2 2 O O O O 
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: X X O O S S X O O X 
+       split 2,2: X X X O S S X O O O 
+       split 3,3: X O O O S S X X O X 
+       split 4,4: X X X O S S X O O X 
+       split 5,5: X X O O S S X X O O 
+       split 6,6: X X X O S O O O O O 
+       split 7,7: X X X O S S X X O O 
+       split 8,8: O O O O S S X X O X 
+       split 9,9: X O O O S X X O X O 
+       split 10,10: X X X O S S X O O O 
+
+
+Time difference = 41[s] 
+drop: 54253.000000 w/l: -2045.000000 total W/L (-0.037694)  rounds = 50000 , low = 40 
+drop: 54391.000000 w/l: -2833.500000 total W/L (-0.044904)  rounds = 100000 , low = 40 
+drop: 54278.000000 w/l: -2190.000000 total W/L (-0.043386)  rounds = 150000 , low = 40 
+drop: 54289.000000 w/l: -2253.000000 total W/L (-0.042914)  rounds = 200000 , low = 40 
+drop: 54302.000000 w/l: -2411.500000 total W/L (-0.043213)  rounds = 250000 , low = 40 
+drop: 54186.000000 w/l: -2525.500000 total W/L (-0.043778)  rounds = 300000 , low = 40 
+drop: 54086.000000 w/l: -2617.000000 total W/L (-0.044434)  rounds = 350000 , low = 40 
+drop: 54211.000000 w/l: -2684.000000 total W/L (-0.045068)  rounds = 400000 , low = 40 
+drop: 54109.000000 w/l: -2555.500000 total W/L (-0.045308)  rounds = 450000 , low = 40 
+drop: 54307.000000 w/l: -2275.000000 total W/L (-0.044966)  rounds = 500000 , low = 40 
+
+
+Simulator::run completed: hold -4.496582 percent, rounds: 500000
+
+
+ Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.
+ Drop - The total amount of cash that has been placed as a wager.
+ IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)
+
+.
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: X X X X X X X X X X 
+        hard 6: X X X X X X X X X X 
+        hard 7: X X X X X X X X X X 
+        hard 8: X X X 2 X 2 X X X X 
+        hard 9: X X 2 X X 2 2 X X X 
+       hard 10: 2 2 2 2 2 2 2 2 2 2 
+       hard 11: 2 2 2 2 2 2 2 2 2 2 
+       hard 12: X X X X O O X X X X 
+       hard 13: X O O X O O X X X X 
+       hard 14: X O X O O O X X X O 
+       hard 15: X O O O O O X O O X 
+       hard 16: X O O O O O X X X X 
+       hard 17: X O O O O O O O O O 
+       hard 18: O O O O O O O O O O 
+       hard 19: O O O O O O O O O O 
+       hard 20: O O O O O O O O O O 
+
+
+ SOFT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        soft 12: X X X 2 X 2 X X X X 
+        soft 13: X X 2 2 2 2 X X X X 
+        soft 14: X X 2 X 2 X X X X X 
+        soft 15: X X X X X 2 X X X X 
+        soft 16: X X 2 2 X X X X X X 
+        soft 17: X 2 2 2 X 2 X X X X 
+        soft 18: X O O 2 2 2 O O X X 
+        soft 19: O 2 2 2 O 2 O O O O 
+        soft 20: O O O O 2 2 O O O O 
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O X O O O O X X X O 
+       split 2,2: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O X X O O X O O X O 
+       split 2,2: O O X X O O O O X O 
+       split 3,3: X O O O O O O O X X 
+       split 4,4: O O O O X O O X O O 
+       split 5,5: X X X X O O X O X X 
+       split 6,6: O X O O O O X X X X 
+       split 7,7: O X O X O O O O X O 
+       split 8,8: X O X X X X X X X X 
+       split 9,9: X X X O O O X O X X 
+       split 10,10: X O X O O O O O X X 
+
+
+Time difference = 3[s] 
+drop: 54691.000000 w/l: 885.000000 total W/L (0.016182)  rounds = 50000 , low = 80 
+drop: 54681.000000 w/l: 762.000000 total W/L (0.015059)  rounds = 100000 , low = 80 
+drop: 54771.000000 w/l: 264.500000 total W/L (0.011645)  rounds = 150000 , low = 80 
+drop: 54736.000000 w/l: 644.000000 total W/L (0.011675)  rounds = 200000 , low = 80 
+
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O X X X O 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O X 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: X 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: X X O X X O X X X X 
+       split 2,2: X O X O O O X O X O 
+       split 3,3: X O X X X X O X O O 
+       split 4,4: O X O O X O O O X X 
+       split 5,5: X X X O O X O O X O 
+       split 6,6: O X 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O O O X O O 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: X O O X O O O O O X 
+       split 2,2: X X X O 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O X 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: O X X 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: X O O X X O O X O O 
+       split 2,2: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: 
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (300) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: X X X X X X X X X X 
+        hard 6: X X X X X X X X X X 
+        hard 7: X X X X X 2 X X X X 
+        hard 8: X X X X 2 2 X X X X 
+        hard 9: X 2 2 2 X 2 X 2 X X 
+       hard 10: X 2 2 2 2 2 X 2 2 X 
+       hard 11: 2 X 2 2 2 2 X X X 2 
+       hard 12: X X X X X O X X X X 
+       hard 13: X O O O X O X X X X 
+       hard 14: X O O O O O X X X X 
+       hard 15: X O O O O O X X X X 
+       hard 16: X O O O O O X X X X 
+       hard 17: O O O O O O O O O O 
+       hard 18: O O O O O O O O O O 
+       hard 19: O O O O O O O O O O 
+       hard 20: O O O O O O O O O O 
+
+
+ SOFT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        soft 12: X X X X X X X X X X 
+        soft 13: X X X X 2 X X X X X 
+        soft 14: X X X 2 2 2 X X X X 
+        soft 15: X X X X 2 2 X X X X 
+        soft 16: X X X X X X X X X X 
+        soft 17: X 2 X 2 2 2 X X X X 
+        soft 18: X X O O 2 O O O X X 
+        soft 19: O O O O 2 2 O O O O 
+        soft 20: O O O O O 2 O O O O 
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: S S S S S S S S S S 
+       split 2,2: P P S S S S S P P P 
+       split 3,3: P P P O P P S P P P 
+       split 4,4: P P P P P S P P P P 
+       split 5,5: 2 2 2 2 2 2 2 P 2 2 
+       split 6,6: P S S P S S P P P P 
+       split 7,7: P S S S S S S P P P 
+       split 8,8: S S S S S S S S S P 
+       split 9,9: S S S S S S S S P S 
+       split 10,10: P P O O P P O O P P 
+
+
+Time difference = 8[s] 
+drop: 53787.000000 w/l: 419.000000 total W/L (0.007790)  rounds = 50000 , low = 80 
+drop: 53755.000000 w/l: 217.000000 total W/L (0.005914)  rounds = 100000 , low = 80 
+drop: 53695.000000 w/l: 146.500000 total W/L (0.004853)  rounds = 150000 , low = 80 
+drop: 53833.000000 w/l: 384.500000 total W/L (0.005426)  rounds = 200000 , low = 80 
+drop: 53798.000000 w/l: 376.500000 total W/L (0.005741)  rounds = 250000 , low = 80 
+drop: 53811.000000 w/l: -216.500000 total W/L (0.004112)  rounds = 300000 , low = 80 
+drop: 53833.000000 w/l: 303.500000 total W/L (0.004331)  rounds = 350000 , low = 80 
+drop: 53882.000000 w/l: -291.000000 total W/L (0.003112)  rounds = 400000 , low = 80 
+drop: 53774.000000 w/l: 99.500000 total W/L (0.002972)  rounds = 450000 , low = 80 
+drop: 53828.000000 w/l: 506.000000 total W/L (0.003615)  rounds = 500000 , low = 80 
+
+
+Simulator::run completed: hold 0.361527 percent, rounds: 500000
+
+
+ Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.
+ Drop - The total amount of cash that has been placed as a wager.
+ IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)
+
+.
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (3000) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: X X X X X X X X X X 
+        hard 6: X X X X X X X X X X 
+        hard 7: X X X X X X X X X X 
+        hard 8: X X X X X X X X X X 
+        hard 9: X 2 2 2 2 2 X X X X 
+       hard 10: X 2 2 2 2 2 2 2 2 X 
+       hard 11: X 2 2 2 2 2 2 2 2 2 
+       hard 12: X X X X O X X X X X 
+       hard 13: X O O O O O X X X X 
+       hard 14: X O O O O O X X X X 
+       hard 15: X O O O O O X X X X 
+       hard 16: X O O O O O X X X O 
+       hard 17: O O O O O O O O O O 
+       hard 18: O O O O O O O O O O 
+       hard 19: O O O O O O O O O O 
+       hard 20: O O O O O O O O O O 
+
+
+ SOFT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        soft 12: X X X X X X X X X X 
+        soft 13: X X X X X 2 X X X X 
+        soft 14: X X X X X X X X X X 
+        soft 15: X X X X 2 X X X X X 
+        soft 16: X X X X 2 2 X X X X 
+        soft 17: X X X X 2 2 X X X X 
+        soft 18: X O O O 2 2 O X X X 
+        soft 19: O O O O O O O O O O 
+        soft 20: O O O O O O O O O O 
+
+
+ SPLIT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: S S S S S S S S S S 
+       split 2,2: P S P S S S S S P P 
+       split 3,3: P P P S S S S P P P 
+       split 4,4: P P P P P P P P P P 
+       split 5,5: P 2 2 2 2 2 2 2 2 2 
+       split 6,6: P S S S S S P P P P 
+       split 7,7: P S S S S S S S P P 
+       split 8,8: S S S S S S S S S S 
+       split 9,9: S S S S S S S S S P 
+       split 10,10: P P O O P P O O P O 
+
+
+Time difference = 81[s] 
+drop: 53906.000000 w/l: 380.500000 total W/L (0.007059)  rounds = 50000 , low = 80 
+drop: 53847.000000 w/l: 147.000000 total W/L (0.004895)  rounds = 100000 , low = 80 
+drop: 53865.000000 w/l: 511.000000 total W/L (0.006426)  rounds = 150000 , low = 80 
+drop: 53841.000000 w/l: 329.000000 total W/L (0.006347)  rounds = 200000 , low = 80 
+drop: 53789.000000 w/l: 80.000000 total W/L (0.005376)  rounds = 250000 , low = 80 
+drop: 53813.000000 w/l: 92.500000 total W/L (0.004767)  rounds = 300000 , low = 80 
+drop: 53882.000000 w/l: 198.000000 total W/L (0.004611)  rounds = 350000 , low = 80 
+drop: 53994.000000 w/l: 467.500000 total W/L (0.005118)  rounds = 400000 , low = 80 
+drop: 53851.000000 w/l: 346.000000 total W/L (0.005263)  rounds = 450000 , low = 80 
+drop: 53840.000000 w/l: 285.000000 total W/L (0.005266)  rounds = 500000 , low = 80 
+
+
+Simulator::run completed: hold 0.526616 percent, rounds: 500000
+
+
+ Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.
+ Drop - The total amount of cash that has been placed as a wager.
+ IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)
+
+.
+Initiating deck, total decks: 6 total cards: 312
+
+                *** START OPTIMIZATION (MULTIx7-THREAD)    (3000) ROUNDS ***  
+
+ Aces: 24  High: 64  Mid: 48  Low: 80
+
+ O = Stay   |   X = Hit    |  2 = Double  |   S = Split 
+
+
+ HARD STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        hard 5: X X X X X X X X X X 
+        hard 6: X X X X X X X X X X 
+        hard 7: X X X X X X X X X X 
+        hard 8: X X X X X X X X X X 
+        hard 9: X X D X D D X X X X 
+       hard 10: X D D D D D D D D D 
+       hard 11: X D D D D D D D X D 
+       hard 12: X X X X O O X X X X 
+       hard 13: X O O O O O X X X X 
+       hard 14: X O O O O O X X X X 
+       hard 15: X O O O O O X X X X 
+       hard 16: X O O O O O X X X X 
+       hard 17: O O O O O O O O O O 
+       hard 18: O O O O O O O O O O 
+       hard 19: O O O O O O O O O O 
+       hard 20: O O O O O O O O O O 
+
+
+ SOFT STRATEGY 
+
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+        soft 12: X X X X X D X X X X 
+        soft 13: X X X X X D X X X X 
+        soft 14: X X X X D D X X X X 
+        soft 15: X X X X D D X X X X 
+        soft 16: X X X X X D X X X X 
+        soft 17: X X X X D D X X X X 
+        soft 18: X D X D D D O O X X 
+        soft 19: O O O O O O O O O O 
+        soft 20: O O O O O O O O O O 
+
+
+ SPLIT STRATEGY 
+
+(Note: P indicates play as a normal hand)
+Dealer up card: A 2 3 4 5 6 7 8 9 10
+
+       split 1,1: S S S S S S S S S S 
+       split 2,2: P P S S S S S S P P 
+       split 3,3: P P P S S S P P P P 
+       split 4,4: P P P P P P P P P P 
+       split 5,5: P D D D D D D D D D 
+       split 6,6: P S S S S S P P P P 
+       split 7,7: P S S S S S S S P P 
+       split 8,8: S S S S S S S S S O 
+       split 9,9: S S S S S S S S S O 
+       split 10,10: O P O P O P O P P O 
+
+
+Time difference = 80[s] 
+drop: 54131.000000 w/l: 407.500000 total W/L (0.007528)  rounds = 50000 , low = 80 
+drop: 54269.000000 w/l: 488.000000 total W/L (0.008261)  rounds = 100000 , low = 80 
+drop: 54191.000000 w/l: 406.000000 total W/L (0.008005)  rounds = 150000 , low = 80 
+drop: 54147.000000 w/l: -294.000000 total W/L (0.004648)  rounds = 200000 , low = 80 
+drop: 54115.000000 w/l: 282.500000 total W/L (0.004763)  rounds = 250000 , low = 80 
+drop: 54107.000000 w/l: 346.500000 total W/L (0.005036)  rounds = 300000 , low = 80 
+drop: 54144.000000 w/l: 162.000000 total W/L (0.004744)  rounds = 350000 , low = 80 
+drop: 54083.000000 w/l: 252.000000 total W/L (0.004734)  rounds = 400000 , low = 80 
+drop: 54118.000000 w/l: 56.500000 total W/L (0.004324)  rounds = 450000 , low = 80 
+drop: 54129.000000 w/l: 590.500000 total W/L (0.004982)  rounds = 500000 , low = 80 
+
+
+Simulator::run completed: hold 0.498214 percent, rounds: 500000
+
+
+ Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.
+ Drop - The total amount of cash that has been placed as a wager.
+ IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)
+
+.
