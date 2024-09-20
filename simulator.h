@@ -49,6 +49,7 @@ class Simulator
   void loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow);
   void optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow);
   void optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow);
+  void optimize_pthread_multithreaded_X7(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow);  
   void printBasicStrategy();
 
 #if (BASIC_STRATEGY_STANDARD == 1)

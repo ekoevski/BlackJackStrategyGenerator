@@ -408,9 +408,27 @@ void Table::setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>>
 {
   for (Player *aPlayer : players)
   {
-    aPlayer->playerHardStrategy = hard;
-    aPlayer->playerSoftStrategy = soft;
-    aPlayer->playerSplitStrategy = split;
+    for(int i = 0; i < hard.size(); i++)
+    {
+      for(int j = 0; j < hard[0].size(); j++)
+      {
+        aPlayer->playerHardStrategy[i][j] = hard[i][j];
+      }
+    }
+    for(int i = 0; i < soft.size(); i++)
+    {
+      for(int j = 0; j < soft[0].size(); j++)
+      {
+        aPlayer->playerSoftStrategy[i][j] = soft[i][j];
+      }
+    }
+    for(int i = 0; i < split.size(); i++)
+    {
+      for(int j = 0; j < split[0].size(); j++)
+      {
+        aPlayer->playerSplitStrategy[i][j] = split[i][j];
+      }
+    }
   }
 }
 

@@ -31,6 +31,7 @@ HoldCalculator::HoldCalculator( int tempRounds,
   HoldCalculator::mid = tempMid;
   HoldCalculator::low = tempLow;
   HoldCalculator::rounds = tempRounds;
+  HoldCalculator::calc_name = gameName;
   HoldCalculator::Calculator_table = new Table(gameName, tempDecks, tempPlayerCount);
   Calculator_table->theShoe->createShoe(tempAces, tempHigh, tempMid, tempLow);
   HoldCalculator::player_action = gameName;
@@ -53,7 +54,7 @@ void HoldCalculator::setBasicStrategy(vector<vector<int>> hardStrategy1,
 
 
 // Call this for thread
-void HoldCalculator::thread_callable()
+void HoldCalculator::runThread()
 {
   for (Player* aPlayer : Calculator_table->players)
   {
@@ -66,7 +67,7 @@ void HoldCalculator::thread_callable()
   float total_drop                  = 0;
   float total_winloss               = 0;
   int counter                       = 0;
-
+  int mode_2 = mode;
   while (counter < rounds) 
   {
     LOG_0(" ", __FILE__, __LINE__, NULL);
@@ -163,18 +164,12 @@ void HoldCalculator::thread_callable()
 
     Calculator_table->clearTable();
   }
+  
+
+  LOG_0("<thread_log> [%s] drop:%.2f WL:%.2f in: %s d_hand: %d p_hand: %d hold%%: %.2f%%",
+        __FILE__, __LINE__, HoldCalculator::calc_name.c_str() ,total_drop, total_winloss, player_action.c_str(), dealerUpCard, playerCardTotal, 100*(total_winloss/total_drop));
+            
   HoldCalculator::hold = (total_winloss/total_drop)*100;
-}
-
-
-
-// ======================================================
-// ===============      RUN THREAD     ==================
-// ======================================================
-// Description: Use this method as thread run() function
-void HoldCalculator::runThread()
-{
-  HoldCalculator::thread_callable();
 }
 
 // ======================================================

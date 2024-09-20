@@ -14,8 +14,8 @@ using namespace std;
 #define REVEAL_SHOE_CARDS                       0   // Prints shoe cards after reshuffle
 
 #define HARD_STRATEGY                           1
-#define SOFT_STRATEGY                           1
-#define SPLIT_STRATEGY                          1
+#define SOFT_STRATEGY                           0
+#define SPLIT_STRATEGY                          0
 
 // SELECT ONLY ONE OF THESE
 #define BASIC_STRATEGY_ZERO                     0

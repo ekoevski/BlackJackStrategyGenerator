@@ -1112,3 +1112,617 @@ Hands > player hand: 10,10    dealer up: 1  == 496.00        -170.00        247.
 
                             House edge:     Double,        Stay,           Hit           Split
 Hands > player hand: 10,10    dealer up: 1  == 442.00        -210.00        252.00       
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3592.00         0.00          883.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1576.00         0.00          328.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1436.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3648.00         0.00          948.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1824.00         0.00          370.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1424.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3656.00         0.00          868.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1828.00         0.00          363.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1568.00         0.00          285.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1136.00         0.00          213.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1160.00         0.00          104.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   1096.00         0.00          -14.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   3096.00         0.00          418.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3016.00         0.00          762.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3252.00         0.00          882.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3260.00         0.00          958.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   3564.00         0.00          964.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   1818.00         0.00          481.00            selected: X 
+Hands > player hand: 6    dealer up: 3     ==   1528.00         0.00          365.00            selected: X 
+Hands > player hand: 6    dealer up: 4     ==   1036.00         0.00          306.00            selected: X 
+Hands > player hand: 6    dealer up: 5     ==   1092.00         0.00          90.00            selected: X 
+Hands > player hand: 6    dealer up: 6     ==   964.00         0.00          -56.00            selected: X 
+Hands > player hand: 6    dealer up: 7     ==   2660.00         0.00          737.00            selected: X 
+Hands > player hand: 6    dealer up: 8     ==   3034.00         0.00          869.00            selected: X 
+Hands > player hand: 6    dealer up: 9     ==   3234.00         0.00          1078.00            selected: X 
+Hands > player hand: 6    dealer up: 10     ==   3402.00         0.00          1041.00            selected: X 
+Hands > player hand: 7    dealer up: 1     ==   3150.00         0.00          978.00            selected: X 
+Hands > player hand: 7    dealer up: 2     ==   1302.00         0.00          266.00            selected: X 
+Hands > player hand: 7    dealer up: 3     ==   1060.00         0.00          292.00            selected: X 
+Hands > player hand: 7    dealer up: 4     ==   746.00         0.00          141.00            selected: X 
+Hands > player hand: 7    dealer up: 5     ==   654.00         0.00          53.00            selected: X 
+Hands > player hand: 7    dealer up: 6     ==   362.00         0.00          79.00            selected: X 
+Hands > player hand: 7    dealer up: 7     ==   1778.00         0.00          248.00            selected: X 
+Hands > player hand: 7    dealer up: 8     ==   2610.00         0.00          619.00            selected: X 
+Hands > player hand: 7    dealer up: 9     ==   2984.00         0.00          921.00            selected: X 
+Hands > player hand: 7    dealer up: 10     ==   2826.00         0.00          924.00            selected: X 
+Hands > player hand: 8    dealer up: 1     ==   2410.00         0.00          692.00            selected: X 
+Hands > player hand: 8    dealer up: 2     ==   576.00         0.00          176.00            selected: X 
+Hands > player hand: 8    dealer up: 3     ==   620.00         0.00          13.00            selected: X 
+Hands > player hand: 8    dealer up: 4     ==   52.00         0.00          -131.00            selected: X 
+Hands > player hand: 8    dealer up: 5     ==   -152.00         0.00          -222.00            selected: X 
+Hands > player hand: 8    dealer up: 6     ==   -232.00         0.00          -317.00            selected: X 
+Hands > player hand: 8    dealer up: 7     ==   594.00         0.00          -221.00            selected: X 
+Hands > player hand: 8    dealer up: 8     ==   1260.00         0.00          242.00            selected: X 
+Hands > player hand: 8    dealer up: 9     ==   2308.00         0.00          620.00            selected: X 
+Hands > player hand: 8    dealer up: 10     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3744.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3596.00         0.00          964.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1888.00         0.00          395.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1568.00         0.00          282.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1236.00         0.00          202.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1232.00         0.00          83.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   912.00         0.00          117.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2964.00         0.00          476.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3056.00         0.00          720.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3320.00         0.00          918.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3208.00         0.00          943.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   3590.00         0.00          914.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   1648.00         0.00          389.00            selected: X 
+Hands > player hand: 6    dealer up: 3     ==   1498.00         0.00          330.00            selected: X 
+Hands > player hand: 6    dealer up: 4     ==   1208.00         0.00          98.00            selected: X 
+Hands > player hand: 6    dealer up: 5     ==   896.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3592.00         0.00          967.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1676.00         0.00          422.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1396.00         0.00          267.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1244.00         0.00          268.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1044.00         0.00          61.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3556.00         0.00          958.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1536.00         0.00          422.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1588.00         0.00          400.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1272.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3532.00         0.00          958.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1760.00         0.00          395.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1784.00         0.00          330.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1340.00         0.00          71.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1036.00         0.00          102.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   1200.00         0.00          153.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2968.00         0.00          558.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3180.00         0.00          753.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3444.00         0.00          903.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3276.00         0.00          916.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   3626.00         0.00          984.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   1924.00         0.00          358.00            selected: X 
+Hands > player hand: 6    dealer up: 3     ==   1486.00         0.00          302.00            selected: X 
+Hands > player hand: 6    dealer up: 4     ==   1160.00         0.00          309.00            selected: X 
+Hands > player hand: 6    dealer up: 5     ==   970.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3684.00         0.00          993.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   2208.00         0.00          365.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1992.00         0.00          302.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3584.00         0.00          943.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1792.00         0.00          287.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1456.00         0.00          313.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1480.00         0.00          75.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   960.00         0.00          54.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   816.00         0.00          -107.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   3180.00         0.00          540.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3320.00         0.00          740.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3200.00         0.00          932.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3156.00         0.00          937.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   3472.00         0.00          1068.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   1644.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3360.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3576.00         0.00          864.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1560.00         0.00          427.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1308.00         0.00          380.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1168.00         0.00          298.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1000.00         0.00          150.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   1032.00         0.00          92.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   3144.00         0.00          453.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3296.00         0.00          646.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3604.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3520.00         0.00          961.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1804.00         0.00          311.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1692.00         0.00          358.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1380.00         0.00          210.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1044.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3476.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3808.00         0.00          960.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1904.00         0.00          407.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1644.00         0.00          283.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1596.00         0.00          188.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1256.00         0.00          -27.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   1032.00         0.00          -15.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2948.00         0.00          610.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3124.00         0.00          756.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3380.00         0.00          952.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3244.00         0.00          939.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   3458.00         0.00          1151.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   1694.00         0.00          362.00            selected: X 
+Hands > player hand: 6    dealer up: 3     ==   1456.00         0.00          363.00            selected: X 
+Hands > player hand: 6    dealer up: 4     ==   1318.00         0.00          210.00            selected: X 
+Hands > player hand: 6    dealer up: 5     ==   972.00         0.00          164.00            selected: X 
+Hands > player hand: 6    dealer up: 6     ==   910.00         0.00          -63.00            selected: X 
+Hands > player hand: 6    dealer up: 7     ==   2676.00         0.00          694.00            selected: X 
+Hands > player hand: 6    dealer up: 8     ==   3216.00         0.00          880.00            selected: X 
+Hands > player hand: 6    dealer up: 9     ==   3212.00         0.00          1031.00            selected: X 
+Hands > player hand: 6    dealer up: 10     ==   3188.00         0.00          1020.00            selected: X 
+Hands > player hand: 7    dealer up: 1     ==   3222.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3776.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3624.00         0.00          995.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1908.00         0.00          388.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1704.00         0.00          221.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1292.00         0.00          63.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   920.00         0.00          63.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   816.00         0.00          60.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2820.00         0.00          577.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3240.00         0.00          763.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3352.00         0.00          987.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3216.00         0.00          944.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   3634.00         0.00          992.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   1530.00         0.00          357.00            selected: X 
+Hands > player hand: 6    dealer up: 3     ==   1342.00         0.00          292.00            selected: X 
+Hands > player hand: 6    dealer up: 4     ==   1090.00         0.00          112.00            selected: X 
+Hands > player hand: 6    dealer up: 5     ==   966.00         0.00          -20.00            selected: X 
+Hands > player hand: 6    dealer up: 6     ==   902.00         0.00          146.00            selected: X 
+Hands > player hand: 6    dealer up: 7     ==   2680.00         0.00          630.00            selected: X 
+Hands > player hand: 6    dealer up: 8     ==   3090.00         0.00          855.00            selected: X 
+Hands > player hand: 6    dealer up: 9     ==   3442.00         0.00          1016.00            selected: X 
+Hands > player hand: 6    dealer up: 10     ==   3186.00         0.00          993.00            selected: X 
+Hands > player hand: 7    dealer up: 1     ==   3168.00         0.00          1051.00            selected: X 
+Hands > player hand: 7    dealer up: 2     ==   1496.00         0.00          302.00            selected: X 
+Hands > player hand: 7    dealer up: 3     ==   1196.00         0.00          193.00            selected: X 
+Hands > player hand: 7    dealer up: 4     ==   934.00         0.00          228.00            selected: X 
+Hands > player hand: 7    dealer up: 5     ==   544.00         0.00          -12.00            selected: X 
+Hands > player hand: 7    dealer up: 6     ==   436.00         0.00          -19.00            selected: X 
+Hands > player hand: 7    dealer up: 7     ==   1616.00         0.00          268.00            selected: X 
+Hands > player hand: 7    dealer up: 8     ==   2594.00         0.00          742.00            selected: X 
+Hands > player hand: 7    dealer up: 9     ==   2974.00         0.00          964.00            selected: X 
+Hands > player hand: 7    dealer up: 10     ==   2950.00         0.00          983.00            selected: X 
+Hands > player hand: 8    dealer up: 1     ==   2324.00         0.00          653.00            selected: X 
+Hands > player hand: 8    dealer up: 2     ==   426.00         0.00          99.00            selected: X 
+Hands > player hand: 8    dealer up: 3     ==   360.00         0.00          -218.00            selected: X 
+Hands > player hand: 8    dealer up: 4     ==   144.00         0.00          -213.00            selected: X 
+Hands > player hand: 8    dealer up: 5     ==   -192.00         0.00          -340.00            selected: X 
+Hands > player hand: 8    dealer up: 6     ==   -136.00         0.00          -448.00            selected: X 
+Hands > player hand: 8    dealer up: 7     ==   396.00         0.00          -238.00            selected: X 
+Hands > player hand: 8    dealer up: 8     ==   1396.00         0.00          259.00            selected: X 
+Hands > player hand: 8    dealer up: 9     ==   2196.00         0.00          644.00            selected: X 
+Hands > player hand: 8    dealer up: 10     ==   2064.00         0.00          658.00            selected: X 
+Hands > player hand: 9    dealer up: 1     ==   1192.00         0.00          292.00            selected: X 
+Hands > player hand: 9    dealer up: 2     ==   -264.00         0.00          -315.00            selected: X 
+Hands > player hand: 9    dealer up: 3     ==   -544.00         0.00          -367.00            selected: D 
+Hands > player hand: 9    dealer up: 4     ==   -626.00         0.00          -561.00            selected: D 
+Hands > player hand: 9    dealer up: 5     ==   -648.00         0.00          -514.00            selected: D 
+Hands > player hand: 9    dealer up: 6     ==   -866.00         0.00          -609.00            selected: D 
+Hands > player hand: 9    dealer up: 7     ==   -508.00         0.00          -590.00            selected: X 
+Hands > player hand: 9    dealer up: 8     ==   12.00         0.00          -416.00            selected: X 
+Hands > player hand: 9    dealer up: 9     ==   808.00         0.00          161.00            selected: X 
+Hands > player hand: 9    dealer up: 10     ==   1238.00         0.00          391.00            selected: X 
+Hands > player hand: 10    dealer up: 1     ==   -132.00         0.00          -169.00            selected: X 
+Hands > player hand: 10    dealer up: 2     ==   -1066.00         0.00          -695.00            selected: D 
+Hands > player hand: 10    dealer up: 3     ==   -1206.00         0.00          -705.00            selected: D 
+Hands > player hand: 10    dealer up: 4     ==   -1534.00         0.00          -881.00            selected: D 
+Hands > player hand: 10    dealer up: 5     ==   -1884.00         0.00          -927.00            selected: D 
+Hands > player hand: 10    dealer up: 6     ==   -1826.00         0.00          -865.00            selected: D 
+Hands > player hand: 10    dealer up: 7     ==   -1362.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3708.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3644.00         0.00          893.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1884.00         0.00          417.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1496.00         0.00          212.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1192.00         0.00          58.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1132.00         0.00          94.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   1072.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3548.00         0.00          830.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1720.00         0.00          417.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1444.00         0.00          330.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3540.00         0.00          842.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1904.00         0.00          449.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1348.00         0.00          379.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1084.00         0.00          174.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1000.00         0.00          37.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   884.00         0.00          -40.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2908.00         0.00          461.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3588.00         0.00          929.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1908.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3396.00         0.00          1029.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1648.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3272.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3684.00         0.00          931.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1968.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3580.00         0.00          863.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1988.00         0.00          476.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1572.00         0.00          377.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1536.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3596.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3648.00         0.00          874.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1904.00         0.00          394.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1612.00         0.00          399.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1388.00         0.00          341.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   992.00         0.00          63.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   960.00         0.00          90.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2896.00         0.00          461.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3160.00         0.00          646.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3304.00         0.00          894.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3204.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   360.00         0.00          87.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   184.00         0.00          24.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   180.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   356.00         0.00          84.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   152.00         0.00          6.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   192.00         0.00          27.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   100.00         0.00          49.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   156.00         0.00          -19.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   88.00         0.00          5.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   280.00         0.00          63.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   336.00         0.00          73.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   292.00         0.00          73.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   316.00         0.00          109.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   358.00         0.00          103.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   176.00         0.00          77.00            selected: X 
+Hands > player hand: 6    dealer up: 3     ==   118.00         0.00          15.00            selected: X 
+Hands > player hand: 6    dealer up: 4     ==   142.00         0.00          -16.00            selected: X 
+Hands > player hand: 6    dealer up: 5     ==   122.00         0.00          32.00            selected: X 
+Hands > player hand: 6    dealer up: 6     ==   84.00         0.00          24.00            selected: X 
+Hands > player hand: 6    dealer up: 7     ==   314.00         0.00          78.00            selected: X 
+Hands > player hand: 6    dealer up: 8     ==   238.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   296.00         0.00          89.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   136.00         0.00          48.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   156.00         0.00          34.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   156.00         0.00          23.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   100.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   356.00         0.00          71.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   184.00         0.00          38.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   348.00         0.00          82.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   176.00         0.00          43.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   152.00         0.00          45.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   144.00         0.00          19.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   168.00         0.00          15.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   64.00         0.00          -25.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   300.00         0.00          37.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   312.00         0.00          67.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   364.00         0.00          107.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   332.00         0.00          83.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   358.00         0.00          111.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   340.00         0.00          96.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   224.00         0.00          36.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   164.00         0.00          44.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   164.00         0.00          -1.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   56.00         0.00          0.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   128.00         0.00          -16.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3476.00         0.00          886.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1732.00         0.00          367.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1632.00         0.00          386.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1352.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3584.00         0.00          1017.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1644.00         0.00          310.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1560.00         0.00          219.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1336.00         0.00          244.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1028.00         0.00          135.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   852.00         0.00          15.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2884.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3484.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3496.00         0.00          839.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1820.00         0.00          483.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1764.00         0.00          334.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1156.00         0.00          242.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1104.00         0.00          141.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   912.00         0.00          -119.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   3020.00         0.00          433.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3208.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3580.00         0.00          1001.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1912.00         0.00          370.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1644.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3516.00         0.00          975.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1760.00         0.00          440.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1404.00         0.00          345.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1288.00         0.00          142.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1044.00         0.00          117.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   996.00         0.00          -49.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2924.00         0.00          522.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3100.00         0.00          800.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3388.00         0.00          980.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3412.00         0.00          1035.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   3612.00         0.00          958.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   1410.00         0.00          513.00            selected: X 
+Hands > player hand: 6    dealer up: 3     ==   1476.00         0.00          382.00            selected: X 
+Hands > player hand: 6    dealer up: 4     ==   1200.00         0.00          264.00            selected: X 
+Hands > player hand: 6    dealer up: 5     ==   1042.00         0.00          151.00            selected: X 
+Hands > player hand: 6    dealer up: 6     ==   836.00         0.00          106.00            selected: X 
+Hands > player hand: 6    dealer up: 7     ==   2820.00         0.00          733.00            selected: X 
+Hands > player hand: 6    dealer up: 8     ==   3124.00         0.00          884.00            selected: X 
+Hands > player hand: 6    dealer up: 9     ==   3350.00         0.00          924.00            selected: X 
+Hands > player hand: 6    dealer up: 10     ==   3216.00         0.00          961.00            selected: X 
+Hands > player hand: 7    dealer up: 1     ==   3128.00         0.00          961.00            selected: X 
+Hands > player hand: 7    dealer up: 2     ==   1470.00         0.00          263.00            selected: X 
+Hands > player hand: 7    dealer up: 3     ==   1206.00         0.00          202.00            selected: X 
+Hands > player hand: 7    dealer up: 4     ==   868.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3656.00         0.00          847.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1740.00         0.00          387.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1692.00         0.00          252.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1352.00         0.00          251.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1172.00         0.00          147.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   960.00         0.00          -92.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   2952.00         0.00          484.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3148.00         0.00          785.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3376.00         0.00          947.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3304.00         0.00          1079.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3544.00         0.00          838.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1876.00         0.00          412.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1384.00         0.00          333.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1384.00         0.00          250.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1028.00         0.00          122.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   828.00         
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+Hands > player hand: 5    dealer up: 1     ==   3464.00         0.00          881.00            selected: X 
+Hands > player hand: 5    dealer up: 2     ==   1836.00         0.00          317.00            selected: X 
+Hands > player hand: 5    dealer up: 3     ==   1452.00         0.00          326.00            selected: X 
+Hands > player hand: 5    dealer up: 4     ==   1336.00         0.00          154.00            selected: X 
+Hands > player hand: 5    dealer up: 5     ==   1104.00         0.00          131.00            selected: X 
+Hands > player hand: 5    dealer up: 6     ==   1028.00         0.00          25.00            selected: X 
+Hands > player hand: 5    dealer up: 7     ==   3104.00         0.00          511.00            selected: X 
+Hands > player hand: 5    dealer up: 8     ==   3256.00         0.00          754.00            selected: X 
+Hands > player hand: 5    dealer up: 9     ==   3468.00         0.00          843.00            selected: X 
+Hands > player hand: 5    dealer up: 10     ==   3240.00         0.00          971.00            selected: X 
+Hands > player hand: 6    dealer up: 1     ==   3494.00         0.00          973.00            selected: X 
+Hands > player hand: 6    dealer up: 2     ==   1452.00         0.00          479.00            selected: X 
+Hands > player hand: 6    dealer up: 3     ==   1294.00         0.00          346.00            selected: X 
+Hands > player hand: 6    dealer up: 4     ==   1142.00         0.00          294.00            selected: X 
+Hands > player hand: 6    dealer up: 5     ==   
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+0.00         0.00         0.00          84.00            selected: D 
+0.00         0.00         0.00          54.00            selected: D 
+0.00         0.00         0.00          40.00            selected: D 
+0.00         0.00         0.00          35.00            selected: D 
+0.00         0.00         0.00          -1.00            selected: X 
+0.00         0.00         0.00          11.00            selected: D 
+0.00         0.00         0.00          46.00            selected: D 
+0.00         0.00         0.00          125.00            selected: D 
+0.00         0.00         0.00          165.00            selected: D 
+0.00         0.00         0.00          
+
+               ---- START DEBUG LOG ----
+
+                            House edge:       Double,          Hit,          Stay
+0.00         3356.00         1656.00         887.00            selected: X 
+0.00         1760.00         764.00         383.00            selected: X 
+0.00         1568.00         710.00         306.00            selected: X 
+0.00         1168.00         630.00         192.00            selected: X 
+0.00         1052.00         470.00         -25.00            selected: X 
+0.00         944.00         452.00         -28.00            selected: X 
+0.00         2912.00         1424.00         540.00            selected: X 
+0.00         2996.00         1470.00         706.00            selected: X 
+0.00         3184.00         1546.00         928.00            selected: X 
+0.00         2984.00         1494.00         897.00            selected: X 
+0.00         3454.00         1704.00         864.00            selected: X 
+0.00         1538.00         796.00         427.00            selected: X 
+0.00         1398.00         

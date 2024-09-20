@@ -17,6 +17,7 @@ using namespace std;
 class HoldCalculator
 {
   public:
+  string calc_name = "";
   int aces = 4;
   int high = 16;
   int mid = 12;
