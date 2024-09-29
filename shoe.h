@@ -45,30 +45,14 @@ class Shoe
   int midIndex;
   int highIndex;
   int acesIndex;
-
   int random;
 
-  Shoe();
-  Shoe(int cutCard, int deckNumber);
-
-  // This is reduced shoe generator
   Shoe(int deckNumber);
-
-
-
   void shuffle();
   void showAllCards();
   Card* drawCard();
-  
-  void removeLow();
-  void removeMid();
-  void removeHigh();
-  void removeAce(); 
-  
   void combineShoe();
   void createShoe(int aces, int high, int mid, int low);
-  void createShoeQuick(int aces, int high, int mid, int low);
-  Card* drawCardQuick();
 
 };
 

@@ -49,7 +49,6 @@ class HoldCalculator
                   vector<vector<int>> &tempSplitStrateg);
 
   //Methods
-  void thread_callable();
   void runThread();
   void settings(int rounds ,int aces, int high, int mid, int low);
   void setBasicStrategy(vector<vector<int>> tempHardStrategy,

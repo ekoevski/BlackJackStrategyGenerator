@@ -17,45 +17,6 @@ using namespace std;
             /////////////////////////////////////////
             /////////     CONSTRUCTORS     //////////
             /////////////////////////////////////////
-
-
-Shoe::Shoe() 
-{
-
-  for(int j = 0; j < 1; j++)
-  {
-    for(int k = 1; k <= 4; k++)
-    {
-      for(int i = 1; i <= 13; i++)
-      {
-        Card *aCard = new Card(6,k);
-        theShoe.push_back(aCard);
-        low.push_back(aCard);
-        mid.push_back(aCard);
-        high.push_back(aCard);
-        aces.push_back(aCard);
-
-      }        
-    }
-  }
-
-  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  srand(seed);
-
-  random_shuffle(aces.begin(), aces.end());
-  random_shuffle(low.begin(), low.end());
-  random_shuffle(mid.begin(), mid.end());
-  random_shuffle(high.begin(), high.end());
-
-  Shoe::lowIndex = low.size();
-  Shoe::midIndex = mid.size();
-  Shoe::highIndex = high.size();
-  Shoe::acesIndex = aces.size();
-
-};
-
-
-
 Shoe::Shoe(int deckNum)  
 {
   deckNumber = deckNum;
@@ -94,14 +55,9 @@ Shoe::Shoe(int deckNum)
   Shoe::combineShoe(); 
 
 };
-
-
                 ///////////////////////////////////////
                 /////////     METHODS          ////////
                 ///////////////////////////////////////
-
-
-
 
 // ======================================================
 // ============     CREATES CUSTOM SHOE    ==============
@@ -148,43 +104,6 @@ void Shoe::createShoe(int tempAces, int tempHigh, int tempMid, int tempLow){
   Shoe::shuffle();    // Shuffle the shoe after combine
 }
 
-
-
-
-
-// REMOVE A LOW CARD
-//===================
-void Shoe::removeLow(){
-  Shoe::lowIndex--;
-  combineShoe();
-}
-
-// REMOVE A MID CARD
-//=====================
-void Shoe::removeMid(){
-  Shoe::midIndex--;
-  combineShoe();
-}
-
-
-// REMOVE A HIGH CARD
-//=====================
-void Shoe::removeHigh(){
-  Shoe::highIndex--;
-  combineShoe();
-}
-
-// REMOVE AN ACE
-// ====================
-void Shoe::removeAce(){
-  Shoe::acesIndex--;
-  combineShoe();
-}
-
-
-
-
-
 // ======================================================
 // ==   (SUBROUTINE)   COMBINE SHOE        ==============
 // ======================================================
@@ -218,12 +137,6 @@ void Shoe::combineShoe()
 
 };
 
-
-
-
-
-
-
 // PRINT ALL CARDS LEFT IN THE CURRENT DECK
 // ========================================
 // Description: Prints in a square matrix in output for debugging
@@ -256,12 +169,6 @@ void Shoe::showAllCards()
     #endif
 };
 
-
-
-
-
-
-
 // RESHUFFLE THE DECK
 // ==================
 void Shoe::shuffle()
@@ -274,10 +181,6 @@ void Shoe::shuffle()
   showAllCards();
   #endif
 };
-
-
-
-
 
 // DRAW A RANDOM CARD FROM THE DECK
 // ================================
@@ -295,21 +198,5 @@ Card* Shoe::drawCard()
   //theShoe.pop_back();               // add this YOU WANT TO REMOVE CARDS FROM DECK
   LOG_1("drawCard() = card: %s value: %d",__FILE__, __LINE__, temp->getName().c_str(), temp->getValue());
 
-  return temp;
-};
-
-
-
-
-
-// DRAW RANDOM CARD QUICKLY (uses random num generator)
-// ====================================================
-// No performance difference, don't use this
-Card* Shoe::drawCardQuick()
-{
-  srand((unsigned) time(NULL));
-
-  Shoe::random = rand() % shoeSize;
-  Card* temp = theShoe[Shoe::random];
   return temp;
 };

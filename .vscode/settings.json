@@ -5,7 +5,14 @@
         "chrono": "cpp",
         "iosfwd": "cpp",
         "iostream": "cpp",
-        "thread": "c"
+        "thread": "c",
+        "array": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
     "makefile.launchConfigurations": [

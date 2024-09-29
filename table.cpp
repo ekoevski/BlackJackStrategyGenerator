@@ -120,11 +120,6 @@ void Table::playRound(float bet)
     }
     return;
   }
-
-
-
-
-
   // PAY PLAYER BLACKJACK HANDS
   //================================
   for (Player *aPlayer : players)
@@ -136,44 +131,20 @@ void Table::playRound(float bet)
       LOG_ERROR("WIN player has blackjack",__FILE__, __LINE__, NULL);      
     }
   }
-
-
   // PLAYER CAN NOW PLAY HAND
   //==========================================
   for (Player *aPlayer : players)
   {
     LOG_1("Player plays first two cards",__FILE__, __LINE__, NULL); 
-    // true is for forced intent, turn to false if you want to use basic strategy cards
-    // table mode = 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split
     if(!aPlayer->hasBlackJack())
     {
       aPlayer->firstTwo(theDealer->showUpCard(), force_mode_value, force_mode); 
     }
   }
-
-
-
   // DEALER PLAYS IN RESPONSE TO PLAYER
-  //=============================================
   theDealer->playHand();
 
-
-
-
-
-
-
-
-
-
-
-
-  //============================================
-  //============================================
   //      ROUND COMPLETE  DETERMINE WINNERS
-  //============================================
-  //============================================
-
   bool first_hand_busted;
   bool second_hand_busted;
   bool third_hand_busted;
@@ -191,11 +162,6 @@ void Table::playRound(float bet)
   int first_hand_final;
   int second_hand_final;
   int third_hand_final;
-
-
-
-
-
 
   for (Player *aPlayer : players)
   {
@@ -217,12 +183,7 @@ void Table::playRound(float bet)
     player_blackjack = aPlayer->hasBlackJack();
     dealer_blackjack = theDealer->hasBlackJack();
 
-
-
-
-
     // Collect busted hands
-    //====================
     if (first_hand_busted)
     {
       theDealer->addWinloss(main_bet);
@@ -239,12 +200,7 @@ void Table::playRound(float bet)
       theDealer->addCasinoDrop(third_split_bet);
     }
 
-
-
-
-
     // DEALER BUST
-    // =================
     if (dealer_busted && !player_blackjack &&
         !first_hand_busted)
     {
@@ -269,12 +225,7 @@ void Table::playRound(float bet)
       continue;
     }
 
-
-
-
-
-
-        // FIRST HAND
+    // FIRST HAND
     // Dealer hand is HIGHER
     if (!player_blackjack && !first_hand_busted &&
         dealer_final > first_hand_final)
@@ -291,10 +242,7 @@ void Table::playRound(float bet)
       theDealer->addCasinoDrop(main_bet);
 
     }
-
-
-
-        // SECOND SPLIT HAND
+    // SECOND SPLIT HAND
     // Dealer hand is HIGHER
     if (!player_blackjack && !second_hand_busted &&
         dealer_final > second_hand_final)
@@ -311,9 +259,7 @@ void Table::playRound(float bet)
       theDealer->addCasinoDrop(second_split_bet);
 
     }
-
-
-      // THIRD SPLIT HAND
+    // THIRD SPLIT HAND
     // Dealer hand is HIGHER
     if (!player_blackjack && !third_hand_busted &&
         dealer_final > third_hand_final)
@@ -328,17 +274,10 @@ void Table::playRound(float bet)
     {
       theDealer->addWinloss((-1) * third_split_bet);
       theDealer->addCasinoDrop(third_split_bet);
-
     }
 
-
-
-
-
     // PUSH DROP
-    //===================
     // Add drop from push
-
     if (!player_blackjack && !first_hand_busted &&
         dealer_final == first_hand_final)
     {
@@ -362,48 +301,9 @@ void Table::playRound(float bet)
       theDealer->addCasinoDrop(third_split_bet);
     }
   }
-
 };
-
-
-// ======================================================
-// ============          TESTING           ==============
-// ======================================================
-// Description: Give the first card value, second card value (for layer)
-// give the dealer up card value, and the function will pause the round
-// This funciton is useful if real-time gameplay is implemented.
-// (Not for monte-carlo simulation)
-
-void Table::Testing(int first, int second, int dealerUp)
-{
-  if (theDealer->showUpCard() == dealerUp)
-  {
-    for (Player *aPlayer : players)
-    {
-
-      if (aPlayer->testFirstHand == first &&
-          aPlayer->testSecondHand == second)
-      {
-        // printf("\n===========\nTesting : dealer |%d|    player |%d| |%d|",
-        //      dealerUp, first, second);
-        sleep(100);
-        ;
-      }
-      if (aPlayer->testFirstHand == second &&
-          aPlayer->testSecondHand == first)
-      {
-        // printf("\n===========\nTesting : dealer |%d|    player |%d| |%d|",
-        //      dealerUp, first, second);
-        sleep(100);
-        ;
-      }
-    }
-  }
-};
-
 
 // SET PLAYER BASIC STRATEGY
-// ================================
 void Table::setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>> soft, vector<vector<int>> split)
 {
   for (Player *aPlayer : players)
@@ -432,10 +332,7 @@ void Table::setPlayerBasicStrategy(vector<vector<int>> hard, vector<vector<int>>
   }
 }
 
-
-
 // PRINT W/L AND DROP REPORT
-// ================================
 void Table::printDrop()
 {
   VLOG_0("\nDROP: %.2f", theDealer->casinoDrop);
@@ -444,13 +341,11 @@ void Table::printDrop()
          theDealer->winLoss / theDealer->casinoDrop * 100);
 }
 
-
 // ======================================================
 // ============      SET HARD CARDS        ==============
 // ======================================================
 // Description: set manually first two cards and dealer up card
 // Provide player hand total and dealer up card
-
 void Table::setHardCards(int playerTotal, int dealerUp){
   // Player
   if(playerTotal <= 12)
