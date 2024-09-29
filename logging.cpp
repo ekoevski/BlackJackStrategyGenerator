@@ -35,9 +35,10 @@ void cyan() {
 
 void delete_log_files()
 {
-  remove("OUTPUT_LOG/output0.txt");  
-  remove("OUTPUT_LOG/output1.txt");
-  remove("OUTPUT_LOG/output.txt");
+  remove("OUTPUT_LOG/basic_strategy_vector_debug.txt");  
+  remove("OUTPUT_LOG/house_edge_running_log_debug.txt");
+  remove("OUTPUT_LOG/optimal_basic_strategy.txt");
+  remove("OUTPUT_LOG/optimal_copy.txt");  
 }
 
 // Logging functions

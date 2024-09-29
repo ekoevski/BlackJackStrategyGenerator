@@ -20,10 +20,11 @@ using namespace std;
 // TO USE:      <<<<<<<<<<<<<<<<<<<
 // There is no prompt, the parameters are hardcoded, change them as needed.
 //int miniCards      = 48 - 0;   // 64    // Number of tens (10, Jacks, Queens, Kings)
-int lowCards       = 120 - 0;   // 80    // Number of small cards, 2s - 6s
-int midCards       = 72 - 0;   // 48    // Number 7s - 9s
-int highCards      = 96 - 0;   // 64    // Number of tens (10, Jacks, Queens, Kings)
-int aces           = 24 - 0;   // 24     // Number of aces in the deck
+int minCards       = 48 - 0;
+int lowCards       = 72 - 72;   // 80    // Number of small cards, 2s - 6s
+int midCards       = 72 - 72;   // 48    // Number 7s - 9s
+int highCards      = 96 - 96;   // 64    // Number of tens (10, Jacks, Queens, Kings)
+int aces           = 24 - 24;   // 24     // Number of aces in the deck
 
 int roundsToSim    = 1000;     // Number of hands to play (higher = more accurate but slower)
 int roundsToTest   = 150000;   // Rounds to test the basic strategy cards;
@@ -38,11 +39,11 @@ int main()
   delete_log_files();
   Simulator* Sim = new Simulator("Blackjack", 6, 1);  // 6 decks, 1 player (2+ player hasn't been tested)
 
-  Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards);
+  Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards, minCards);
 
   ENABLE_BLACKJACK = 1;
   // Test results, play 500,000 rounds to see hold %
-  Sim->Table_BJ->theShoe->createShoe(aces, highCards, midCards, lowCards);
+  Sim->Table_BJ->theShoe->createShoe(aces, highCards, midCards, lowCards, minCards);
 
   Sim->testCurrentStrategy(roundsToTest);
 

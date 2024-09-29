@@ -31,6 +31,7 @@ class Shoe
 
   // These 5 create and combine into aggregated
   // Created at constructor
+  vector<Card*> min;  
   vector<Card*> low;
   vector<Card*> mid;
   vector<Card*> high;
@@ -41,10 +42,12 @@ class Shoe
 
 
   // Indices (used to remove cards from shoe)
+  int minIndex;
   int lowIndex;
   int midIndex;
   int highIndex;
   int acesIndex;
+
   int random;
 
   Shoe(int deckNumber);
@@ -52,7 +55,7 @@ class Shoe
   void showAllCards();
   Card* drawCard();
   void combineShoe();
-  void createShoe(int aces, int high, int mid, int low);
+  void createShoe(int aces, int high, int mid, int low, int min);
 
 };
 

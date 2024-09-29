@@ -31,7 +31,8 @@ Shoe::Shoe(int deckNum)
         theShoe.push_back(aCard);
 
         if(i == 1         ){aces.push_back(aCard);}
-        if(i > 1 && i < 7 ){low.push_back(aCard);}
+        if(i > 1 && i < 4 ){min.push_back(aCard);}        
+        if(i > 3 && i < 7 ){low.push_back(aCard);}
         if(i > 6 && i < 10){mid.push_back(aCard);}
         if(i > 9          ){high.push_back(aCard);}
       }        
@@ -43,17 +44,17 @@ Shoe::Shoe(int deckNum)
   
   random_shuffle(aces.begin(), aces.end());
   random_shuffle(low.begin(), low.end());
+  random_shuffle(min.begin(), min.end());  
   random_shuffle(mid.begin(), mid.end());
   random_shuffle(high.begin(), high.end());
 
-
+  Shoe::minIndex = min.size();
   Shoe::lowIndex = low.size();
   Shoe::midIndex = mid.size();
   Shoe::highIndex = high.size();
   Shoe::acesIndex = aces.size();
 
-  Shoe::combineShoe(); 
-
+  Shoe::combineShoe();
 };
                 ///////////////////////////////////////
                 /////////     METHODS          ////////
@@ -66,7 +67,7 @@ Shoe::Shoe(int deckNum)
 // aces, high, mid and low cards which are to be entered as parameters
 // output: Shoe::theShoe
 
-void Shoe::createShoe(int tempAces, int tempHigh, int tempMid, int tempLow){
+void Shoe::createShoe(int tempAces, int tempHigh, int tempMid, int tempLow, int tempMin){
     
     Shoe::theShoe.clear();
    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -76,14 +77,19 @@ void Shoe::createShoe(int tempAces, int tempHigh, int tempMid, int tempLow){
     random_shuffle(low.begin(), low.end());
     random_shuffle(mid.begin(), mid.end());
     random_shuffle(high.begin(), high.end());
+    random_shuffle(min.begin(), min.end());
 
+    Shoe::minIndex = tempMin;
     Shoe::lowIndex = tempLow;
     Shoe::midIndex = tempMid;
     Shoe::highIndex = tempHigh;
     Shoe::acesIndex = tempAces;
 
-    Shoe::shoeSize = tempLow + tempMid + tempHigh + tempAces;
+    Shoe::shoeSize = tempLow + tempMid + tempHigh + tempAces, + tempMin;
 
+  for(int i = 0; i < Shoe::minIndex; i++){
+    theShoe.push_back(min[i]);
+  }
 
   for(int i = 0; i < Shoe::lowIndex; i++){
     theShoe.push_back(low[i]);
@@ -118,6 +124,10 @@ void Shoe::combineShoe()
 
   for(int i = 0; i < Shoe::lowIndex; i++){
     theShoe.push_back(low[i]);
+  }
+
+  for(int i = 0; i < Shoe::minIndex; i++){
+    theShoe.push_back(min[i]);
   }
 
   for(int i = 0; i < Shoe::midIndex; i++){

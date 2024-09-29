@@ -93,25 +93,31 @@ void Simulator::testCurrentStrategy(int rounds)
   Simulator::counter = 0;
   while (counter < rounds)
   {
+    LOG_1(" <TEST>                               START ROUND       \n", __FILE__, __LINE__, NULL);
+    LOG_1(" <TEST>                               ==============    \n", __FILE__, __LINE__, NULL);
+
     counter++;
     Table_BJ->setPlayerBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
     Table_BJ->reset();
     Table_BJ->placeCards();
     Table_BJ->playRound(1);
+    Table_BJ->displayTable();
+    LOG_1("<TEST>ROUND RESULTS:", __FILE__, __LINE__, NULL);
+    LOG_1("<TEST>W/L: %.2f , drop: %.2f", __FILE__, __LINE__, Table_BJ->theDealer->winLoss, Table_BJ->theDealer->casinoDrop);
+    //LOG_1("drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss, total_winloss/total_drop, counter, Table_BJ->theShoe->lowIndex); 
 
     if (counter % 50000 == 0)
     {
       total_drop += Table_BJ->theDealer->casinoDrop;
       total_winloss += Table_BJ->theDealer->winLoss;
-      VLOG_0("drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss, total_winloss/total_drop, counter, Table_BJ->theShoe->lowIndex); 
+      VLOG_0("<TEST>drop: %f w/l: %f total W/L (%f)  rounds = %i , low = %i \n",Table_BJ->theDealer->casinoDrop, Table_BJ->theDealer->winLoss, total_winloss/total_drop, counter, Table_BJ->theShoe->lowIndex); 
 
       Table_BJ->theDealer->casinoDrop = 0;
       Table_BJ->theDealer->winLoss = 0;
     }
-
   Table_BJ->clearTable();
   }
-  VLOG_0("\n\nSimulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
+  VLOG_0("\n\n<><TEST>Simulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
 };
 
 // ======================================================
@@ -213,7 +219,7 @@ void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int t
 // postcondition: Saves basic strategy card in /strategy cards as text file
 //               which can be loaded using loadBasicStrategy(yada yada)
 
-void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow)
+void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow, int tempMin)
 {
   float stayHold              = 0;
   float hitHold               = 0;
@@ -227,10 +233,10 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
   // Instantiate calculator oTable_BJbjects
-  HoldCalculator* Stay     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
+  HoldCalculator* Stay     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, tempMin, "Stay", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
+  HoldCalculator* Hit     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, tempMin, "Hit", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
+  HoldCalculator* Double     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow,tempMin, "Double", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
+  HoldCalculator* Split     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow,tempMin, "Split", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
 
 
   VLOG_2("\n\n Start Win/Loss Debug\n\n", NULL);
@@ -273,13 +279,13 @@ g_lock_split_strategy = true;  // Used to bypass using splitStrategy card
       Stay                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
-      VLOG_2("D: %.2f   ", Stay->total_win_loss);
+      VLOG_2("O: %.2f   ", Stay->total_win_loss);
       LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[player_hand_total][dealer_up_card] = HIT;
       Hit                         -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
-      VLOG_2("D: %.2f   ", Hit->total_win_loss);
+      VLOG_2("X: %.2f   ", Hit->total_win_loss);
       LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
    
       min = 10000000.0;
