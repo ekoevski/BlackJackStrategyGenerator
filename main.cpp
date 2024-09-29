@@ -24,13 +24,11 @@ int highCards      = 64 - 0;   // 64    // Number of tens (10, Jacks, Queens, Ki
 int midCards       = 48 - 0;   // 48    // Number 7s - 9s
 int lowCards       = 80 - 0;   // 80    // Number of small cards, 2s - 6s
 
-int roundsToSim    = 4000;     // Number of hands to play (higher = more accurate but slower)
+int roundsToSim    = 1000;     // Number of hands to play (higher = more accurate but slower)
 int roundsToTest   = 500000;   // Rounds to test the basic strategy cards;
 
-
+bool g_lock_split_strategy = false;
 int ENABLE_BLACKJACK = 0;
-
-
 // MAIN
 //=================== 
 int main() 
@@ -39,9 +37,6 @@ int main()
   delete_log_files();
   Simulator* Sim = new Simulator("Blackjack", 6, 1);  // 6 decks, 1 player (2+ player hasn't been tested)
 
-  // Optimise perfect startegy
-  //Sim->optimize_pthread_multithreaded_X7(roundsToSim, aces, highCards, midCards, lowCards);
-  //Sim->optimize_multithreaded_X7(roundsToSim, aces, highCards, midCards, lowCards);
   Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards);
 
   ENABLE_BLACKJACK = 1;

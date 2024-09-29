@@ -8,8 +8,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "logging.h"
-
-#include <thread>
 #include <chrono>
 #include "HoldCalculator.h"
 
@@ -204,496 +202,6 @@ void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int t
     }
 }
 
-// ======================================================
-// =============== OPTIMIZE Multithreaded x7 ==============
-// ======================================================
-// precondition: Changes values of current basic strategy vector and 
-//               tests to determine if hit, stay, double, or split
-//               is the most lucrative player move.
-// postcondition: Saves basic strategy card in /strategy cards as text file
-//               which can be loaded using loadBasicStrategy(yada yada)
-
-void Simulator::optimize_multithreaded_X7(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow)
-{
-  float stayHold              = 0;
-  float hitHold               = 0;
-  float doubleHold            = 0;
-  float splitHold             = 0;
-  float min                   = 10000000.0;
-  int player_hand_total       = 0;
-  int dealer_up_card          = 0;
-  char action                 ='Q';
-
-  float Stay_total_winloss    = 0;
-  float Hit_total_winloss     = 0;
-  float Double_total_winloss  = 0;
-  float Split_total_winloss   = 0;
-
-  std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-
-  // Instantiate calculator oTable_BJbjects
-  HoldCalculator* Stay0     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay0", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay1     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay1", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay2     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay2", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay3     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay3", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay4     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay4", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay5     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay5", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay6     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay6", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-  HoldCalculator* Hit0     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit0", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit1     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit1", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit2     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit2", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit3     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit3", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit4     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit4", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit5     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit5", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit6     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit6", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-  HoldCalculator* Double0     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double0", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double1     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double1", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double2     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double2", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double3     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double3", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double4     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double4", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double5     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double5", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double6     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double6", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-  HoldCalculator* Split0     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split0", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split1     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split1", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split2     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split2", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split3     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split3", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split4     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split4", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split5     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split5", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split6     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split6", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-
-  HoldCalculator* Stay     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-
-  VLOG_0("                *** START OPTIMIZATION (MULTIx7-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
-  VLOG_0(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
-  VLOG_0("\n O = Stay   |   X = Hit    |  2 = Double  |   S = Split \n\n", NULL);
-
-#if (HARD_STRATEGY == 1)
-  VLOG_0("\n HARD STRATEGY \n\n", NULL);
-  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
-#if (DEBUG==1)
-  VLOG_2("\n\n               ---- START DEBUG LOG ----", NULL);
-    VLOG_2("\n\n                            House edge:       Double,          Hit,          Stay\n", NULL);
-  sleep(1);
-#endif
-  // Print player card hard values
-  for(int j = 5; j < hardStrategy.size() - 1; j++)
-  {
-    if(j < 10) 
-    {
-      VLOG_0("        hard %d: ", j);
-    }
-    if(j >= 10) 
-    {
-      VLOG_0("       hard %d: ", j);    
-    }
-
-    for(int i = 0; i < hardStrategy[j].size(); i++)
-    {
-      player_hand_total = j;  // Hard code this to debug player hand total otherwise j
-      dealer_up_card    = i;   //  Hard code these to debug up card   otherwise i
-
-      // For multithreading aggregate values
-      Stay_total_winloss = 0;
-      Hit_total_winloss = 0;
-      Double_total_winloss = 0;
-      Split_total_winloss = 0;
-
-
-
-
-      //================= Double BLOC START ================ //
-      hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (Double) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%.2f         ", Double->total_win_loss);
-      printBasicStrategy();
-      sleep(1);
-      #endif
-      LOG_0("<thread_log>START ALL THREADS", __FILE__, __LINE__, NULL);
-      Double0                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double1                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double2                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double3                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double4                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double5                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double6                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-
-      Double0                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double1                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double2                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);     
-      Double3                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double4                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double5                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy); 
-      Double6                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-     
-      thread T0(&HoldCalculator::runThread, Double0);     
-      thread T1(&HoldCalculator::runThread, Double1);
-      thread T2(&HoldCalculator::runThread, Double2);
-      thread T3(&HoldCalculator::runThread, Double3);
-      thread T4(&HoldCalculator::runThread, Double4);
-      thread T5(&HoldCalculator::runThread, Double5);
-      thread T6(&HoldCalculator::runThread, Double6);
-
-      LOG_0("<thread_log>Wait on all threads to finish...", __FILE__, __LINE__, NULL);      
-      T0.join();       
-      T1.join();
-      T2.join();
-      T3.join();       
-      T4.join();
-      T5.join();
-      T6.join();       
-
-      // Combine thread results
-      Double_total_winloss += Double0->total_win_loss + Double1->total_win_loss + Double2->total_win_loss;
-      Double_total_winloss += Double3->total_win_loss + Double4->total_win_loss + Double5->total_win_loss;
-      Double_total_winloss += Double6->total_win_loss;
-      LOG_0("<<thread_log>Complete, Double_total_winloss %f \n", __FILE__,__LINE__,Double_total_winloss );
-      //================= Double BLOC END ================ //
-
-
-
-      //================= STAY BLOC START ================ //
-      hardStrategy[player_hand_total][dealer_up_card] = STAY;
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (STAY) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%.2f         ", Double_total_winloss);
-      printBasicStrategy();
-      sleep(1);
-      #endif
-      LOG_0("<thread_log>START ALL THREADS", __FILE__, __LINE__, NULL);
-      Stay0                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay1                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay2                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay3                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay4                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay5                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay6                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-
-      Stay0                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay1                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay2                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);     
-      Stay3                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay4                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay5                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy); 
-      Stay6                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-     
-      thread THR0(&HoldCalculator::runThread, Stay0);     
-      thread THR1(&HoldCalculator::runThread, Stay1);
-      thread THR2(&HoldCalculator::runThread, Stay2);
-      thread THR3(&HoldCalculator::runThread, Stay3);
-      thread THR4(&HoldCalculator::runThread, Stay4);
-      thread THR5(&HoldCalculator::runThread, Stay5);
-      thread THR6(&HoldCalculator::runThread, Stay6);
-
-      LOG_0("<thread_log>Wait on all threads to finish...", __FILE__, __LINE__, NULL);      
-      THR0.join();       
-      THR1.join();
-      THR2.join();
-      THR3.join();       
-      THR4.join();
-      THR5.join();
-      THR6.join();       
-
-      // Combine thread results
-      Stay_total_winloss += Stay0->total_win_loss + Stay1->total_win_loss + Stay2->total_win_loss;
-      Stay_total_winloss += Stay3->total_win_loss + Stay4->total_win_loss + Stay5->total_win_loss;
-      Stay_total_winloss += Stay6->total_win_loss;
-      LOG_0("<<thread_log>Complete, Stay_total_winloss %f \n", __FILE__,__LINE__,Stay_total_winloss );
-      //================= STAY BLOC END ================ //
-
-
-
-
-      //================= Hit BLOC START ================ //
-      hardStrategy[player_hand_total][dealer_up_card] = HIT;
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (Hit) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%.2f         ", Stay_total_winloss);
-      printBasicStrategy();
-      sleep(1);
-      #endif
-      LOG_0("<thread_log>START ALL THREADS", __FILE__, __LINE__, NULL);
-      Hit0                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit1                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit2                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit3                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit4                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit5                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit6                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-
-      Hit0                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit1                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit2                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);     
-      Hit3                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit4                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit5                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy); 
-      Hit6                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-     
-      thread THR20(&HoldCalculator::runThread, Hit0);     
-      thread THR21(&HoldCalculator::runThread, Hit1);
-      thread THR22(&HoldCalculator::runThread, Hit2);
-      thread THR23(&HoldCalculator::runThread, Hit3);
-      thread THR24(&HoldCalculator::runThread, Hit4);
-      thread THR25(&HoldCalculator::runThread, Hit5);
-      thread THR26(&HoldCalculator::runThread, Hit6);
-
-      LOG_0("<thread_log>Wait on all threads to finish...", __FILE__, __LINE__, NULL);      
-      THR20.join();       
-      THR21.join();
-      THR22.join();
-      THR23.join();       
-      THR24.join();
-      THR25.join();
-      THR26.join();       
-
-      // Combine thread results
-      Hit_total_winloss += Hit0->total_win_loss + Hit1->total_win_loss + Hit2->total_win_loss;
-      Hit_total_winloss += Hit3->total_win_loss + Hit4->total_win_loss + Hit5->total_win_loss;
-      Hit_total_winloss += Hit6->total_win_loss;
-      LOG_0("<<thread_log>Complete, Hit_total_winloss %f \n", __FILE__,__LINE__,Hit_total_winloss );
-      //================= Hit BLOC END ================ //
-
-
-
-
-      LOG_0("stayWL %f, hitWL %f, doubleWL %f\n", __FILE__,__LINE__,Stay_total_winloss, Hit_total_winloss, Double_total_winloss );
-      #if(DEBUG == 1)
-      VLOG_2("%.2f           ", Hit_total_winloss);
-      #endif
-      min = 10000000.0;
-
-      if(min >= Stay_total_winloss)
-      {
-        min = Stay_total_winloss;           
-        hardStrategy[player_hand_total][dealer_up_card] = STAY;
-        action = 'O';       
-      }
-      if(min >= Hit_total_winloss)
-      {
-        min = Hit_total_winloss;             
-        hardStrategy[player_hand_total][dealer_up_card] = HIT;
-        action = 'X'; 
-      }
-      if(min >= Double_total_winloss)
-      {
-        min = Double_total_winloss;       
-        hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = 'D'; 
-      }
-      #if(DEBUG == 1)
-      VLOG_2(" selected: %c \n", action);
-      #endif
-      VLOG_0("%c ", action);
-    }
-    VLOG_0("\n", NULL);
-  }
-#endif
-
-#if (SOFT_STRATEGY == 1)
-  VLOG_0("\n\n SOFT STRATEGY \n\n", NULL);
-  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
-
-#if (DEBUG==1)
-  sleep(2);
-#endif
-
-
-  for(int j = 12; j < softStrategy.size() - 1; j++)
-  {
-    VLOG_0("        soft %d: ", j);
-    for(int i = 0; i < softStrategy[j].size(); i++)
-    {
-      player_hand_total = j;
-      dealer_up_card    = i;   // 
-
-      LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-      Double                      -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
-      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double                      -> runThread();
-
-      LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card] = STAY;
-      Stay                        -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay                        -> runThread();
-
-      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card] = HIT;
-      Hit                         -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit                         -> runThread();
-
-      LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
-   
-      min = 100000000.0;
-
-      if(min >= Stay->total_win_loss)
-      {
-        min = Stay->total_win_loss;           
-        softStrategy[player_hand_total][dealer_up_card] = STAY;
-        action = 'O'; 
-      }
-      if(min >= Hit->total_win_loss)
-      {
-        min = Hit->total_win_loss;             
-        softStrategy[player_hand_total][dealer_up_card] = HIT;
-        action = 'X'; 
-      }
-      if(min >= Double->total_win_loss)
-      {
-        min = Double->total_win_loss;       
-        softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = 'D'; 
-      }
-      VLOG_0("%c ", action);      
-    }
-    VLOG_0("\n", NULL);    
-  }
-#endif
-
-#if (SPLIT_STRATEGY == 1)
-  VLOG_0("\n\n SPLIT STRATEGY \n\n", NULL);
-  VLOG_0("(Note: P indicates play as a normal hand)\n", NULL);
-  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
-
-#if (DEBUG==1)
-  VLOG_2("\n\n               ---- START DEBUG LOG ----", NULL);
-  VLOG_2("\n\n                            House edge:     Double,        Stay,           Hit           Split\n", NULL);
-  sleep(1);
-#endif
-  for(int j = 0; j < splitStrategy.size(); j++)
-  {
-    VLOG_0("       split %d,%d: ", j + 1, j + 1);
-    for(int i = 0; i < hardStrategy[j].size(); i++)
-    {
-      player_hand_total = j;   //j  
-      dealer_up_card    = i;   //i 
-
-      splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (DOUBLE) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("Hands > player hand: %d,%d    dealer up: %d  == ", player_hand_total + 1, player_hand_total + 1, dealer_up_card + 1);
-      printBasicStrategy();
-      sleep(1);
-      #endif  
-
-      Double                      -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
-      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double->Calculator_table->force_mode = true;
-      Double->Calculator_table->force_mode_value = DOUBLE;
-      Double                      -> runThread();
-
-      splitStrategy[player_hand_total][dealer_up_card] = STAY;
-
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (STAY) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%.2f        ", Double->total_win_loss);
-      printBasicStrategy();
-      sleep(1);
-      #endif
-
-      Stay                        -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay->Calculator_table->force_mode = true;
-      Stay->Calculator_table->force_mode_value = STAY;
-      Stay                        -> runThread();
-
-      splitStrategy[player_hand_total][dealer_up_card] = HIT;
-
-      #if (DEBUG == 1)
-      VLOG_2("%.2f        ", Stay->total_win_loss);      
-      VLOG_1("\n\n              (HIT) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      printBasicStrategy();
-      sleep(1);
-      #endif 
-
-      Hit                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit->Calculator_table->force_mode = true;
-      Hit->Calculator_table->force_mode_value = HIT;
-      Hit                         -> runThread();
-
-      splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
-
-      #if (DEBUG == 1)
-      VLOG_2("%.2f       ", Hit->total_win_loss);      
-      VLOG_1("\n\n              (SPLIT) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      printBasicStrategy();
-      sleep(1);
-      #endif 
-
-      Split                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
-      Split                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Split->Calculator_table->force_mode = true;
-      Split->Calculator_table->force_mode_value = SPLIT;
-      Split                         -> runThread();
-
-      #if(DEBUG == 1)
-      VLOG_2("%.2f      ", Split->total_win_loss);
-      #endif
-
-      LOG_0("stay->hold %f, hit->hold %f, double->hold %f, split->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
-
-      min = 100000000.0;
-
-      if(min >= Stay->total_win_loss)
-      {
-        min = Stay->total_win_loss;           
-        splitStrategy[player_hand_total][dealer_up_card] = STAY;
-        action = 'O'; 
-      }
-      if(min >= Hit->total_win_loss)
-      {
-        min = Hit->total_win_loss;             
-        splitStrategy[player_hand_total][dealer_up_card] = HIT;
-        action = 'P'; 
-      }
-      if(min >= Double->total_win_loss)
-      {
-        min = Double->total_win_loss;       
-        splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = 'D'; 
-      }
-      if(min >= Split->total_win_loss)
-      {
-        min = Split->total_win_loss;       
-        splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
-        action = 'S'; 
-      }
-      VLOG_0("%c ", action);   
-      #if(DEBUG == 1)
-      VLOG_2("selected: %c \n", action);
-      #endif        
-    }
-    VLOG_0("\n", NULL);      
-  }
-  #endif
-
-  std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-  VLOG_0("\n\nTime difference = %d[s] \n", std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000);  
-  Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
-}
-
-
-
-
-
-
-
-
-
-
-
 
 
 // ======================================================
@@ -725,12 +233,13 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
   HoldCalculator* Split     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
 
 
-  
+  VLOG_2("\n\n Start Win/Loss Debug\n\n", NULL);
   VLOG_0("                *** START OPTIMIZATION (SINGLE-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
   VLOG_0(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
   VLOG_0("\n 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split \n\n", NULL);
 
 #if (HARD_STRATEGY == 1)
+g_lock_split_strategy = true;  // Used to bypass using splitStrategy card
   VLOG_0("\n HARD STRATEGY \n\n", NULL);
   VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
 #if (DEBUG==1)
@@ -758,26 +267,26 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       Double                      -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
       Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Double                      -> runThread();
-
+      VLOG_2("D: %.2f   ", Double->total_win_loss);
       LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[player_hand_total][dealer_up_card] = STAY;
       Stay                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
       Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Stay                        -> runThread();
-
+      VLOG_2("D: %.2f   ", Stay->total_win_loss);
       LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
       hardStrategy[player_hand_total][dealer_up_card] = HIT;
       Hit                         -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
       Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
       Hit                         -> runThread();
-
+      VLOG_2("D: %.2f   ", Hit->total_win_loss);
       LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
    
       min = 10000000.0;
 
       if(min >= Stay->total_win_loss)
       {
-        min = Stay->total_win_loss;           
+        min = Stay->total_win_loss;          
         hardStrategy[player_hand_total][dealer_up_card] = STAY;
         action = 'O';       
       }
@@ -791,15 +300,18 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
       {
         min = Double->total_win_loss;       
         hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = '2'; 
+        action = 'D'; 
       }
       VLOG_0("%c ", action);
+      VLOG_2("Selected: %c\n", action);
     }
     VLOG_0("\n", NULL);
   }
+g_lock_split_strategy = false;
 #endif
 
 #if (SOFT_STRATEGY == 1)
+g_lock_split_strategy = true;
   VLOG_0("\n\n SOFT STRATEGY \n\n", NULL);
   VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
 
@@ -838,450 +350,9 @@ void Simulator::optimize(int rounds, int tempAces, int tempHigh, int tempMid, in
    
       min = 10000000.0;
 
-      if(min >= Stay->hold)
-      {
-        min = Stay->hold;           
-        softStrategy[player_hand_total][dealer_up_card] = STAY;
-        action = 'O'; 
-      }
-      if(min >= Hit->hold)
-      {
-        min = Hit->hold;             
-        softStrategy[player_hand_total][dealer_up_card] = HIT;
-        action = 'X'; 
-      }
-      if(min >= Double->hold)
-      {
-        min = Double->hold;       
-        softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = '2'; 
-      }
-      VLOG_0("%c ", action);      
-    }
-    VLOG_0("\n", NULL);    
-  }
-#endif
-
-#if (SPLIT_STRATEGY == 1)
-  VLOG_0("\n\n SPLIT STRATEGY \n\n", NULL);
-  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
-
-#if (DEBUG==1)
-  sleep(2);
-#endif
-
-  for(int j = 0; j < splitStrategy.size(); j++)
-  {
-    VLOG_0("       split %d: ", j);
-    for(int i = 0; i < hardStrategy[j].size(); i++)
-    {
-      player_hand_total = j;
-      dealer_up_card    = i;   // 
-
-      LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
-      splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-      Double                      -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
-      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double                      -> runThread();
-
-      LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
-      splitStrategy[player_hand_total][dealer_up_card] = STAY;
-      Stay                        -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay                        -> runThread();
-
-      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
-      splitStrategy[player_hand_total][dealer_up_card] = HIT;
-      Hit                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit                         -> runThread();
-
-      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
-      splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
-      Split                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
-      Split                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Split                         -> runThread();
-
-      LOG_0("stay->hold %f, hit->hold %f, double->hold %f, split->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
-   
-      min = 10000000.0;
-
-      if(min >= Stay->hold)
-      {
-        min = Stay->hold;           
-        splitStrategy[player_hand_total][dealer_up_card] = STAY;
-        action = 'O'; 
-      }
-      if(min >= Hit->hold)
-      {
-        min = Hit->hold;             
-        splitStrategy[player_hand_total][dealer_up_card] = HIT;
-        action = 'X'; 
-      }
-      if(min >= Double->hold)
-      {
-        min = Double->hold;       
-        splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = '2'; 
-      }
-      if(min >= Split->hold)
-      {
-        min = Split->hold;       
-        splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
-        action = 'S'; 
-      }
-      VLOG_0("%c ", action);           
-    }
-    VLOG_0("\n", NULL);      
-  }
-  #endif
-
-  std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-  VLOG_0("\n\nTime difference = %d[s] \n", std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000);  
-  Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
-}
-
-
-
-
-
-// ======================================================
-// =============== OPTIMIZE PTHREAD Multithreaded x7 ==============
-// ======================================================
-// precondition: Changes values of current basic strategy vector and 
-//               tests to determine if hit, stay, double, or split
-//               is the most lucrative player move.
-// postcondition: Saves basic strategy card in /strategy cards as text file
-//               which can be loaded using loadBasicStrategy(yada yada)
-
-void Simulator::optimize_pthread_multithreaded_X7(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow)
-{
-  float stayHold              = 0;
-  float hitHold               = 0;
-  float doubleHold            = 0;
-  float splitHold             = 0;
-  float min                   = 10000000.0;
-  int player_hand_total       = 0;
-  int dealer_up_card          = 0;
-  char action                 ='Q';
-
-  float Stay_total_winloss    = 0;
-  float Hit_total_winloss     = 0;
-  float Double_total_winloss  = 0;
-  float Split_total_winloss   = 0;
-
-  std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-
-  // Instantiate calculator oTable_BJbjects
-  HoldCalculator* Stay0     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay0", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay1     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay1", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay2     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay2", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay3     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay3", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay4     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay4", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay5     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay5", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Stay6     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay6", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-  HoldCalculator* Hit0     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit0", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit1     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit1", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit2     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit2", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit3     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit3", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit4     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit4", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit5     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit5", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit6     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit6", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-  HoldCalculator* Double0     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double0", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double1     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double1", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double2     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double2", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double3     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double3", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double4     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double4", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double5     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double5", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double6     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double6", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-  HoldCalculator* Split0     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split0", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split1     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split1", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split2     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split2", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split3     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split3", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split4     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split4", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split5     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split5", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split6     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split6", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-
-  HoldCalculator* Stay     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Stay", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Hit     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Hit", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Double     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Double", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-  HoldCalculator* Split     = new HoldCalculator(rounds, tempAces, tempHigh, tempMid, tempLow, "Split", shoeDecks, numberPlayers, Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);  
-
-
-  VLOG_0("                *** START OPTIMIZATION (MULTIx7-THREAD)    (%i) ROUNDS ***  \n\n", rounds);
-  VLOG_0(" Aces: %d  High: %d  Mid: %d  Low: %d\n", tempAces, tempHigh, tempMid, tempLow);
-  VLOG_0("\n O = Stay   |   X = Hit    |  2 = Double  |   S = Split \n\n", NULL);
-
-#if (HARD_STRATEGY == 1)
-  VLOG_0("\n HARD STRATEGY \n\n", NULL);
-  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
-#if (DEBUG==1)
-  VLOG_2("\n\n               ---- START DEBUG LOG ----", NULL);
-    VLOG_2("\n\n                            House edge:       Double,          Hit,          Stay\n", NULL);
-  sleep(1);
-#endif
-  // Print player card hard values
-  for(int j = 5; j < hardStrategy.size() - 1; j++)
-  {
-    if(j < 10) 
-    {
-      VLOG_0("        hard %d: ", j);
-    }
-    if(j >= 10) 
-    {
-      VLOG_0("       hard %d: ", j);    
-    }
-
-    for(int i = 0; i < hardStrategy[j].size(); i++)
-    {
-      player_hand_total = j;  // Hard code this to debug player hand total otherwise j
-      dealer_up_card    = i;   //  Hard code these to debug up card   otherwise i
-
-      // For multithreading aggregate values
-      Stay_total_winloss = 0;
-      Hit_total_winloss = 0;
-      Double_total_winloss = 0;
-      Split_total_winloss = 0;
-
-
-
-
-      //================= Double BLOC START ================ //
-      hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (Double) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%.2f         ", Double->total_win_loss);
-      printBasicStrategy();
-      sleep(1);
-      #endif
-      LOG_0("<thread_log>START ALL THREADS", __FILE__, __LINE__, NULL);
-      Double0                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double1                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double2                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double3                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double4                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double5                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Double6                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-
-      Double0                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double1                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double2                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);     
-      Double3                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double4                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double5                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy); 
-      Double6                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-     
-      pthread_t PT_0;
-
-      thread T0(&HoldCalculator::runThread, Double0);     
-      thread T1(&HoldCalculator::runThread, Double1);
-      thread T2(&HoldCalculator::runThread, Double2);
-      thread T3(&HoldCalculator::runThread, Double3);
-      thread T4(&HoldCalculator::runThread, Double4);
-      thread T5(&HoldCalculator::runThread, Double5);
-      thread T6(&HoldCalculator::runThread, Double6);
-
-      LOG_0("<thread_log>Wait on all threads to finish...", __FILE__, __LINE__, NULL);      
-      T0.join();       
-      T1.join();
-      T2.join();
-      T3.join();       
-      T4.join();
-      T5.join();
-      T6.join();       
-
-      // Combine thread results
-      Double_total_winloss += Double0->total_win_loss + Double1->total_win_loss + Double2->total_win_loss;
-      Double_total_winloss += Double3->total_win_loss + Double4->total_win_loss + Double5->total_win_loss;
-      Double_total_winloss += Double6->total_win_loss;
-      LOG_0("<<thread_log>Complete, Double_total_winloss %f \n", __FILE__,__LINE__,Double_total_winloss );
-      //================= Double BLOC END ================ //
-
-
-
-      //================= STAY BLOC START ================ //
-      hardStrategy[player_hand_total][dealer_up_card] = STAY;
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (STAY) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%.2f         ", Double_total_winloss);
-      printBasicStrategy();
-      sleep(1);
-      #endif
-      LOG_0("<thread_log>START ALL THREADS", __FILE__, __LINE__, NULL);
-      Stay0                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay1                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay2                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay3                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay4                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay5                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay6                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-
-      Stay0                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay1                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay2                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);     
-      Stay3                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay4                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay5                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy); 
-      Stay6                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-     
-      thread THR0(&HoldCalculator::runThread, Stay0);     
-      thread THR1(&HoldCalculator::runThread, Stay1);
-      thread THR2(&HoldCalculator::runThread, Stay2);
-      thread THR3(&HoldCalculator::runThread, Stay3);
-      thread THR4(&HoldCalculator::runThread, Stay4);
-      thread THR5(&HoldCalculator::runThread, Stay5);
-      thread THR6(&HoldCalculator::runThread, Stay6);
-
-      LOG_0("<thread_log>Wait on all threads to finish...", __FILE__, __LINE__, NULL);      
-      THR0.join();       
-      THR1.join();
-      THR2.join();
-      THR3.join();       
-      THR4.join();
-      THR5.join();
-      THR6.join();       
-
-      // Combine thread results
-      Stay_total_winloss += Stay0->total_win_loss + Stay1->total_win_loss + Stay2->total_win_loss;
-      Stay_total_winloss += Stay3->total_win_loss + Stay4->total_win_loss + Stay5->total_win_loss;
-      Stay_total_winloss += Stay6->total_win_loss;
-      LOG_0("<<thread_log>Complete, Stay_total_winloss %f \n", __FILE__,__LINE__,Stay_total_winloss );
-      //================= STAY BLOC END ================ //
-
-
-
-
-      //================= Hit BLOC START ================ //
-      hardStrategy[player_hand_total][dealer_up_card] = HIT;
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (Hit) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%.2f         ", Stay_total_winloss);
-      printBasicStrategy();
-      sleep(1);
-      #endif
-      LOG_0("<thread_log>START ALL THREADS", __FILE__, __LINE__, NULL);
-      Hit0                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit1                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit2                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit3                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit4                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit5                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit6                        -> setCards(HARD_HAND_MODE, player_hand_total, dealer_up_card);
-
-      Hit0                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit1                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit2                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);     
-      Hit3                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit4                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit5                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy); 
-      Hit6                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-     
-      thread THR20(&HoldCalculator::runThread, Hit0);     
-      thread THR21(&HoldCalculator::runThread, Hit1);
-      thread THR22(&HoldCalculator::runThread, Hit2);
-      thread THR23(&HoldCalculator::runThread, Hit3);
-      thread THR24(&HoldCalculator::runThread, Hit4);
-      thread THR25(&HoldCalculator::runThread, Hit5);
-      thread THR26(&HoldCalculator::runThread, Hit6);
-
-      LOG_0("<thread_log>Wait on all threads to finish...", __FILE__, __LINE__, NULL);      
-      THR20.join();       
-      THR21.join();
-      THR22.join();
-      THR23.join();       
-      THR24.join();
-      THR25.join();
-      THR26.join();       
-
-      // Combine thread results
-      Hit_total_winloss += Hit0->total_win_loss + Hit1->total_win_loss + Hit2->total_win_loss;
-      Hit_total_winloss += Hit3->total_win_loss + Hit4->total_win_loss + Hit5->total_win_loss;
-      Hit_total_winloss += Hit6->total_win_loss;
-      LOG_0("<<thread_log>Complete, Hit_total_winloss %f \n", __FILE__,__LINE__,Hit_total_winloss );
-      //================= Hit BLOC END ================ //
-
-
-
-
-      LOG_0("stayWL %f, hitWL %f, doubleWL %f\n", __FILE__,__LINE__,Stay_total_winloss, Hit_total_winloss, Double_total_winloss );
-      #if(DEBUG == 1)
-      VLOG_2("%.2f           ", Hit_total_winloss);
-      #endif
-      min = 10000000.0;
-
-      if(min >= Stay_total_winloss)
-      {
-        min = Stay_total_winloss;           
-        hardStrategy[player_hand_total][dealer_up_card] = STAY;
-        action = 'O';       
-      }
-      if(min >= Hit_total_winloss)
-      {
-        min = Hit_total_winloss;             
-        hardStrategy[player_hand_total][dealer_up_card] = HIT;
-        action = 'X'; 
-      }
-      if(min >= Double_total_winloss)
-      {
-        min = Double_total_winloss;       
-        hardStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = 'D'; 
-      }
-      #if(DEBUG == 1)
-      VLOG_2(" selected: %c \n", action);
-      #endif
-      VLOG_0("%c ", action);
-    }
-    VLOG_0("\n", NULL);
-  }
-#endif
-
-#if (SOFT_STRATEGY == 1)
-  VLOG_0("\n\n SOFT STRATEGY \n\n", NULL);
-  VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
-
-#if (DEBUG==1)
-  sleep(2);
-#endif
-
-
-  for(int j = 12; j < softStrategy.size() - 1; j++)
-  {
-    VLOG_0("        soft %d: ", j);
-    for(int i = 0; i < softStrategy[j].size(); i++)
-    {
-      player_hand_total = j;
-      dealer_up_card    = i;   // 
-
-      LOG_0("Double -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-      Double                      -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
-      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double                      -> runThread();
-
-      LOG_0("Stay -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card] = STAY;
-      Stay                        -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay                        -> runThread();
-
-      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
-      softStrategy[player_hand_total][dealer_up_card] = HIT;
-      Hit                         -> setCards(SOFT_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit                         -> runThread();
-
-      LOG_0("stay->hold %f, hit->hold %f, double->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
-   
-      min = 100000000.0;
-
       if(min >= Stay->total_win_loss)
       {
-        min = Stay->total_win_loss;           
+        min =Stay->total_win_loss;           
         softStrategy[player_hand_total][dealer_up_card] = STAY;
         action = 'O'; 
       }
@@ -1301,125 +372,62 @@ void Simulator::optimize_pthread_multithreaded_X7(int rounds, int tempAces, int 
     }
     VLOG_0("\n", NULL);    
   }
+g_lock_split_strategy = false;
 #endif
 
 #if (SPLIT_STRATEGY == 1)
+  VLOG_2("\n SPLITTING Hit->total_win_loss: %d \n",Hit->total_win_loss);
   VLOG_0("\n\n SPLIT STRATEGY \n\n", NULL);
-  VLOG_0("(Note: P indicates play as a normal hand)\n", NULL);
   VLOG_0("Dealer up card: A 2 3 4 5 6 7 8 9 10\n\n", NULL);
 
 #if (DEBUG==1)
-  VLOG_2("\n\n               ---- START DEBUG LOG ----", NULL);
-  VLOG_2("\n\n                            House edge:     Double,        Stay,           Hit           Split\n", NULL);
-  sleep(1);
+  sleep(2);
 #endif
+
   for(int j = 0; j < splitStrategy.size(); j++)
   {
-    VLOG_0("       split %d,%d: ", j + 1, j + 1);
+    VLOG_0("     split %d,%d: ", j+1,j+1);
     for(int i = 0; i < hardStrategy[j].size(); i++)
     {
-      player_hand_total = j;   //j  
-      dealer_up_card    = i;   //i 
+      player_hand_total = j;
+      dealer_up_card    = i;   // 
 
-      splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
+      LOG_0("Play -> runThread()", __FILE__,__LINE__, NULL);
+      splitStrategy[player_hand_total][dealer_up_card] = PLAY; 
+      Hit                      -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
+      Hit                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
+      Hit                      -> runThread();
+      VLOG_2("P: %.2f   ", Hit->total_win_loss);
 
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (DOUBLE) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("Hands > player hand: %d,%d    dealer up: %d  == ", player_hand_total + 1, player_hand_total + 1, dealer_up_card + 1);
-      printBasicStrategy();
-      sleep(1);
-      #endif  
-
-      Double                      -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);  // 0 for hard mode, player total, dealer up
-      Double                      -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Double->Calculator_table->force_mode = true;
-      Double->Calculator_table->force_mode_value = DOUBLE;
-      Double                      -> runThread();
-
-      splitStrategy[player_hand_total][dealer_up_card] = STAY;
-
-      #if (DEBUG == 1)
-      VLOG_1("\n\n              (STAY) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      VLOG_2("%.2f        ", Double->total_win_loss);
-      printBasicStrategy();
-      sleep(1);
-      #endif
-
-      Stay                        -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
-      Stay                        -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Stay->Calculator_table->force_mode = true;
-      Stay->Calculator_table->force_mode_value = STAY;
-      Stay                        -> runThread();
-
-      splitStrategy[player_hand_total][dealer_up_card] = HIT;
-
-      #if (DEBUG == 1)
-      VLOG_2("%.2f        ", Stay->total_win_loss);      
-      VLOG_1("\n\n              (HIT) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      printBasicStrategy();
-      sleep(1);
-      #endif 
-
-      Hit                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
-      Hit                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Hit->Calculator_table->force_mode = true;
-      Hit->Calculator_table->force_mode_value = HIT;
-      Hit                         -> runThread();
-
+      LOG_0("Hit -> runThread()", __FILE__,__LINE__, NULL);
       splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
-
-      #if (DEBUG == 1)
-      VLOG_2("%.2f       ", Hit->total_win_loss);      
-      VLOG_1("\n\n              (SPLIT) CALCULATOR STRATEGY)\n\n",__FILE__, __LINE__, NULL);
-      printBasicStrategy();
-      sleep(1);
-      #endif 
-
       Split                         -> setCards(SPLIT_HAND_MODE, player_hand_total, dealer_up_card);
       Split                         -> setBasicStrategy(Simulator::hardStrategy, Simulator::softStrategy, Simulator::splitStrategy);
-      Split->Calculator_table->force_mode = true;
-      Split->Calculator_table->force_mode_value = SPLIT;
       Split                         -> runThread();
-
-      #if(DEBUG == 1)
-      VLOG_2("%.2f      ", Split->total_win_loss);
-      #endif
-
+      VLOG_2("S: %.2f   ", Split->total_win_loss);      
       LOG_0("stay->hold %f, hit->hold %f, double->hold %f, split->hold %f\n", __FILE__,__LINE__,Stay->hold, Hit->hold, Double->hold );
+   
+      min = 10000000.0;
 
-      min = 100000000.0;
-
-      if(min >= Stay->total_win_loss)
-      {
-        min = Stay->total_win_loss;           
-        splitStrategy[player_hand_total][dealer_up_card] = STAY;
-        action = 'O'; 
-      }
       if(min >= Hit->total_win_loss)
       {
         min = Hit->total_win_loss;             
-        splitStrategy[player_hand_total][dealer_up_card] = HIT;
-        action = 'P'; 
+        splitStrategy[player_hand_total][dealer_up_card] = PLAY;
+        action = '-'; 
       }
-      if(min >= Double->total_win_loss)
-      {
-        min = Double->total_win_loss;       
-        splitStrategy[player_hand_total][dealer_up_card] = DOUBLE;
-        action = 'D'; 
-      }
+
       if(min >= Split->total_win_loss)
       {
         min = Split->total_win_loss;       
         splitStrategy[player_hand_total][dealer_up_card] = SPLIT;
         action = 'S'; 
       }
-      VLOG_0("%c ", action);   
-      #if(DEBUG == 1)
-      VLOG_2("selected: %c \n", action);
-      #endif        
+      VLOG_2("Selected: %c\n", action);
+      VLOG_0("%c ", action);           
     }
     VLOG_0("\n", NULL);      
   }
+
   #endif
 
   std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();

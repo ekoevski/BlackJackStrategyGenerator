@@ -14,8 +14,8 @@ using namespace std;
 #define REVEAL_SHOE_CARDS                       0   // Prints shoe cards after reshuffle
 
 #define HARD_STRATEGY                           1
-#define SOFT_STRATEGY                           0
-#define SPLIT_STRATEGY                          0
+#define SOFT_STRATEGY                           1
+#define SPLIT_STRATEGY                          1
 
 // SELECT ONLY ONE OF THESE
 #define BASIC_STRATEGY_ZERO                     0
@@ -25,13 +25,13 @@ using namespace std;
 #define HIT                                     1
 #define DOUBLE                                  2
 #define SPLIT                                   4
+#define PLAY                                    9
 
 #define HARD_HAND_MODE                          0
 #define SOFT_HAND_MODE                          1
 #define SPLIT_HAND_MODE                         3
 
-
-
+extern bool g_lock_split_strategy;
 
 // Always log
 #define VLOG_0(message,...)                     vlog_0(message,__VA_ARGS__) 

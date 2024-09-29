@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-
+#include "logging.h"
 
 using namespace std;
 
@@ -191,22 +191,33 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     //Player::printBasicStrategy();
 
 
-    if(Player::firstIsSoft())
-    {     
-        basicStrategy = Player::playerSoftStrategy[first_hand_total][dealerUpIndex];
-        LOG_1("PlayerfirstIsSOFT, set basicStrategy = %d, playerHand: %d, dealerUpIndex: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUpIndex));              
+    if(firstCard == secondCard && !g_lock_split_strategy)
+    {
+        basicStrategy = Player::playerSplitStrategy[firstCard - 1][dealerUpIndex];
+        
+        if (basicStrategy == PLAY) // Play as normal hand
+        {
+            if(Player::firstIsSoft())
+            {
+                basicStrategy = Player::playerSoftStrategy[first_hand_total][dealerUpIndex];
+            }
+            else
+            {
+                basicStrategy = Player::playerHardStrategy[first_hand_total][dealerUpIndex];
+            }
+        }
     }
     else
     {
-        basicStrategy = Player::playerHardStrategy[first_hand_total][dealerUpIndex];
-        LOG_1("PlayerfirstIsHARD, set basicStrategy = %d, playerHand: %d, dealerUpIndex: %d", __FILE__, __LINE__, basicStrategy, first_hand_total, (dealerUpIndex));  
+        if(Player::firstIsSoft())
+        {     
+            basicStrategy = Player::playerSoftStrategy[first_hand_total][dealerUpIndex];
+        }
+        else
+        {
+            basicStrategy = Player::playerHardStrategy[first_hand_total][dealerUpIndex];
+        }      
     }
-    if(force_intent_mode)
-    {
-        LOG_ERROR("FORCE INTENT: %d", __FILE__, __LINE__, intent_mode);
-        basicStrategy = intent_mode;
-    }        
-
 
     // IF 2 DOUBLE
     if(basicStrategy == DOUBLE)
@@ -242,7 +253,6 @@ void Player::firstTwo(int dealerUpIndex, int intent_mode, bool force_intent_mode
     if(basicStrategy == SPLIT)
     {
         LOG_ERROR("1st Split ... ", __FILE__, __LINE__ , NULL);
-        basicStrategy = Player::playerSplitStrategy[firstCard - 1][dealerUpIndex];
 
         if(basicStrategy == DOUBLE)
         {
@@ -389,7 +399,7 @@ void Player::playFirstHand()
         }
 
         /// YOU NEED TO FIGURE OUT SOMETHING HERE FOR THE SPLITS
-
+        LOG_0("basic_Stragegy: %d", __FILE__, __LINE__, basicStrategy);
         LOG_ERROR("First Hand basicStrategy: %d", __FILE__, __LINE__, basicStrategy);
         switch(basicStrategy)
         {
