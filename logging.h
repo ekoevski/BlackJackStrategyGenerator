@@ -10,7 +10,7 @@ using namespace std;
 
 
 // Use these as build switches
-#define DEBUG                                   1   // set to 0 to turn off debug logs (much faster)
+#define DEBUG                                   0   // set to 0 to turn off debug logs (much faster)
 #define REVEAL_SHOE_CARDS                       0   // Prints shoe cards after reshuffle
 
 #define HARD_STRATEGY                           1
@@ -31,6 +31,7 @@ using namespace std;
 #define SPLIT_HAND_MODE                         3
 
 extern bool g_lock_split_strategy;
+extern bool g_enagle_blackjack;
 
 // Always log
 #define VLOG_0(message,...)                     vlog_0(message,__VA_ARGS__) 

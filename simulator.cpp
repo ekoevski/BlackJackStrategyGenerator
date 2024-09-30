@@ -117,6 +117,7 @@ void Simulator::testCurrentStrategy(int rounds)
     }
   Table_BJ->clearTable();
   }
+  sleep(1);
   VLOG_0("\n\n<><TEST>Simulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
 };
 

@@ -20,17 +20,17 @@ using namespace std;
 // TO USE:      <<<<<<<<<<<<<<<<<<<
 // There is no prompt, the parameters are hardcoded, change them as needed.
 //int miniCards      = 48 - 0;   // 64    // Number of tens (10, Jacks, Queens, Kings)
-int minCards       = 48 - 0;
-int lowCards       = 72 - 72;   // 80    // Number of small cards, 2s - 6s
+int minCards       = 48 - 48;
+int lowCards       = 72 - 0;   // 80    // Number of small cards, 4s - 6s
 int midCards       = 72 - 72;   // 48    // Number 7s - 9s
-int highCards      = 96 - 96;   // 64    // Number of tens (10, Jacks, Queens, Kings)
+int highCards      = 96 - 60;   // 64    // Number of tens (10, Jacks, Queens, Kings)
 int aces           = 24 - 24;   // 24     // Number of aces in the deck
 
-int roundsToSim    = 1000;     // Number of hands to play (higher = more accurate but slower)
-int roundsToTest   = 150000;   // Rounds to test the basic strategy cards;
+int roundsToSim    = 3000;     // Number of hands to play (higher = more accurate but slower)
+int roundsToTest   = 500000;   // Rounds to test the basic strategy cards;
 
 bool g_lock_split_strategy = false;
-int ENABLE_BLACKJACK = 0;
+bool g_enable_blackjack    = true;
 // MAIN
 //=================== 
 int main() 
@@ -41,15 +41,15 @@ int main()
 
   Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards, minCards);
 
-  ENABLE_BLACKJACK = 1;
+  g_enable_blackjack = true;
   // Test results, play 500,000 rounds to see hold %
   Sim->Table_BJ->theShoe->createShoe(aces, highCards, midCards, lowCards, minCards);
 
   Sim->testCurrentStrategy(roundsToTest);
 
-  VLOG_0("\n Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.", NULL);
-  VLOG_0("\n Drop - The total amount of cash that has been placed as a wager.", NULL);
-  VLOG_0("\n IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)\n\n.", NULL);
+  //VLOG_0("\n Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.", NULL);
+  //VLOG_0("\n Drop - The total amount of cash that has been placed as a wager.", NULL);
+  //VLOG_0("\n IMPORTANT: hold percentage is relative to the casino (-5.00 percemt means the casino lost and the player won)\n\n.", NULL);
 }
 
 

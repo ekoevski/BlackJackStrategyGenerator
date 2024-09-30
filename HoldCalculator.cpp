@@ -98,7 +98,7 @@ void HoldCalculator::runThread()
       LOG_0("setSplitCards(playerCardTotal = %d, dealerUpCard = %d)",__FILE__, __LINE__, playerCardTotal, dealerUpCard);      
       Calculator_table->setSplitCards(playerCardTotal, dealerUpCard);
     }
-    #if (ENABLE_BLACKJACK == 0)
+    #if (g_enable_blackjack)
     if(!Calculator_table->theDealer->hasBlackJack())
     {
       for (Player *aPlayer : Calculator_table->players)
