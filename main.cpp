@@ -22,8 +22,8 @@ using namespace std;
 //int miniCards      = 48 - 0;   // 64    // Number of tens (10, Jacks, Queens, Kings)
 int minCards       = 48 - 48;
 int lowCards       = 72 - 0;   // 80    // Number of small cards, 4s - 6s
-int midCards       = 72 - 72;   // 48    // Number 7s - 9s
-int highCards      = 96 - 60;   // 64    // Number of tens (10, Jacks, Queens, Kings)
+int midCards       = 72 - 68;   // 48    // Number 7s - 9s
+int highCards      = 96 - 96;   // 64    // Number of tens (10, Jacks, Queens, Kings)
 int aces           = 24 - 24;   // 24     // Number of aces in the deck
 
 int roundsToSim    = 3000;     // Number of hands to play (higher = more accurate but slower)
@@ -41,10 +41,10 @@ int main()
 
   Sim->optimize(roundsToSim, aces, highCards, midCards, lowCards, minCards);
 
-  g_enable_blackjack = true;
   // Test results, play 500,000 rounds to see hold %
+  g_enable_blackjack = true;
   Sim->Table_BJ->theShoe->createShoe(aces, highCards, midCards, lowCards, minCards);
-
+  //Sim->loadBasicStrategy(aces, highCards, midCards, lowCards, minCards);
   Sim->testCurrentStrategy(roundsToTest);
 
   //VLOG_0("\n Hold percentage - the percent that the casino will keep/lose for the amount of drop(cash) that has been being bet.", NULL);

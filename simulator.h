@@ -45,8 +45,8 @@ class Simulator
   Simulator(string name, int decks, int players);
 
 
-  void exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow);
-  void loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow);
+  void exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow, int tempMin);
+  void loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow, int tempMin);
   void optimize(int rounds, int tempAces, int tempHigh, int tempMid, int tempLow, int tempMin);
   void printBasicStrategy();
 

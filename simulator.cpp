@@ -128,9 +128,9 @@ void Simulator::testCurrentStrategy(int rounds)
 // postcondition: Exports to .txt file a saved version of the basic strategy card using 
 // number of cards.
 
-void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow){
+void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow, int tempMin){
     fstream file;
-    string filename = "strategy cards/A" + to_string(tempAces) + "T" + to_string(tempHigh) + "M" + to_string(tempMid) + "L" + to_string(tempLow) + ".txt";
+    string filename = "strategy cards/A" + to_string(tempAces) + "T" + to_string(tempHigh) + "M" + to_string(tempMid) + "L" + to_string(tempLow) + "MI" + to_string(tempMin) + ".txt";
 
 
     file.open(filename,ios_base::out);
@@ -149,8 +149,6 @@ void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int
       }      
     }
 
-
-
     for(int j = 0; j < splitStrategy.size(); j++){
       for(int i = 0; i < splitStrategy[j].size(); i++)
       {
@@ -168,10 +166,10 @@ void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int
 // postcondition: Reads text file and imports as vector in current
 // basic strategy
 
-void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow)
+void Simulator::loadBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow, int tempMin)
 {
     fstream file;
-    string filename = "strategy cards/A" + to_string(tempAces) + "T" + to_string(tempHigh) + "M" + to_string(tempMid) + "L" + to_string(tempLow) + ".txt";
+    string filename = "strategy cards/A" + to_string(tempAces) + "T" + to_string(tempHigh) + "M" + to_string(tempMid) + "L" + to_string(tempLow) + "MI" + to_string(tempMin) + ".txt";
 
     file.open(filename,ios::in);
     if (file.is_open())
@@ -439,5 +437,5 @@ g_lock_split_strategy = false;
 
   std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
   VLOG_0("\n\nTime difference = %d[s] \n", std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000);  
-  Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow);
+  Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow, tempMin);
 }
