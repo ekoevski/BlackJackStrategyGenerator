@@ -131,7 +131,7 @@ void Simulator::testCurrentStrategy(int rounds)
 
 void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int tempLow, int tempMin){
     fstream file;
-    string filename = "strategy cards/A" + to_string(tempAces) + "T" + to_string(tempHigh) + "M" + to_string(tempMid) + "L" + to_string(tempLow) + "MI" + to_string(tempMin) + ".txt";
+    string filename = "strategy cards/aces?" + to_string(tempAces) + "?high?" + to_string(tempHigh) + "?mid?" + to_string(tempMid) + "?low?" + to_string(tempLow) + "?min?" + to_string(tempMin) + "?.txt";
 
 
     file.open(filename,ios_base::out);

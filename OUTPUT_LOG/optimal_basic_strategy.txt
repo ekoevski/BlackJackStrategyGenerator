@@ -1,9 +1,9 @@
 
 Initiating deck, total decks: 6 total cards: 312
 
-                *** START OPTIMIZATION (SINGLE-THREAD)    (3000) ROUNDS ***  
+                *** START OPTIMIZATION (SINGLE-THREAD)    (300) ROUNDS ***  
 
- Aces: 5  High: 66  Mid: 12  Low: 24
+ Aces: 22  High: 67  Mid: 53  Low: 60
 
  0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split 
 
@@ -12,18 +12,18 @@ Initiating deck, total decks: 6 total cards: 312
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        hard 5: O D X X D D X X X X 
-        hard 6: X D X X X D X X X X 
-        hard 7: X D D D D D X X X X 
-        hard 8: X D D D D D D X X X 
-        hard 9: D D D D D D D D X X 
-       hard 10: D D D D D D D D D D 
-       hard 11: D D D D D D D D D D 
-       hard 12: O O O O O O X O O O 
-       hard 13: O O O O O O X O O O 
-       hard 14: O O O O O O X X O O 
-       hard 15: O O O O O O X X O O 
-       hard 16: O O O O O O X O O O 
+        hard 5: X X X X X X X X X X 
+        hard 6: X X X X X O X X X X 
+        hard 7: X X X O X X X X X X 
+        hard 8: X D X D D X X X X X 
+        hard 9: X D D D D D D D X X 
+       hard 10: D D D D D D D D D X 
+       hard 11: X D D D D D D D D D 
+       hard 12: X X X O X X X X X X 
+       hard 13: X O O O O O X X X X 
+       hard 14: X O O O O O X X X O 
+       hard 15: X O O O O O X X X X 
+       hard 16: O O O O O O X X O X 
        hard 17: O O O O O O O O O O 
        hard 18: O O O O O O O O O O 
        hard 19: O O O O O O O O O O 
@@ -34,45 +34,36 @@ Dealer up card: A 2 3 4 5 6 7 8 9 10
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        soft 12: X D D D D D X X X X 
-        soft 13: X D D D D D X X X X 
-        soft 14: X D D D D D X X X X 
-        soft 15: X D D D D D X X X X 
-        soft 16: D D D D D D X X X X 
-        soft 17: X D D D D D X X X X 
-        soft 18: O D D D D D O O X X 
-        soft 19: D D D D D D O O O O 
-        soft 20: O D D D D D O O O O 
+        soft 12: X D X X D X X X X X 
+        soft 13: X X X X D D X X X X 
+        soft 14: X X X D D D D X X X 
+        soft 15: X X X D D X X X X X 
+        soft 16: X X D D X D X D X X 
+        soft 17: X X D D X D X X X X 
+        soft 18: O D D O O O O O O O 
+        soft 19: O O O O O O O O O O 
+        soft 20: O O O O O O O O O O 
 
 
  SPLIT STRATEGY 
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-     split 1,1: S S S S S - S S S S 
-     split 2,2: - S S S S S - - - - 
-     split 3,3: - S S S S S - - - - 
-     split 4,4: - - - S S S - - - - 
+     split 1,1: S S S S S S S S S S 
+     split 2,2: - - S - S S S - - - 
+     split 3,3: - - - - S S S S - - 
+     split 4,4: - S - - - - - - - - 
      split 5,5: - - - - - - - - - - 
-     split 6,6: - S S S S S - - - - 
-     split 7,7: S S S S S S S - - - 
-     split 8,8: S S S S S S S S - - 
-     split 9,9: S S S S S S S S S - 
-     split 10,10: S S S S S S - - - - 
+     split 6,6: - - - S S S - - - - 
+     split 7,7: - S - S S S S - - - 
+     split 8,8: - S S S S S S S S S 
+     split 9,9: - S S S S - - S - - 
+     split 10,10: - - - - - - - - - - 
 
 
-Time difference = 55[s] 
-<TEST>drop: 61018.000000 w/l: -5332.500000 total W/L (-0.087392)  rounds = 50000 , low = 24 
-<TEST>drop: 60586.000000 w/l: -5292.000000 total W/L (-0.087370)  rounds = 100000 , low = 24 
-<TEST>drop: 60725.000000 w/l: -5456.000000 total W/L (-0.088195)  rounds = 150000 , low = 24 
-<TEST>drop: 60928.000000 w/l: -5627.000000 total W/L (-0.089237)  rounds = 200000 , low = 24 
-<TEST>drop: 60622.000000 w/l: -5198.500000 total W/L (-0.088542)  rounds = 250000 , low = 24 
-<TEST>drop: 61186.000000 w/l: -6340.500000 total W/L (-0.091070)  rounds = 300000 , low = 24 
-<TEST>drop: 60939.000000 w/l: -6027.000000 total W/L (-0.092190)  rounds = 350000 , low = 24 
-<TEST>drop: 60973.000000 w/l: -5564.000000 total W/L (-0.092073)  rounds = 400000 , low = 24 
-<TEST>drop: 61011.000000 w/l: -5816.500000 total W/L (-0.092436)  rounds = 450000 , low = 24 
-<TEST>drop: 60935.000000 w/l: -5261.000000 total W/L (-0.091826)  rounds = 500000 , low = 24 
+Time difference = 9[s] 
+<TEST>drop: 55985.000000 w/l: -55.500000 total W/L (-0.000991)  rounds = 50000 , low = 60 
 
 
-<><TEST>Simulator::run completed: hold -9.182606 percent, rounds: 500000
+<><TEST>Simulator::run completed: hold -0.099134 percent, rounds: 50000
 

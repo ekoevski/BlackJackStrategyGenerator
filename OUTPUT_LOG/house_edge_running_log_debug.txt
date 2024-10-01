@@ -2,265 +2,265 @@
 
  Start Win/Loss Debug
 
-D: 2621.00   O: 2174.00   X: 2190.00   Selected: O
-D: -816.00   O: -436.00   X: -587.00   Selected: D
-D: -420.00   O: -180.00   X: -451.00   Selected: X
-D: -356.00   O: -322.00   X: -495.00   Selected: X
-D: -636.00   O: -314.00   X: -558.00   Selected: D
-D: -1172.00   O: -564.00   X: -678.00   Selected: D
-D: 3700.00   O: 1774.00   X: 983.00   Selected: X
-D: 3532.00   O: 1824.00   X: 1016.00   Selected: X
-D: 3296.00   O: 1724.00   X: 1188.00   Selected: X
-D: 3339.00   O: 1824.00   X: 1490.00   Selected: X
-D: 2684.00   O: 2158.00   X: 2136.00   Selected: X
-D: -792.00   O: -412.00   X: -492.00   Selected: D
-D: -400.00   O: -268.00   X: -603.00   Selected: X
-D: -398.00   O: -308.00   X: -521.00   Selected: X
-D: -616.00   O: -270.00   X: -625.00   Selected: X
-D: -842.00   O: -570.00   X: -798.00   Selected: D
-D: 3552.00   O: 1788.00   X: 1067.00   Selected: X
-D: 3396.00   O: 1702.00   X: 1104.00   Selected: X
-D: 3442.00   O: 1752.00   X: 1155.00   Selected: X
-D: 3440.00   O: 1802.00   X: 1494.00   Selected: X
-D: 2364.00   O: 2202.00   X: 1912.00   Selected: X
-D: -1140.00   O: -504.00   X: -563.00   Selected: D
-D: -716.00   O: -204.00   X: -595.00   Selected: D
-D: -666.00   O: -328.00   X: -522.00   Selected: D
-D: -748.00   O: -322.00   X: -682.00   Selected: D
-D: -1372.00   O: -578.00   X: -831.00   Selected: D
-D: 1210.00   O: 1868.00   X: 90.00   Selected: X
-D: 3052.00   O: 1718.00   X: 1165.00   Selected: X
-D: 3254.00   O: 1690.00   X: 1458.00   Selected: X
-D: 3258.00   O: 1820.00   X: 1439.00   Selected: X
-D: 1907.00   O: 2120.00   X: 1878.00   Selected: X
-D: -1960.00   O: -300.00   X: -924.00   Selected: D
-D: -1640.00   O: -188.00   X: -955.00   Selected: D
-D: -1238.00   O: -366.00   X: -742.00   Selected: D
-D: -1360.00   O: -336.00   X: -800.00   Selected: D
-D: -1664.00   O: -516.00   X: -1012.00   Selected: D
-D: -1188.00   O: 1792.00   X: -813.00   Selected: D
-D: 638.00   O: 1786.00   X: 122.00   Selected: X
-D: 2766.00   O: 1856.00   X: 1247.00   Selected: X
-D: 2636.00   O: 1808.00   X: 1336.00   Selected: X
-D: 1279.00   O: 2154.00   X: 1618.00   Selected: D
-D: -2678.00   O: -332.00   X: -1441.00   Selected: D
-D: -2334.00   O: -230.00   X: -1441.00   Selected: D
-D: -2052.00   O: -200.00   X: -1233.00   Selected: D
-D: -2072.00   O: -358.00   X: -1100.00   Selected: D
-D: -2328.00   O: -594.00   X: -1231.00   Selected: D
-D: -1752.00   O: 1826.00   X: -1078.00   Selected: D
-D: -1870.00   O: 1766.00   X: -968.00   Selected: D
-D: 252.00   O: 1836.00   X: 88.00   Selected: X
-D: 2492.00   O: 1738.00   X: 1172.00   Selected: X
-D: 833.00   O: 2104.00   X: 1353.00   Selected: D
-D: -3380.00   O: -362.00   X: -1632.00   Selected: D
-D: -3330.00   O: -260.00   X: -1644.00   Selected: D
-D: -3228.00   O: -256.00   X: -1492.00   Selected: D
-D: -3012.00   O: -376.00   X: -1602.00   Selected: D
-D: -3154.00   O: -560.00   X: -1510.00   Selected: D
-D: -2266.00   O: 1830.00   X: -1190.00   Selected: D
-D: -2314.00   O: 1616.00   X: -1106.00   Selected: D
-D: -2216.00   O: 1798.00   X: -1043.00   Selected: D
-D: -176.00   O: 1814.00   X: 89.00   Selected: D
-D: 418.00   O: 2106.00   X: 1249.00   Selected: D
-D: -3710.00   O: -438.00   X: -1838.00   Selected: D
-D: -3720.00   O: -290.00   X: -1929.00   Selected: D
-D: -3682.00   O: -308.00   X: -1776.00   Selected: D
-D: -3634.00   O: -402.00   X: -1724.00   Selected: D
-D: -3654.00   O: -584.00   X: -1859.00   Selected: D
-D: -2772.00   O: 1854.00   X: -1331.00   Selected: D
-D: -2402.00   O: 1786.00   X: -1293.00   Selected: D
-D: -2230.00   O: 1768.00   X: -1094.00   Selected: D
-D: -2108.00   O: 1748.00   X: -791.00   Selected: D
-D: 3227.00   O: 2176.00   X: 2515.00   Selected: O
-D: 2582.00   O: -316.00   X: 1304.00   Selected: O
-D: 2562.00   O: -158.00   X: 1228.00   Selected: O
-D: 2638.00   O: -218.00   X: 1324.00   Selected: O
-D: 2718.00   O: -266.00   X: 1321.00   Selected: O
-D: 2568.00   O: -632.00   X: 1281.00   Selected: O
-D: 3268.00   O: 1802.00   X: 1610.00   Selected: X
-D: 3710.00   O: 1698.00   X: 1890.00   Selected: O
-D: 4064.00   O: 1760.00   X: 2118.00   Selected: O
-D: 4174.00   O: 1770.00   X: 2219.00   Selected: O
-D: 3117.00   O: 2152.00   X: 2569.00   Selected: O
-D: 2674.00   O: -344.00   X: 1365.00   Selected: O
-D: 2590.00   O: -276.00   X: 1424.00   Selected: O
-D: 2790.00   O: -402.00   X: 1511.00   Selected: O
-D: 2920.00   O: -286.00   X: 1476.00   Selected: O
-D: 2560.00   O: -612.00   X: 1391.00   Selected: O
-D: 3056.00   O: 1810.00   X: 1620.00   Selected: X
-D: 3350.00   O: 1768.00   X: 1856.00   Selected: O
-D: 3802.00   O: 1822.00   X: 2018.00   Selected: O
-D: 4127.00   O: 1736.00   X: 2233.00   Selected: O
-D: 3081.00   O: 2140.00   X: 2422.00   Selected: O
-D: 2746.00   O: -474.00   X: 1298.00   Selected: O
-D: 2718.00   O: -168.00   X: 1272.00   Selected: O
-D: 2968.00   O: -220.00   X: 1332.00   Selected: O
-D: 2744.00   O: -286.00   X: 1364.00   Selected: O
-D: 2918.00   O: -602.00   X: 1440.00   Selected: O
-D: 2862.00   O: 1864.00   X: 1445.00   Selected: X
-D: 3226.00   O: 1718.00   X: 1557.00   Selected: X
-D: 3636.00   O: 1784.00   X: 1792.00   Selected: O
-D: 4040.00   O: 1760.00   X: 2037.00   Selected: O
-D: 3073.00   O: 2176.00   X: 2502.00   Selected: O
-D: 2886.00   O: -384.00   X: 1440.00   Selected: O
-D: 2910.00   O: -316.00   X: 1513.00   Selected: O
-D: 3062.00   O: -316.00   X: 1449.00   Selected: O
-D: 3010.00   O: -360.00   X: 1520.00   Selected: O
-D: 2978.00   O: -630.00   X: 1477.00   Selected: O
-D: 2918.00   O: 1782.00   X: 1370.00   Selected: X
-D: 3214.00   O: 1714.00   X: 1594.00   Selected: X
-D: 3604.00   O: 1736.00   X: 1790.00   Selected: O
-D: 4093.00   O: 1724.00   X: 1995.00   Selected: O
-D: 3228.00   O: 2092.00   X: 2481.00   Selected: O
-D: 3280.00   O: -216.00   X: 1661.00   Selected: O
-D: 3370.00   O: -194.00   X: 1682.00   Selected: O
-D: 3362.00   O: -348.00   X: 1761.00   Selected: O
-D: 3570.00   O: -258.00   X: 1778.00   Selected: O
-D: 3378.00   O: -544.00   X: 1751.00   Selected: O
-D: 3228.00   O: 1866.00   X: 1692.00   Selected: X
-D: 3506.00   O: 1720.00   X: 1766.00   Selected: O
-D: 3756.00   O: 1742.00   X: 1865.00   Selected: O
-D: 4024.00   O: 1704.00   X: 2159.00   Selected: O
-D: 3566.00   O: 1939.00   X: 2631.00   Selected: O
-D: 4006.00   O: -634.00   X: 2009.00   Selected: O
-D: 4008.00   O: -671.00   X: 2035.00   Selected: O
-D: 4078.00   O: -443.00   X: 2083.00   Selected: O
-D: 4194.00   O: -505.00   X: 2062.00   Selected: O
-D: 4036.00   O: -915.00   X: 2049.00   Selected: O
-D: 3908.00   O: -15.00   X: 1902.00   Selected: O
-D: 3904.00   O: 1565.00   X: 2026.00   Selected: O
-D: 4308.00   O: 1591.00   X: 2136.00   Selected: O
-D: 4388.00   O: 1658.00   X: 2289.00   Selected: O
-D: 3766.00   O: 1522.00   X: 2763.00   Selected: O
-D: 4650.00   O: -1339.00   X: 2328.00   Selected: O
-D: 4660.00   O: -1186.00   X: 2331.00   Selected: O
-D: 4584.00   O: -1134.00   X: 2302.00   Selected: O
-D: 4708.00   O: -957.00   X: 2402.00   Selected: O
-D: 4826.00   O: -1117.00   X: 2377.00   Selected: O
-D: 4586.00   O: -1945.00   X: 2414.00   Selected: O
-D: 4566.00   O: -313.00   X: 2358.00   Selected: O
-D: 4852.00   O: 1268.00   X: 2373.00   Selected: O
-D: 4855.00   O: 1366.00   X: 2584.00   Selected: O
-D: 4045.00   O: 1262.00   X: 2805.00   Selected: O
-D: 5192.00   O: -1883.00   X: 2540.00   Selected: O
-D: 5178.00   O: -1808.00   X: 2466.00   Selected: O
-D: 5196.00   O: -1727.00   X: 2532.00   Selected: O
-D: 5294.00   O: -1555.00   X: 2520.00   Selected: O
-D: 5258.00   O: -1650.00   X: 2561.00   Selected: O
-D: 5230.00   O: -2267.00   X: 2525.00   Selected: O
-D: 5228.00   O: -2306.00   X: 2497.00   Selected: O
-D: 5176.00   O: -727.00   X: 2538.00   Selected: O
-D: 5262.00   O: 1024.00   X: 2575.00   Selected: O
-D: 4062.00   O: 806.00   X: 2901.00   Selected: O
-D: 5470.00   O: -2351.00   X: 2772.00   Selected: O
-D: 5442.00   O: -2377.00   X: 2715.00   Selected: O
-D: 5504.00   O: -2297.00   X: 2743.00   Selected: O
-D: 5498.00   O: -2079.00   X: 2744.00   Selected: O
-D: 5516.00   O: -2224.00   X: 2729.00   Selected: O
-D: 5516.00   O: -2523.00   X: 2770.00   Selected: O
-D: 5542.00   O: -2665.00   X: 2721.00   Selected: O
-D: 5532.00   O: -2619.00   X: 2731.00   Selected: O
-D: 5405.00   O: -865.00   X: 2776.00   Selected: O
+D: 371.00   O: 242.00   X: 136.00   Selected: X
+D: 240.00   O: 96.00   X: 45.00   Selected: X
+D: 236.00   O: 62.00   X: 39.00   Selected: X
+D: 180.00   O: 52.00   X: -9.00   Selected: X
+D: 96.00   O: 34.00   X: 9.00   Selected: X
+D: 28.00   O: 8.00   X: -13.00   Selected: X
+D: 288.00   O: 124.00   X: 30.00   Selected: X
+D: 260.00   O: 158.00   X: 58.00   Selected: X
+D: 332.00   O: 174.00   X: 110.00   Selected: X
+D: 310.00   O: 180.00   X: 93.00   Selected: X
+D: 331.00   O: 200.00   X: 152.00   Selected: X
+D: 256.00   O: 110.00   X: 57.00   Selected: X
+D: 108.00   O: 88.00   X: 57.00   Selected: X
+D: 160.00   O: 56.00   X: 38.00   Selected: X
+D: 102.00   O: 52.00   X: 15.00   Selected: X
+D: 28.00   O: 8.00   X: 16.00   Selected: O
+D: 242.00   O: 152.00   X: 45.00   Selected: X
+D: 298.00   O: 146.00   X: 77.00   Selected: X
+D: 342.00   O: 184.00   X: 113.00   Selected: X
+D: 310.00   O: 180.00   X: 113.00   Selected: X
+D: 297.00   O: 198.00   X: 171.00   Selected: X
+D: 104.00   O: 92.00   X: 36.00   Selected: X
+D: 104.00   O: 100.00   X: 45.00   Selected: X
+D: 146.00   O: 24.00   X: 46.00   Selected: O
+D: 90.00   O: 28.00   X: 26.00   Selected: X
+D: 10.00   O: 14.00   X: -4.00   Selected: X
+D: 138.00   O: 130.00   X: 21.00   Selected: X
+D: 240.00   O: 152.00   X: 59.00   Selected: X
+D: 280.00   O: 176.00   X: 75.00   Selected: X
+D: 256.00   O: 188.00   X: 99.00   Selected: X
+D: 233.00   O: 218.00   X: 145.00   Selected: X
+D: -56.00   O: 84.00   X: 37.00   Selected: D
+D: 112.00   O: 110.00   X: -4.00   Selected: X
+D: -26.00   O: 62.00   X: 12.00   Selected: D
+D: -36.00   O: 32.00   X: 7.00   Selected: D
+D: -16.00   O: 60.00   X: -44.00   Selected: X
+D: -22.00   O: 128.00   X: -29.00   Selected: X
+D: 90.00   O: 142.00   X: 48.00   Selected: X
+D: 224.00   O: 172.00   X: 42.00   Selected: X
+D: 205.00   O: 204.00   X: 109.00   Selected: X
+D: 168.00   O: 230.00   X: 130.00   Selected: X
+D: -32.00   O: 124.00   X: -30.00   Selected: D
+D: 8.00   O: 46.00   X: 11.00   Selected: D
+D: -86.00   O: 62.00   X: -28.00   Selected: D
+D: -60.00   O: 22.00   X: -19.00   Selected: D
+D: -110.00   O: 0.00   X: -50.00   Selected: D
+D: -106.00   O: 142.00   X: -42.00   Selected: D
+D: -30.00   O: 162.00   X: 17.00   Selected: D
+D: 50.00   O: 180.00   X: 3.00   Selected: X
+D: 144.00   O: 188.00   X: 91.00   Selected: X
+D: 0.00   O: 232.00   X: 105.00   Selected: D
+D: -178.00   O: 96.00   X: -39.00   Selected: D
+D: -112.00   O: 66.00   X: -53.00   Selected: D
+D: -104.00   O: 62.00   X: -78.00   Selected: D
+D: -104.00   O: 26.00   X: -90.00   Selected: D
+D: -150.00   O: 8.00   X: -100.00   Selected: D
+D: -140.00   O: 160.00   X: -77.00   Selected: D
+D: -96.00   O: 162.00   X: -65.00   Selected: D
+D: -78.00   O: 150.00   X: -24.00   Selected: D
+D: 18.00   O: 172.00   X: 7.00   Selected: X
+D: 62.00   O: 212.00   X: 29.00   Selected: X
+D: -82.00   O: 102.00   X: -57.00   Selected: D
+D: -136.00   O: 74.00   X: -63.00   Selected: D
+D: -166.00   O: 62.00   X: -86.00   Selected: D
+D: -202.00   O: 42.00   X: -105.00   Selected: D
+D: -184.00   O: 18.00   X: -107.00   Selected: D
+D: -136.00   O: 146.00   X: -79.00   Selected: D
+D: -108.00   O: 160.00   X: -15.00   Selected: D
+D: -82.00   O: 178.00   X: -40.00   Selected: D
+D: -45.00   O: 160.00   X: 15.00   Selected: D
+D: 255.00   O: 214.00   X: 180.00   Selected: X
+D: 240.00   O: 82.00   X: 81.00   Selected: X
+D: 182.00   O: 102.00   X: 78.00   Selected: X
+D: 162.00   O: 80.00   X: 99.00   Selected: O
+D: 118.00   O: 52.00   X: 44.00   Selected: X
+D: 72.00   O: 38.00   X: 34.00   Selected: X
+D: 52.00   O: 136.00   X: 47.00   Selected: X
+D: 196.00   O: 152.00   X: 40.00   Selected: X
+D: 178.00   O: 182.00   X: 105.00   Selected: X
+D: 236.00   O: 180.00   X: 134.00   Selected: X
+D: 247.00   O: 232.00   X: 179.00   Selected: X
+D: 138.00   O: 62.00   X: 76.00   Selected: O
+D: 194.00   O: 60.00   X: 77.00   Selected: O
+D: 140.00   O: 58.00   X: 91.00   Selected: O
+D: 176.00   O: 76.00   X: 82.00   Selected: O
+D: 122.00   O: 10.00   X: 70.00   Selected: O
+D: 128.00   O: 156.00   X: 55.00   Selected: X
+D: 156.00   O: 158.00   X: 95.00   Selected: X
+D: 210.00   O: 180.00   X: 77.00   Selected: X
+D: 245.00   O: 172.00   X: 137.00   Selected: X
+D: 300.00   O: 226.00   X: 185.00   Selected: X
+D: 178.00   O: 70.00   X: 120.00   Selected: O
+D: 196.00   O: 86.00   X: 121.00   Selected: O
+D: 230.00   O: 64.00   X: 96.00   Selected: O
+D: 134.00   O: 46.00   X: 95.00   Selected: O
+D: 180.00   O: 48.00   X: 80.00   Selected: O
+D: 144.00   O: 158.00   X: 80.00   Selected: X
+D: 222.00   O: 162.00   X: 124.00   Selected: X
+D: 174.00   O: 146.00   X: 124.00   Selected: X
+D: 274.00   O: 158.00   X: 169.00   Selected: O
+D: 300.00   O: 224.00   X: 176.00   Selected: X
+D: 278.00   O: 88.00   X: 161.00   Selected: O
+D: 210.00   O: 80.00   X: 107.00   Selected: O
+D: 240.00   O: 64.00   X: 118.00   Selected: O
+D: 258.00   O: 16.00   X: 111.00   Selected: O
+D: 258.00   O: 44.00   X: 98.00   Selected: O
+D: 210.00   O: 146.00   X: 128.00   Selected: X
+D: 248.00   O: 154.00   X: 103.00   Selected: X
+D: 304.00   O: 182.00   X: 126.00   Selected: X
+D: 289.00   O: 172.00   X: 169.00   Selected: X
+D: 381.00   O: 204.00   X: 218.00   Selected: O
+D: 312.00   O: 80.00   X: 145.00   Selected: O
+D: 320.00   O: 78.00   X: 152.00   Selected: O
+D: 320.00   O: 60.00   X: 150.00   Selected: O
+D: 284.00   O: 52.00   X: 147.00   Selected: O
+D: 324.00   O: 46.00   X: 135.00   Selected: O
+D: 276.00   O: 158.00   X: 145.00   Selected: X
+D: 236.00   O: 162.00   X: 143.00   Selected: X
+D: 358.00   O: 148.00   X: 153.00   Selected: O
+D: 327.00   O: 180.00   X: 179.00   Selected: X
+D: 337.00   O: 208.00   X: 222.00   Selected: O
+D: 352.00   O: 65.00   X: 190.00   Selected: O
+D: 374.00   O: 35.00   X: 193.00   Selected: O
+D: 354.00   O: 17.00   X: 176.00   Selected: O
+D: 386.00   O: 5.00   X: 191.00   Selected: O
+D: 368.00   O: -15.00   X: 168.00   Selected: O
+D: 342.00   O: 28.00   X: 151.00   Selected: O
+D: 354.00   O: 100.00   X: 176.00   Selected: O
+D: 408.00   O: 126.00   X: 168.00   Selected: O
+D: 410.00   O: 145.00   X: 196.00   Selected: O
+D: 432.00   O: 150.00   X: 242.00   Selected: O
+D: 418.00   O: -37.00   X: 207.00   Selected: O
+D: 416.00   O: 10.00   X: 231.00   Selected: O
+D: 446.00   O: -8.00   X: 204.00   Selected: O
+D: 454.00   O: -44.00   X: 226.00   Selected: O
+D: 440.00   O: -57.00   X: 222.00   Selected: O
+D: 420.00   O: -144.00   X: 199.00   Selected: O
+D: 438.00   O: -82.00   X: 209.00   Selected: O
+D: 436.00   O: 49.00   X: 208.00   Selected: O
+D: 437.00   O: 93.00   X: 258.00   Selected: O
+D: 410.00   O: 49.00   X: 241.00   Selected: O
+D: 452.00   O: -110.00   X: 229.00   Selected: O
+D: 472.00   O: -111.00   X: 235.00   Selected: O
+D: 466.00   O: -116.00   X: 222.00   Selected: O
+D: 418.00   O: -110.00   X: 229.00   Selected: O
+D: 476.00   O: -144.00   X: 197.00   Selected: O
+D: 468.00   O: -186.00   X: 217.00   Selected: O
+D: 440.00   O: -180.00   X: 214.00   Selected: O
+D: 458.00   O: -102.00   X: 222.00   Selected: O
+D: 467.00   O: 25.00   X: 234.00   Selected: O
+D: 410.00   O: -61.00   X: 253.00   Selected: O
+D: 484.00   O: -170.00   X: 238.00   Selected: O
+D: 484.00   O: -193.00   X: 258.00   Selected: O
+D: 468.00   O: -216.00   X: 243.00   Selected: O
+D: 512.00   O: -199.00   X: 254.00   Selected: O
+D: 504.00   O: -175.00   X: 248.00   Selected: O
+D: 502.00   O: -240.00   X: 254.00   Selected: O
+D: 472.00   O: -242.00   X: 230.00   Selected: O
+D: 438.00   O: -225.00   X: 246.00   Selected: O
+D: 452.00   O: -111.00   X: 234.00   Selected: O
 
  SPLITTING Hit->total_win_loss: 1831885595 
-P: 1822.00   S: 1341.00   Selected: S
-P: -1138.00   S: -1408.00   Selected: S
-P: -1272.00   S: -1390.00   Selected: S
-P: -980.00   S: -1361.00   Selected: S
-P: -1004.00   S: -1177.00   Selected: S
-P: -1684.00   S: -1445.00   Selected: -
-P: 601.00   S: -599.00   Selected: S
-P: 924.00   S: -541.00   Selected: S
-P: 1139.00   S: -418.00   Selected: S
-P: 1335.00   S: -118.00   Selected: S
-P: 1879.00   S: 2232.00   Selected: -
-P: -726.00   S: -1556.00   Selected: S
-P: -592.00   S: -1305.00   Selected: S
-P: -543.00   S: -1502.00   Selected: S
-P: -667.00   S: -1409.00   Selected: S
-P: -780.00   S: -2128.00   Selected: S
-P: 642.00   S: 1546.00   Selected: -
-P: 838.00   S: 2147.00   Selected: -
-P: 1182.00   S: 2811.00   Selected: -
-P: 1437.00   S: 3035.00   Selected: -
-P: 1876.00   S: 2272.00   Selected: -
-P: -528.00   S: -1545.00   Selected: S
-P: -607.00   S: -1257.00   Selected: S
-P: -576.00   S: -1304.00   Selected: S
-P: -603.00   S: -1455.00   Selected: S
-P: -722.00   S: -2157.00   Selected: S
-P: 971.00   S: 1403.00   Selected: -
-P: 1163.00   S: 2062.00   Selected: -
-P: 1192.00   S: 2800.00   Selected: -
-P: 1381.00   S: 2985.00   Selected: -
-P: 1622.00   S: 2183.00   Selected: -
-P: -1992.00   S: -1558.00   Selected: -
-P: -1644.00   S: -1473.00   Selected: -
-P: -1348.00   S: -1600.00   Selected: S
-P: -1444.00   S: -1664.00   Selected: S
-P: -1950.00   S: -2288.00   Selected: S
-P: -1206.00   S: 1378.00   Selected: -
-P: 177.00   S: 1943.00   Selected: -
-P: 1155.00   S: 2632.00   Selected: -
-P: 1330.00   S: 2849.00   Selected: -
-P: 726.00   S: 2197.00   Selected: -
-P: -3466.00   S: -2039.00   Selected: -
-P: -3432.00   S: -1677.00   Selected: -
-P: -3174.00   S: -1653.00   Selected: -
-P: -2890.00   S: -1474.00   Selected: -
-P: -3086.00   S: -2089.00   Selected: -
-P: -2288.00   S: 1464.00   Selected: -
-P: -2304.00   S: 1917.00   Selected: -
-P: -1946.00   S: 2505.00   Selected: -
-P: -102.00   S: 2537.00   Selected: -
-P: 2160.00   S: 2198.00   Selected: -
-P: -306.00   S: -1792.00   Selected: S
-P: -354.00   S: -1519.00   Selected: S
-P: -202.00   S: -1748.00   Selected: S
-P: -294.00   S: -1291.00   Selected: S
-P: -514.00   S: -2187.00   Selected: S
-P: 1644.00   S: 1782.00   Selected: -
-P: 1800.00   S: 2264.00   Selected: -
-P: 1672.00   S: 2720.00   Selected: -
-P: 1854.00   S: 2956.00   Selected: -
-P: 2096.00   S: 2060.00   Selected: S
-P: -346.00   S: -1917.00   Selected: S
-P: -262.00   S: -1500.00   Selected: S
-P: -128.00   S: -1447.00   Selected: S
-P: -390.00   S: -1874.00   Selected: S
-P: -448.00   S: -2223.00   Selected: S
-P: 1316.00   S: -119.00   Selected: S
-P: 1558.00   S: 1992.00   Selected: -
-P: 1758.00   S: 2690.00   Selected: -
-P: 1816.00   S: 2660.00   Selected: -
-P: 2094.00   S: 1665.00   Selected: S
-P: -398.00   S: -2306.00   Selected: S
-P: -332.00   S: -2118.00   Selected: S
-P: -186.00   S: -1996.00   Selected: S
-P: -296.00   S: -2107.00   Selected: S
-P: -438.00   S: -2507.00   Selected: S
-P: 1744.00   S: -2141.00   Selected: S
-P: 1758.00   S: 177.00   Selected: S
-P: 1716.00   S: 2325.00   Selected: -
-P: 1916.00   S: 2420.00   Selected: -
-P: 1499.00   S: 1130.00   Selected: S
-P: -1416.00   S: -3012.00   Selected: S
-P: -1267.00   S: -2910.00   Selected: S
-P: -856.00   S: -2726.00   Selected: S
-P: -946.00   S: -2454.00   Selected: S
-P: -1209.00   S: -3021.00   Selected: S
-P: -1933.00   S: -2477.00   Selected: S
-P: -298.00   S: -2138.00   Selected: S
-P: 1426.00   S: -64.00   Selected: S
-P: 1383.00   S: 2090.00   Selected: -
-P: 912.00   S: 879.00   Selected: S
-P: -2332.00   S: -3982.00   Selected: S
-P: -2483.00   S: -3729.00   Selected: S
-P: -2182.00   S: -3946.00   Selected: S
-P: -2090.00   S: -3422.00   Selected: S
-P: -2006.00   S: -3911.00   Selected: S
-P: -2555.00   S: -2108.00   Selected: -
-P: -2658.00   S: -1892.00   Selected: -
-P: -2554.00   S: -1131.00   Selected: -
-P: -812.00   S: 851.00   Selected: -
+P: 94.00   S: 75.00   Selected: S
+P: 40.00   S: -80.00   Selected: S
+P: -25.00   S: -133.00   Selected: S
+P: -23.00   S: -100.00   Selected: S
+P: -30.00   S: -167.00   Selected: S
+P: -38.00   S: -147.00   Selected: S
+P: -82.00   S: -148.00   Selected: S
+P: -37.00   S: -77.00   Selected: S
+P: -6.00   S: -95.00   Selected: S
+P: 61.00   S: -40.00   Selected: S
+P: 148.00   S: 179.00   Selected: -
+P: 62.00   S: 93.00   Selected: -
+P: 30.00   S: -53.00   Selected: S
+P: 18.00   S: 75.00   Selected: -
+P: 23.00   S: -2.00   Selected: S
+P: 21.00   S: -12.00   Selected: S
+P: 21.00   S: -48.00   Selected: S
+P: 54.00   S: 65.00   Selected: -
+P: 70.00   S: 98.00   Selected: -
+P: 117.00   S: 212.00   Selected: -
+P: 154.00   S: 217.00   Selected: -
+P: 46.00   S: 78.00   Selected: -
+P: 20.00   S: 29.00   Selected: -
+P: 26.00   S: 51.00   Selected: -
+P: -5.00   S: -50.00   Selected: S
+P: 0.00   S: -104.00   Selected: S
+P: 47.00   S: 28.00   Selected: S
+P: 87.00   S: 36.00   Selected: S
+P: 88.00   S: 105.00   Selected: -
+P: 118.00   S: 178.00   Selected: -
+P: 176.00   S: 202.00   Selected: -
+P: 130.00   S: 79.00   Selected: S
+P: 4.00   S: 16.00   Selected: -
+P: -38.00   S: 3.00   Selected: -
+P: -16.00   S: 38.00   Selected: -
+P: -69.00   S: 57.00   Selected: -
+P: -52.00   S: 20.00   Selected: -
+P: -1.00   S: 90.00   Selected: -
+P: 84.00   S: 120.00   Selected: -
+P: 96.00   S: 221.00   Selected: -
+P: 59.00   S: 176.00   Selected: -
+P: -110.00   S: 59.00   Selected: -
+P: -130.00   S: 39.00   Selected: -
+P: -124.00   S: 64.00   Selected: -
+P: -178.00   S: 25.00   Selected: -
+P: -154.00   S: -26.00   Selected: -
+P: -140.00   S: 39.00   Selected: -
+P: -86.00   S: 91.00   Selected: -
+P: -82.00   S: 107.00   Selected: -
+P: 33.00   S: 208.00   Selected: -
+P: 190.00   S: 282.00   Selected: -
+P: 72.00   S: 100.00   Selected: -
+P: 45.00   S: 167.00   Selected: -
+P: 66.00   S: -28.00   Selected: S
+P: 12.00   S: -26.00   Selected: S
+P: 38.00   S: -64.00   Selected: S
+P: 60.00   S: 71.00   Selected: -
+P: 70.00   S: 133.00   Selected: -
+P: 87.00   S: 197.00   Selected: -
+P: 133.00   S: 280.00   Selected: -
+P: 196.00   S: 266.00   Selected: -
+P: 86.00   S: 42.00   Selected: S
+P: 80.00   S: 94.00   Selected: -
+P: 68.00   S: 36.00   Selected: S
+P: 28.00   S: -28.00   Selected: S
+P: 28.00   S: -136.00   Selected: S
+P: 93.00   S: 3.00   Selected: S
+P: 87.00   S: 113.00   Selected: -
+P: 113.00   S: 222.00   Selected: -
+P: 188.00   S: 206.00   Selected: -
+P: 204.00   S: 225.00   Selected: -
+P: 78.00   S: 42.00   Selected: S
+P: 82.00   S: 23.00   Selected: S
+P: 54.00   S: 20.00   Selected: S
+P: 74.00   S: -16.00   Selected: S
+P: 24.00   S: -63.00   Selected: S
+P: 124.00   S: -80.00   Selected: S
+P: 139.00   S: -5.00   Selected: S
+P: 172.00   S: 120.00   Selected: S
+P: 165.00   S: 145.00   Selected: S
+P: 167.00   S: 178.00   Selected: -
+P: -18.00   S: -48.00   Selected: S
+P: -16.00   S: -65.00   Selected: S
+P: -20.00   S: -80.00   Selected: S
+P: -35.00   S: -111.00   Selected: S
+P: -79.00   S: -73.00   Selected: -
+P: -135.00   S: -124.00   Selected: -
+P: -31.00   S: -42.00   Selected: S
+P: 36.00   S: 75.00   Selected: -
+P: 59.00   S: 128.00   Selected: -
+P: -32.00   S: 136.00   Selected: -
+P: -173.00   S: -84.00   Selected: -
+P: -183.00   S: -2.00   Selected: -
+P: -190.00   S: -46.00   Selected: -
+P: -193.00   S: -143.00   Selected: -
+P: -207.00   S: -99.00   Selected: -
+P: -212.00   S: -44.00   Selected: -
+P: -252.00   S: -32.00   Selected: -
+P: -219.00   S: 30.00   Selected: -
+P: -139.00   S: 123.00   Selected: -

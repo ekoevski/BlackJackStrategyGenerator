@@ -20,14 +20,14 @@ using namespace std;
 // TO USE:      <<<<<<<<<<<<<<<<<<<
 // There is no prompt, the parameters are hardcoded, change them as needed.
 //int miniCards      = 48 - 0;   // 64    // Number of tens (10, Jacks, Queens, Kings)
-int minCards       = 48 - 39;
-int lowCards       = 72 - 48;   // 80    // Number of small cards, 4s - 6s
-int midCards       = 72 - 60;   // 48    // Number 7s - 9s
-int highCards      = 96 - 30;   // 64    // Number of tens (10, Jacks, Queens, Kings)
-int aces           = 24 - 19;   // 24     // Number of aces in the deck
+int minCards       = 48 - 30;
+int lowCards       = 72 - 12;   // 80    // Number of small cards, 4s - 6s
+int midCards       = 72 - 19;   // 48    // Number 7s - 9s
+int highCards      = 96 - 29;   // 64    // Number of tens (10, Jacks, Queens, Kings)
+int aces           = 24 - 2;   // 24     // Number of aces in the deck
 
-int roundsToSim    = 3000;     // Number of hands to play (higher = more accurate but slower)
-int roundsToTest   = 500000;   // Rounds to test the basic strategy cards;
+int roundsToSim    = 300;     // Number of hands to play (higher = more accurate but slower)
+int roundsToTest   = 50000;   // Rounds to test the basic strategy cards;
 
 bool g_lock_split_strategy = false;
 bool g_enable_blackjack    = true;
