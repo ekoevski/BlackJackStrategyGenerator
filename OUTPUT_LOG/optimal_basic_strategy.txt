@@ -3,7 +3,7 @@ Initiating deck, total decks: 6 total cards: 312
 
                 *** START OPTIMIZATION (SINGLE-THREAD)    (3000) ROUNDS ***  
 
- Aces: 0  High: 0  Mid: 4  Low: 72
+ Aces: 5  High: 66  Mid: 12  Low: 24
 
  0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split 
 
@@ -12,590 +12,67 @@ Initiating deck, total decks: 6 total cards: 312
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        hard 5:                 *** START OPTIMIZATION (SINGLE-THREAD)    (3000) ROUNDS ***  
-
- Aces: 0  High: 0  Mid: 4  Low: 72
-
- 0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split 
-
-
- HARD STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        hard 5: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X O X X X X O X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        hard 6: X 
-        hard 6: X 
-        hard 6: X 
-        hard 6: X 
-        hard 6: X 
-        hard 6: X 
-        hard 6: X 
-        hard 6: X 
-        hard 6: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X O X X X X X X X X X X X X X X X X O X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        hard 7: X X 
-        hard 7: X 
-        hard 7: X 
-        hard 7: X 
-        hard 7: X 
-        hard 7: X 
-        hard 7: X 
-        hard 7: X X 
-        hard 7: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X O X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        hard 8: X X 
-        hard 8: X X 
-        hard 8: X 
-        hard 8: X 
-        hard 8: X 
-        hard 8: X 
-        hard 8: X X 
-        hard 8: X X 
-        hard 8: X X X X X X X X X X X X X X X X X X X X X X X X X O X X X O O O O O O X O O O X O X O X X X X O O O O X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        hard 9: X X X 
-        hard 9: X X 
-        hard 9: X 
-        hard 9: X 
-        hard 9: X 
-        hard 9: X X 
-        hard 9: X X 
-        hard 9: X 
-        hard 9: X X X X X X X X X O X X X O X X O O X O X X O X O O X X X X O X O O O X O O X X X X X O X O O O X X X O X X X X X X X X X X X X X X X X X X X X X X X X 
-       hard 10: X X X 
-       hard 10: X X X 
-       hard 10: X 
-       hard 10: X 
-       hard 10: X 
-       hard 10: X X 
-       hard 10: X X X 
-       hard 10: X 
-       hard 10: X X X X X X X X X X X O X O O X X X X X O X X O X X O X X X O X O X X X X X O X X X O X X X X X O X X X X X X X X X X X X X X X X X X X X X X X 
-       hard 11: X X X X 
-       hard 11: X X X 
-       hard 11: X X 
-       hard 11: X 
-       hard 11: X X 
-       hard 11: X X X 
-       hard 11: X X X X X 
-       hard 11: X X 
-       hard 11: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-       hard 12: X X X X X X X X 
-       hard 12: X X X 
-       hard 12: X X 
-       hard 12: X X 
-       hard 12: X 
-       hard 12: X O 
-       hard 12: X X X X O 
-       hard 12: X X X X X 
-       hard 12: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-       hard 13: X X X X X X X 
-       hard 13: X 
-       hard 13: X X 
-       hard 13: X 
-       hard 13: X 
-       hard 13: X X X X X X X X X X X 
-       hard 13: X 
-       hard 13: X X X 
-       hard 13: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X D X X X X X X X X X X X X X 
-       hard 14: X X X X X X 
-       hard 14: X X X X X 
-       hard 14: X 
-       hard 14: X 
-       hard 14: X 
-       hard 14: X X X X X D X X X X X 
-       hard 14: D X 
-       hard 14: D D D X 
-       hard 14: D X D D X X D D D D D D D D D D X D D D D D D D D D D X X D D D D D D D D X X D D D D X D D D D D D D D D X D X 
-       hard 15: X D D D X D D D X X X 
-       hard 15: D D X 
-       hard 15: X 
-       hard 15: D X 
-       hard 15: X 
-       hard 15: D D D D D D D X 
-       hard 15: D D D X 
-       hard 15: D D X 
-       hard 15: D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D 
-       hard 16: D D D D D D D 
-       hard 16: X D D D D 
-       hard 16: D D D 
-       hard 16: X D D 
-       hard 16: D D 
-       hard 16: X D D X D 
-       hard 16: D D X X D 
-       hard 16: D 
-       hard 16: D D X D D D X X D D D D D D D D D D D D D D X D D D D X D D D X D D D D D D X D D D D D D D D D D D D D D X 
-       hard 17: D X D D D D D D D D X X 
-       hard 17: D D D D X 
-       hard 17: D D X X X 
-       hard 17: D 
-       hard 17: D D 
-       hard 17: D D X X X X X X 
-       hard 17: X 
-       hard 17: X X 
-       hard 17: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-       hard 18: X X X X X X X X X O X X X X X X 
-       hard 18: X X O X X X 
-       hard 18: X X X 
-       hard 18: O X X 
-       hard 18: X 
-       hard 18: O O X X O O O X O O O X 
-       hard 18: X 
-       hard 18: O O O O X 
-       hard 18: O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O 
-       hard 19: O O O O O O O O O O O O O O O O O O O O 
-       hard 19: O 
-       hard 19: O 
-       hard 19: O O 
-       hard 19: O 
-       hard 19: O O O O O O O O O O O O O O O O O 
-       hard 19: O 
-       hard 19: O O O O O 
-       hard 19: O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O 
-       hard 20: O O O O O O O O O O O O O O O O O O O O 
-       hard 20: O O O O 
-       hard 20: O O O 
-       hard 20: O O O O O 
-       hard 20: O O 
-       hard 20: O O O O O O O O O O O 
-       hard 20: O O O O O O O O 
-       hard 20: O O O 
-       hard 20: O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O 
+        hard 5: O D X X D D X X X X 
+        hard 6: X D X X X D X X X X 
+        hard 7: X D D D D D X X X X 
+        hard 8: X D D D D D D X X X 
+        hard 9: D D D D D D D D X X 
+       hard 10: D D D D D D D D D D 
+       hard 11: D D D D D D D D D D 
+       hard 12: O O O O O O X O O O 
+       hard 13: O O O O O O X O O O 
+       hard 14: O O O O O O X X O O 
+       hard 15: O O O O O O X X O O 
+       hard 16: O O O O O O X O O O 
+       hard 17: O O O O O O O O O O 
+       hard 18: O O O O O O O O O O 
+       hard 19: O O O O O O O O O O 
+       hard 20: O O O O O O O O O O 
 
 
  SOFT STRATEGY 
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        soft 12: O O O O O O O X O O O O 
-
-
- SOFT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        soft 12: O O O O O O O X O 
-
-
- SOFT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        soft 12: O X O O 
-
-
- SOFT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        soft 12: O 
-
-
- SOFT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        soft 12: O O X O 
-
-
- SOFT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        soft 12: O X X X O O X X O X X X O X O 
-
-
- SOFT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        soft 12: O 
-
-
- SOFT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        soft 12: X X X O 
-
-
- SOFT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-        soft 12: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        soft 13: X X X X X X X X X X X X X X 
-        soft 13: X X X X X X X X X X X X X 
-        soft 13: X 
-        soft 13: X X 
-        soft 13: X X X 
-        soft 13: X X X X X X X X X X X X X 
-        soft 13: X X X 
-        soft 13: X X X X 
-        soft 13: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        soft 14: X X X X X X X X X X X X X X X 
-        soft 14: X X X X X 
-        soft 14: X X D X X 
-        soft 14: X 
-        soft 14: X X 
-        soft 14: X X X D D X X X X X D X D D X 
-        soft 14: D D D X 
-        soft 14: X 
-        soft 14: D D X X D D D X X D X X X D D D D D D X D X D D D X D D D D D D D D X X D D D D D X X X D D X 
-        soft 15: D D X X X D D D X D D X 
-        soft 15: D X 
-        soft 15: D D D X 
-        soft 15: X 
-        soft 15: D D D D D X 
-        soft 15: D D D D D D X D D D D D X 
-        soft 15: D D X 
-        soft 15: D D D D X 
-        soft 15: D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D D 
-        soft 16: D D D D D D D D X D 
-        soft 16: D D D D 
-        soft 16: D D 
-        soft 16: D X D D X D 
-        soft 16: X D D 
-        soft 16: X D D X X X D X X X D 
-        soft 16: D X D X X X X X X D 
-        soft 16: X D 
-        soft 16: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        soft 17: X X X X X X X X X X X 
-        soft 17: X X X X X X 
-        soft 17: X X X 
-        soft 17: X X X X 
-        soft 17: X 
-        soft 17: X X X X X X X X X X X X X X X 
-        soft 17: X X X X X 
-        soft 17: X X X 
-        soft 17: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        soft 18: X X X X X X X X X X X X 
-        soft 18: X X X X X 
-        soft 18: X X 
-        soft 18: X X X X 
-        soft 18: X X X X 
-        soft 18: X X X X X X X X X X X X X X X X 
-        soft 18: X X 
-        soft 18: X 
-        soft 18: X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X 
-        soft 19: X X X X X X 
-        soft 19: X 
-        soft 19: X X X X 
-        soft 19: X X X 
-        soft 19: X X X X X X O X O X O X 
-        soft 19: X X O O X O O O X 
-        soft 19: X X O X 
-        soft 19: O O O X O O X 
-        soft 19: X O X X X O X X O X O X O O X O O O X O X O O O X O O O O O X O X O O X O O O X O O X 
-        soft 20: O X 
-        soft 20: X O X X 
-        soft 20: X O X O X 
-        soft 20: O O O O X 
-        soft 20: O O O O O O O O O X 
-        soft 20: O O O O O O O O O O X 
-        soft 20: O O O O O O O X 
-        soft 20: O O O O X 
-        soft 20: O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O 
+        soft 12: X D D D D D X X X X 
+        soft 13: X D D D D D X X X X 
+        soft 14: X D D D D D X X X X 
+        soft 15: X D D D D D X X X X 
+        soft 16: D D D D D D X X X X 
+        soft 17: X D D D D D X X X X 
+        soft 18: O D D D D D O O X X 
+        soft 19: D D D D D D O O O O 
+        soft 20: O D D D D D O O O O 
 
 
  SPLIT STRATEGY 
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-     split 1,1: O O O O O O 
-
-
- SPLIT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-     split 1,1: O S O 
-
-
- SPLIT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-     split 1,1: O O O 
-
-
- SPLIT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-     split 1,1: O S O O S S S O 
-
-
- SPLIT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-     split 1,1: O O O S S O S S S O S O 
-
-
- SPLIT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-     split 1,1: O S S O O S S S S O S S O 
-
-
- SPLIT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-     split 1,1: O S S S S O S S S O S S S S O 
-
-
- SPLIT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-     split 1,1: S S S S S S O 
-
-
- SPLIT STRATEGY 
-
-Dealer up card: A 2 3 4 5 6 7 8 9 10
-
-     split 1,1: S S S S S S S S S S S S S S S S S S S 
-     split 2,2: S S S S S S 
-     split 2,2: S S S S 
-     split 2,2: - S S S - S 
-     split 2,2: S 
-     split 2,2: S S - - S S - - S S - S S S - S S - S S S S 
-     split 2,2: - - - S - - S 
-     split 2,2: S S - - - - S - - S - - - - S S - - S S 
-     split 2,2: S - - S 
-     split 2,2: - - - - S - S S S - - - - - - - - - - - - - S - 
-     split 3,3: - - 
-     split 3,3: - 
-     split 3,3: - - - - - - - - S - 
-     split 3,3: - 
-     split 3,3: - S - - - - - - - - - - - - - S S - S - 
-     split 3,3: - - - - - - - - - - 
-     split 3,3: - - - - S - - - - - - - - - S - - - - S S - - - 
-     split 3,3: - S S - - 
-     split 3,3: S - - S S - - - - - - - 
-     split 4,4: - S S - - 
-     split 4,4: - S - 
-     split 4,4: - S - - - S S - S - - 
-     split 4,4: - - 
-     split 4,4: S S - - - S - - - S - S - - 
-     split 4,4: - - - S - S S - - - - S - - - - 
-     split 4,4: S S S S S S - S - S S S - S S S - - - S S - 
-     split 4,4: S S - 
-     split 4,4: - S - S - 
-     split 5,5: - S S - S - S S - S 
-     split 5,5: - - S - 
-     split 5,5: S S S - - S S - - S - S S - S S S S - S S 
-     split 5,5: S 
-     split 5,5: S - - S S S S - - - - - S - 
-     split 5,5: S S S S - S S - S 
-     split 5,5: S - - S - S S S - - S S S S S S - S S S - S - - 
-     split 6,6: - - S 
-     split 5,5: S 
-     split 5,5: S S S S - - S - - S - 
-     split 6,6: - S - S S - 
-     split 6,6: S S - - S - - S - S S - S S - S - - 
-     split 6,6: S - 
-     split 6,6: - S - - S - S S S - S - - - - S S S - 
-     split 6,6: S S S - 
-     split 6,6: S - S S S S S S - S S S S S S S - S S 
-     split 7,7: S S S S S S - - - - 
-     split 6,6: S S S S S - - 
-     split 6,6: - - S S S S 
-     split 7,7: S - - - S S S - S S 
-     split 7,7: S S - - S - S - S S S - S S 
-     split 7,7: S 
-     split 7,7: - - S S S - - - S - - S - S S - - - S - - S 
-     split 7,7: - 
-     split 7,7: - S - - - S - - - - - - S - - 
-     split 8,8: S - - - - - - S - - S - - - - - S - 
-     split 7,7: - - 
-     split 8,8: - - - - - S 
-     split 7,7: - - - - - - 
-     split 8,8: - - - - - - - - - - - - - - - - 
-     split 8,8: - - - - - 
-     split 8,8: - - - - - - - - - - - - - - - - - - - - - 
-     split 8,8: - - 
-     split 8,8: - - - - - - - - - - - - - 
-     split 9,9: - - - - - - - - S - - - - - - - - S - - 
-     split 9,9: - 
-     split 8,8: - - - 
-     split 8,8: - - S S S - - 
-     split 9,9: - - - S - - S - - S - S - - S - S - - - S - 
-     split 9,9: S - 
-     split 9,9: - S - - - S S S S S - - - S - S S S S - - S S - 
-     split 9,9: - 
-     split 9,9: S S S - S S 
-     split 10,10: - S S S S S - S - S S S S S S S 
-     split 10,10: - S S S - S S S - S - 
-     split 9,9: - S S S 
-     split 10,10: S S S S S - 
-     split 9,9: S S - S S S - S S S S S S S S - S S S S 
-     split 10,10: S S S 
-     split 10,10: - S S S S - S - - S S S S S S S S - S S S 
-     split 10,10: S S S 
-     split 10,10: - - 
-
-
-Time difference = 37[s] 
-S S S - S S S - - - S S S S S S - 
-
-
-Time difference = 37[s] 
-- S - S S - S S S S - - - 
-
-
-Time difference = 37[s] 
-S 
-     split 10,10: S S 
-     split 10,10: - S - - S - - S S - - S - S S S - 
-
-
-Time difference = 37[s] 
-S - 
-
-
-Time difference = 37[s] 
-S - S - - - - - 
-
-
-Time difference = 37[s] 
-- 
-
-
-Time difference = 37[s] 
-- S S S S S S - - - 
-
-
-Time difference = 38[s] 
-- 
-
-
-Time difference = 38[s] 
-<TEST>drop: 53325.000000 w/l: 22166.000000 total W/L (0.415677)  rounds = 50000 , low = 72 
-<TEST>drop: 59138.000000 w/l: 7415.000000 total W/L (0.125385)  rounds = 50000 , low = 72 
-<TEST>drop: 64156.000000 w/l: -456.000000 total W/L (-0.007108)  rounds = 50000 , low = 72 
-<TEST>drop: 70365.000000 w/l: -4351.000000 total W/L (-0.061835)  rounds = 50000 , low = 72 
-<TEST>drop: 64108.000000 w/l: 2477.000000 total W/L (0.038638)  rounds = 50000 , low = 72 
-<TEST>drop: 58432.000000 w/l: 10204.000000 total W/L (0.174630)  rounds = 50000 , low = 72 
-<TEST>drop: 64391.000000 w/l: -334.000000 total W/L (-0.005187)  rounds = 50000 , low = 72 
-<TEST>drop: 61181.000000 w/l: 2130.000000 total W/L (0.034815)  rounds = 50000 , low = 72 
-<TEST>drop: 67653.000000 w/l: -3267.000000 total W/L (-0.048291)  rounds = 50000 , low = 72 
-<TEST>drop: 53284.000000 w/l: 22345.000000 total W/L (0.417516)  rounds = 100000 , low = 72 
-<TEST>drop: 59325.000000 w/l: 6527.000000 total W/L (0.117691)  rounds = 100000 , low = 72 
-<TEST>drop: 64401.000000 w/l: -77.000000 total W/L (-0.004146)  rounds = 100000 , low = 72 
-<TEST>drop: 63856.000000 w/l: 2436.000000 total W/L (0.038394)  rounds = 100000 , low = 72 
-<TEST>drop: 70639.000000 w/l: -3825.000000 total W/L (-0.057984)  rounds = 100000 , low = 72 
-<TEST>drop: 58475.000000 w/l: 10227.000000 total W/L (0.174763)  rounds = 100000 , low = 72 
-<TEST>drop: 64472.000000 w/l: -703.000000 total W/L (-0.008047)  rounds = 100000 , low = 72 
-<TEST>drop: 53350.000000 w/l: 22196.000000 total W/L (0.417026)  rounds = 150000 , low = 72 
-<TEST>drop: 67390.000000 w/l: -2788.000000 total W/L (-0.044838)  rounds = 100000 , low = 72 
-<TEST>drop: 60697.000000 w/l: 2409.000000 total W/L (0.037242)  rounds = 100000 , low = 72 
-<TEST>drop: 59220.000000 w/l: 6675.000000 total W/L (0.116032)  rounds = 150000 , low = 72 
-<TEST>drop: 63802.000000 w/l: 2498.000000 total W/L (0.038646)  rounds = 150000 , low = 72 
-<TEST>drop: 64524.000000 w/l: -641.000000 total W/L (-0.006080)  rounds = 150000 , low = 72 
-<TEST>drop: 70374.000000 w/l: -3198.000000 total W/L (-0.053809)  rounds = 150000 , low = 72 
-<TEST>drop: 58468.000000 w/l: 10459.000000 total W/L (0.176137)  rounds = 150000 , low = 72 
-<TEST>drop: 64691.000000 w/l: -449.000000 total W/L (-0.007677)  rounds = 150000 , low = 72 
-<TEST>drop: 53272.000000 w/l: 22437.000000 total W/L (0.418063)  rounds = 200000 , low = 72 
-<TEST>drop: 60978.000000 w/l: 2627.000000 total W/L (0.039189)  rounds = 150000 , low = 72 
-<TEST>drop: 67561.000000 w/l: -2724.000000 total W/L (-0.043331)  rounds = 150000 , low = 72 
-<TEST>drop: 59309.000000 w/l: 7095.000000 total W/L (0.116932)  rounds = 200000 , low = 72 
-<TEST>drop: 63754.000000 w/l: 2735.000000 total W/L (0.039707)  rounds = 200000 , low = 72 
-<TEST>drop: 64354.000000 w/l: -310.000000 total W/L (-0.005765)  rounds = 200000 , low = 72 
-<TEST>drop: 58627.000000 w/l: 10022.000000 total W/L (0.174836)  rounds = 200000 , low = 72 
-<TEST>drop: 70407.000000 w/l: -3947.000000 total W/L (-0.054371)  rounds = 200000 , low = 72 
-<TEST>drop: 53239.000000 w/l: 21961.000000 total W/L (0.416951)  rounds = 250000 , low = 72 
-<TEST>drop: 64418.000000 w/l: -218.000000 total W/L (-0.006605)  rounds = 200000 , low = 72 
-<TEST>drop: 60990.000000 w/l: 2076.000000 total W/L (0.037901)  rounds = 200000 , low = 72 
-<TEST>drop: 67444.000000 w/l: -2942.000000 total W/L (-0.043403)  rounds = 200000 , low = 72 
-<TEST>drop: 59076.000000 w/l: 6835.000000 total W/L (0.116686)  rounds = 250000 , low = 72 
-<TEST>drop: 63824.000000 w/l: 2564.000000 total W/L (0.039800)  rounds = 250000 , low = 72 
-<TEST>drop: 64552.000000 w/l: -188.000000 total W/L (-0.005193)  rounds = 250000 , low = 72 
-<TEST>drop: 58779.000000 w/l: 10321.000000 total W/L (0.174987)  rounds = 250000 , low = 72 
-<TEST>drop: 53292.000000 w/l: 22490.000000 total W/L (0.417795)  rounds = 300000 , low = 72 
-<TEST>drop: 70762.000000 w/l: -3534.000000 total W/L (-0.053482)  rounds = 250000 , low = 72 
-<TEST>drop: 64698.000000 w/l: -443.000000 total W/L (-0.006654)  rounds = 250000 , low = 72 
-<TEST>drop: 60938.000000 w/l: 1967.000000 total W/L (0.036777)  rounds = 250000 , low = 72 
-<TEST>drop: 67328.000000 w/l: -3586.000000 total W/L (-0.045371)  rounds = 250000 , low = 72 
-<TEST>drop: 59160.000000 w/l: 6881.000000 total W/L (0.116624)  rounds = 300000 , low = 72 
-<TEST>drop: 63875.000000 w/l: 2614.000000 total W/L (0.039988)  rounds = 300000 , low = 72 
-<TEST>drop: 64643.000000 w/l: -533.000000 total W/L (-0.005703)  rounds = 300000 , low = 72 
-<TEST>drop: 53450.000000 w/l: 22558.000000 total W/L (0.418403)  rounds = 350000 , low = 72 
-<TEST>drop: 58511.000000 w/l: 9839.000000 total W/L (0.173850)  rounds = 300000 , low = 72 
-<TEST>drop: 70390.000000 w/l: -3701.000000 total W/L (-0.053332)  rounds = 300000 , low = 72 
-<TEST>drop: 64508.000000 w/l: -207.000000 total W/L (-0.006080)  rounds = 300000 , low = 72 
-<TEST>drop: 61192.000000 w/l: 1997.000000 total W/L (0.036084)  rounds = 300000 , low = 72 
-<TEST>drop: 59361.000000 w/l: 6470.000000 total W/L (0.115531)  rounds = 350000 , low = 72 
-<TEST>drop: 67527.000000 w/l: -3326.000000 total W/L (-0.046018)  rounds = 300000 , low = 72 
-<TEST>drop: 63943.000000 w/l: 2880.000000 total W/L (0.040710)  rounds = 350000 , low = 72 
-<TEST>drop: 64533.000000 w/l: -123.000000 total W/L (-0.005160)  rounds = 350000 , low = 72 
-<TEST>drop: 53230.000000 w/l: 21987.000000 total W/L (0.417736)  rounds = 400000 , low = 72 
-<TEST>drop: 58556.000000 w/l: 10474.000000 total W/L (0.174567)  rounds = 350000 , low = 72 
-<TEST>drop: 70541.000000 w/l: -4082.000000 total W/L (-0.053980)  rounds = 350000 , low = 72 
-<TEST>drop: 64667.000000 w/l: -745.000000 total W/L (-0.006859)  rounds = 350000 , low = 72 
-<TEST>drop: 60987.000000 w/l: 2409.000000 total W/L (0.036572)  rounds = 350000 , low = 72 
-<TEST>drop: 59028.000000 w/l: 6372.000000 total W/L (0.114586)  rounds = 400000 , low = 72 
-<TEST>drop: 67345.000000 w/l: -3161.000000 total W/L (-0.046149)  rounds = 350000 , low = 72 
-<TEST>drop: 63881.000000 w/l: 2246.000000 total W/L (0.040016)  rounds = 400000 , low = 72 
-<TEST>drop: 53226.000000 w/l: 22279.000000 total W/L (0.417829)  rounds = 450000 , low = 72 
-<TEST>drop: 64439.000000 w/l: -282.000000 total W/L (-0.005062)  rounds = 400000 , low = 72 
-<TEST>drop: 58822.000000 w/l: 10165.000000 total W/L (0.174347)  rounds = 400000 , low = 72 
-<TEST>drop: 70542.000000 w/l: -4119.000000 total W/L (-0.054532)  rounds = 400000 , low = 72 
-<TEST>drop: 64433.000000 w/l: -571.000000 total W/L (-0.007109)  rounds = 400000 , low = 72 
-<TEST>drop: 59265.000000 w/l: 6551.000000 total W/L (0.114136)  rounds = 450000 , low = 72 
-<TEST>drop: 61071.000000 w/l: 1844.000000 total W/L (0.035774)  rounds = 400000 , low = 72 
-<TEST>drop: 67203.000000 w/l: -3180.000000 total W/L (-0.046295)  rounds = 400000 , low = 72 
-<TEST>drop: 64091.000000 w/l: 2604.000000 total W/L (0.040085)  rounds = 450000 , low = 72 
-<TEST>drop: 53266.000000 w/l: 22677.000000 total W/L (0.418618)  rounds = 500000 , low = 72 
-<TEST>drop: 64588.000000 w/l: -401.000000 total W/L (-0.005190)  rounds = 450000 , low = 72 
-<TEST>drop: 58765.000000 w/l: 9957.000000 total W/L (0.173800)  rounds = 450000 , low = 72 
-<TEST>drop: 70482.000000 w/l: -4034.000000 total W/L (-0.054832)  rounds = 450000 , low = 72 
-<TEST>drop: 64574.000000 w/l: -5.000000 total W/L (-0.006327)  rounds = 450000 , low = 72 
-
-
-<><TEST>Simulator::run completed: hold 41.861843 percent, rounds: 500000
-
-<TEST>drop: 60777.000000 w/l: 2717.000000 total W/L (0.036763)  rounds = 450000 , low = 72 
-<TEST>drop: 59176.000000 w/l: 7074.000000 total W/L (0.114676)  rounds = 500000 , low = 72 
-<TEST>drop: 67279.000000 w/l: -3307.000000 total W/L (-0.046612)  rounds = 450000 , low = 72 
-<TEST>drop: 63744.000000 w/l: 2737.000000 total W/L (0.040369)  rounds = 500000 , low = 72 
-<TEST>drop: 64424.000000 w/l: 230.000000 total W/L (-0.004314)  rounds = 500000 , low = 72 
-<TEST>drop: 58636.000000 w/l: 10012.000000 total W/L (0.173494)  rounds = 500000 , low = 72 
-<TEST>drop: 70706.000000 w/l: -4105.000000 total W/L (-0.055155)  rounds = 500000 , low = 72 
-
-
-<><TEST>Simulator::run completed: hold 11.467627 percent, rounds: 500000
-
-
-
-<><TEST>Simulator::run completed: hold 4.036921 percent, rounds: 500000
-
-<TEST>drop: 64583.000000 w/l: -750.000000 total W/L (-0.006856)  rounds = 500000 , low = 72 
-<TEST>drop: 61229.000000 w/l: 2313.000000 total W/L (0.036865)  rounds = 500000 , low = 72 
-<TEST>drop: 67571.000000 w/l: -3061.000000 total W/L (-0.046481)  rounds = 500000 , low = 72 
-
-
-<><TEST>Simulator::run completed: hold -0.431421 percent, rounds: 500000
-
-
-
-<><TEST>Simulator::run completed: hold 17.349434 percent, rounds: 500000
-
-
-
-<><TEST>Simulator::run completed: hold -5.515536 percent, rounds: 500000
-
-
-
-<><TEST>Simulator::run completed: hold -0.685584 percent, rounds: 500000
-
-
-
-<><TEST>Simulator::run completed: hold 3.686480 percent, rounds: 500000
-
-
-
-<><TEST>Simulator::run completed: hold -4.648073 percent, rounds: 500000
+     split 1,1: S S S S S - S S S S 
+     split 2,2: - S S S S S - - - - 
+     split 3,3: - S S S S S - - - - 
+     split 4,4: - - - S S S - - - - 
+     split 5,5: - - - - - - - - - - 
+     split 6,6: - S S S S S - - - - 
+     split 7,7: S S S S S S S - - - 
+     split 8,8: S S S S S S S S - - 
+     split 9,9: S S S S S S S S S - 
+     split 10,10: S S S S S S - - - - 
+
+
+Time difference = 55[s] 
+<TEST>drop: 61018.000000 w/l: -5332.500000 total W/L (-0.087392)  rounds = 50000 , low = 24 
+<TEST>drop: 60586.000000 w/l: -5292.000000 total W/L (-0.087370)  rounds = 100000 , low = 24 
+<TEST>drop: 60725.000000 w/l: -5456.000000 total W/L (-0.088195)  rounds = 150000 , low = 24 
+<TEST>drop: 60928.000000 w/l: -5627.000000 total W/L (-0.089237)  rounds = 200000 , low = 24 
+<TEST>drop: 60622.000000 w/l: -5198.500000 total W/L (-0.088542)  rounds = 250000 , low = 24 
+<TEST>drop: 61186.000000 w/l: -6340.500000 total W/L (-0.091070)  rounds = 300000 , low = 24 
+<TEST>drop: 60939.000000 w/l: -6027.000000 total W/L (-0.092190)  rounds = 350000 , low = 24 
+<TEST>drop: 60973.000000 w/l: -5564.000000 total W/L (-0.092073)  rounds = 400000 , low = 24 
+<TEST>drop: 61011.000000 w/l: -5816.500000 total W/L (-0.092436)  rounds = 450000 , low = 24 
+<TEST>drop: 60935.000000 w/l: -5261.000000 total W/L (-0.091826)  rounds = 500000 , low = 24 
+
+
+<><TEST>Simulator::run completed: hold -9.182606 percent, rounds: 500000
 

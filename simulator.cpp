@@ -117,7 +117,8 @@ void Simulator::testCurrentStrategy(int rounds)
     }
   Table_BJ->clearTable();
   }
-  sleep(1);
+
+  Simulator::final_hold_percentage = (total_winloss/total_drop)*100;
   VLOG_0("\n\n<><TEST>Simulator::run completed: hold %f percent, rounds: %d\n\n", (total_winloss/total_drop)*100, rounds);
 };
 
@@ -155,6 +156,7 @@ void Simulator::exportBasicStrategy(int tempAces, int tempHigh, int tempMid, int
           file << splitStrategy[j][i];
       }      
     }
+    file << "\n" << Simulator::final_hold_percentage;
 
     file.close();
 }
@@ -437,5 +439,4 @@ g_lock_split_strategy = false;
 
   std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
   VLOG_0("\n\nTime difference = %d[s] \n", std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()/1000000);  
-  Simulator::exportBasicStrategy(tempAces, tempHigh, tempMid, tempLow, tempMin);
 }

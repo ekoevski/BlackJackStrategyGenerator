@@ -24,7 +24,7 @@ class Simulator
   float total_drop = 0;
   float total_winloss = 0;
   int counter = 0;
-
+  float final_hold_percentage = 0;
 
   string gameName = "BlackJack";
   int shoeDecks = 1;
