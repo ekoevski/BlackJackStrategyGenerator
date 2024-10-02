@@ -1,9 +1,9 @@
 
 Initiating deck, total decks: 6 total cards: 312
 
-                *** START OPTIMIZATION (SINGLE-THREAD)    (300) ROUNDS ***  
+                *** START OPTIMIZATION (SINGLE-THREAD)    (3000) ROUNDS ***  
 
- Aces: 19  High: 86  Mid: 27  Low: 62
+ Aces: 24  High: 96  Mid: 72  Low: 72
 
  0 = Stay   |   1 = Hit    |  2 = Double  |   4 = Split 
 
@@ -14,16 +14,16 @@ Dealer up card: A 2 3 4 5 6 7 8 9 10
 
         hard 5: X X X X X X X X X X 
         hard 6: X X X X X X X X X X 
-        hard 7: X X X X D X X X X X 
-        hard 8: D D X D X D X X X X 
-        hard 9: X D D D D D D D X X 
-       hard 10: D D D D D D D D D D 
-       hard 11: D D D D D D D D D D 
-       hard 12: O O O O O O X X O O 
-       hard 13: O O O O O O X X O O 
-       hard 14: O O O O O O X X X O 
+        hard 7: X X X X X X X X X X 
+        hard 8: X X X X X X X X X X 
+        hard 9: X X D D D D X X X X 
+       hard 10: X D D D D D D D D X 
+       hard 11: X D D D D D D D D D 
+       hard 12: X X X X O O X X X X 
+       hard 13: X O O O O O X X X X 
+       hard 14: X O O O O O X X X X 
        hard 15: X O O O O O X X X X 
-       hard 16: X O O O O O O X O O 
+       hard 16: X O O O O O X X X X 
        hard 17: O O O O O O O O O O 
        hard 18: O O O O O O O O O O 
        hard 19: O O O O O O O O O O 
@@ -34,15 +34,15 @@ Dealer up card: A 2 3 4 5 6 7 8 9 10
 
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
-        soft 12: X X D X D X X X X X 
-        soft 13: X D X X D D X X X X 
-        soft 14: X X X D D D X X X X 
-        soft 15: X D D X D D X X X X 
-        soft 16: X D D X X D X X X X 
-        soft 17: X D X D X X X X X X 
-        soft 18: O O O D X X O O X X 
-        soft 19: O D O D O D O O O O 
-        soft 20: O D D D D D O O O O 
+        soft 12: X X X X X D X X X X 
+        soft 13: X X X X X X X X X X 
+        soft 14: X X X X D D X X X X 
+        soft 15: X X D D D D X X X X 
+        soft 16: X X D D D D X X X X 
+        soft 17: X X D D D D X X X X 
+        soft 18: X O D D D D O O X O 
+        soft 19: O O O O O D O O O O 
+        soft 20: O O O O O O O O O O 
 
 
  SPLIT STRATEGY 
@@ -50,20 +50,20 @@ Dealer up card: A 2 3 4 5 6 7 8 9 10
 Dealer up card: A 2 3 4 5 6 7 8 9 10
 
      split 1,1: S S S S S S S S S S 
-     split 2,2: - S - - - - - - - - 
-     split 3,3: - - S - - - S - - - 
-     split 4,4: - - S - S - - - - - 
+     split 2,2: - - S S S S S - - - 
+     split 3,3: - S S S S S S - - - 
+     split 4,4: - - - - - S - - - - 
      split 5,5: - - - - - - - - - - 
-     split 6,6: S S S S S S S - - - 
-     split 7,7: - S S S S S S - - - 
-     split 8,8: S S S S S S S S S - 
-     split 9,9: S S S S S S - S S - 
+     split 6,6: - S S S S S - - - - 
+     split 7,7: - S S S S S S S - - 
+     split 8,8: - S S S S S S S S S 
+     split 9,9: - S S S S S - S S - 
      split 10,10: - - - - - - - - - - 
 
 
-Time difference = 9[s] 
-<TEST>drop: 56113.000000 w/l: -683.500000 total W/L (-0.012181)  rounds = 50000 , low = 62 
+Time difference = 133[s] 
+<TEST>drop: 56017.000000 w/l: 493.500000 total W/L (0.008810)  rounds = 50000 , low = 72 
 
 
-<><TEST>Simulator::run completed: hold -1.218078 percent, rounds: 50000
+<><TEST>Simulator::run completed: hold 0.880983 percent, rounds: 50000
 
