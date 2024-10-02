@@ -19,8 +19,6 @@ strategy_card_list = []
 print("Generating strategy_cards.h file")
 f = open("strategy_cards.h","w")
 
-for filename in onlyfiles:
-    print("nothin") 
 
 
 f.write("#ifndef STRATEGY_CARDS_H\n")
@@ -28,5 +26,48 @@ f.write("#define STRATEGY_CARDS_H\n")
 f.write("\n#include <iostream>\n\n")
 
 
+f.write("struct strategy_card\n")
+f.write("{\n")
+f.write("   char composition[16];\n")
+f.write("   char strategy_compact[550];\n")
+f.write("   float hold_percentage;\n")
+f.write("};\n\n")
+
+f.write("struct strategy_card strategy_card_array[] ={\n")
+
+for filename in onlyfiles:
+    # Read from cards
+    f2 = open("strategy cards/" + filename, "r")
+    buff_strategy = f2.readline()
+    house_edge = f2.readline()
+
+    f.write("{\"" + filename + "\",\"" + buff_strategy[:-1] + "\"," + house_edge + "},\n")
+
+    # Write to strategy_cards.h
+    #f.write("int " + )
+
+
+
+    print(buff_strategy,house_edge)
+    f2.close()
+f.write("{\"" + "end" + "\",\"" + "end" + "\"," + "999.99" + "}\n")
+f.write("};\n\n")
+
 f.write("#endif\n")
 f.close()
+
+
+
+
+#
+#struct strategy_card
+#{
+#    char composition[16];
+#    char strategy_compact[550];
+#    float hold_percentage;
+#};
+
+#struct strategy_card strategy_card_array[] ={
+#    {"A0H0M0L0S0", "00100010101010110100101", -9.13}
+#};
+
