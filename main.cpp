@@ -20,22 +20,27 @@ using namespace std;
 // TO USE:      <<<<<<<<<<<<<<<<<<<
 // There is no prompt, the parameters are hardcoded, change them as needed.
 //int miniCards      = 48 - 0;   // 64    // Number of tens (10, Jacks, Queens, Kings)
-int minCards       = 48 - 0;
-int lowCards       = 72 - 0;   // 80    // Number of small cards, 4s - 6s
-int midCards       = 72 - 0;   // 48    // Number 7s - 9s
-int highCards      = 96 - 0;   // 64    // Number of tens (10, Jacks, Queens, Kings)
-int aces           = 24 - 0;   // 24     // Number of aces in the deck
+int minCards       = 48 - 24;   // increment by 2
+int lowCards       = 72 - 68;   // 80  // increment by 3     // Number of small cards, 4s - 6s
+int midCards       = 72 - 48;   // 48  // increment by 3    // Number 7s - 9s
+int highCards      = 96 - 0;   // 64  // increment by 4    // Number of tens (10, Jacks, Queens, Kings)
+int aces           = 24 - 0;   // 24  // increment by 1    // Number of aces in the deck
 
-int roundsToSim    = 3000;     // Number of hands to play (higher = more accurate but slower)
-int roundsToTest   = 50000;   // Rounds to test the basic strategy cards;
+int roundsToSim    = 1000;     // Number of hands to play (higher = more accurate but slower)
+int roundsToTest   = 100000;   // Rounds to test the basic strategy cards;
 
 bool g_lock_split_strategy = false;
 bool g_enable_blackjack    = true;
 // MAIN
 //=================== 
-int main() 
+int main(int argc, char **argv) 
 {
-
+  aces = stoi(argv[1]);
+  highCards = stoi(argv[2]);
+  midCards = stoi(argv[3]);
+  lowCards = stoi(argv[4]);
+  minCards = stoi(argv[5]);
+  
   //printf("hold percentage arragy: %f", hold_percentage_array[0][0][0][0][0]);
 
   printf("START, use $ watch -n0.1 cat output.txt in /OUTPUT_LOG/");
